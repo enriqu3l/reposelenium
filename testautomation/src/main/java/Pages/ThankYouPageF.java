@@ -22,8 +22,11 @@ public class ThankYouPageF {
 	}
 	
 	//---------Elements-------
-	@FindBy(how=How.CSS, css="")
+	@FindBy(how=How.CSS, css="#content .reservation-message .text-brand")
 	WebElement locator;
+	
+	@FindBy(how=How.CSS, css="#content .innerModule p a.but")
+	WebElement Button_seeReservation;
 	
 	public void checkCurrentURLPage() {
 		wait.until(ExpectedConditions.urlContains("completar-reservacion"));

@@ -12,10 +12,8 @@ public class BasicFunctionalTestSuite {
 	
 	@BeforeMethod
 	public void beforeMethod() {
-		//This will launch browser and specific url
-		//BrowserFactory.StartBrowser("chrome", "https://www.pricetravel.com.mx");
-		BrowserFactory.StartBrowser("chrome", "https://www.priceres.co/quest-group");
-		
+		//Set Browser
+		BrowserFactory.StartBrowser("chrome", "https://www.pricetravel.com.mx");
 	}
 	
 	@Test
