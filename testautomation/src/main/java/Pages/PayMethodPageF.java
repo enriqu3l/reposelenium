@@ -12,9 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class PayMethodPageF {
-	WebDriverWait wait;
-	WebDriver driver;
-	String currentURL;
+	private WebDriverWait wait;
+	private WebDriver driver;
+	private String currentURL;
 	
 	PayMethodPageF(WebDriver driver){
 		this.driver = driver;
@@ -100,7 +100,7 @@ public class PayMethodPageF {
 	}
 	
 	public void enterCodePromotions(String code) {
-		Button_validatePayForms.click();
+		Accordion_codePromotions.click();
 		Input_promocode.sendKeys(code);
 		Button_validatePromocode.click();
 		

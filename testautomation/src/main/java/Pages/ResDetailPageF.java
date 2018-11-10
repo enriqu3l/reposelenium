@@ -14,9 +14,9 @@ import org.testng.Assert;
 import Utility.BasicUtils;
 
 public class ResDetailPageF {
-	WebDriverWait wait;
-	WebDriver driver;
-	String currentURL;
+	private WebDriverWait wait;
+	private WebDriver driver;
+	private String currentURL;
 	
 	public ResDetailPageF(WebDriver driver){
 		this.driver = driver;

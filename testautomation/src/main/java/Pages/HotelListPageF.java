@@ -13,8 +13,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HotelListPageF {
-	WebDriverWait wait;
-	WebDriver driver;
+	private WebDriverWait wait;
+	private WebDriver driver;
 	
 	public HotelListPageF(WebDriver driver){
 		this.driver = driver;
