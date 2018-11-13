@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import DataObjects.DOCreditCard;
+
 public class PayMethodPageF {
 	private WebDriverWait wait;
 	private WebDriver driver;
@@ -82,6 +84,19 @@ public class PayMethodPageF {
 		Input_cardZipCode1.sendKeys("44777");
 	}
 	
+	public void FillCreditForm(DOCreditCard DOCard) {
+		Input_cardNumber1.sendKeys(Long.toString(DOCard.getCardNumber()));
+		Select month = new Select (Select_cardMonthExpired1);
+		month.selectByVisibleText(DOCard.getMonth());
+		Select year = new Select(Select_cardYearExpired1);
+		year.selectByVisibleText(DOCard.getYear());
+		Input_cardHolderName1.sendKeys(DOCard.getHolderName());
+		Input_cardSecurityCode1.sendKeys(Integer.toString(DOCard.getCCV()));
+		Select country = new Select(Select_cardCountry1);
+		country.selectByVisibleText(DOCard.getCountry());
+		Input_cardZipCode1.sendKeys(Integer.toString(DOCard.getCP()));
+	}
+	
 	public void clearCreditForm() {
 		Input_cardNumber1.clear();
 		Select month = new Select (Select_cardMonthExpired1);
@@ -104,8 +119,7 @@ public class PayMethodPageF {
 		Input_promocode.sendKeys(code);
 		Button_validatePromocode.click();
 		
-		//Validar que el codigo sea valido, aun no esta implementado
+		//Falta validar que el codigoProm sea valido
 		Assert.assertEquals("current", "expected");
 	}
-	
 }

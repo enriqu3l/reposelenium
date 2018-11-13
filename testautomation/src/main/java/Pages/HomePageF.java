@@ -1,7 +1,11 @@
 package Pages;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -145,8 +149,18 @@ public class HomePageF {
 		Button_search.click();
 	}
 	
-	public void SearchHotel(DOHotelRes DO_HotelRes) throws InterruptedException {
+	public void SearchHotel(DOHotelRes DO_HotelRes) throws InterruptedException, AWTException {
 		verifyProductSelectedOnWidgetMenu("Hoteles");
+		
+		//Mover el mouse al Input Destino
+		//Point coordinates = driver.findElement(By.id("ap_dest_start")).getLocation();
+		//Robot robot = new Robot();
+		//robot.mouseMove(coordinates.getX(),coordinates.getY()+120);
+		
+        Point location = Input_destHotel.getLocation();
+        Robot robot = new Robot();
+		robot.mouseMove(location.getX(),location.getY()+120);
+		//-------------------------------------------------------------------------------
 		
 		Input_destHotel.sendKeys(DO_HotelRes.getDestination());
 		Thread.sleep(5000);

@@ -36,5 +36,6 @@ public class ThankYouPageF {
 	
 	public void SaveLocatorOnFile() {
 		//Colorcar aqui el codigo para guardar el número de localizador que se ha generado
+		
 	}
 }

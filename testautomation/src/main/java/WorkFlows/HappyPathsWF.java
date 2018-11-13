@@ -1,5 +1,8 @@
 package WorkFlows;
 
+import java.awt.AWTException;
+
+import DataObjects.DOCreditCard;
 import DataObjects.DOHotelRes;
 import Helper.DOManager;
 import Pages.Pages;
@@ -21,8 +24,9 @@ public class HappyPathsWF {
 		Pages.payMethod_page.FillCreditFormDefaultData();
 	}
 	
-	public static void HPHotelResRandomData() throws InterruptedException {
+	public static void HPHotelResRandomData() throws InterruptedException, AWTException {
 		DOHotelRes DO_HotelRes = DOManager.getRandomHotelRes();
+		DOCreditCard DO_CreditCard = DOManager.getRandomCreditCard();
 		
 		Pages.homePage_Initialize();
 		Pages.home_page.SearchHotel(DO_HotelRes);
@@ -35,7 +39,7 @@ public class HappyPathsWF {
 		Pages.resDetail_page.ClearFillandContinue();
 		Pages.payMethodPage_Initialize();
 		Pages.payMethod_page.checkCurrentURLPage();
-		Pages.payMethod_page.FillCreditFormDefaultData();
+		Pages.payMethod_page.FillCreditForm(DO_CreditCard);
 	}
 	
 	public static void HPPaqueteDefault() throws InterruptedException {

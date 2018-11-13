@@ -2,6 +2,7 @@ package Helper;
 
 import java.util.Random;
 
+import DataObjects.DOCreditCard;
 import DataObjects.DOHotelRes;
 import Utility.ExcelUtils;
 
@@ -14,7 +15,12 @@ public class DOManager {
 	public DOManager() {
 	}
 	
-	public  static DOHotelRes getHotelResByListItem(int item) {
+	public  static DOHotelRes getHotelRes(int item) {
+		//Candado que limita los valores que puede tener la variable item
+		int max = ExcelUtils.getRowCountR(rHotelResData)-1;
+		if(item<=0){item=1;}
+		if(item>max){item=max;}
+		
 		DOHotelRes DOHotelRes = new DOHotelRes();
 		DOHotelRes.setDataUsingList(ExcelUtils.getRowR(rHotelResData, item));
 		return DOHotelRes; 
@@ -23,7 +29,6 @@ public class DOManager {
 	public static DOHotelRes getRandomHotelRes() {
 		int min = 1;
 		int max = ExcelUtils.getRowCountR(rHotelResData)-1; //Le resto 1 porque la primer fila es la 0
-		
 		//Asi se obtiene un numero random entre valor min y max.
 		Random rand = new Random();
 		int randomNum = rand.nextInt((max - min) + 1) + min;
@@ -31,6 +36,28 @@ public class DOManager {
 		DOHotelRes DOHotelRes = new DOHotelRes();
 		DOHotelRes.setDataUsingList(ExcelUtils.getRowR(rHotelResData, randomNum));
 		return DOHotelRes;
+	}
+	
+	public static DOCreditCard getCreditCard(int item) {
+		//Candado que limita los valores que puede tener la variable item
+		int max = ExcelUtils.getRowCountR(rCreditCardData)-1;
+		if(item<=0){item=1;}
+		if(item>max){item=max;}
 		
+		DOCreditCard DOCreditCard = new DOCreditCard();
+		DOCreditCard.setDataUsingList(ExcelUtils.getRowR(rCreditCardData, item));
+		return DOCreditCard;
+	}
+	
+	public static DOCreditCard getRandomCreditCard() {
+		int min = 1;
+		int max = ExcelUtils.getRowCountR(rCreditCardData)-1; //Le resto 1 porque la primer fila es la 0
+		//Asi se obtiene un numero random entre valor min y max.
+		Random rand = new Random();
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+		
+		DOCreditCard DOCreditCard = new DOCreditCard();
+		DOCreditCard.setDataUsingList(ExcelUtils.getRowR(rCreditCardData, randomNum));
+		return DOCreditCard;
 	}
 }

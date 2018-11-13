@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /Pages/
 /Utility/
 /testautomation/
@@ -5,3 +6,13 @@
 /Helper/
 /WorkFlows/
 /TestCases/
+=======
+/DataObjects/
+/FrameworkConfig/
+/Helper/
+/Pages/
+/TestCases/
+/Utility/
+/WorkFlows/
+/testautomation/
+>>>>>>> refs/heads/master

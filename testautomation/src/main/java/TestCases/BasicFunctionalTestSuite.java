@@ -1,5 +1,7 @@
 package TestCases;
 
+import java.awt.AWTException;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -17,7 +19,7 @@ public class BasicFunctionalTestSuite {
 	}
 	
 	@Test
-	public void HappyPath_default() throws InterruptedException{		
+	public void HappyPath_default() throws InterruptedException, AWTException{		
 		HappyPathsWF.HPHotelResRandomData();
 	}
 	
@@ -36,7 +38,7 @@ public class BasicFunctionalTestSuite {
 	@AfterMethod
 	public void Close()
 	{
-		BrowserFactory.driver.close();	
+		//BrowserFactory.driver.close();	
 	}
 	
 	@AfterTest
