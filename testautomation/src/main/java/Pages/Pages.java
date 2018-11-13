@@ -45,4 +45,5 @@ public class Pages {
 		//PageFactory.initElements(new AjaxElementLocatorFactory(BrowserFactory.driver, 15),payMethod_page);
 		//payMethod_page = PageFactory.initElements(BrowserFactory.driver, PayMethodPageF.class);
 	}
+	
 }

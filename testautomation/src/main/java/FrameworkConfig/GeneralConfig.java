@@ -16,7 +16,7 @@ public class GeneralConfig {
 	public static enum Days{
 		SUNDAY,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY
 	}
-	public static enum payNetworks{
+	public static enum CardTypes{
 		VISA,MASTERCARD,AMERICANEXPRESS,DINERSCLUB
 	}
 }

@@ -28,6 +28,7 @@ public class HotelListPageF {
 	public void SelectFirstHotel() {
 		System.out.println("->>>>>>>>Tamaño de la lista: "+allSearchResults.size());
 		WebElement button = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector(".list-product .list-product-block .list-product-rate .list-product-rate-action a")) );
+		wait.until( ExpectedConditions.elementToBeClickable(button));
 		System.out.println("->>>>>>>>Tamaño de la lista: "+allSearchResults.size());
 		button.click();
 	}

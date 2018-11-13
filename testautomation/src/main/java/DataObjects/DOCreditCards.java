@@ -1,5 +1,5 @@
 package DataObjects;
-import FrameworkConfig.GeneralConfig.payNetworks;
+import FrameworkConfig.GeneralConfig.CardTypes;
 
 public class DOCreditCards {
 	
@@ -11,7 +11,7 @@ public class DOCreditCards {
 	private String country;
 	private int cp;
 	private String bank;
-	private payNetworks payNetwork;
+	private CardTypes type;
 
 	public DOCreditCards() {
 		super();
@@ -23,10 +23,10 @@ public class DOCreditCards {
 		this.country = "";
 		this.cp = 0;
 		this.bank = "";
-		this.payNetwork = null;
+		this.type = null;
 	}
 	
-	public DOCreditCards(long number, String holderName, int month, int year, int ccv, String country, int cp,String bank, payNetworks p) {
+	public DOCreditCards(long number, String holderName, int month, int year, int ccv, String country, int cp,String bank, CardTypes p) {
 		super();
 		this.number = number;
 		this.holderName = holderName;
@@ -36,7 +36,7 @@ public class DOCreditCards {
 		this.country = country;
 		this.cp = cp;
 		this.bank = bank;
-		this.payNetwork = p;
+		this.type = p;
 	}
 	
 	public long getNumber() {
@@ -87,10 +87,10 @@ public class DOCreditCards {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	public payNetworks getPayNetwork() {
-		return payNetwork;
+	public CardTypes getPayNetwork() {
+		return type;
 	}
-	public void setPayNetwork(payNetworks p) {
-		this.payNetwork = p;
+	public void setPayNetwork(CardTypes p) {
+		this.type = p;
 	}
 }

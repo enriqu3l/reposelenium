@@ -107,8 +107,10 @@ public class HomePageF {
 	WebElement Button_search;
 	
 	public void SearchHotelDefault() throws InterruptedException {
+		verifyProductSelectedOnWidgetMenu("Hoteles");
+		
 		Input_destHotel.sendKeys("Cancun");
-		Thread.sleep(5000);
+		Thread.sleep(5000); //No eliminar hasta no solucionar el wait del dropdown ajax!!!
 		Input_destHotel.sendKeys(Keys.ENTER);
 		
 		Thread.sleep(2000);
@@ -208,5 +210,9 @@ public class HomePageF {
 		//InputStartDate.findElement(By.cssSelector("#ptw-ui-datepicker-div > div.ui-datepicker-group.ui-datepicker-group-last > table > tbody > tr:nth-child(1) > td:nth-child(4) > a")).click();
 		//wait.until(ExpectedConditions.elementToBeClickable(username)).sendKeys(user);
 				
+	}
+	
+	public void VerifyAllHomeItems() {
+		
 	}
 }

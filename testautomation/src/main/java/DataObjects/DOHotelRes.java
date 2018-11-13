@@ -1,7 +1,11 @@
 package DataObjects;
 
+import java.util.List;
+
+import Utility.ExcelUtils;
+
 public class DOHotelRes {
-	private String hotelProductType;
+	private String idHotelRes;
 	private String destination;
 	private String startDate;
 	private String endDate;
@@ -11,13 +15,13 @@ public class DOHotelRes {
 	
 	public DOHotelRes() {
 		super();
-		this.hotelProductType = "";
+		this.idHotelRes = "";
 		this.destination = "";
 		this.startDate = "";
 		this.endDate = "";
 		this.adults = 0;
 		this.kids = 0;
-		this.ageKids = new int[0];
+		this.ageKids = null;
 	}
 	
 	/**
@@ -29,10 +33,10 @@ public class DOHotelRes {
 	 * @param kids
 	 * @param ageKids
 	 */
-	public DOHotelRes(String hotelProductType, String destination, String startDate, String endDate, int adults,
+	public DOHotelRes(String idHotelRes, String destination, String startDate, String endDate, int adults,
 			int kids, int[] ageKids) {
 		super();
-		this.hotelProductType = hotelProductType;
+		this.idHotelRes = idHotelRes;
 		this.destination = destination;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -41,11 +45,30 @@ public class DOHotelRes {
 		this.ageKids = ageKids;
 	}
 	
-	public String getHotelProductType() {
-		return hotelProductType;
+	public DOHotelRes(List<String> data) {
+		super();
+		this.idHotelRes = data.get(0);
+		this.destination = data.get(1);
+		this.startDate = data.get(2);
+		this.endDate = data.get(3);
+		this.adults = Integer.parseInt(data.get(4));
+		this.kids = Integer.parseInt(data.get(5));
+		if(Integer.parseInt(data.get(5)) > 0) {
+			int[] agekids = new int[Integer.parseInt(data.get(5))];
+			for(int i=0;i<Integer.parseInt(data.get(5));i++) {
+				agekids[i]=Integer.parseInt(data.get(6+i));
+			}
+			this.ageKids = agekids;
+		}else {
+			this.ageKids = null;
+		}
 	}
-	public void setHotelProductType(String hotelProductType) {
-		this.hotelProductType = hotelProductType;
+	
+	public String getIdHotelRes() {
+		return idHotelRes;
+	}
+	public void setIdHotelRes(String idHotelRes) {
+		this.idHotelRes = idHotelRes;
 	}
 	public String getDestination() {
 		return destination;
@@ -84,6 +107,22 @@ public class DOHotelRes {
 		this.ageKids = ageKids;
 	}
 	
-	
+	public void setDataUsingList(List<String> data) {
+		this.idHotelRes = data.get(0);
+		this.destination = data.get(1);
+		this.startDate = data.get(2);
+		this.endDate = data.get(3);
+		this.adults = Integer.parseInt(data.get(4));
+		this.kids = Integer.parseInt(data.get(5));
+		if(Integer.parseInt(data.get(5)) > 0) {
+			int[] agekids = new int[Integer.parseInt(data.get(5))];
+			for(int i=0;i<Integer.parseInt(data.get(5));i++) {
+				agekids[i]=Integer.parseInt(data.get(6+i));
+			}
+			this.ageKids = agekids;
+		}else {
+			this.ageKids = null;
+		}
+	}
 
 }
