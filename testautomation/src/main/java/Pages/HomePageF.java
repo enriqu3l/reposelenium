@@ -12,6 +12,8 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import DataObjects.DOHotelRes;
+
 public class HomePageF {
 	private WebDriverWait wait;
 	private WebDriver driver;
@@ -24,6 +26,12 @@ public class HomePageF {
 	
 	//By.xpath("//*[@id=\"password\"]/div[1]/div/div[1]/input");
 	//WebElement WEpassword = wait.until(ExpectedConditions.elementToBeClickable(password));
+	
+	//Esta es la URL a la que estare llegando:
+	//https://www.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F04&checkout=2019%2F02%2F05&rooms=1&adults=2&kids=0&agekids=&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1		
+	//Si no envio parametros:
+	//https://www.pricetravel.com/hoteles/cancun-area
+	//usará los valores por default para la busqueda
 	
 	@FindBy(how=How.CSS, css="#ptw-menu > ul")
 	@CacheLookup
@@ -137,23 +145,22 @@ public class HomePageF {
 		Button_search.click();
 	}
 	
-	public void SearchHotel(String product, String destin) throws InterruptedException {
-		verifyProductSelectedOnWidgetMenu(product);
+	public void SearchHotel(DOHotelRes DO_HotelRes) throws InterruptedException {
+		verifyProductSelectedOnWidgetMenu("Hoteles");
 		
-		Input_destHotel.sendKeys(destin);
+		Input_destHotel.sendKeys(DO_HotelRes.getDestination());
 		Thread.sleep(5000);
 		Input_destHotel.sendKeys(Keys.ENTER);
 		
 		Thread.sleep(3000);
 		Input_destStartHotel.click();
 		Input_destStartHotel.clear();
-		Input_destStartHotel.sendKeys("04/02/2019");
-		
+		Input_destStartHotel.sendKeys(DO_HotelRes.getStartDate());
 		
 		Thread.sleep(3000);
 		Input_destEndHotel.click();
 		Input_destEndHotel.clear();
-		Input_destEndHotel.sendKeys("05/02/2019");
+		Input_destEndHotel.sendKeys(DO_HotelRes.getEndDate());
 		
 		Thread.sleep(3000);
 		Image_destEndHotelTrigger.click();
@@ -162,19 +169,13 @@ public class HomePageF {
 		rooms.selectByVisibleText("1");
 		
 		Select adults = new Select(Select_bookerHotelAdults0);
-		adults.selectByVisibleText("1");
+		adults.selectByVisibleText(Integer.toString(DO_HotelRes.getAdults()));
 		
 		//Nos brincamos la parte de la seleccion de menores
 		
 		Thread.sleep(3000);
 		Button_search.click();
 		
-		//Esta es la URL a la que estare llegando:
-		//https://www.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F04&checkout=2019%2F02%2F05&rooms=1&adults=2&kids=0&agekids=&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1
-		
-		//Si no envio parametros:
-		//https://www.pricetravel.com/hoteles/cancun-area
-		//usará los valores por default para la busqueda
 	}
 	
 	public void verifyProductSelectedOnWidgetMenu(String product) {

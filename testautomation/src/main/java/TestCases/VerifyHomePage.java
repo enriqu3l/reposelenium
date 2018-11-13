@@ -29,8 +29,7 @@ public class VerifyHomePage {
 		System.out.println("Si esta entrando al metodo VerifySearchPackage!");
 		
 		//Calling the method
-		//home_page.SearchProduct("Paquetes", "Cancún (CUN)", "Mérida");
-		home_page.SearchHotel("Hoteles", "Cancún (y alrededores), México");
+		home_page.SearchHotelDefault();
 	}
 
 	@AfterMethod

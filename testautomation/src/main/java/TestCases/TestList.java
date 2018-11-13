@@ -28,7 +28,7 @@ public class TestList {
 		System.out.println("Si esta entrando al metodo VerifySearchPackage!");
 		
 		home_page = PageFactory.initElements(driver, HomePageF.class);
-		home_page.SearchHotel("Hoteles", "Cancún (y alrededores), México");
+		home_page.SearchHotelDefault();
 		
 		hotelList_page = PageFactory.initElements(driver, HotelListPageF.class);
 		Thread.sleep(10000); 
