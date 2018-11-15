@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import Helper.DOManager;
+
 public class ThankYouPageF {
 	WebDriverWait wait;
 	WebDriver driver;
@@ -34,8 +36,13 @@ public class ThankYouPageF {
 		Assert.assertTrue(currentURL.contains("completar-reservacion"));
 	}
 	
-	public void SaveLocatorOnFile() {
+	public void SaveLocator() {
 		//Colorcar aqui el codigo para guardar el número de localizador que se ha generado
+		//Assert.assertTrue(locator.getText());
 		
+		DOManager.saveLocator(locator.getText());
+		
+		//Verificar que se halla guardado correctamente
+		//Assert.assertEquals(locator.getText(), getLocator(locator.getText()));
 	}
 }

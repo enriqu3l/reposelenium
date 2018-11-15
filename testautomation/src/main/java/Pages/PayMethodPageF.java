@@ -21,7 +21,7 @@ public class PayMethodPageF {
 	PayMethodPageF(WebDriver driver){
 		this.driver = driver;
 		this.wait = new WebDriverWait(driver,30);
-		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20),this);
+		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 30),this);
 	}
 	
 	//-----FormElements-----
@@ -112,6 +112,21 @@ public class PayMethodPageF {
 	
 	public void clickOnCompleteReservation() {
 		Button_validatePayForms.click();
+	}
+	
+	public boolean pay1or2cards(int opc) {
+		if(opc==1){
+			
+			
+			return true;
+		}else if(opc==2){
+			
+			
+			return true;
+		}else {
+			return false; 
+		}
+		
 	}
 	
 	public void enterCodePromotions(String code) {

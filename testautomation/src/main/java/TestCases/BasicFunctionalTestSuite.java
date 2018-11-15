@@ -19,16 +19,15 @@ public class BasicFunctionalTestSuite {
 	}
 	
 	@Test
-	public void HappyPath_Default() throws InterruptedException, AWTException{		
+	public void HappyPath_HotelDefault() throws InterruptedException, AWTException{		
 		HappyPathsWF.HPHotelDefault();
 	}
 	
 	/*
 	@Test
-	public void HappyPath_destUSA() throws InterruptedException{		
-		HappyPathsWF.HPHotelDefault();
+	public void HappyPath_HotelRandom() throws InterruptedException, AWTException{		
+		HappyPathsWF.HPHotelRandom();
 	}
-	
 	
 	@Test
 	public void HappyPath_destCol() throws InterruptedException{		
@@ -38,7 +37,7 @@ public class BasicFunctionalTestSuite {
 	@AfterMethod
 	public void Close()
 	{
-		BrowserFactory.driver.close();	
+		//BrowserFactory.driver.close();	
 	}
 	
 	@AfterTest

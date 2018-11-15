@@ -22,10 +22,11 @@ public class HomePageF {
 	private WebDriverWait wait;
 	private WebDriver driver;
 	
+	//Constructor
 	public HomePageF(WebDriver driver){
 		this.driver = driver;
 		this.wait = new WebDriverWait(driver,30);
-		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20),this);
+		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 30),this);
 	}
 	
 	//By.xpath("//*[@id=\"password\"]/div[1]/div/div[1]/input");
@@ -39,84 +40,84 @@ public class HomePageF {
 	
 	@FindBy(how=How.CSS, css="#ptw-menu > ul")
 	@CacheLookup
-	WebElement widgetMenu;
+	private WebElement widgetMenu;
 	
 	//---Hoteles---
 	@FindBy(how=How.ID, id="var1_1")
 	@CacheLookup
-	WebElement RadioButton_hotel;
+	private WebElement RadioButton_hotel;
 	
 	@FindBy(how=How.ID, id="var1_3")
 	@CacheLookup
-	WebElement RadioButton_hotelFlight;
+	private WebElement RadioButton_hotelFlight;
 	
 	@FindBy(how=How.ID, id="ap_dest_hotel")
 	@CacheLookup
-	WebElement Input_destHotel;
+	private WebElement Input_destHotel;
 	
 	@FindBy(how=How.ID, id="ap_dest_start")
 	@CacheLookup
-	WebElement Input_destStartHotel;
+	private WebElement Input_destStartHotel;
 	
 	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form  div.ptw-field-group.ptw-field-dates > div:nth-child(1) > img.ui-datepicker-trigger")
 	@CacheLookup
-	WebElement Image_destStartHotelTrigger;
+	private WebElement Image_destStartHotelTrigger;
 	
 	@FindBy(how=How.ID, id="ap_dest_end")
 	@CacheLookup
-	WebElement Input_destEndHotel;
+	private WebElement Input_destEndHotel;
 	
 	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form  div.ptw-field-group.ptw-field-dates > div:nth-child(2) > img.ui-datepicker-trigger")
 	@CacheLookup
-	WebElement Image_destEndHotelTrigger;
+	private WebElement Image_destEndHotelTrigger;
 	
 	@FindBy(how=How.ID, id="ap_booker_Hotel_rooms")
 	@CacheLookup
-	WebElement Select_bookerHotelRooms;
+	private WebElement Select_bookerHotelRooms;
 	
 	@FindBy(how=How.ID, id="ap_booker_Hotel_adults0")
 	@CacheLookup
-	WebElement Select_bookerHotelAdults0;
+	private WebElement Select_bookerHotelAdults0;
 	
 	@FindBy(how=How.ID, id="ap_booker_Hotel_minors0")
 	@CacheLookup
-	WebElement Select_bookerHotelMinors0;
+	private WebElement Select_bookerHotelMinors0;
 	
 	//---Paquetes---
 	@FindBy(how=How.ID, id="var3_3")
 	@CacheLookup
-	WebElement RadioButton_hotelFlightPackage;
+	private WebElement RadioButton_hotelFlightPackage;
 	
 	@FindBy(how=How.ID, id="ap_origin_flightPackage")
 	@CacheLookup
-	WebElement Input_originFlightPackage;
+	private WebElement Input_originFlightPackage;
 	
 	@FindBy(how=How.ID, id="ap_dest_start")
 	@CacheLookup
-	WebElement Input_destFlightPackage;
+	private WebElement Input_destFlightPackage;
 	
 	@FindBy(how=How.ID, id="ap_flightPackage_start")
 	@CacheLookup
-	WebElement Input_flightPackageStart;
+	private WebElement Input_flightPackageStart;
 	
 	@FindBy(how=How.ID, id="ap_flightPackage_end")
 	@CacheLookup
-	WebElement Input_flightPackageEnd;
+	private WebElement Input_flightPackageEnd;
 	
 	//---Vuelos---
 	@FindBy(how=How.ID, id="var2_2")
 	@CacheLookup
-	WebElement RadioButton_Flight;
+	private WebElement RadioButton_Flight;
 	
 	@FindBy(how=How.ID, id="var2_3")
 	@CacheLookup
-	WebElement RadioButton_FlightPackage;
+	private WebElement RadioButton_FlightPackage;
 	
 	//Aun falta de agregar los otros productos....
 	
 	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form > div > div.ptw-buttons > input.ap-data_engine-Hotel.ap_booker_submit.ptw-btn.ptw-submit-btn")
 	@CacheLookup
-	WebElement Button_search;
+	private WebElement Button_search;
 	
 	public void SearchHotelDefault() throws InterruptedException {
 		verifyProductSelectedOnWidgetMenu("Hoteles");

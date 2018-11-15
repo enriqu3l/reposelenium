@@ -6,10 +6,13 @@ import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasicUtils {
 	
@@ -28,14 +31,14 @@ public class BasicUtils {
 	    option1.click();   
 	}  
 	
-	   selenium.typeKeys("county_search", "lake");
-	   for (int second = 0;; second++) {
-	       if (second >= 60) fail("timeout");
-	       try { if (selenium.isTextPresent("Lake County, IL")) break; } catch (Exception e) {}
-	       Thread.sleep(1000);
-	   }
-	   selenium.mouseOver("//html/body/ul/li/a[. = \"Lake County, IL\"]");
-	   selenium.click("//html/body/ul/li/a[. = \"Lake County, IL\"]");
+	selenium.typeKeys("county_search", "lake");
+	for (int second = 0;; second++) {
+	    if (second >= 60) fail("timeout");
+	    try { if (selenium.isTextPresent("Lake County, IL")) break; } catch (Exception e) {}
+	    Thread.sleep(1000);
+	}
+	selenium.mouseOver("//html/body/ul/li/a[. = \"Lake County, IL\"]");
+	selenium.click("//html/body/ul/li/a[. = \"Lake County, IL\"]");
 	*/
 	   
 	//Como obtener elementos de una tag ul
@@ -46,6 +49,52 @@ public class BasicUtils {
 	     li.click();
 	   }
 	}*/
+	
+	
+	//Estoy casi seguro que esto es lo que hace AjaxElementLocatorFactory
+	//Por ahora no lo estoy usando!!
+	public static boolean waitForJSandJQueryToLoad(WebDriver driver) {
+	    WebDriverWait wait = new WebDriverWait(driver, 30);
+
+	    // wait for jQuery to load
+	    ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+	      @Override
+	      public Boolean apply(WebDriver driver) {
+	        try {
+	          return ((Long)((JavascriptExecutor)driver).executeScript("return jQuery.active") == 0);
+	        }
+	        catch (Exception e) {
+	          // no jQuery present
+	          return true;
+	        }
+	      }
+	    };
+
+	    // wait for Javascript to load
+	    ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+	      @Override
+	      public Boolean apply(WebDriver driver) {
+	        return ((JavascriptExecutor)driver).executeScript("return document.readyState")
+	        .toString().equals("complete");
+	      }
+	    };
+
+	  return wait.until(jQueryLoad) && wait.until(jsLoad);
+	}
+	
+	//EN PROCESO DE REVISION, LA ESTABA USANDO EN ROOMLIST,
+	//pero mejor puse los @FindBy en la clase para que AjaxElementLocatorFactory
+	//espere y localize a los elementos
+	//No me sirve para la SPA, solo funciona en legacy
+	public static void waitForLoad(WebDriver driver) {
+		ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+			}
+		};
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+	    wait.until(pageLoadCondition);
+	}
 	
 	public static By toByVal(WebElement we) {
 	    // By format = "[foundFrom] -> locator: term"
@@ -71,19 +120,6 @@ public class BasicUtils {
 	        return By.className(term);
 	    }
 	    return (By) we;
-	}
-	
-	
-	//Funcion para pedir credenciales
-	public static String[] requestCredentials() {
-		Scanner scn = new Scanner(System.in);
-		String[] credentials = new String[2];
-		System.out.println("Ingresa tu Usuario|Email: ");
-		credentials[0] = scn.nextLine();
-		System.out.println("Ingresa tu Password: ");
-		credentials[1] = scn.nextLine();
-		scn.close();
-		return credentials;
 	}
 	
 	//Guardar un ScreenShot
@@ -130,5 +166,15 @@ public class BasicUtils {
 		}
 	}//End of function
 
-	
+	//Funcion para pedir credenciales
+	public static String[] requestCredentials() {
+		Scanner scn = new Scanner(System.in);
+		String[] credentials = new String[2];
+		System.out.println("Ingresa tu Usuario|Email: ");
+		credentials[0] = scn.nextLine();
+		System.out.println("Ingresa tu Password: ");
+		credentials[1] = scn.nextLine();
+		scn.close();
+		return credentials;
+	}
 }

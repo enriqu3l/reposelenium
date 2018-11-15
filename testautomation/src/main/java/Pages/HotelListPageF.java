@@ -32,17 +32,16 @@ public class HotelListPageF {
 	public void SelectFirstHotel() {
 		System.out.println("->>>>>>>>Tamaño de la lista al inicio: "+allSearchResults.size());
 		
-		wait.until( ExpectedConditions.presenceOfElementLocated(BYfisrtButton) );
-		wait.until( ExpectedConditions.elementToBeClickable(BYfisrtButton));
-		//Los dos wait anteriores en veces no son suficientes para esperar
-		//a que carge completamente el contenido de la SPA. Tengo que solucionarlo!!!
 		try {
 			Thread.sleep(5000); //No eliminar hasta no solucionar el wait del contenido Ajax
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		wait.until( ExpectedConditions.presenceOfElementLocated(BYfisrtButton) );
+		wait.until( ExpectedConditions.elementToBeClickable(BYfisrtButton));
+		//Los dos wait anteriores en veces no son suficientes para esperar
+		//a que carge completamente el contenido de la SPA. Tengo que solucionarlo!!!
 		
 		System.out.println("->>>>>>>>Tamaño de la lista al final: "+allSearchResults.size());
 		
@@ -50,6 +49,7 @@ public class HotelListPageF {
 		button.click();
 		
 		//En caso de encontrar una nueva tab, switchear a ella.
+		//Esta funcion se agrego para tener compatibilidad con ambiente test
 		verifyIfANewTabOpened();
 	}
 	

@@ -29,7 +29,6 @@ public class Pages {
 	}
 	
 	public static void roomListPage_Initialize() {
-		waitForLoad(driver); //No me sirve para la SPA, solo funciona en legacy
 		roomList_page = new RoomListPageF(driver);
 	}
 	
@@ -40,17 +39,4 @@ public class Pages {
 		payMethod_page = new PayMethodPageF(driver);
 		//payMethod_page = PageFactory.initElements(BrowserFactory.driver, PayMethodPageF.class);
 	}
-	
-	//EN PROCESO DE REVISION, LA ESTOY USANDO EN ROOMLIST!
-	public static void waitForLoad(WebDriver driver) {
-        ExpectedCondition<Boolean> pageLoadCondition = new
-                ExpectedCondition<Boolean>() {
-                    public Boolean apply(WebDriver driver) {
-                        return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
-                    }
-                };
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(pageLoadCondition);
-    }
-	
 }

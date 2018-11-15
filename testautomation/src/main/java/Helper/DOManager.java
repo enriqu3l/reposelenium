@@ -23,7 +23,7 @@ public class DOManager {
 		
 		DOHotelRes DOHotelRes = new DOHotelRes();
 		DOHotelRes.setDataUsingList(ExcelUtils.getRowR(rHotelResData, item));
-		return DOHotelRes; 
+		return DOHotelRes;
 	}
 	
 	public static DOHotelRes getRandomHotelRes() {
@@ -59,5 +59,26 @@ public class DOManager {
 		DOCreditCard DOCreditCard = new DOCreditCard();
 		DOCreditCard.setDataUsingList(ExcelUtils.getRowR(rCreditCardData, randomNum));
 		return DOCreditCard;
+	}
+	
+	public static boolean saveLocator(String locator) {
+		//Aqui el codigo para guardar el localizador
+		
+		
+		return true;
+	}
+	
+	public static String getLocator(String locator) {
+		//Aqui el codigo para obtener el locator en base a un match
+		
+		
+		return "";
+	}
+	
+	public static String getLocator(int item) {
+		//Aqui el codigo para obtener el locator en base a el listado
+		
+		
+		return "";
 	}
 }
