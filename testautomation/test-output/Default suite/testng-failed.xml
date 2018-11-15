@@ -5,8 +5,8 @@
     <classes>
       <class name="TestCases.BasicFunctionalTestSuite">
         <methods>
-          <include name="HappyPath_default"/>
           <include name="beforeMethod"/>
+          <include name="HappyPath_Default"/>
           <include name="End"/>
           <include name="Close"/>
         </methods>

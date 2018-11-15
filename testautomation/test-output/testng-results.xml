@@ -1,71 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="96252" started-at="2018-11-15T00:49:58Z" finished-at="2018-11-15T00:51:35Z">
+  <suite name="Default suite" duration-ms="62439" started-at="2018-11-15T07:48:50Z" finished-at="2018-11-15T07:49:52Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="96252" started-at="2018-11-15T00:49:58Z" finished-at="2018-11-15T00:51:35Z">
+    <test name="Default test" duration-ms="62439" started-at="2018-11-15T07:48:50Z" finished-at="2018-11-15T07:49:52Z">
       <class name="TestCases.BasicFunctionalTestSuite">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="beforeMethod" is-config="true" duration-ms="12282" started-at="2018-11-15T00:49:58Z" finished-at="2018-11-15T00:50:11Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="beforeMethod" is-config="true" duration-ms="11596" started-at="2018-11-15T07:48:50Z" finished-at="2018-11-15T07:49:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="FAIL" signature="HappyPath_default()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="HappyPath_default" duration-ms="83951" started-at="2018-11-15T00:50:11Z" finished-at="2018-11-15T00:51:35Z">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[Cannot locate element with text: Mexico
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.11.0', revision: 'e59cfb3', time: '2018-03-11T20:26:55.152Z'
-System info: host: 'MXCDP4LP24', ip: '192.168.0.9', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: driver.version: unknown]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: Cannot locate element with text: Mexico
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.11.0', revision: 'e59cfb3', time: '2018-03-11T20:26:55.152Z'
-System info: host: 'MXCDP4LP24', ip: '192.168.0.9', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
-Driver info: driver.version: unknown
-at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:151)
-at Pages.PayMethodPageF.FillCreditForm(PayMethodPageF.java:96)
-at WorkFlows.HappyPathsWF.HPHotelResRandomData(HappyPathsWF.java:42)
-at TestCases.BasicFunctionalTestSuite.HappyPath_default(BasicFunctionalTestSuite.java:23)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:580)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+        <test-method status="PASS" signature="HappyPath_Default()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="HappyPath_Default" duration-ms="48658" started-at="2018-11-15T07:49:01Z" finished-at="2018-11-15T07:49:50Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- HappyPath_default -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="Close" is-config="true" duration-ms="0" started-at="2018-11-15T00:51:35Z" finished-at="2018-11-15T00:51:35Z">
+        </test-method> <!-- HappyPath_Default -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="Close" is-config="true" duration-ms="2141" started-at="2018-11-15T07:49:50Z" finished-at="2018-11-15T07:49:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="End" is-config="true" duration-ms="0" started-at="2018-11-15T00:51:35Z" finished-at="2018-11-15T00:51:35Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="End" is-config="true" duration-ms="1" started-at="2018-11-15T07:49:52Z" finished-at="2018-11-15T07:49:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- End -->
