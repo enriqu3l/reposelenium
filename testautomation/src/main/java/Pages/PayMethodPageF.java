@@ -93,7 +93,7 @@ public class PayMethodPageF {
 		Input_cardHolderName1.sendKeys(DOCard.getHolderName());
 		Input_cardSecurityCode1.sendKeys(Integer.toString(DOCard.getCCV()));
 		Select country = new Select(Select_cardCountry1);
-		country.selectByVisibleText(DOCard.getCountry());
+		country.selectByValue(DOCard.getCountry());
 		Input_cardZipCode1.sendKeys(Integer.toString(DOCard.getCP()));
 	}
 	
