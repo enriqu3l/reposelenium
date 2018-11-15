@@ -9,9 +9,13 @@ import Pages.Pages;
 
 public class HappyPathsWF {
 	
-	public static void HPHotelDefault() throws InterruptedException {
+	public static void HPHotelDefault() throws InterruptedException, AWTException {
+		//La funcion Default siempre leera el primer registro de los ExcelFiles
+		DOHotelRes DO_HotelRes = DOManager.getHotelRes(1);
+		DOCreditCard DO_CreditCard = DOManager.getCreditCard(1);
+		
 		Pages.homePage_Initialize();
-		Pages.home_page.SearchHotelDefault();
+		Pages.home_page.SearchHotel(DO_HotelRes);
 		Pages.hotelListPage_Initialize();
 		Pages.hotelList_page.SelectFirstHotel();
 		Pages.roomListPage_Initialize();
@@ -21,10 +25,10 @@ public class HappyPathsWF {
 		Pages.resDetail_page.ClearFillandContinue();
 		Pages.payMethodPage_Initialize();
 		Pages.payMethod_page.checkCurrentURLPage();
-		Pages.payMethod_page.FillCreditFormDefaultData();
+		Pages.payMethod_page.FillCreditForm(DO_CreditCard);
 	}
 	
-	public static void HPHotelResRandomData() throws InterruptedException, AWTException {
+	public static void HPHotelRandom() throws InterruptedException, AWTException {
 		DOHotelRes DO_HotelRes = DOManager.getRandomHotelRes();
 		DOCreditCard DO_CreditCard = DOManager.getRandomCreditCard();
 		

@@ -162,17 +162,16 @@ public class HomePageF {
 		robot.mouseMove(location.getX(),location.getY()+120);
 		//-------------------------------------------------------------------------------
 		
+		Input_destHotel.clear();
 		Input_destHotel.sendKeys(DO_HotelRes.getDestination());
 		Thread.sleep(5000);
 		Input_destHotel.sendKeys(Keys.ENTER);
 		
 		Thread.sleep(3000);
-		Input_destStartHotel.click();
 		Input_destStartHotel.clear();
 		Input_destStartHotel.sendKeys(DO_HotelRes.getStartDate());
 		
 		Thread.sleep(3000);
-		Input_destEndHotel.click();
 		Input_destEndHotel.clear();
 		Input_destEndHotel.sendKeys(DO_HotelRes.getEndDate());
 		
@@ -231,3 +230,18 @@ public class HomePageF {
 		
 	}
 }
+
+/*Knowledge
+
+
+1.- Cuando se abre una nueva tab, asegurarse de seleccionarla
+porque el driver no switchea por si solo a la nueva tab!!
+
+2.- Si primero se inicializa un webElement (con pageFactory o usando findElement())
+y despues se usa un wait para esperar a que carge un contenido, no se podra encontrar ni usar!!
+Te esperara un sin fin de errores!!!
+Lo correcto es poner un wait hasta que el elemento este cargado en la pagina y despues
+inicializarlo con PageFactory o con findElement().
+Por todo lo anterior se recomienda esperar con un wait ExpectedCondition a que
+el contenido esta propiamente cargado para despues ya inicializar webElements
+*/

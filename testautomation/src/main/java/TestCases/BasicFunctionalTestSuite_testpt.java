@@ -10,12 +10,12 @@ import org.testng.annotations.Test;
 import Helper.BrowserFactory;
 import WorkFlows.HappyPathsWF;
 
-public class BasicFunctionalTestSuite {
+public class BasicFunctionalTestSuite_testpt {
 	
 	@BeforeMethod
 	public void beforeMethod() {
 		//Set Browser
-		BrowserFactory.StartBrowser("chrome", "https://www.pricetravel.com.mx");
+		BrowserFactory.StartBrowser("chrome", "http://test.pricetravel.com.mx");
 	}
 	
 	@Test
@@ -38,7 +38,7 @@ public class BasicFunctionalTestSuite {
 	@AfterMethod
 	public void Close()
 	{
-		BrowserFactory.driver.close();	
+		//BrowserFactory.driver.close();	
 	}
 	
 	@AfterTest

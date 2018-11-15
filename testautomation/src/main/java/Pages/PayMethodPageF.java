@@ -68,7 +68,7 @@ public class PayMethodPageF {
 	public void ClearFillandContinue(){
 		clearCreditForm();
 		FillCreditFormDefaultData();
-		clickOnValidatePayForms();
+		clickOnCompleteReservation();
 	}
 	
 	public void FillCreditFormDefaultData() {
@@ -80,7 +80,7 @@ public class PayMethodPageF {
 		Input_cardHolderName1.sendKeys("Virginia Chavez");
 		Input_cardSecurityCode1.sendKeys("014");
 		Select country = new Select(Select_cardCountry1);
-		country.selectByVisibleText("México");
+		country.selectByValue("MX");
 		Input_cardZipCode1.sendKeys("44777");
 	}
 	
@@ -110,7 +110,7 @@ public class PayMethodPageF {
 		Input_cardZipCode1.clear();
 	}
 	
-	public void clickOnValidatePayForms() {
+	public void clickOnCompleteReservation() {
 		Button_validatePayForms.click();
 	}
 	
