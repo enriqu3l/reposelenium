@@ -160,6 +160,10 @@ public class HomePageF {
         Point location = Input_destHotel.getLocation();
         Robot robot = new Robot();
 		robot.mouseMove(location.getX(),location.getY()+120);
+		
+		//Los actions no mueven el mouse, solo realizan acciones a nivel de DOM!!
+		//Actions a = new Actions(driver);
+		//a.moveToElement(Input_destHotel).build().perform();
 		//-------------------------------------------------------------------------------
 		
 		Input_destHotel.clear();
