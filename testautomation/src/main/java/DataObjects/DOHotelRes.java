@@ -5,7 +5,7 @@ import java.util.List;
 import Utility.ExcelUtils;
 
 public class DOHotelRes {
-	//A esta clase me falta gregarle la variable de los Rooms
+	//A esta clase me falta gregarle la variable de los Rooms!!!!!
 	
 	private String idHotelRes;
 	private String destination;

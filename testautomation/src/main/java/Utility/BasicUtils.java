@@ -140,7 +140,7 @@ public class BasicUtils {
 		File src=((TakesScreenshot)d).getScreenshotAs(OutputType.FILE);
 		try
 		{
-			FileUtils.copyFile(src, new File("C:/Selenium/Test/Screen_"+_name+System.currentTimeMillis()+".png"));
+			FileUtils.copyFile(src, new File("C:/PTFrameworkData/Screen_"+_name+System.currentTimeMillis()+".png"));
 		}
 		catch (IOException e)
 		{

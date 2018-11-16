@@ -88,5 +88,4 @@ public class HotelListPageF {
 		//driver.close();
 		//driver.switchTo().window(browserTabs.get(0));
 	}
-	
 }

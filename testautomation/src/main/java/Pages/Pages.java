@@ -15,6 +15,7 @@ public class Pages {
 	public static RoomListPageF roomList_page;
 	public static ResDetailPageF resDetail_page;
 	public static PayMethodPageF payMethod_page;
+	public static ThankYouPageF thankYou_page;
 	
 	public Pages() {
 		//Constructor
@@ -38,5 +39,9 @@ public class Pages {
 	public static void payMethodPage_Initialize() {
 		payMethod_page = new PayMethodPageF(driver);
 		//payMethod_page = PageFactory.initElements(BrowserFactory.driver, PayMethodPageF.class);
+	}
+	
+	public static void thankYouPage_Initialize() {
+		thankYou_page = new ThankYouPageF(driver);
 	}
 }

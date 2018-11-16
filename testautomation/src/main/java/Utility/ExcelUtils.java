@@ -10,11 +10,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -43,8 +48,7 @@ public class ExcelUtils {
 			}
 		} catch (Exception e) {
 			e.getMessage();
-			System.out.println("Error: "+e.toString());
-			System.out.println("ExcelUtils.getRowByNumberR() --> Error al intentar abrir el archivo!!!");
+			System.out.println("ExcelUtils.getRowByNumberR() "+e.toString());
 		}
 		return data;
 	}
@@ -120,10 +124,8 @@ public class ExcelUtils {
 			i=0;
 		} catch (Exception e) {
 			e.getMessage();
-			System.out.println("Error: "+e.toString());
-			System.out.println("ExcelUtils.getDataTableFormatR() --> Error al intentar abrir el archivo!!!");
+			System.out.println("ExcelUtils.getDataTableFormatR() "+e.toString());
 		}
-
 		return data;
 	}
 	
@@ -303,13 +305,10 @@ public class ExcelUtils {
 			@SuppressWarnings("resource")
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			XSSFSheet sheet = workbook.getSheetAt(0);
-			while(null!=sheet.getRow(row)) {
-				row++;
-			}
+			row = sheet.getLastRowNum()+1;//Le sumo 1 porque getLastRowNum devulve la ultima fila en "base 0"
 		} catch (Exception e) {
 			e.getMessage();
-			System.out.println("Error: "+e.toString());
-			System.out.println("ExcelUtils.getRowCountR() --> Error al intentar abrir el archivo!!!");
+			System.out.println("ExcelUtils.getRowCountR() "+e.toString());
 		}
 		return row;
 	}
@@ -322,13 +321,10 @@ public class ExcelUtils {
 			@SuppressWarnings("resource")
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			XSSFSheet sheet = workbook.getSheetAt(0);
-			while(null!=sheet.getRow(0).getCell(column)) {
-				column++;
-			}
+			column = sheet.getRow(0).getLastCellNum(); //Obtiene el numero de la ultima celda de la primer fila
 		} catch (Exception e) {
 			e.getMessage();
-			System.out.println("Error: "+e.toString());
-			System.out.println("ExcelUtils.getColumnCountR() --> Error al intentar abrir el archivo!!!");
+			System.out.println("ExcelUtils.getColumnCountR() "+e.toString());
 		}
 		return column;
 	}
@@ -336,6 +332,39 @@ public class ExcelUtils {
 	
 	//+++++++++++++++Create Excel Files Functions++++++++++++++++++++++
 	
+	//Esta funcion aun no esta lista, necesito revisarla,
+	//esta guardando el file de target y no el de src
+	public static void saveNewRowInExistingFile(String _filename, List<String> data) {
+		int row = 0;
+		int i = 0;
+		ClassLoader classLoader = ExcelUtils.class.getClassLoader();
+		//String resourceFile = classLoader.getResource(_fileName).getFile();
+		try{
+			File file = new File( classLoader.getResource(_filename).getFile() );
+			FileInputStream inputStream = new FileInputStream(file);
+			@SuppressWarnings("resource")
+			XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+			XSSFSheet sheet = workbook.getSheetAt(0);
+			row=sheet.getLastRowNum();
+			XSSFRow newRow = sheet.createRow(row + 1);
+			Iterator<String> iterator = data.iterator();
+			while (iterator.hasNext()) {
+				newRow.createCell(i).setCellValue(iterator.next());
+				System.out.println("Iterator ["+i+"]: "+data.get(i));
+				i++;
+			}
+			
+			//Guardarmos y cerraramos
+		    FileOutputStream outputStream = new FileOutputStream(file);
+		    workbook.write(outputStream);
+		    outputStream.close();
+		    inputStream.close();
+		    System.out.println("Ya se termino de editar el archivo!");
+		} catch (Exception e) {
+			e.getMessage();
+			System.out.println("ExcelUtils.saveLocatorData() "+e.toString());
+		}
+	}
 	
 	public static void CrearExcelWithData(String _fileName, String _path, String _data[][]){
 		
@@ -382,8 +411,8 @@ public class ExcelUtils {
 			}
 		}
 		
-		File file;
-		file = new File(rutaArchivo);
+		//Aqui se crea el archivo (en caso de que ya exista se elimina y se crea uno nuevo)
+		File file = new File(rutaArchivo);
 		try (FileOutputStream fileOuS = new FileOutputStream(file)){						
 			if (file.exists()) {// si el archivo existe se elimina
 				file.delete();
@@ -392,6 +421,7 @@ public class ExcelUtils {
 			libro.write(fileOuS);
 			fileOuS.flush();
 			fileOuS.close();
+			libro.close();
 			System.out.println("Archivo Creado");
 			
 		} catch (FileNotFoundException e) {
@@ -495,7 +525,41 @@ public class ExcelUtils {
 			scn.nextLine();
 			i++;
 		}while(resp==1);
+		scn.close();
 		return data;
+	}
+	
+	//Este es otro ejemplo de como editar un archivo
+	//No lo estoy usando!
+	public static void modifyExistingWorkbook() throws InvalidFormatException, IOException {
+	    // Obtain a workbook from the excel file
+		//La raiz donde comienza a buscar un archivo es donde se encuentra el archivo pom.xml
+	    Workbook workbook = WorkbookFactory.create(new File("existing-spreadsheet.xlsx"));
+
+	    // Get Sheet at index 0
+	    Sheet sheet = workbook.getSheetAt(0);
+
+	    // Get Row at index 1
+	    Row row = sheet.getRow(1);
+
+	    // Get the Cell at index 2 from the above row
+	    Cell cell = row.getCell(2);
+
+	    // Create the cell if it doesn't exist
+	    if (cell == null)
+	        cell = row.createCell(2);
+
+	    // Update the cell's value
+	    cell.setCellType(CellType.STRING);
+	    cell.setCellValue("Updated Value");
+
+	    // Write the output to a file
+	    FileOutputStream fileOut = new FileOutputStream("existing-spreadsheet.xlsx");
+	    workbook.write(fileOut);
+	    fileOut.close();
+
+	    // Closing the workbook
+	    workbook.close();
 	}
 }
 

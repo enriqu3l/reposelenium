@@ -26,6 +26,7 @@ public class HappyPathsWF {
 		Pages.payMethodPage_Initialize();
 		Pages.payMethod_page.checkCurrentURLPage();
 		Pages.payMethod_page.FillCreditForm(DO_CreditCard);
+		
 	}
 	
 	public static void HPHotelRandom() throws InterruptedException, AWTException {

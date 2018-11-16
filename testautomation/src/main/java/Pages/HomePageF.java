@@ -127,13 +127,11 @@ public class HomePageF {
 		Input_destHotel.sendKeys(Keys.ENTER);
 		
 		Thread.sleep(2000);
-		Input_destStartHotel.click();
 		Input_destStartHotel.clear();
 		Input_destStartHotel.sendKeys("04/02/2019");
 		//driver.findElement(By.linkText("Sig>")).click();
 		
 		Thread.sleep(2000);
-		Input_destEndHotel.click();
 		Input_destEndHotel.clear();
 		Input_destEndHotel.sendKeys("05/02/2019");
 		
@@ -231,6 +229,8 @@ public class HomePageF {
 				
 	}
 	
+	//PENDIENTE POR CONSTRUIR
+	//Funcion para revisar cada link, cada item dentro del home page!!!
 	public void VerifyAllHomeItems() {
 		
 	}

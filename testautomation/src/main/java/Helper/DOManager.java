@@ -1,5 +1,10 @@
 package Helper;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import DataObjects.DOCreditCard;
@@ -10,6 +15,7 @@ public class DOManager {
 	public static String rHotelResData = "SourceDataFiles/HotelResData.xlsx";
 	public static String rCreditCardData = "SourceDataFiles/CreditCardsData.xlsx";
 	public static String rClientData = "SourceDataFiles/ClientData.xlsx";
+	public static String rLocatorsGenerated = "SourceDataFiles/LocatorsGenerated.xlsx";
 	
 	//Constructor
 	public DOManager() {
@@ -61,23 +67,25 @@ public class DOManager {
 		return DOCreditCard;
 	}
 	
+	//Aun no la usaré, hasta hacer la modificacion para que el archivo LocatorsGenerated.xlsx
+	//sea alojado directamente en C en vez de alojarlo dentro del proyecto
 	public static boolean saveLocator(String locator) {
-		//Aqui el codigo para guardar el localizador
 		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
+		Date date = new Date();
+		String currentDate= dateFormat.format(date);
+		
+		List<String> data = new ArrayList<String>();
+		data.add(locator);
+		data.add(currentDate);
+		
+		ExcelUtils.saveNewRowInExistingFile(rLocatorsGenerated, data);
 		
 		return true;
 	}
 	
-	public static String getLocator(String locator) {
-		//Aqui el codigo para obtener el locator en base a un match
-		
-		
-		return "";
-	}
-	
 	public static String getLocator(int item) {
 		//Aqui el codigo para obtener el locator en base a el listado
-		
 		
 		return "";
 	}

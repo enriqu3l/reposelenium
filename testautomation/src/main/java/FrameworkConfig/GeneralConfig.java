@@ -3,7 +3,7 @@ package FrameworkConfig;
 public class GeneralConfig {
 	//Paths
 	public static final String DATASOURCE_PATH = "";
-	public static final String SCREENSHOOT_PATH = "";
+	public static final String SCREENSHOOT_PATH = "C:\\PTFrameworkData\\Screenshots";
 	
 	//BrowserConfig
 	public static final String DEFAULTBROWSER = "chrome";
@@ -11,7 +11,7 @@ public class GeneralConfig {
 	
 	//Enums
 	public static enum Products{
-		HOTELES,PAQUETES,VUELOS,TRASLADOS,TOURS,AUTOS,AUTOBUSES,CRUCEROS
+		Hotels,Paquetes,Vuelos,Traslados,Tours,Autos,Autobuses,Cruceros
 	}
 	public static enum Days{
 		SUNDAY,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY
