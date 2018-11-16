@@ -22,7 +22,7 @@ public class ThankYouPageF {
 	public ThankYouPageF(WebDriver driver) {
 		this.driver = driver;
 		this.wait = new WebDriverWait(driver,30);
-		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20),this);
+		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 30),this);
 	}
 	
 	//---------Elements-------
@@ -32,11 +32,24 @@ public class ThankYouPageF {
 	@FindBy(how=How.CSS, css="#content .reservation-message .text-brand")
 	WebElement locator;
 	
+	@FindBy(how=How.CSS, css="#content .reservation-message p > strong:nth-child(2)")
+	WebElement email;
+	
 	@FindBy(how=How.CSS, css="#content .innerModule p a.but")
 	WebElement Button_seeReservation;
 	
+	@FindBy(how=How.CSS, css="#createAccount .btn")
+	WebElement Button_createAccount;
+	
+	@FindBy(how=How.CSS, css="#content .lastModule .ap_submit")
+	WebElement Link_reserveOtherRoom;
+	
+	@FindBy(how=How.LINK_TEXT, linkText="Regresar a la página principal")
+	WebElement Link_returnToMainPage;
+	
 	public void verifyCheckOutCompleted(){
-		checkCurrentURLPage();
+		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(locator)));
+		//checkCurrentURLPage();
 		
 		if(message.getText().contains("Gracias")) {
 			System.out.println("Se ha generado el localizador: "+ locator.getText());

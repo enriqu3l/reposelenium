@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCases.BasicFunctionalTestSuite">
+      <class name="TestCases.BasicFunctionalTestSuite_testpt">
         <methods>
+          <include name="Close"/>
+          <include name="End"/>
           <include name="HappyPath_HotelDefault"/>
           <include name="beforeMethod"/>
-          <include name="End"/>
-          <include name="Close"/>
         </methods>
-      </class> <!-- TestCases.BasicFunctionalTestSuite -->
+      </class> <!-- TestCases.BasicFunctionalTestSuite_testpt -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

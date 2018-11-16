@@ -1,9 +1,14 @@
 package FrameworkConfig;
 
 public class GeneralConfig {
-	//Paths
-	public static final String DATASOURCE_PATH = "";
-	public static final String SCREENSHOOT_PATH = "C:\\PTFrameworkData\\Screenshots";
+	
+	//Environments
+	public static final String TESTENV = "http://test.pricetravel.com.mx";
+	public static final String PRODENV = "https://www.pricetravel.com.mx";
+	
+	//Resources Paths
+	public static final String DATASOURCE_PATH = "C:\\PTFrameworkData\\SourceDataFiles\\";
+	public static final String SCREENSHOOT_PATH = "C:\\PTFrameworkData\\Screenshots\\";
 	
 	//BrowserConfig
 	public static final String DEFAULTBROWSER = "chrome";

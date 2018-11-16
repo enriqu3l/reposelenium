@@ -30,7 +30,7 @@ public class HotelListPageF {
 	By BYfisrtButton = By.cssSelector(".list-product .list-product-block .list-product-rate .list-product-rate-action a");
 	
 	public void SelectFirstHotel() {
-		System.out.println("->>>>>>>>Tamaño de la lista al inicio: "+allSearchResults.size());
+		System.out.println("HotelListF - Tamaño de la lista al inicio: "+allSearchResults.size());
 		
 		try {
 			Thread.sleep(5000); //No eliminar hasta no solucionar el wait del contenido Ajax
@@ -43,7 +43,7 @@ public class HotelListPageF {
 		//Los dos wait anteriores en veces no son suficientes para esperar
 		//a que carge completamente el contenido de la SPA. Tengo que solucionarlo!!!
 		
-		System.out.println("->>>>>>>>Tamaño de la lista al final: "+allSearchResults.size());
+		System.out.println("HotelListF - Tamaño de la lista al final: "+allSearchResults.size());
 		
 		WebElement button = driver.findElement(BYfisrtButton);
 		button.click();

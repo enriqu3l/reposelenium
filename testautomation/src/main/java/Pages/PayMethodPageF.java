@@ -65,7 +65,7 @@ public class PayMethodPageF {
 		Assert.assertTrue(currentURL.contains("forma-pago"));
 	}
 	
-	public void ClearFillandContinue(){
+	public void payWithCreditCard(){
 		clearCreditForm();
 		FillCreditFormDefaultData();
 		clickOnCompleteReservation();

@@ -7,6 +7,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import FrameworkConfig.GeneralConfig;
 import Helper.BrowserFactory;
 import WorkFlows.HappyPathsWF;
 
@@ -15,7 +16,7 @@ public class BasicFunctionalTestSuite_testpt {
 	@BeforeMethod
 	public void beforeMethod() {
 		//Set Browser
-		BrowserFactory.StartBrowser("chrome", "http://test.pricetravel.com.mx");
+		BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.TESTENV);
 	}
 	
 	@Test

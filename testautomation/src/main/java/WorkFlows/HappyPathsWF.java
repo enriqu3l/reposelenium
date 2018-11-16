@@ -26,6 +26,9 @@ public class HappyPathsWF {
 		Pages.payMethodPage_Initialize();
 		Pages.payMethod_page.checkCurrentURLPage();
 		Pages.payMethod_page.FillCreditForm(DO_CreditCard);
+		Pages.payMethod_page.clickOnCompleteReservation();
+		Pages.thankYouPage_Initialize();
+		Pages.thankYou_page.verifyCheckOutCompleted();
 		
 	}
 	

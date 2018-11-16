@@ -2,28 +2,28 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="46237" started-at="2018-11-15T21:40:55Z" finished-at="2018-11-15T21:41:41Z">
+  <suite name="Default suite" duration-ms="86132" started-at="2018-11-16T08:17:08Z" finished-at="2018-11-16T08:18:34Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="46237" started-at="2018-11-15T21:40:55Z" finished-at="2018-11-15T21:41:41Z">
-      <class name="TestCases.BasicFunctionalTestSuite">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="beforeMethod" is-config="true" duration-ms="9879" started-at="2018-11-15T21:40:55Z" finished-at="2018-11-15T21:41:05Z">
+    <test name="Default test" duration-ms="86132" started-at="2018-11-16T08:17:08Z" finished-at="2018-11-16T08:18:34Z">
+      <class name="TestCases.BasicFunctionalTestSuite_testpt">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:TestCases.BasicFunctionalTestSuite_testpt@685cb137]" name="beforeMethod" is-config="true" duration-ms="31970" started-at="2018-11-16T08:17:08Z" finished-at="2018-11-16T08:17:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="HappyPath_HotelDefault()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="HappyPath_HotelDefault" duration-ms="36339" started-at="2018-11-15T21:41:05Z" finished-at="2018-11-15T21:41:41Z">
+        <test-method status="PASS" signature="HappyPath_HotelDefault()[pri:0, instance:TestCases.BasicFunctionalTestSuite_testpt@685cb137]" name="HappyPath_HotelDefault" duration-ms="54128" started-at="2018-11-16T08:17:40Z" finished-at="2018-11-16T08:18:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- HappyPath_HotelDefault -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="Close" is-config="true" duration-ms="0" started-at="2018-11-15T21:41:41Z" finished-at="2018-11-15T21:41:41Z">
+        <test-method status="PASS" signature="Close()[pri:0, instance:TestCases.BasicFunctionalTestSuite_testpt@685cb137]" name="Close" is-config="true" duration-ms="0" started-at="2018-11-16T08:18:34Z" finished-at="2018-11-16T08:18:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:TestCases.BasicFunctionalTestSuite@685cb137]" name="End" is-config="true" duration-ms="0" started-at="2018-11-15T21:41:41Z" finished-at="2018-11-15T21:41:41Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:TestCases.BasicFunctionalTestSuite_testpt@685cb137]" name="End" is-config="true" duration-ms="1" started-at="2018-11-16T08:18:34Z" finished-at="2018-11-16T08:18:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- End -->
-      </class> <!-- TestCases.BasicFunctionalTestSuite -->
+      </class> <!-- TestCases.BasicFunctionalTestSuite_testpt -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

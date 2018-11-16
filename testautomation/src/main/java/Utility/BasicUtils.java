@@ -158,7 +158,7 @@ public class BasicUtils {
 		File src=((TakesScreenshot)d).getScreenshotAs(OutputType.FILE);
 		try
 		{
-			FileUtils.copyFile(src, new File(_path+"Screen_"+_name+System.currentTimeMillis()+".png"));
+			FileUtils.copyFile(src, new File(_path+"Screen_"+_name+"_"+System.currentTimeMillis()+".png"));
 		}
 		catch (IOException e)
 		{
