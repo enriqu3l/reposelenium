@@ -1,11 +1,6 @@
 package Pages;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -119,55 +114,30 @@ public class HomePageF {
 	@CacheLookup
 	private WebElement Button_search;
 	
-	public void SearchHotel(DOHotelRes DO_HotelRes) throws InterruptedException{
+	
+	//------------By--------------------
+	By productActive = By.cssSelector("li.ptw-active > a");
+	
+	public void SearchHotel(DOHotelRes DO_HotelRes){
 		verifyProductSelectedOnWidgetMenu("Hoteles");
-		
-		//Mover el mouse al "Input Destino" para que no afecte la seleccion de los elementos
-		try {
-			Point location = Input_destHotel.getLocation();
-	        Robot robot;
-			robot = new Robot();
-			robot.mouseMove(location.getX(),location.getY()+120);
-		} catch (AWTException e) {
-			e.printStackTrace();
-			System.out.println("Error moviendo mouse: "+e.toString());
-		}
-		
-		//Los actions no mueven el mouse, solo realizan acciones a nivel de DOM!!
-		//Actions a = new Actions(driver);
-		//a.moveToElement(Input_destHotel).build().perform();
-		//-------------------------------------------------------------------------------
-		
 		Input_destHotel.clear();
 		Input_destHotel.sendKeys(DO_HotelRes.getDestination());
-		Thread.sleep(5000);
-		Input_destHotel.sendKeys(Keys.ENTER);
-		
-		Thread.sleep(3000);
 		Input_destStartHotel.clear();
-		Input_destStartHotel.sendKeys(DO_HotelRes.getStartDate());
-		
-		Thread.sleep(3000);
+		Input_destStartHotel.sendKeys(DO_HotelRes.getStartDate());		
 		Input_destEndHotel.clear();
 		Input_destEndHotel.sendKeys(DO_HotelRes.getEndDate());
-		
-		Thread.sleep(3000);
-		Image_destEndHotelTrigger.click();
-		
+		//Image_destEndHotelTrigger.click();  esconde el calendario
 		Select rooms = new Select(Select_bookerHotelRooms);
 		rooms.selectByVisibleText("1");
-		
 		Select adults = new Select(Select_bookerHotelAdults0);
-		adults.selectByVisibleText(Integer.toString(DO_HotelRes.getAdults()));
-		
-		//Nos brincamos la parte de la seleccion de menores
-		
-		Thread.sleep(3000);
+		adults.selectByValue(Integer.toString(DO_HotelRes.getAdults()));
+		Select kids = new Select(Select_bookerHotelMinors0);
+		kids.selectByValue("0");
 		Button_search.click();
 	}
 	
 	public void verifyProductSelectedOnWidgetMenu(String product) {
-		if(!widgetMenu.findElement(By.cssSelector("li.ptw-active > a")).getText().equals(product)) {
+		if(!widgetMenu.findElement(productActive).getText().equals(product)) {
 			widgetMenu.findElement(By.linkText(product) ).click();
 		}
 	}
@@ -191,4 +161,21 @@ Lo correcto es poner un wait hasta que el elemento este cargado en la pagina y d
 inicializarlo con PageFactory o con findElement().
 Por todo lo anterior se recomienda esperar con un wait ExpectedCondition a que
 el contenido esta propiamente cargado para despues ya inicializar webElements
+*/
+
+/*Mover el mouse al "Input Destino" para que no afecte la seleccion de los elementos
+try {
+	Point location = Input_destHotel.getLocation();
+    Robot robot;
+	robot = new Robot();
+	robot.mouseMove(location.getX(),location.getY()+120);
+} catch (AWTException e) {
+	e.printStackTrace();
+	System.out.println("Error moviendo mouse: "+e.toString());
+}*/
+
+/*
+ * Los actions no mueven el mouse, solo realizan acciones a nivel de DOM!!
+ * Actions a = new Actions(driver);
+ * a.moveToElement(Input_destHotel).build().perform();
 */

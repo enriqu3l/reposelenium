@@ -2,15 +2,15 @@ package WorkFlows;
 
 import DataObjects.DOCreditCard;
 import DataObjects.DOHotelRes;
-import Helper.DOManager;
+import Helper.DDManager;
 import Pages.Pages;
 
 public class HappyPathsWF {
 	
 	public static void HPHotelDefault() throws InterruptedException{
 		//Aqui estoy utilizando una funcion del DOManager para generar el DefaultData
-		DOHotelRes DO_HotelRes = DOManager.getHotelResDefault();
-		DOCreditCard DO_CreditCard = DOManager.getCreditCardDefault();
+		DOHotelRes DO_HotelRes = DDManager.getHotelResDefault();
+		DOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		
 		Pages.homePage_Initialize();
 		Pages.home_page.SearchHotel(DO_HotelRes);
@@ -28,8 +28,8 @@ public class HappyPathsWF {
 	}
 	
 	public static void HPHotelRandom() throws InterruptedException{
-		DOHotelRes DO_HotelRes = DOManager.getRandomHotelRes();
-		DOCreditCard DO_CreditCard = DOManager.getRandomCreditCard();
+		DOHotelRes DO_HotelRes = DDManager.getRandomHotelRes();
+		DOCreditCard DO_CreditCard = DDManager.getRandomCreditCard();
 		
 		Pages.homePage_Initialize();
 		Pages.home_page.SearchHotel(DO_HotelRes);

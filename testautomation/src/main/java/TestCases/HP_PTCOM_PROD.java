@@ -9,12 +9,11 @@ import FrameworkConfig.GeneralConfig;
 import Helper.BrowserFactory;
 import WorkFlows.HappyPathsWF;
 
-public class BasicFunctionalTestSuite {
-	
+public class HP_PTCOM_PROD {
 	@BeforeMethod
 	public void beforeMethod() {
 		//Set Browser
-		BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_PRODENV_);
+		BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_PTCOM_PROD);
 	}
 	
 	@Test
@@ -44,5 +43,4 @@ public class BasicFunctionalTestSuite {
 	{
 		System.out.println("Test Finished");
 	}
-
 }

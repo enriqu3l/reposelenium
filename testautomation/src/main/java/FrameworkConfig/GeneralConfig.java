@@ -12,8 +12,10 @@ public class GeneralConfig {
 	public static final int R_ENDDATE_PlusDay = 2;
 	
 	//URL - Environments 
-	public static final String URL_TESTENV = "http://test.pricetravel.com.mx";
-	public static final String URL_PRODENV_ = "https://www.pricetravel.com.mx";
+	public static final String URL_PTCOMMX_TEST = "http://test.pricetravel.com.mx";
+	public static final String URL_PTCOMMX_PROD_ = "https://www.pricetravel.com.mx";
+	public static final String URL_PTCOM_PROD = "https://www.pricetravel.com";
+	public static final String URL_PTCO_PROD = "https://www.pricetravel.co";
 	
 	//Resources Paths
 	public static final String DATASOURCE_PATH = "C:\\PTFrameworkData\\SourceDataFiles\\";

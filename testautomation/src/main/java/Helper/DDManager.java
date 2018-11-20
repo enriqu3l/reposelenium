@@ -12,14 +12,14 @@ import DataObjects.DOHotelRes;
 import FrameworkConfig.GeneralConfig;
 import Utility.ExcelUtils;
 
-public class DOManager {
+public class DDManager {
 	public static String rHotelResData = "SourceDataFiles/HotelResData.xlsx";
 	public static String rCreditCardData = "SourceDataFiles/CreditCardsData.xlsx";
 	public static String rClientData = "SourceDataFiles/ClientData.xlsx";
 	public static String rLocatorsGenerated = "SourceDataFiles/LocatorsGenerated.xlsx";
 	
 	//Constructor
-	public DOManager() {
+	public DDManager() {
 	}
 	
 	//-------------------------HOTEL RES------------------------------

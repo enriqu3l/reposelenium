@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import FrameworkConfig.GeneralConfig;
-import Helper.DOManager;
+import Helper.DDManager;
 import Utility.BasicUtils;
 
 public class ThankYouPageF {
@@ -75,7 +75,7 @@ public class ThankYouPageF {
 		//Assert.assertTrue(locator.getText());
 		
 		System.out.println("ThankYouPage -> Localizador: "+locator.getText());
-		DOManager.saveLocator(locator.getText());
+		DDManager.saveLocator(locator.getText());
 		
 		//Verificar que se halla guardado correctamente
 		//Assert.assertEquals(locator.getText(), getLocator(locator.getText()));

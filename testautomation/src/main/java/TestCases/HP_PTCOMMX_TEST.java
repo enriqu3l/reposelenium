@@ -11,12 +11,12 @@ import FrameworkConfig.GeneralConfig;
 import Helper.BrowserFactory;
 import WorkFlows.HappyPathsWF;
 
-public class BasicFunctionalTestSuite_TESTENV {
+public class HP_PTCOMMX_TEST {
 	
 	@BeforeMethod
 	public void beforeMethod() {
 		//Set Browser
-		BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_TESTENV);
+		BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_PTCOMMX_TEST);
 	}
 	
 	@Test

@@ -2,10 +2,9 @@ package DataObjects;
 
 import java.util.List;
 
-import Utility.ExcelUtils;
-
 public class DOHotelRes {
 	//A esta clase me falta gregarle la variable de los Rooms!!!!!
+	//No la he implementado porque requiere mucho esfuerzo y hay otras funcionalidades mas urgentes
 	
 	private String idHotelRes;
 	private String destination;
