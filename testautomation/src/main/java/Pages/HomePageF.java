@@ -119,46 +119,19 @@ public class HomePageF {
 	@CacheLookup
 	private WebElement Button_search;
 	
-	public void SearchHotelDefault() throws InterruptedException {
+	public void SearchHotel(DOHotelRes DO_HotelRes) throws InterruptedException{
 		verifyProductSelectedOnWidgetMenu("Hoteles");
 		
-		Input_destHotel.sendKeys("Cancun");
-		Thread.sleep(5000); //No eliminar hasta no solucionar el wait del dropdown ajax!!!
-		Input_destHotel.sendKeys(Keys.ENTER);
-		
-		Thread.sleep(2000);
-		Input_destStartHotel.clear();
-		Input_destStartHotel.sendKeys("04/02/2019");
-		//driver.findElement(By.linkText("Sig>")).click();
-		
-		Thread.sleep(2000);
-		Input_destEndHotel.clear();
-		Input_destEndHotel.sendKeys("05/02/2019");
-		
-		Thread.sleep(3000);
-		Image_destEndHotelTrigger.click();
-		
-		Select rooms = new Select(Select_bookerHotelRooms);
-		rooms.selectByVisibleText("1");
-		
-		Select adults = new Select(Select_bookerHotelAdults0);
-		adults.selectByVisibleText("1");
-		
-		Thread.sleep(2000);
-		Button_search.click();
-	}
-	
-	public void SearchHotel(DOHotelRes DO_HotelRes) throws InterruptedException, AWTException {
-		verifyProductSelectedOnWidgetMenu("Hoteles");
-		
-		//Mover el mouse al Input Destino
-		//Point coordinates = driver.findElement(By.id("ap_dest_start")).getLocation();
-		//Robot robot = new Robot();
-		//robot.mouseMove(coordinates.getX(),coordinates.getY()+120);
-		
-        Point location = Input_destHotel.getLocation();
-        Robot robot = new Robot();
-		robot.mouseMove(location.getX(),location.getY()+120);
+		//Mover el mouse al "Input Destino" para que no afecte la seleccion de los elementos
+		try {
+			Point location = Input_destHotel.getLocation();
+	        Robot robot;
+			robot = new Robot();
+			robot.mouseMove(location.getX(),location.getY()+120);
+		} catch (AWTException e) {
+			e.printStackTrace();
+			System.out.println("Error moviendo mouse: "+e.toString());
+		}
 		
 		//Los actions no mueven el mouse, solo realizan acciones a nivel de DOM!!
 		//Actions a = new Actions(driver);
@@ -191,42 +164,12 @@ public class HomePageF {
 		
 		Thread.sleep(3000);
 		Button_search.click();
-		
 	}
 	
 	public void verifyProductSelectedOnWidgetMenu(String product) {
 		if(!widgetMenu.findElement(By.cssSelector("li.ptw-active > a")).getText().equals(product)) {
 			widgetMenu.findElement(By.linkText(product) ).click();
 		}
-	}
-	
-	public void SelectProduct(String product) {
-		widgetMenu.findElement(By.linkText(product) ).click();
-	}
-	
-	public void SearchProduct(String product, String origin, String destin) throws InterruptedException {
-		System.out.println("Type: "+product+" Origen:"+origin);
-		
-		//Primero seleccionar el tipo de producto(Paquete|Hotel|Vuelo|Etc..) dentro del widget
-		widgetMenu.findElement(By.linkText(product) ).click();
-		
-		//Ingresar Los valores al widget
-		//InputOrigin.sendKeys(origin);
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("")));
-		//Thread.sleep(3000);
-		//List <WebElement> listItems = driver.findElements(By.xpath("//li[.='" + origin + "']"));
-		//listItems.get(0).click();
-		//InputOrigin.sendKeys(Keys.ENTER);
-		
-		//InputDestin.sendKeys(destin);
-		//Thread.sleep(3000);
-		//InputDestin.sendKeys(Keys.ENTER);
-		
-		//InputStartDate.click();
-		
-		//InputStartDate.findElement(By.cssSelector("#ptw-ui-datepicker-div > div.ui-datepicker-group.ui-datepicker-group-last > table > tbody > tr:nth-child(1) > td:nth-child(4) > a")).click();
-		//wait.until(ExpectedConditions.elementToBeClickable(username)).sendKeys(user);
-				
 	}
 	
 	//PENDIENTE POR CONSTRUIR
@@ -237,7 +180,6 @@ public class HomePageF {
 }
 
 /*Knowledge
-
 
 1.- Cuando se abre una nueva tab, asegurarse de seleccionarla
 porque el driver no switchea por si solo a la nueva tab!!

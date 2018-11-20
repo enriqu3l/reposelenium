@@ -1,15 +1,6 @@
 package testautomation;
 
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-
-import Utility.ExcelUtils;
+import Utility.BasicUtils;
 
 public class testautomation {
 
@@ -52,5 +43,12 @@ public class testautomation {
 		System.out.println("Lista Dato 1: "+data.get(1));
 		ExcelUtils.saveNewRowInExistingFile("SourceDataFiles/LocatorsGenerated.xlsx", data);
 		*/
+		
+		String date = BasicUtils.getCurrentDatePlusMonth(1);
+		String date2 = BasicUtils.getCurrentDatePlusMonth2(1);
+		
+		System.out.println("Fecha1 mas 1 mes: "+date);
+		System.out.println("Fecha2 mas 1 mes: "+date2);
+		
 	}
 }

@@ -2,9 +2,18 @@ package FrameworkConfig;
 
 public class GeneralConfig {
 	
-	//Environments
-	public static final String TESTENV = "http://test.pricetravel.com.mx";
-	public static final String PRODENV = "https://www.pricetravel.com.mx";
+	//Default Reservation Data
+	public static final String R_ID = "HR001";
+	public static final String R_ORIGIN = "Ciudad de México (y alrededores), Distrito Federal, México";
+	public static final String R_DESTIN = "Cancún (y alrededores), México";
+	public static final int R_ADULTS = 2;
+	public static final int R_KIDS = 0;
+	public static final int R_STARTDATE_PlusMonth = 1;
+	public static final int R_ENDDATE_PlusDay = 2;
+	
+	//URL - Environments 
+	public static final String URL_TESTENV = "http://test.pricetravel.com.mx";
+	public static final String URL_PRODENV_ = "https://www.pricetravel.com.mx";
 	
 	//Resources Paths
 	public static final String DATASOURCE_PATH = "C:\\PTFrameworkData\\SourceDataFiles\\";

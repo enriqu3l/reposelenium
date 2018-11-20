@@ -65,13 +65,9 @@ public class PayMethodPageF {
 		Assert.assertTrue(currentURL.contains("forma-pago"));
 	}
 	
-	public void payWithCreditCard(){
-		clearCreditForm();
-		FillCreditFormDefaultData();
-		clickOnCompleteReservation();
-	}
-	
-	public void FillCreditFormDefaultData() {
+	/*Esta funcion NO debera ser usada, se ha creado una funcion del DOManager para generar
+	 * la informacion Default
+	 * public void FillCreditFormDefaultData() {
 		Input_cardNumber1.sendKeys("1111111111114444");
 		Select month = new Select (Select_cardMonthExpired1);
 		month.selectByVisibleText("02");
@@ -82,7 +78,7 @@ public class PayMethodPageF {
 		Select country = new Select(Select_cardCountry1);
 		country.selectByValue("MX");
 		Input_cardZipCode1.sendKeys("44777");
-	}
+	}*/
 	
 	public void FillCreditForm(DOCreditCard DOCard) {
 		Input_cardNumber1.sendKeys(Long.toString(DOCard.getCardNumber()));

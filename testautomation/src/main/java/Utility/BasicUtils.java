@@ -2,9 +2,14 @@ package Utility;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
+import org.joda.time.LocalDate;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -15,6 +20,28 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasicUtils {
+	
+	//Funciona a partir de Java version 8
+	public static String getCurrentDatePlusMonth(int plusMonth) {
+		if(plusMonth>12) {plusMonth=12;} //Aqui lo limito a máximo un año de avance
+		LocalDate futureDate = LocalDate.now().plusMonths(plusMonth);
+		return futureDate.toString("dd/MM/yyyy");
+	}
+	
+	//Esta funcion No la estoy utilizando!!!
+	//Esta funcion utiliza la libreria Date la cual ya fue sustituida por LocalDate en Java 8
+	public static String getCurrentDatePlusMonth2(int plusMonth) {
+		if(plusMonth>12) {plusMonth=12;}//Aqui lo limito a máximo un año de avance
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy ");
+		Date current = new Date();
+		if(plusMonth>0) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(current);
+			cal.add(Calendar.MONTH, plusMonth);
+			current = cal.getTime();
+		}
+		return dateFormat.format(current);
+	}
 	
 	/*//Seleccionar una fecha de un calendario, usar formato: dd/mm/yyyy
 	public static void selectDateFromCalendar(WebDriver d,String setDateStr) {

@@ -1,14 +1,15 @@
 package Helper;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import org.joda.time.LocalDate;
+import org.openqa.selenium.support.ui.Select;
+
 import DataObjects.DOCreditCard;
 import DataObjects.DOHotelRes;
+import FrameworkConfig.GeneralConfig;
 import Utility.ExcelUtils;
 
 public class DOManager {
@@ -21,6 +22,22 @@ public class DOManager {
 	public DOManager() {
 	}
 	
+	//-------------------------HOTEL RES------------------------------
+	public static DOHotelRes getHotelResDefault() {
+		LocalDate startDate;
+		LocalDate endDate;
+		DOHotelRes DOHotelRes = new DOHotelRes();
+		DOHotelRes.setIdHotelRes("HR001");
+		DOHotelRes.setDestination(GeneralConfig.R_DESTIN);
+		startDate = LocalDate.now().plusMonths(GeneralConfig.R_STARTDATE_PlusMonth);
+		DOHotelRes.setStartDate(startDate.toString("dd/MM/yyyy"));
+		endDate = startDate.plusDays(GeneralConfig.R_ENDDATE_PlusDay);
+		DOHotelRes.setEndDate(endDate.toString("dd/MM/yyyy"));
+		DOHotelRes.setAdults(GeneralConfig.R_ADULTS);
+		DOHotelRes.setKids(GeneralConfig.R_KIDS);
+		return DOHotelRes;
+	}//EndFunction
+	
 	public  static DOHotelRes getHotelRes(int item) {
 		//Candado que limita los valores que puede tener la variable item
 		int max = ExcelUtils.getRowCountR(rHotelResData)-1;
@@ -30,10 +47,10 @@ public class DOManager {
 		DOHotelRes DOHotelRes = new DOHotelRes();
 		DOHotelRes.setDataUsingList(ExcelUtils.getRowR(rHotelResData, item));
 		return DOHotelRes;
-	}
+	}//EndFunction
 	
 	public static DOHotelRes getRandomHotelRes() {
-		int min = 1;
+		int min = 1;  //Comienza en 1 porque la fila de cabecera es la 0
 		int max = ExcelUtils.getRowCountR(rHotelResData)-1; //Le resto 1 porque la primer fila es la 0
 		//Asi se obtiene un numero random entre valor min y max.
 		Random rand = new Random();
@@ -42,7 +59,23 @@ public class DOManager {
 		DOHotelRes DOHotelRes = new DOHotelRes();
 		DOHotelRes.setDataUsingList(ExcelUtils.getRowR(rHotelResData, randomNum));
 		return DOHotelRes;
-	}
+	}//EndFunction
+	
+	//-------------------------CREDIT CARD------------------------------
+	public static DOCreditCard getCreditCardDefault() {
+		//Me falta jalar los datos desde la Clase GeneralConfig
+		DOCreditCard DOCreditCard = new DOCreditCard();
+		DOCreditCard.setNumber(Long.parseLong("4772130000000003"));
+		DOCreditCard.setHolderName("Virginia Chavez");
+		DOCreditCard.setMonth("08");
+		DOCreditCard.setYear("2021");
+		DOCreditCard.setCCV(114);
+		DOCreditCard.setCountry("MX");
+		DOCreditCard.setCP(44777);
+		DOCreditCard.setBank("Bancomer");
+		DOCreditCard.setPayNetwork(GeneralConfig.CardTypes.VISA);
+		return DOCreditCard;
+	}//EndFunction
 	
 	public static DOCreditCard getCreditCard(int item) {
 		//Candado que limita los valores que puede tener la variable item
@@ -70,17 +103,10 @@ public class DOManager {
 	//Aun no la usaré, hasta hacer la modificacion para que el archivo LocatorsGenerated.xlsx
 	//sea alojado directamente en C en vez de alojarlo dentro del proyecto
 	public static boolean saveLocator(String locator) {
-		
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
-		Date date = new Date();
-		String currentDate= dateFormat.format(date);
-		
 		List<String> data = new ArrayList<String>();
 		data.add(locator);
-		data.add(currentDate);
-		
+		data.add(LocalDate.now().toString("dd/MM/yyyy"));
 		ExcelUtils.saveNewRowInExistingFile(rLocatorsGenerated, data);
-		
 		return true;
 	}
 	

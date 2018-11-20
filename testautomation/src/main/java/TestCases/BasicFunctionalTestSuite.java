@@ -16,7 +16,7 @@ public class BasicFunctionalTestSuite {
 	@BeforeMethod
 	public void beforeMethod() {
 		//Set Browser
-		BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.PRODENV);
+		BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_PRODENV_);
 	}
 	
 	@Test
