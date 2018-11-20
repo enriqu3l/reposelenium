@@ -11,7 +11,7 @@ import FrameworkConfig.GeneralConfig;
 import Helper.BrowserFactory;
 import WorkFlows.HappyPathsWF;
 
-public class BasicFunctionalTestSuite_testpt {
+public class BasicFunctionalTestSuite_TESTENV {
 	
 	@BeforeMethod
 	public void beforeMethod() {

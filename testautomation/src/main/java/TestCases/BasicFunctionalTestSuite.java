@@ -1,7 +1,5 @@
 package TestCases;
 
-import java.awt.AWTException;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -20,13 +18,13 @@ public class BasicFunctionalTestSuite {
 	}
 	
 	@Test
-	public void HappyPath_HotelDefault() throws InterruptedException, AWTException{		
+	public void HappyPath_HotelDefault() throws InterruptedException{		
 		HappyPathsWF.HPHotelDefault();
 	}
 	
 	/*
 	@Test
-	public void HappyPath_HotelRandom() throws InterruptedException, AWTException{		
+	public void HappyPath_HotelRandom() throws InterruptedException{		
 		HappyPathsWF.HPHotelRandom();
 	}
 	
