@@ -1,24 +1,24 @@
 package TestCases;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.*;
 
 import FrameworkConfig.GeneralConfig;
 import Helper.BrowserFactory;
 import WorkFlows.HappyPathsWF;
 
 public class HP_PTCOM_PROD {
+	WebDriver driver;
+	
 	@BeforeMethod
 	public void beforeMethod() {
 		//Set Browser
-		BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_PTCOM_PROD);
+		driver = BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_PTCOM_PROD);
 	}
 	
 	@Test
 	public void HappyPath_HotelDefault() throws InterruptedException{		
-		HappyPathsWF.HPHotelDefault();
+		HappyPathsWF.HPHotelDefault(driver);
 	}
 	
 	/*
@@ -35,7 +35,7 @@ public class HP_PTCOM_PROD {
 	@AfterMethod
 	public void Close()
 	{
-		//BrowserFactory.driver.close();	
+		driver.close();	
 	}
 	
 	@AfterTest

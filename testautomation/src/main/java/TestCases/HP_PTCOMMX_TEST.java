@@ -2,16 +2,15 @@ package TestCases;
 
 import java.awt.AWTException;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.*;
 
 import FrameworkConfig.GeneralConfig;
 import Helper.BrowserFactory;
 import WorkFlows.HappyPathsWF;
 
 public class HP_PTCOMMX_TEST {
+	WebDriver driver;
 	
 	@BeforeMethod
 	public void beforeMethod() {
@@ -21,7 +20,7 @@ public class HP_PTCOMMX_TEST {
 	
 	@Test
 	public void HappyPath_HotelDefault() throws InterruptedException, AWTException{		
-		HappyPathsWF.HPHotelDefault();
+		HappyPathsWF.HPHotelDefault(driver);
 	}
 	
 	/*
@@ -38,7 +37,7 @@ public class HP_PTCOMMX_TEST {
 	@AfterMethod
 	public void Close()
 	{
-		//BrowserFactory.driver.close();	
+		driver.close();	
 	}
 	
 	@AfterTest

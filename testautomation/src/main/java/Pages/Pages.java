@@ -2,43 +2,41 @@ package Pages;
 
 import org.openqa.selenium.WebDriver;
 
-import Helper.BrowserFactory;
-
 public class Pages {
-	public static WebDriver driver = BrowserFactory.driver;
+	public WebDriver driver;
 	
-	public static HomePageF home_page;
-	public static HotelListPageF hotelList_page;
-	public static RoomListPageF roomList_page;
-	public static ResDetailPageF resDetail_page;
-	public static PayMethodPageF payMethod_page;
-	public static ThankYouPageF thankYou_page;
+	public HomePageF home_page;
+	public HotelListPageF hotelList_page;
+	public RoomListPageF roomList_page;
+	public ResDetailPageF resDetail_page;
+	public PayMethodPageF payMethod_page;
+	public ThankYouPageF thankYou_page;
 	
-	public Pages() {
-		//Constructor
+	public Pages(WebDriver driver) {
+		this.driver = driver;
 	}
 	
-	public static void homePage_Initialize() {
+	public void homePage_Initialize() {
 		home_page = new HomePageF(driver);
 	}
 
-	public static void hotelListPage_Initialize() {
+	public void hotelListPage_Initialize() {
 		hotelList_page = new HotelListPageF(driver);
 	}
 	
-	public static void roomListPage_Initialize() {
+	public void roomListPage_Initialize() {
 		roomList_page = new RoomListPageF(driver);
 	}
 	
-	public static void resDetailPage_Initialize() {
+	public void resDetailPage_Initialize() {
 		resDetail_page = new ResDetailPageF(driver);
 	}
-	public static void payMethodPage_Initialize() {
+	public void payMethodPage_Initialize() {
 		payMethod_page = new PayMethodPageF(driver);
 		//payMethod_page = PageFactory.initElements(BrowserFactory.driver, PayMethodPageF.class);
 	}
 	
-	public static void thankYouPage_Initialize() {
+	public void thankYouPage_Initialize() {
 		thankYou_page = new ThankYouPageF(driver);
 	}
 }

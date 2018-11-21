@@ -10,8 +10,11 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+//Para poder usar BrowserFactory es necesario setear el path de los drivers
+//en las variables del sistema
+
 public class BrowserFactory {
-	public static WebDriver driver;
+	private static WebDriver driver;
 	
 	public static WebDriver StartBrowser(String BrowserName, String url) {
 		if(BrowserName.equals("firefox")) {

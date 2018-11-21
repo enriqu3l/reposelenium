@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="HP_Suite">
+  <test thread-count="3" name="Test">
+    <classes>
+      <class name="TestCases.HP_PTCOMMX_PROD"/>
+      <class name="TestCases.HP_PTCOM_PROD"/>
+      <class name="TestCases.HP_PTCO_PROD"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

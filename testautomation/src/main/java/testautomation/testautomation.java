@@ -5,6 +5,14 @@ import Utility.BasicUtils;
 public class testautomation {
 
 	public static void main(String[] args) {
+		/* Ejecucion con Maven
+		 * mvn clean -----Limpa valores de antiguas ejecuciones
+		 * mvn compile ---Verifica que no existan errores
+		 * mvn test ------Ejecutas todos los test que se encuentren en la carpeta src/test/java
+		 * 
+		 */
+		
+		
 		/*String data[][];
 		data = ExcelUtils.getDataTableFormat("ProductHotelData.xlsx","C:\\Automation\\",1,1,4,5);
 		data = ExcelUtils.getDataTableFormatR("SourceDataFiles/HotelResData.xlsx", 1, 1, 1, 12);
