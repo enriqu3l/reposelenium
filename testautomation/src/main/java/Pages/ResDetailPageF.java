@@ -63,6 +63,10 @@ public class ResDetailPageF {
 	@CacheLookup
 	WebElement descriptionName;
 	
+	//------------  pt.co Elements--------------
+		@FindBy(how=How.ID, id="NationalIdCard")
+		WebElement Input_nationalIdCard;
+	
 	public void checkCurrentURLPage() {
 		wait.until(ExpectedConditions.urlContains("detalles-reservacion"));
 		currentURL = driver.getCurrentUrl();
@@ -89,6 +93,14 @@ public class ResDetailPageF {
 		Input_lada.sendKeys("33");
 		Input_phone.sendKeys("33443344");
 		Input_mobile.sendKeys("3344334433");
+		
+		//Se agrego este If para el campo Cedula de Ciudadania
+		//de la pagina de pt.co
+		if(driver.getCurrentUrl().contains(".co/")) {
+			System.out.println("ResDetailPage - Current URL: "+driver.getCurrentUrl());
+			Input_nationalIdCard.sendKeys("33444");
+		}
+		
 		checkPolitics();
 	}
 	

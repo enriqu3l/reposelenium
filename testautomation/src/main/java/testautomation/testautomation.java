@@ -9,7 +9,7 @@ public class testautomation {
 		 * mvn clean -----Limpa valores de antiguas ejecuciones
 		 * mvn compile ---Verifica que no existan errores
 		 * mvn test ------Ejecutas todos los test que se encuentren en la carpeta src/test/java
-		 * 
+		 * mvn test -PHappypath --Para ejecutar con un perfil deseado
 		 */
 		
 		
@@ -18,7 +18,6 @@ public class testautomation {
 		data = ExcelUtils.getDataTableFormatR("SourceDataFiles/HotelResData.xlsx", 1, 1, 1, 12);
 		System.out.println("Data [0][0]: " + data[0][0]);
 		*/
-		
 		
 		//int row = ExcelUtils.getRowCountR("SourceDataFiles/HotelResData.xlsx");
 		//int column = ExcelUtils.getColumnCountR("SourceDataFiles/HotelResData.xlsx");

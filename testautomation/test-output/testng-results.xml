@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="24109" started-at="2018-11-21T03:48:06Z" finished-at="2018-11-21T03:48:30Z">
+  <suite name="Default suite" duration-ms="50873" started-at="2018-11-21T18:11:15Z" finished-at="2018-11-21T18:12:06Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="24109" started-at="2018-11-21T03:48:06Z" finished-at="2018-11-21T03:48:30Z">
+    <test name="Default test" duration-ms="50873" started-at="2018-11-21T18:11:15Z" finished-at="2018-11-21T18:12:06Z">
       <class name="TestCases.HP_PTCOMMX_PROD">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@685cb137]" name="beforeMethod" is-config="true" duration-ms="9026" started-at="2018-11-21T03:48:06Z" finished-at="2018-11-21T03:48:15Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@685cb137]" name="beforeMethod" is-config="true" duration-ms="12014" started-at="2018-11-21T18:11:15Z" finished-at="2018-11-21T18:11:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="HappyPath_HotelDefault()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@685cb137]" name="HappyPath_HotelDefault" duration-ms="12971" started-at="2018-11-21T03:48:15Z" finished-at="2018-11-21T03:48:28Z">
+        <test-method status="PASS" signature="HappyPath_HotelDefault()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@685cb137]" name="HappyPath_HotelDefault" duration-ms="36685" started-at="2018-11-21T18:11:27Z" finished-at="2018-11-21T18:12:04Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- HappyPath_HotelDefault -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@685cb137]" name="Close" is-config="true" duration-ms="2088" started-at="2018-11-21T03:48:28Z" finished-at="2018-11-21T03:48:30Z">
+        <test-method status="PASS" signature="Close()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@685cb137]" name="Close" is-config="true" duration-ms="2137" started-at="2018-11-21T18:12:04Z" finished-at="2018-11-21T18:12:06Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@685cb137]" name="End" is-config="true" duration-ms="1" started-at="2018-11-21T03:48:30Z" finished-at="2018-11-21T03:48:30Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@685cb137]" name="End" is-config="true" duration-ms="1" started-at="2018-11-21T18:12:06Z" finished-at="2018-11-21T18:12:06Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- End -->

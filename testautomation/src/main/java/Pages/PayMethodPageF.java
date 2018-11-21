@@ -59,6 +59,11 @@ public class PayMethodPageF {
 	@FindBy(how=How.ID, id="validatePayForms")
 	WebElement Button_validatePayForms;
 	
+	
+	//------------  pt.co Elements--------------
+	@FindBy(how=How.ID, id="NationalIdCard1")
+	WebElement Input_nationalIdCard1;
+	
 	public void checkCurrentURLPage() {
 		wait.until(ExpectedConditions.urlContains("forma-pago"));
 		currentURL = driver.getCurrentUrl();
@@ -90,7 +95,15 @@ public class PayMethodPageF {
 		Input_cardSecurityCode1.sendKeys(Integer.toString(DOCard.getCCV()));
 		Select country = new Select(Select_cardCountry1);
 		country.selectByValue(DOCard.getCountry());
-		Input_cardZipCode1.sendKeys(Integer.toString(DOCard.getCP()));
+		
+		//Se agrego este If para el campo Cedula de Ciudadania
+		//de la pagina de pt.co
+		if(driver.getCurrentUrl().contains(".co/")){
+			System.out.println("PayMethodPage - Current URL: "+driver.getCurrentUrl());
+			Input_nationalIdCard1.sendKeys("33444");
+		}else {
+			Input_cardZipCode1.sendKeys(Integer.toString(DOCard.getCP()));
+		}
 	}
 	
 	public void clearCreditForm() {
@@ -110,19 +123,17 @@ public class PayMethodPageF {
 		Button_validatePayForms.click();
 	}
 	
+	//En construccion!!
 	public boolean pay1or2cards(int opc) {
 		if(opc==1){
-			
-			
+			//Aqui el codigo para pago con 1 tarjeta
 			return true;
 		}else if(opc==2){
-			
-			
+			//Aqui el codigo para pago con 2 tarjetas
 			return true;
 		}else {
 			return false; 
 		}
-		
 	}
 	
 	public void enterCodePromotions(String code) {

@@ -6,13 +6,27 @@
 	<artifactId>testautomation</artifactId>
 	<version>0.0.1</version>
 	<name>TestAutomation</name>
-
+	<build>
+		<plugins>
+			<!-- we want JDK 1.8 source and binary compatiblility -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<profiles>
 		<profile>
 			<id>Happypath</id>
 			<build>
 				<pluginManagement>
 					<plugins>
+					    <!-- plugin to allow us to execute selenium tests -->
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-plugin</artifactId>
@@ -32,6 +46,7 @@
 			<build>
 				<pluginManagement>
 					<plugins>
+					    <!-- plugin to allow us to execute selenium tests -->
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-plugin</artifactId>
@@ -47,31 +62,6 @@
 			</build>
 		</profile>
 	</profiles>
-
-	<build>
-		<plugins>
-			<!-- we want JDK 1.8 source and binary compatiblility -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<!-- plugin to allow us to execute selenium tests -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M1</version>
-				<configuration>
-					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
-					</suiteXmlFiles>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/joda-time/joda-time Libreria para 
