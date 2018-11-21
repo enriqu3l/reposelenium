@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="HP_Suite">
+<suite name="Main_Suite">
   <test thread-count="3" name="Test">
     <classes>
       <class name="TestCases.HP_PTCOMMX_PROD"/>
