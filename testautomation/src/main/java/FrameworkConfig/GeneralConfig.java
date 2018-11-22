@@ -21,6 +21,12 @@ public class GeneralConfig {
 	public static final String DATASOURCE_PATH = "C:\\PTFrameworkData\\SourceDataFiles\\";
 	public static final String SCREENSHOOT_PATH = "C:\\PTFrameworkData\\Screenshots\\";
 	
+	//Files Names
+	public static final String FILE_ClientData = "ClientData.xlsx";
+	public static final String FILE_CreditCardsData = "CreditCardsData.xlsx";
+	public static final String FILE_HotelResData = "HotelResData.xlsx";
+	public static final String FILE_LocatorsGenerated = "LocatorsGenerated.xlsx";
+	
 	//BrowserConfig
 	public static final String DEFAULTBROWSER = "chrome";
 	public static final boolean BROWSER_CANCELLNOTIFICATION = true;

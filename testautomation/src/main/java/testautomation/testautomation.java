@@ -1,7 +1,5 @@
 package testautomation;
 
-import Utility.BasicUtils;
-
 public class testautomation {
 
 	public static void main(String[] args) {
@@ -51,11 +49,16 @@ public class testautomation {
 		ExcelUtils.saveNewRowInExistingFile("SourceDataFiles/LocatorsGenerated.xlsx", data);
 		*/
 		
-		String date = BasicUtils.getCurrentDatePlusMonth(1);
+		/*String date = BasicUtils.getCurrentDatePlusMonth(1);
 		String date2 = BasicUtils.getCurrentDatePlusMonth2(1);
-		
 		System.out.println("Fecha1 mas 1 mes: "+date);
 		System.out.println("Fecha2 mas 1 mes: "+date2);
+		*/
 		
+		/*
+		ClassLoader classLoader = ExcelUtils.class.getClassLoader();
+		String file = classLoader.getResource("SourceDataFiles/HotelResData.xlsx").getFile();
+		System.out.println("File path: "+file);
+		*/
 	}
 }

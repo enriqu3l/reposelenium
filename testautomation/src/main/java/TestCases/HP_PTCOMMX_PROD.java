@@ -15,18 +15,18 @@ public class HP_PTCOMMX_PROD {
 		//Set Browser
 		driver = BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_PTCOMMX_PROD_);
 	}
-	
+	/*
 	@Test
 	public void HappyPath_HotelDefault() throws InterruptedException{		
 		HappyPathsWF.HPHotelDefault(driver);
+	}*/
+	
+	@Test
+	public void HappyPath_HotelRandom() throws InterruptedException{		
+		HappyPathsWF.HPHotelRandom(driver);
 	}
 	
 	/*
-	@Test
-	public void HappyPath_HotelRandom() throws InterruptedException{		
-		HappyPathsWF.HPHotelRandom();
-	}
-	
 	@Test
 	public void HappyPath_destCol() throws InterruptedException{		
 		
@@ -35,7 +35,7 @@ public class HP_PTCOMMX_PROD {
 	@AfterMethod
 	public void Close()
 	{
-		driver.close();	
+		//driver.close();	
 	}
 	
 	@AfterTest

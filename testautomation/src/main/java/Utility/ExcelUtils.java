@@ -27,16 +27,25 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtils {
 	
+	//Esta funcion ya tiene la capacidad de leer archivos externos y recursos internos
 	//Funcion que devuleve una fila, el parametro row=4 devuelve la fila 5
-	public static List<String> getRowR(String _resourceName, int _rowNumber){
+	public static List<String> getRow(String _filePath, int _rowNumber){
 		int rowNumber = _rowNumber;
-		String fileName = _resourceName;
 		List<String> data = new ArrayList<String>();
-		ClassLoader classLoader = ExcelUtils.class.getClassLoader();
-		//String resourceFile = classLoader.getResource(fileName).getFile();
-		try (FileInputStream file = new FileInputStream(classLoader.getResource(fileName).getFile())) {
-			@SuppressWarnings("resource")
-			XSSFWorkbook workbook = new XSSFWorkbook(file);
+		FileInputStream inputStream;
+		try{
+			if(_filePath.contains("C:")){
+				//Para el caso que sea un archivo externo al proyecto
+				//Aqui le pasamos como parametro un file
+				inputStream = new FileInputStream(new File(_filePath));
+			}
+			else {
+				//Para el caso que sea un recurso dentro del proyecto
+				//Aquile pasamos como parametro un String
+				ClassLoader classLoader = ExcelUtils.class.getClassLoader();
+				inputStream = new FileInputStream(classLoader.getResource(_filePath).getFile());
+			}
+			XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 			XSSFSheet sheet = workbook.getSheetAt(0);
 			int i=0;
 			String val;
@@ -46,6 +55,8 @@ public class ExcelUtils {
 				data.add(val);
 				i++;
 			}
+			workbook.close();
+			inputStream.close();
 		} catch (Exception e) {
 			e.getMessage();
 			System.out.println("ExcelUtils.getRowByNumberR() "+e.toString());
@@ -54,34 +65,41 @@ public class ExcelUtils {
 	}
 	
 	//Aun no funciona, aun no jala todos los datos correctamente!!!
-	public static String[][] getDataTableFormatR(String _resourceName, int _InitRow, int _InitColumn, int _EndRow, int _EndColumn) {
+	public static String[][] getDataTableFormatR(String _filePath, int _InitRow, int _InitColumn, int _EndRow, int _EndColumn) {
 		//Validar Parametros y mandar logs si hay errores en ellos
-		if(_resourceName.equals("")) {System.out.println("Error - Ruta del archivo de Excel es incorrecto");}
-		if(_InitRow == 0 && _InitRow > 1000 ) {System.out.println("Error - Valor de Fila Inicial fuera de rango(1-999)");}
-		if(_InitColumn == 0 && _InitColumn > 1000) {System.out.println("Error - Valor de Columna Inicial fuera de rango(1-999)");}
-		if(_EndRow == 0 && _EndRow > 1000) {System.out.println("Error - Valor de Fila Final fuera de rango(1-999)");}
-		if(_EndColumn == 0 && _EndColumn > 1000) {System.out.println("Error - Valor de Columna Final fuera de rango(1-999)");}
-		if(_EndRow < _InitRow) {System.out.println("Error - Valor de Fila Inicial no puede ser mayor a Fila Final");}
-		if(_EndColumn < _InitColumn) {System.out.println("Error - Valor de Columna Inicial no puede ser mayor a Columna Final");}
+		if(_filePath.equals("")) {System.out.println("Error - Ruta del archivo de Excel es incorrecto");return null;}
+		if(_InitRow == 0 && _InitRow > 1000 ) {System.out.println("Error - Valor de Fila Inicial fuera de rango(1-999)");return null;}
+		if(_InitColumn == 0 && _InitColumn > 1000) {System.out.println("Error - Valor de Columna Inicial fuera de rango(1-999)");return null;}
+		if(_EndRow == 0 && _EndRow > 1000) {System.out.println("Error - Valor de Fila Final fuera de rango(1-999)");return null;}
+		if(_EndColumn == 0 && _EndColumn > 1000) {System.out.println("Error - Valor de Columna Final fuera de rango(1-999)");return null;}
+		if(_EndRow < _InitRow) {System.out.println("Error - Valor de Fila Inicial no puede ser mayor a Fila Final");return null;}
+		if(_EndColumn < _InitColumn) {System.out.println("Error - Valor de Columna Inicial no puede ser mayor a Columna Final");return null;}
 
 		int rowSize = _EndRow - _InitRow + 1;
 		int columnSize = _EndColumn - _InitColumn + 1;
 
 		String data[][] = new String[rowSize][columnSize];
-		String fileName = _resourceName;
 
 		@SuppressWarnings("unused")
 		String hoja = "Hoja1";
 		
-		//Implementando el uso de Recursos XML
-		//ClassLoader classLoader = getClass().getClassLoader();  //este no funciona en método estatico
-		ClassLoader classLoader = ExcelUtils.class.getClassLoader();
-		//String resourceFile = classLoader.getResource(fileName).getFile();
 		
-		try (FileInputStream file = new FileInputStream(classLoader.getResource(fileName).getFile())) {
+		FileInputStream fileIS;
+		
+		try{
+			if(_filePath.contains("C:")){
+				//Para el caso que sea un archivo externo al proyecto
+				//Aqui le pasamos como parametro un file
+				fileIS = new FileInputStream(new File(_filePath));
+			}
+			else {
+				//ClassLoader classLoader = getClass().getClassLoader();  //este no funciona en método estatico
+				ClassLoader classLoader = ExcelUtils.class.getClassLoader();
+				fileIS = new FileInputStream(classLoader.getResource(_filePath).getFile());
+			}
 			// leer archivo excel
 			@SuppressWarnings("resource")
-			XSSFWorkbook workbook = new XSSFWorkbook(file);
+			XSSFWorkbook workbook = new XSSFWorkbook(fileIS);
 			//obtener la hoja que se va leer
 			XSSFSheet sheet = workbook.getSheetAt(0);
 			//obtener todas las filas de la hoja excel
@@ -129,91 +147,25 @@ public class ExcelUtils {
 		return data;
 	}
 	
-	//Aun no funciona, aun no jala todos los datos correctamente!!!
-	public static String[][] getDataTableFormat(String _file, String _path, int _InitRow, int _InitColumn, int _EndRow, int _EndColumn) {
-		//Validar Parametros y mandar logs si hay errores en ellos
-		if(_file.equals("")) {System.out.println("Error - nombre del archivo de Excel es incorrecto");}
-		if(_path.equals("")) {System.out.println("Error - Ruta del archivo de Excel es incorrecto");}
-		if(_InitRow == 0 && _InitRow > 1000 ) {System.out.println("Error - Valor de Fila Inicial fuera de rango(1-999)");}
-		if(_InitColumn == 0 && _InitColumn > 1000) {System.out.println("Error - Valor de Columna Inicial fuera de rango(1-999)");}
-		if(_EndRow == 0 && _EndRow > 1000) {System.out.println("Error - Valor de Fila Final fuera de rango(1-999)");}
-		if(_EndColumn == 0 && _EndColumn > 1000) {System.out.println("Error - Valor de Columna Final fuera de rango(1-999)");}
-		if(_EndRow < _InitRow) {System.out.println("Error - Valor de Fila Inicial no puede ser mayor a Fila Final");}
-		if(_EndColumn < _InitColumn) {System.out.println("Error - Valor de Columna Inicial no puede ser mayor a Columna Final");}
-		
-		int rowSize = _EndRow - _InitRow + 1;
-		int columnSize = _EndColumn - _InitColumn + 1;
-		
-		String data[][] = new String[rowSize][columnSize];
-		String nombreArchivo = _file;
-		String rutaArchivo = _path + nombreArchivo;
-		
-		@SuppressWarnings("unused")
-		String hoja = "Hoja1";
- 
-		try (FileInputStream file = new FileInputStream(new File(rutaArchivo))) {
-			// leer archivo excel
-			@SuppressWarnings("resource")
-			XSSFWorkbook workbook = new XSSFWorkbook(file);
-			//obtener la hoja que se va leer
-			XSSFSheet sheet = workbook.getSheetAt(0);
-			//obtener todas las filas de la hoja excel
-			Iterator<Row> rowIterator = sheet.iterator();
- 
-			Row row;
-			
-			int i=0; //f2,c2 al f8,c2
-			int j=0;
-			int igood=0;
-			int jgood=0;
-			// se recorre cada fila hasta el final
-			while (rowIterator.hasNext() && i<_EndRow) {
-				row = rowIterator.next();
-				//se obtiene las celdas por fila
-				Iterator<Cell> cellIterator = row.cellIterator();
-				Cell cell;
-				
-				//se recorre cada celda
-				while (cellIterator.hasNext() && j<_EndColumn) {
-					// se obtiene la celda en específico y se la imprime
-					cell = cellIterator.next();
-					
-					//igood=i-_InitRow+1;
-					//jgood=j-_InitColumn+1;
-					//Guardo solo si esta dentro del rango
-					if(i >= _InitRow-1 && j >= _InitColumn-1) {
-						System.out.println("["+igood+"]["+jgood+"]: "+cell.getStringCellValue()+" | ");
-						data[igood][jgood]=cell.getStringCellValue();
-					}
-					j++;
-					if(j >= _InitColumn-1) {jgood++;}
-				}
-				j=0;
-				jgood=0;
-				System.out.println();
-				i++;
-				if(i >= _InitRow-1) {igood++;}
-			}
-			i=0;
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		
-		return data;
-	}
-	
-	public static String[][] getDataFromExcel(String _file, String _path) {
+	public static String[][] getDataFromExcel(String _filePath) {
 		String data[][] = new String[20][2];
-		String nombreArchivo = _file;
-		String rutaArchivo = _path + nombreArchivo;
 		
-		@SuppressWarnings("unused")
-		String hoja = "Hoja1";
- 
-		try (FileInputStream file = new FileInputStream(new File(rutaArchivo))) {
+		FileInputStream fileIS;
+		try{
+			if(_filePath.contains("C:")){
+				//Para el caso que sea un archivo externo al proyecto
+				//Aqui le pasamos como parametro un file
+				fileIS = new FileInputStream(new File(_filePath));
+			}
+			else {
+				//Para el caso que sea un recurso dentro del proyecto
+				//Aquile pasamos como parametro un String
+				ClassLoader classLoader = ExcelUtils.class.getClassLoader();
+				fileIS = new FileInputStream(classLoader.getResource(_filePath).getFile());
+			}
 			// leer archivo excel
 			@SuppressWarnings("resource")
-			XSSFWorkbook workbook = new XSSFWorkbook(file);
+			XSSFWorkbook workbook = new XSSFWorkbook(fileIS);
 			//obtener la hoja que se va leer
 			XSSFSheet sheet = workbook.getSheetAt(0);
 			//obtener todas las filas de la hoja excel
@@ -249,18 +201,25 @@ public class ExcelUtils {
 		return data;
 	}
 	
-	public static String[][] getDataFromExcel(String _file, String _path,int _row, int _column) {
+	public static String[][] getDataFromExcel(String _filePath,int _row, int _column) {
 		String data[][] = new String[_row][_column];
-		String nombreArchivo = _file;
-		String rutaArchivo = _path + nombreArchivo;
 		
-		@SuppressWarnings("unused")
-		String hoja = "Hoja1";
- 
-		try (FileInputStream file = new FileInputStream(new File(rutaArchivo))) {
+		FileInputStream fileIS;
+		try{
+			if(_filePath.contains("C:")){
+				//Para el caso que sea un archivo externo al proyecto
+				//Aqui le pasamos como parametro un file
+				fileIS = new FileInputStream(new File(_filePath));
+			}
+			else {
+				//Para el caso que sea un recurso dentro del proyecto
+				//Aquile pasamos como parametro un String
+				ClassLoader classLoader = ExcelUtils.class.getClassLoader();
+				fileIS = new FileInputStream(classLoader.getResource(_filePath).getFile());
+			}
 			// leer archivo excel
 			@SuppressWarnings("resource")
-			XSSFWorkbook workbook = new XSSFWorkbook(file);
+			XSSFWorkbook workbook = new XSSFWorkbook(fileIS);
 			//obtener la hoja que se va leer
 			XSSFSheet sheet = workbook.getSheetAt(0);
 			//obtener todas las filas de la hoja excel
@@ -296,16 +255,29 @@ public class ExcelUtils {
 		return data;
 	}
 	
-	//Devuelve el numero de filas que tiene el archivo
-	public static int getRowCountR(String _resourceName) {
+	//Esta funcion ya tiene la capacidad de leer archivos externos y recursos internos
+	public static int getRowCount(String _filePath) {
 		int row=0;
-		ClassLoader classLoader = ExcelUtils.class.getClassLoader();
-		//String resourceFile = classLoader.getResource(rutaArchivo).getFile();
-		try (FileInputStream file = new FileInputStream(classLoader.getResource(_resourceName).getFile())) {
-			@SuppressWarnings("resource")
-			XSSFWorkbook workbook = new XSSFWorkbook(file);
+		
+		FileInputStream inputStream;
+		try{
+			if(_filePath.contains("C:")){
+				//Para el caso que sea un archivo externo al proyecto
+				//Aqui le pasamos como parametro un file
+				inputStream = new FileInputStream(new File(_filePath));
+			}
+			else {
+				//Para el caso que sea un recurso dentro del proyecto
+				//Aquile pasamos como parametro un String
+				ClassLoader classLoader = ExcelUtils.class.getClassLoader();
+				inputStream = new FileInputStream(classLoader.getResource(_filePath).getFile());
+			}
+			
+			XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 			XSSFSheet sheet = workbook.getSheetAt(0);
 			row = sheet.getLastRowNum()+1;//Le sumo 1 porque getLastRowNum devulve la ultima fila en "base 0"
+			workbook.close();
+			inputStream.close();
 		} catch (Exception e) {
 			e.getMessage();
 			System.out.println("ExcelUtils.getRowCountR() "+e.toString());
@@ -313,15 +285,27 @@ public class ExcelUtils {
 		return row;
 	}
 	
-	public static int getColumnCountR(String _resourceName) {
+	//Esta funcion ya tiene la capacidad de leer archivos externos y recursos internos
+	public static int getColumnCount(String _filePath) {
 		int column = 0;
-		ClassLoader classLoader = ExcelUtils.class.getClassLoader();
-		//String resourceFile = classLoader.getResource(_fileName).getFile();
-		try (FileInputStream file = new FileInputStream(classLoader.getResource(_resourceName).getFile())) {
-			@SuppressWarnings("resource")
-			XSSFWorkbook workbook = new XSSFWorkbook(file);
+		FileInputStream inputStream;
+		try{
+			if(_filePath.contains("C:")){
+				//Para el caso que sea un archivo externo al proyecto
+				//Aqui le pasamos como parametro un file
+				inputStream = new FileInputStream(new File(_filePath));
+			}
+			else {
+				//Para el caso que sea un recurso dentro del proyecto
+				//Aquile pasamos como parametro un String
+				ClassLoader classLoader = ExcelUtils.class.getClassLoader();
+				inputStream = new FileInputStream(classLoader.getResource(_filePath).getFile());
+			}
+			XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 			XSSFSheet sheet = workbook.getSheetAt(0);
 			column = sheet.getRow(0).getLastCellNum(); //Obtiene el numero de la ultima celda de la primer fila
+			workbook.close();
+			inputStream.close();
 		} catch (Exception e) {
 			e.getMessage();
 			System.out.println("ExcelUtils.getColumnCountR() "+e.toString());
@@ -334,15 +318,25 @@ public class ExcelUtils {
 	
 	//Esta funcion aun no esta lista, necesito revisarla,
 	//esta guardando el file de target y no el de src
-	public static void saveNewRowInExistingFile(String _filename, List<String> data) {
+	public static void saveNewRowInExistingFile(String _filePath, List<String> data) {
 		int row = 0;
 		int i = 0;
-		ClassLoader classLoader = ExcelUtils.class.getClassLoader();
-		//String resourceFile = classLoader.getResource(_fileName).getFile();
+		File file=null;
+		FileInputStream inputStream;
 		try{
-			File file = new File( classLoader.getResource(_filename).getFile() );
-			FileInputStream inputStream = new FileInputStream(file);
-			@SuppressWarnings("resource")
+			if(_filePath.contains("C:")){
+				//Para el caso que sea un archivo externo al proyecto
+				//Aqui le pasamos como parametro un file
+				file = new File(_filePath);
+				inputStream = new FileInputStream(file);
+			}
+			else {
+				//Para el caso que sea un recurso dentro del proyecto
+				//Aquile pasamos como parametro un String
+				ClassLoader classLoader = ExcelUtils.class.getClassLoader();
+				file = new File( classLoader.getResource(_filePath).getFile() );
+				inputStream = new FileInputStream(file);
+			}
 			XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 			XSSFSheet sheet = workbook.getSheetAt(0);
 			row=sheet.getLastRowNum();
@@ -353,10 +347,10 @@ public class ExcelUtils {
 				System.out.println("Iterator ["+i+"]: "+data.get(i));
 				i++;
 			}
-			
-			//Guardarmos y cerraramos
+			//Guardarmos cambios y cerraramos
 		    FileOutputStream outputStream = new FileOutputStream(file);
 		    workbook.write(outputStream);
+		    workbook.close();
 		    outputStream.close();
 		    inputStream.close();
 		    System.out.println("Ya se termino de editar el archivo!");
@@ -538,10 +532,8 @@ public class ExcelUtils {
 
 	    // Get Sheet at index 0
 	    Sheet sheet = workbook.getSheetAt(0);
-
 	    // Get Row at index 1
 	    Row row = sheet.getRow(1);
-
 	    // Get the Cell at index 2 from the above row
 	    Cell cell = row.getCell(2);
 
