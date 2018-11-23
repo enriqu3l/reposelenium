@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 import DataObjects.DOCreditCard;
 import DataObjects.DOHotelRes;
@@ -113,7 +114,7 @@ public class DDManager {
 		String filePath = GeneralConfig.DATASOURCE_PATH+GeneralConfig.FILE_LocatorsGenerated;
 		List<String> data = new ArrayList<String>();
 		data.add(locator);
-		data.add(LocalDate.now().toString("dd/MM/yyyy"));
+		data.add(LocalDateTime.now().toString("dd/MM/yyyy_HH:mm:ss"));
 		ExcelUtils.saveNewRowInExistingFile(filePath, data);
 		return true;
 	}

@@ -18,10 +18,10 @@ public class HomePageF {
 	private WebDriver driver;
 	
 	//Constructor
-	public HomePageF(WebDriver driver){
-		this.driver = driver;
-		this.wait = new WebDriverWait(driver,30);
-		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 30),this);
+	public HomePageF(WebDriver _driver){
+		this.driver = _driver;
+		this.wait = new WebDriverWait(_driver,30);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
 	}
 	
 	//By.xpath("//*[@id=\"password\"]/div[1]/div/div[1]/input");

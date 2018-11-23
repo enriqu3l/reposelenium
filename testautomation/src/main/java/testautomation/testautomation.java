@@ -1,5 +1,10 @@
 package testautomation;
 
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+
+import Utility.BasicUtils;
+
 public class testautomation {
 
 	public static void main(String[] args) {
@@ -60,5 +65,26 @@ public class testautomation {
 		String file = classLoader.getResource("SourceDataFiles/HotelResData.xlsx").getFile();
 		System.out.println("File path: "+file);
 		*/
+		
+		/*String date = LocalDateTime.now().toString("dd/MM/yyyy_HH:mm:ss");
+		System.out.println("Fecha de ahora: "+date);
+		*/
+		
+		String x = " noviembre 2018";
+		String titledate = x.toUpperCase().trim();
+		int titleyear = Integer.parseInt(titledate.substring(titledate.length()-4, titledate.length()));
+		String titlemonth = titledate.substring(0,titledate.length()-4).trim();
+		System.out.println("resultado year:"+titleyear);
+		System.out.println("resultado month:"+titlemonth+"<--");
+		int monthInteger = BasicUtils.toMonthNumber(titlemonth);
+		System.out.println("resultado month:"+monthInteger+"<--");
+		
+		String date="23/04/2019";
+		int day = Integer.parseInt(date.substring(0, 2));
+		int month = Integer.parseInt(date.substring(3, 5));
+		int year = Integer.parseInt(date.substring(6, 10));
+		System.out.println("resultado:"+day);
+		System.out.println("resultado:"+month);
+		System.out.println("resultado:"+year);
 	}
 }

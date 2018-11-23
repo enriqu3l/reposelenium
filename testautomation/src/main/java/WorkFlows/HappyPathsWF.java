@@ -43,9 +43,9 @@ public class HappyPathsWF {
 		pages.resDetail_page.ClearFillandContinue();
 		pages.payMethodPage_Initialize();
 		pages.payMethod_page.FillCreditForm(DO_CreditCard);
-		//pages.payMethod_page.clickOnCompleteReservation();
-		//pages.thankYouPage_Initialize();
-		//pages.thankYou_page.verifyCheckOutCompleted();
+		pages.payMethod_page.clickOnCompleteReservation();
+		pages.thankYouPage_Initialize();
+		pages.thankYou_page.verifyCheckOutCompleted();
 	}
 	
 	public static void HPPaqueteDefault(WebDriver driver) throws InterruptedException {

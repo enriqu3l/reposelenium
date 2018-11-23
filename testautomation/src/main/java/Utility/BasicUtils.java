@@ -204,4 +204,93 @@ public class BasicUtils {
 		scn.close();
 		return credentials;
 	}
+	
+	public static int toMonthNumber(String month) {
+		switch(month) {
+		case "ENERO":
+			return 1;
+		case "FEBRERO":
+			return 2;
+		case "MARZO":
+			return 3;
+		case "ABRIL":
+			return 4;
+		case "MAYO":
+			return 5;
+		case "JUNIO":
+			return 6;
+		case "JULIO":
+			return 7;
+		case "AGOSTO":
+			return 8;
+		case "SEPTIEMBRE":
+			return 9;
+		case "OCTUBRE":
+			return 10;
+		case "NOVIEMBRE":
+			return 11;
+		case "DICIEMBRE":
+			return 12;
+		case "JANUARY":
+			return 1;
+		case "FEBRUARY":
+			return 2;
+		case "MARCH":
+			return 3;
+		case "APRIL":
+			return 4;
+		case "MAY":
+			return 5;
+		case "JUNE":
+			return 6;
+		case "JULY":
+			return 7;
+		case "AUGUST":
+			return 8;
+		case "SEPTEMBER":
+			return 9;
+		case "OCTOBER":
+			return 10;
+		case "NOVEMBER":
+			return 11;
+		case "DECEMBER":
+			return 12;
+		default:
+			return 0;
+		}
+	}
+	
+	public static String toMonthString(int month) {
+		String monthString="";
+		
+		switch (month) {
+        case 1:  monthString = "JANUARY";
+                 break;
+        case 2:  monthString = "FEBRUARY";
+                 break;
+        case 3:  monthString = "MARCH";
+                 break;
+        case 4:  monthString = "APRIL";
+                 break;
+        case 5:  monthString = "MAY";
+                 break;
+        case 6:  monthString = "JUNE";
+                 break;
+        case 7:  monthString = "JULY";
+                 break;
+        case 8:  monthString = "AUGUST";
+                 break;
+        case 9:  monthString = "SEPTEMBER";
+                 break;
+        case 10: monthString = "OCTOBER";
+                 break;
+        case 11: monthString = "NOVEMBER";
+                 break;
+        case 12: monthString = "DECEMBER";
+                 break;
+        default: monthString = "Invalid month";
+                 break;
+		}
+		return monthString;
+	}
 }

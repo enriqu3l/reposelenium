@@ -48,14 +48,13 @@ public class ThankYouPageF {
 	WebElement Link_returnToMainPage;
 	
 	public void verifyCheckOutCompleted(){
+		wait.until( ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(locator)));
 		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(locator)));
 		//checkCurrentURLPage();
-		
-		if(message.getText().contains("Gracias")) {
-			System.out.println("Se ha generado el localizador: "+ locator.getText());
-		}
-		
+		Assert.assertTrue(message.getText().contains("Gracias"),"ThankYouPage -> No se encontro el mensaje de: Gracias");
+		System.out.println("ThankYouPage -> Localizador: "+locator.getText());
 		BasicUtils.ScreenShot(driver, locator.getText(), GeneralConfig.SCREENSHOOT_PATH);
+		DDManager.saveLocator(locator.getText());
 	}
 	
 	public void checkCurrentURLPage() {
@@ -69,15 +68,10 @@ public class ThankYouPageF {
 		Button_seeReservation.click();
 	}
 	
-	//Aun no la usaré, hasta hacer la modificacion para que el archivo LocatorsGenerated.xlsx
-	//sea alojado directamente en C en vez de alojarlo dentro del proyecto
+	//Por ahora esta funcion no esta siendo utilizada
 	public void SaveLocator() {
 		//Assert.assertTrue(locator.getText());
-		
-		System.out.println("ThankYouPage -> Localizador: "+locator.getText());
-		DDManager.saveLocator(locator.getText());
-		
-		//Verificar que se halla guardado correctamente
-		//Assert.assertEquals(locator.getText(), getLocator(locator.getText()));
+		//System.out.println("ThankYouPage -> Localizador: "+locator.getText());
+		//DDManager.saveLocator(locator.getText());
 	}
 }
