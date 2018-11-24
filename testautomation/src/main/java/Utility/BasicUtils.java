@@ -293,4 +293,20 @@ public class BasicUtils {
 		}
 		return monthString;
 	}
+	
+	public static int monthDiference(String expectedDate, String actualDate) {
+		//Esta funcion solo acepta el formato dd/MM/yyyy!!
+		int Emonth = Integer.parseInt(expectedDate.substring(3, 5));
+		int Eyear = Integer.parseInt(expectedDate.substring(6, 10));
+		int Amonth = Integer.parseInt(expectedDate.substring(3, 5));
+		int Ayear = Integer.parseInt(expectedDate.substring(6, 10));
+		
+		int yearDifference = Eyear-Ayear;
+		int monthDifference = Emonth-Amonth;
+		int TotalMountDifference=0;
+		if(yearDifference!=0 || monthDifference!=0) {
+			TotalMountDifference =  monthDifference+(yearDifference*12);
+		}
+		return TotalMountDifference;
+	}
 }

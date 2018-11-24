@@ -1,9 +1,9 @@
 package testautomation;
 
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
+import org.openqa.selenium.WebDriver;
 
-import Utility.BasicUtils;
+import Helper.BrowserFactory;
+import Pages.HotelListPageF;
 
 public class testautomation {
 
@@ -70,21 +70,12 @@ public class testautomation {
 		System.out.println("Fecha de ahora: "+date);
 		*/
 		
-		String x = " noviembre 2018";
-		String titledate = x.toUpperCase().trim();
-		int titleyear = Integer.parseInt(titledate.substring(titledate.length()-4, titledate.length()));
-		String titlemonth = titledate.substring(0,titledate.length()-4).trim();
-		System.out.println("resultado year:"+titleyear);
-		System.out.println("resultado month:"+titlemonth+"<--");
-		int monthInteger = BasicUtils.toMonthNumber(titlemonth);
-		System.out.println("resultado month:"+monthInteger+"<--");
+		WebDriver driver = BrowserFactory.StartBrowser("chrome", "https://www.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2018%2F11%2F23&checkout=2018%2F11%2F25&rooms=1&adults=2&kids=0&agekids=&pdisplay=Cancún%20(y%20alrededores),%20México&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1");
+		HotelListPageF hotelList_page;
+		hotelList_page = new HotelListPageF(driver);
+		//hotelList_page.SelectFirstHotel();
+		hotelList_page.widget_selectStartDate("24/02/2019");
+		hotelList_page.widget_selectEndDate("26/02/2019");
 		
-		String date="23/04/2019";
-		int day = Integer.parseInt(date.substring(0, 2));
-		int month = Integer.parseInt(date.substring(3, 5));
-		int year = Integer.parseInt(date.substring(6, 10));
-		System.out.println("resultado:"+day);
-		System.out.println("resultado:"+month);
-		System.out.println("resultado:"+year);
 	}
 }
