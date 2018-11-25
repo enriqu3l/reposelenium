@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,6 +28,17 @@ public class HotelListPageF {
 		this.wait = new WebDriverWait(driver,30);
 		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20),this);
 	}
+	
+	By overlayOculto = By.cssSelector(".loader-overlay[style='display: none; opacity: 0;']");
+	
+	@FindBy(how=How.CSS, css=".loader__title")
+	WebElement loaderTitle;
+	
+	@FindBy(how=How.CSS, css=".spinner")
+	WebElement spiner;
+	
+	@FindBy(how=How.CSS, css=".list-product")
+	WebElement listProduct;
 	
 	@FindBy(how=How.CSS, css=".list-product .list-product-block")
 	List<WebElement> allSearchResults;
@@ -65,10 +77,12 @@ public class HotelListPageF {
 	By endDate_dropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
 	
 	public void SelectFirstHotel() {
+		//Esperar a que se quite el overlay
+		wait.until(ExpectedConditions.presenceOfElementLocated(overlayOculto));
+		
 		System.out.println("HotelListF - Tamaño de la lista al inicio: "+allSearchResults.size());
 		
 		//Necesito esperar a que el elemento este visible
-		wait.until( ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(firstButton)) );
 		wait.until( ExpectedConditions.elementToBeClickable(firstButton));
 		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(firstButton)) );
 		
@@ -123,17 +137,39 @@ public class HotelListPageF {
 	//En construccion!!!
 	public void widget_selectStartDate(String date) {
 		//Me falta poner candados y validar el parametro		
-		//Necesito esperar a que el elemento este visible
-		wait.until( ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(firstButton)) );
-		wait.until( ExpectedConditions.elementToBeClickable(firstButton));
-		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(firstButton)) );
-
+		
+		//Esperar a que se quite el overlay
+		wait.until(ExpectedConditions.presenceOfElementLocated(overlayOculto));
+		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='loader-overlay'][contains(@style, 'display: none')]")));
+		//wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".loader-overlay[style='display: none; opacity: 0;']")));
+		/*wait.until(new ExpectedCondition<Boolean>() {           
+	        private By locator;
+	        private String attr;
+	        private String initialValue;
+	        private ExpectedCondition<Boolean> init( By locator, String attr, String initialValue ) {
+	            this.locator = locator;
+	            this.attr = attr;
+	            this.initialValue = initialValue;
+	            return this;
+	        }
+	        public Boolean apply(WebDriver driver) {
+	            WebElement element = driver.findElement(this.locator);
+	            String enabled = element.getAttribute(this.attr);
+	            System.out.println("attribute: "+enabled);
+	            if(enabled.equals(this.initialValue)) 
+	                return true;
+	            else
+	                return false;
+	        }
+	    }.init(By.cssSelector(".loader-overlay.ng-trigger.ng-trigger-enteroverlay"), "style", "display: none; opacity: 0;"));
+		*/
+		
 		int day = Integer.parseInt(date.trim().substring(0, 2));
 		int month = Integer.parseInt(date.trim().substring(3, 5));
 		int year = Integer.parseInt(date.trim().substring(6, 10));
 		
 		Image_startDatePicker.click();
-		//getTitle
+		//get title of calendar
 		String titledate = startDate_Title.getText().trim();
 		String titlemonthString = titledate.substring(0,titledate.length()-4).trim().toUpperCase();
 		
@@ -174,7 +210,7 @@ public class HotelListPageF {
 			int year = Integer.parseInt(date.trim().substring(6, 10));
 			
 			//Image_endDatePicker.click();
-			//getTitle
+			//get title of calendar
 			String titledate = endDate_Title.getText().trim();
 			String titlemonthString = titledate.substring(0,titledate.length()-4).trim().toUpperCase();
 			

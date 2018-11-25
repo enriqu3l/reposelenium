@@ -62,6 +62,8 @@ public class DDManager {
 		Random rand = new Random();
 		int randomNum = rand.nextInt((max - min) + 1) + min;
 		
+		System.out.println("randomNum: "+randomNum);
+		
 		DOHotelRes DOHotelRes = new DOHotelRes();
 		DOHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
 		return DOHotelRes;

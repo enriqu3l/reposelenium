@@ -2,6 +2,8 @@ package DataObjects;
 
 import java.util.List;
 
+import org.junit.Assert;
+
 public class DOHotelRes {
 	//A esta clase me falta gregarle la variable de los Rooms!!!!!
 	//No la he implementado porque requiere mucho esfuerzo y hay otras funcionalidades mas urgentes
@@ -109,6 +111,7 @@ public class DOHotelRes {
 	}
 	
 	public void setDataUsingList(List<String> data) {
+		if(data==null || data.isEmpty()){System.out.println("La lista esta vacia");Assert.assertFalse(data.isEmpty());}
 		this.idHotelRes = data.get(0);
 		this.destination = data.get(1);
 		this.startDate = data.get(2);
