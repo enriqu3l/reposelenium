@@ -1,7 +1,6 @@
 package Pages;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -11,9 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import DataObjects.DOHotelRes;
@@ -29,7 +26,12 @@ public class HotelListPageF {
 		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20),this);
 	}
 	
+	//Ejemplos de como buscar attributos en xpath y cssSelector
+	By overlayOcultoXPath = By.xpath("//*[@class='loader-overlay'][contains(@style, 'display: none')]");
 	By overlayOculto = By.cssSelector(".loader-overlay[style='display: none; opacity: 0;']");
+	
+	By loaderOverlayPage = By.cssSelector(".loader-overlay.ng-trigger");
+	By loaderOverlayFiltros = By.cssSelector(".card-body .loader-overlay");
 	
 	@FindBy(how=How.CSS, css=".loader__title")
 	WebElement loaderTitle;
@@ -47,7 +49,7 @@ public class HotelListPageF {
 	WebElement firstButton;
 	
 	
-	//Lateral Widget elements
+	//Lateral Widget elements - Hoteles
 	@FindBy(how=How.CSS,css="#start-datepicker .ui-datepicker-trigger")
 	WebElement Image_startDatePicker;
 	
@@ -72,13 +74,16 @@ public class HotelListPageF {
 	@FindBy(how=How.CSS, css="#end-datepicker .ngb-dp-arrow.right button.btn")
 	WebElement endDate_nextMonth;
 	
+	@FindBy(how=How.CSS, css="")
+	WebElement Button_searchHotel;
+	
 	//----------- Bys ----------------------
 	By startDate_dropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
 	By endDate_dropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
 	
 	public void SelectFirstHotel() {
 		//Esperar a que se quite el overlay
-		wait.until(ExpectedConditions.presenceOfElementLocated(overlayOculto));
+		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		
 		System.out.println("HotelListF - Tamaño de la lista al inicio: "+allSearchResults.size());
 		
@@ -117,16 +122,13 @@ public class HotelListPageF {
 	}
 	
 	public void widget_changeSearch(DOHotelRes DO_HotelRes){
-		/*verifyProductSelectedOnWidgetMenu("Hoteles");
+		/*
 		Input_destHotel.clear();
 		Input_destHotel.sendKeys(DO_HotelRes.getDestination());
-		Input_destStartHotel.clear();
-		Input_destStartHotel.sendKeys(DO_HotelRes.getStartDate());		
-		Input_destEndHotel.clear();
-		Input_destEndHotel.sendKeys(DO_HotelRes.getEndDate());
-		//Image_destEndHotelTrigger.click();  esconde el calendario
+		widget_selectStartDate(DO_HotelRes.getStartDate());		
+		widget_selectEndDate(DO_HotelRes.getEndDate());
 		Select rooms = new Select(Select_bookerHotelRooms);
-		rooms.selectByVisibleText("1");
+		rooms.selectByValue("1");
 		Select adults = new Select(Select_bookerHotelAdults0);
 		adults.selectByValue(Integer.toString(DO_HotelRes.getAdults()));
 		Select kids = new Select(Select_bookerHotelMinors0);
@@ -139,30 +141,8 @@ public class HotelListPageF {
 		//Me falta poner candados y validar el parametro		
 		
 		//Esperar a que se quite el overlay
-		wait.until(ExpectedConditions.presenceOfElementLocated(overlayOculto));
-		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='loader-overlay'][contains(@style, 'display: none')]")));
-		//wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".loader-overlay[style='display: none; opacity: 0;']")));
-		/*wait.until(new ExpectedCondition<Boolean>() {           
-	        private By locator;
-	        private String attr;
-	        private String initialValue;
-	        private ExpectedCondition<Boolean> init( By locator, String attr, String initialValue ) {
-	            this.locator = locator;
-	            this.attr = attr;
-	            this.initialValue = initialValue;
-	            return this;
-	        }
-	        public Boolean apply(WebDriver driver) {
-	            WebElement element = driver.findElement(this.locator);
-	            String enabled = element.getAttribute(this.attr);
-	            System.out.println("attribute: "+enabled);
-	            if(enabled.equals(this.initialValue)) 
-	                return true;
-	            else
-	                return false;
-	        }
-	    }.init(By.cssSelector(".loader-overlay.ng-trigger.ng-trigger-enteroverlay"), "style", "display: none; opacity: 0;"));
-		*/
+		//wait.until(WaitFor.attributeValue(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		
 		int day = Integer.parseInt(date.trim().substring(0, 2));
 		int month = Integer.parseInt(date.trim().substring(3, 5));
