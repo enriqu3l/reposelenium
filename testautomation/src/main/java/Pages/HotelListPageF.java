@@ -3,6 +3,8 @@ package Pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +13,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import DataObjects.DOHotelRes;
@@ -39,6 +42,7 @@ public class HotelListPageF {
 	@FindBy(how=How.CSS, css=".spinner")
 	WebElement spiner;
 	
+	//-------------- List Section ----------------------------------
 	@FindBy(how=How.CSS, css=".list-product")
 	WebElement listProduct;
 	
@@ -48,8 +52,13 @@ public class HotelListPageF {
 	@FindBy(how=How.CSS, css=".list-product .list-product-block .list-product-rate .list-product-rate-action a")
 	WebElement firstButton;
 	
+	By productRateFinal = By.cssSelector(".list-product-rate .product-rate-final");
+	By Button_firstAvailable = By.cssSelector(".list-product-rate .list-product-rate-action .btn");
 	
-	//Lateral Widget elements - Hoteles
+	//--------------- Lateral Widget elements - Basados en SPA-Hoteles!! -------
+	@FindBy(how=How.CSS, css="#ptw-container #destination")
+	WebElement Input_destination;
+	
 	@FindBy(how=How.CSS,css="#start-datepicker .ui-datepicker-trigger")
 	WebElement Image_startDatePicker;
 	
@@ -74,16 +83,24 @@ public class HotelListPageF {
 	@FindBy(how=How.CSS, css="#end-datepicker .ngb-dp-arrow.right button.btn")
 	WebElement endDate_nextMonth;
 	
-	@FindBy(how=How.CSS, css="")
-	WebElement Button_searchHotel;
+	@FindBy(how=How.CSS, css="#ptw-container #ap_booker_Hotel_rooms")
+	WebElement Select_bookerHotelRooms;
 	
-	//----------- Bys ----------------------
+	@FindBy(how=How.CSS, css="#ptw-container .ap_booker_Hotel_adults")
+	WebElement Select_bookerHotelAdults;
+	
+	@FindBy(how=How.CSS, css="#ptw-container .ap_booker_Hotel_minors")
+	WebElement Select_bookerHotelMinors;
+	
+	@FindBy(how=How.CSS, css="#ptw-container .ptw-submit-btn")
+	WebElement Button_search;
+	
 	By startDate_dropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
 	By endDate_dropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
 	
 	public void SelectFirstHotel() {
-		//Esperar a que se quite el overlay
-		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		//Esperar a que se quite el overlay - Solo es necesario en la SPA
+		//wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		
 		System.out.println("HotelListF - Tamaño de la lista al inicio: "+allSearchResults.size());
 		
@@ -92,7 +109,21 @@ public class HotelListPageF {
 		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(firstButton)) );
 		
 		System.out.println("HotelListF - Tamaño de la lista al final: "+allSearchResults.size());
-		firstButton.click();
+		
+		//Aqui colocar el codigo para seleccionar el primer hotel que tenga disponibilidad
+		for(int i=0;i<allSearchResults.size();i++){
+			WebElement listProductBlock = allSearchResults.get(i); 
+			if(!listProductBlock.findElements(productRateFinal).isEmpty()) {
+				WebElement rateFinal = driver.findElement(productRateFinal);
+				if(rateFinal.getText().contains("$")) {
+					System.out.println("Se encontro disponibilidad hasta el item: "+i);
+					//listProductBlock.findElement(Button_firstAvailable).click();
+					break;
+				}
+			}
+		}
+		
+		//firstButton.click();
 		
 		//En caso de encontrar una nueva tab, switchear a ella.
 		//Esta funcion se agrego para tener compatibilidad con ambiente test
@@ -121,108 +152,74 @@ public class HotelListPageF {
 		//driver.switchTo().window(browserTabs.get(0));
 	}
 	
+	//Ya se construyó pero aun no se ha probado
 	public void widget_changeSearch(DOHotelRes DO_HotelRes){
-		/*
-		Input_destHotel.clear();
-		Input_destHotel.sendKeys(DO_HotelRes.getDestination());
+		Input_destination.clear();
+		Input_destination.sendKeys(DO_HotelRes.getDestination());
 		widget_selectStartDate(DO_HotelRes.getStartDate());		
 		widget_selectEndDate(DO_HotelRes.getEndDate());
 		Select rooms = new Select(Select_bookerHotelRooms);
 		rooms.selectByValue("1");
-		Select adults = new Select(Select_bookerHotelAdults0);
+		Select adults = new Select(Select_bookerHotelAdults);
 		adults.selectByValue(Integer.toString(DO_HotelRes.getAdults()));
-		Select kids = new Select(Select_bookerHotelMinors0);
+		Select kids = new Select(Select_bookerHotelMinors);
 		kids.selectByValue("0");
-		Button_search.click();*/
+		Button_search.click();
 	}
 	
-	//En construccion!!!
+	//En construccion, ya mero esta lista!!!
 	public void widget_selectStartDate(String date) {
-		//Me falta poner candados y validar el parametro		
+		//Me falta poner candados para validar el parametro		
 		
 		//Esperar a que se quite el overlay
 		//wait.until(WaitFor.attributeValue(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		//Abrir el calendario si no esta abierto
+		if(BasicUtils.noExistsElement(driver,startDate_dropdownMenu)){Image_startDatePicker.click();}
 		
-		int day = Integer.parseInt(date.trim().substring(0, 2));
-		int month = Integer.parseInt(date.trim().substring(3, 5));
-		int year = Integer.parseInt(date.trim().substring(6, 10));
-		
-		Image_startDatePicker.click();
-		//get title of calendar
-		String titledate = startDate_Title.getText().trim();
-		String titlemonthString = titledate.substring(0,titledate.length()-4).trim().toUpperCase();
-		
-		System.out.println("titleMonthString: "+titlemonthString);
-		int titlemonth = BasicUtils.toMonthNumber(titlemonthString);
-		
-		int titleyear = Integer.parseInt(titledate.substring(titledate.length()-4, titledate.length()));
-		int yearDifference = year-titleyear;
-		int monthDifference = month-titlemonth; 
-		int TotalMountDifference = 0;
-		System.out.println("Mont and Year Actual on widget: "+titlemonth+"/"+titleyear);
-		System.out.println("Mont and Year Expected: "+month+"/"+year);
-		
-		if(yearDifference!=0 || monthDifference!=0) {
-			TotalMountDifference =  monthDifference+(yearDifference*12);	
-			System.out.println("TotalDifference: "+TotalMountDifference);
-			//Ciclos para los clics hacia adelante o hacia atras
-			if(TotalMountDifference>0) {
-				for(int i=0; i<TotalMountDifference;i++) {
-					//click hacia adelante
-					startDate_nextMonth.click();
-				}
-			}else {
-				for(int i=0; i>TotalMountDifference;i--) {
-					//click hacia adelante
-					startDate_beforeMonth.click();
-				}
+		LocalDate localDate = LocalDate.parse(date,DateTimeFormat.forPattern("dd/MM/yyyy"));
+		int day = localDate.getDayOfMonth();
+		String actualDate = BasicUtils.toddMMyyyyFormat(startDate_Title.getText().trim());
+		int TotalMonthDifference = BasicUtils.monthDiference(date, actualDate);	
+		System.out.println("TotalMonthDifference: "+TotalMonthDifference);
+		if(TotalMonthDifference>0) {
+			for(int i=0; i<TotalMonthDifference;i++) {
+				startDate_nextMonth.click(); //click hacia adelante
+			}
+		}else if(TotalMonthDifference<0) {
+			for(int i=0; i>TotalMonthDifference;i--) {
+				startDate_beforeMonth.click(); //click hacia atras
 			}
 		}
-		
-		String selector = "#start-datepicker div[aria-label*=' "+Integer.toString(day)+" '].ngb-dp-day div";
-		driver.findElement(By.cssSelector(selector)).click();
+		String xpath = "//*[@id='start-datepicker']//div[text()='"+day+"']";
+		driver.findElement(By.xpath(xpath)).click();
+		//String selector = "#start-datepicker div[aria-label*=' "+day+" '].ngb-dp-day div";
+		//driver.findElement(By.cssSelector(selector)).click();
 	}
 	public void widget_selectEndDate(String date) {
-		if(driver.findElements(endDate_dropdownMenu)!=null) {
-			int day = Integer.parseInt(date.trim().substring(0, 2));
-			int month = Integer.parseInt(date.trim().substring(3, 5));
-			int year = Integer.parseInt(date.trim().substring(6, 10));
-			
-			//Image_endDatePicker.click();
-			//get title of calendar
-			String titledate = endDate_Title.getText().trim();
-			String titlemonthString = titledate.substring(0,titledate.length()-4).trim().toUpperCase();
-			
-			System.out.println("titleMonthString: "+titlemonthString);
-			int titlemonth = BasicUtils.toMonthNumber(titlemonthString);
-			
-			int titleyear = Integer.parseInt(titledate.substring(titledate.length()-4, titledate.length()));
-			int yearDifference = year-titleyear;
-			int monthDifference = month-titlemonth; 
-			int TotalMountDifference = 0;
-			System.out.println("Mont and Year Actual on widget: "+titlemonth+"/"+titleyear);
-			System.out.println("Mont and Year Expected: "+month+"/"+year);
-			
-			if(yearDifference!=0 || monthDifference!=0) {
-				TotalMountDifference =  monthDifference+(yearDifference*12);	
-				System.out.println("TotalDifference: "+TotalMountDifference);
-				//Ciclos para los clics hacia adelante o hacia atras
-				if(TotalMountDifference>0) {
-					for(int i=0; i<TotalMountDifference;i++) {
-						//click hacia adelante
-						endDate_nextMonth.click();
-					}
-				}else {
-					for(int i=0; i>TotalMountDifference;i--) {
-						//click hacia adelante
-						endDate_beforeMonth.click();
-					}
-				}
+		//Esperar a que se quite el overlay
+		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		//Abrir el calendario si no esta abierto
+		if(BasicUtils.noExistsElement(driver,endDate_dropdownMenu)){Image_endDatePicker.click();}
+		
+		LocalDate localDate = LocalDate.parse(date,DateTimeFormat.forPattern("dd/MM/yyyy"));
+		int day = localDate.getDayOfMonth();
+		String actualDate = BasicUtils.toddMMyyyyFormat(endDate_Title.getText().trim());
+		int TotalMonthDifference = BasicUtils.monthDiference(date, actualDate);	
+		System.out.println("TotalMonthDifference: "+TotalMonthDifference);
+		if(TotalMonthDifference>0) {
+			for(int i=0; i<TotalMonthDifference;i++) {
+				endDate_nextMonth.click(); //click hacia adelante
 			}
-			
-			String selector = "#end-datepicker div[aria-label*=' "+Integer.toString(day)+" '].ngb-dp-day div";
-			driver.findElement(By.cssSelector(selector)).click();
+		}else if(TotalMonthDifference<0) {
+			for(int i=0; i>TotalMonthDifference;i--) {
+				endDate_beforeMonth.click(); //click hacia atras
+			}
 		}
+		
+		String xpath = "//*[@id='end-datepicker']//div[text()='"+day+"']";
+		driver.findElement(By.xpath(xpath)).click();
+		//String selector = "#end-datepicker div[aria-label*=' " + Integer.toString(day) + " '].ngb-dp-day div";
+		//driver.findElement(By.cssSelector(selector)).click();
 	}
 }

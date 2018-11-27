@@ -20,17 +20,16 @@ public class HP_PTCOMMX_TEST {
 		driver = BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_PTCOMMX_TEST);
 	}
 	
-	/*
 	@Test
-	public void HappyPath_HotelDefault() throws InterruptedException, AWTException{		
+	public void HappyPath_HotelDefault() throws InterruptedException{		
 		HappyPathsWF.HPHotelDefault(driver);
-	}*/
+	}
 	
-	
+	/*
 	@Test
 	public void HappyPath_HotelRandom() throws InterruptedException{		
 		HappyPathsWF.HPHotelRandom(driver);
-	}
+	}*/
 	
 	/*
 	@Test

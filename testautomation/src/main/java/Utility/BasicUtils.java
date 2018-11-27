@@ -10,16 +10,23 @@ import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasicUtils {
+	
+	//Check if a element is present
+	public static boolean existsElement(WebDriver driver, By by) {
+		return !driver.findElements(by).isEmpty();
+	}
+	
+	public static boolean noExistsElement(WebDriver driver, By by) {
+		return driver.findElements(by).isEmpty();
+	}
 	
 	//Funciona a partir de Java version 8
 	public static String getCurrentDatePlusMonth(int plusMonth) {
@@ -159,7 +166,12 @@ public class BasicUtils {
 		return credentials;
 	}
 	
+	
+	//----------- DATE & TIME Functions --------------------------------------
+	
 	public static int toMonthNumber(String month) {
+		month = month.trim();
+		//Lanza una excepcion si el parametro no es valido
 		switch(month) {
 		case "ENERO":
 			return 1;
@@ -210,7 +222,7 @@ public class BasicUtils {
 		case "DECEMBER":
 			return 12;
 		default:
-			return 0;
+			throw new IllegalArgumentException("toMonthNumber->El parametro no es una opcion valida.");
 		}
 	}
 	
@@ -248,15 +260,30 @@ public class BasicUtils {
 		return monthString;
 	}
 	
+	public static String toddMMyyyyFormat(String monthYear) {
+		//Esta funcion solo acepta el formato: " mes yyyy ", "mes yyyy" o "mesyyyy"
+		String monthYearTrimed = monthYear.trim();
+		String monthWord = monthYearTrimed.substring(0,monthYearTrimed.length()-4).trim().toUpperCase();
+		int month = BasicUtils.toMonthNumber(monthWord);
+		int year = Integer.parseInt(monthYearTrimed.substring(monthYearTrimed.length()-4, monthYearTrimed.length()));
+		
+		String monthString="";
+		if(Integer.toString(month).length()==1) {
+			monthString = "0"+month;
+		}else {
+			monthString = Integer.toString(month); 
+		}
+		
+		return "01/"+monthString+"/"+year;
+	}
+	
 	public static int monthDiference(String expectedDate, String actualDate) {
 		//Esta funcion solo acepta el formato dd/MM/yyyy!!
-		int Emonth = Integer.parseInt(expectedDate.substring(3, 5));
-		int Eyear = Integer.parseInt(expectedDate.substring(6, 10));
-		int Amonth = Integer.parseInt(expectedDate.substring(3, 5));
-		int Ayear = Integer.parseInt(expectedDate.substring(6, 10));
+		LocalDate eDate = LocalDate.parse(expectedDate,DateTimeFormat.forPattern("dd/MM/yyyy"));
+		LocalDate aDate = LocalDate.parse(actualDate,DateTimeFormat.forPattern("dd/MM/yyyy"));
 		
-		int yearDifference = Eyear-Ayear;
-		int monthDifference = Emonth-Amonth;
+		int yearDifference = eDate.getYear()-aDate.getYear();
+		int monthDifference = eDate.getMonthOfYear()-aDate.getMonthOfYear();
 		int TotalMountDifference=0;
 		if(yearDifference!=0 || monthDifference!=0) {
 			TotalMountDifference =  monthDifference+(yearDifference*12);

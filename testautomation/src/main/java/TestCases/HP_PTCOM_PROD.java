@@ -35,7 +35,7 @@ public class HP_PTCOM_PROD {
 	@AfterMethod
 	public void Close()
 	{
-		driver.close();	
+		//driver.close();	
 	}
 	
 	@AfterTest

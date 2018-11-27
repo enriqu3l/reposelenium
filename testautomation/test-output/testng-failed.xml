@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCases.HP_PTCOMMX_PROD">
+      <class name="TestCases.HP_PTCOMMX_TEST">
         <methods>
+          <include name="Close"/>
+          <include name="End"/>
           <include name="HappyPath_HotelRandom"/>
           <include name="beforeMethod"/>
-          <include name="End"/>
-          <include name="Close"/>
         </methods>
-      </class> <!-- TestCases.HP_PTCOMMX_PROD -->
+      </class> <!-- TestCases.HP_PTCOMMX_TEST -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

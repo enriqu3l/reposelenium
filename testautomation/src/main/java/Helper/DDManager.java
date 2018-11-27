@@ -20,6 +20,11 @@ public class DDManager {
 	public static String rLocatorsGenerated = "SourceDataFiles/LocatorsGenerated.xlsx";
 	*/
 	
+	//URGENTE!!!!
+	//No olvidar mencionar que los arhivos de excel necesitan eliminar las filas que queden vacias
+	//cada que se edite el archivo, esto porque si las funciones detectan que hay algo como: "" dentro
+	//de una celda la consideran como que si tiene contenido, esto se fixeara mas adelante.
+	
 	//Constructor
 	public DDManager() {
 	}

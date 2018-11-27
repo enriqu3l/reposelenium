@@ -67,15 +67,16 @@ public class testautomation {
 		*/
 		
 		/*String date = LocalDateTime.now().toString("dd/MM/yyyy_HH:mm:ss");
-		System.out.println("Fecha de ahora: "+date);
-		*/
+		System.out.println("Fecha de ahora: "+date);	
+		String date = "4/4/2004";
+	    LocalDate inputDate = LocalDate.parse(date,DateTimeFormat.forPattern("dd/MM/yyyy"));
+	    String date2 = inputDate.toString("dd/MM/yyyy");
+	    System.out.println("Date2: "+date2);*/
+	    
 		
-		WebDriver driver = BrowserFactory.StartBrowser("chrome", "https://www.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2018%2F11%2F23&checkout=2018%2F11%2F25&rooms=1&adults=2&kids=0&agekids=&pdisplay=Cancún%20(y%20alrededores),%20México&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1");
+		WebDriver driver = BrowserFactory.StartBrowser("chrome", "https://www.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2018%2F12%2F26&checkout=2018%2F12%2F28&rooms=1&adults=2&kids=0&agekids=&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1");
 		HotelListPageF hotelList_page;
 		hotelList_page = new HotelListPageF(driver);
-		//hotelList_page.SelectFirstHotel();
-		hotelList_page.widget_selectStartDate("24/02/2019");
-		hotelList_page.widget_selectEndDate("26/02/2019");
-		
+		hotelList_page.SelectFirstHotel();
 	}
 }

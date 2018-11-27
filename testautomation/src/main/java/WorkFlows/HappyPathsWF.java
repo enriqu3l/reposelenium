@@ -11,6 +11,7 @@ public class HappyPathsWF {
 	
 	public static void HPHotelDefault(WebDriver driver) throws InterruptedException{
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
+		//Estoy usando la data de GeneralConfig por la fecha plusMonth porque aun no implemento en el Excel
 		DOHotelRes DO_HotelRes = DDManager.getHotelResDefault();
 		DOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		Pages pages = new Pages(driver);
