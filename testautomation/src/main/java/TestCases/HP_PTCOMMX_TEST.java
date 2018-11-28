@@ -6,8 +6,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import FrameworkConfig.GeneralConfig;
+import Config.FrameworkConfig;
 import Helper.BrowserFactory;
+import Utility.BasicUtils;
 import WorkFlows.HappyPathsWF;
 
 public class HP_PTCOMMX_TEST {
@@ -17,8 +18,9 @@ public class HP_PTCOMMX_TEST {
 	@BeforeMethod
 	public void beforeMethod() {
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_PTCOMMX_TEST);
+		driver = BrowserFactory.StartBrowser(FrameworkConfig.DEFAULTBROWSER, FrameworkConfig.URL_PTCOMMX_TEST);
 	}
+	
 	
 	@Test
 	public void HappyPath_HotelDefault() throws InterruptedException{		

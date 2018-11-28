@@ -1,7 +1,7 @@
 package DataObjects;
 import java.util.List;
 
-import FrameworkConfig.GeneralConfig.CardTypes;
+import Config.FrameworkConfig.CardTypes;
 
 public class DOCreditCard {
 	

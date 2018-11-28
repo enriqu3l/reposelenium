@@ -1,6 +1,6 @@
-package FrameworkConfig;
+package Config;
 
-public class GeneralConfig {
+public class FrameworkConfig {
 	
 	//Default Reservation Data
 	public static final String R_ID = "HR001";

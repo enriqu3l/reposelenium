@@ -2,6 +2,7 @@ package Pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -31,6 +32,8 @@ public class RoomListPageF {
 	@FindBy(how=How.CSS, css=".hotel-rooms-table .room-table .room-table-actions .btn.btn-primary")
 	private WebElement roomButton;
 	
+	By loaderOverlayPage = By.cssSelector(".loader-overlay.ng-trigger");
+	
 	//Los lementos que se cargan al inicio junto con la pagina se declaran con @FindBy
 	//Los elementos que se cargan despues, por cuestion de AJAX o por una SPA se declararan
 	//usando By elements
@@ -40,18 +43,11 @@ public class RoomListPageF {
 	//private By BYroomButton = By.cssSelector(".hotel-rooms-table .room-table .room-table-actions .btn.btn-primary");
 	
 	public void SelectRoomDefault() {
-		/* 1.- Esperar a que se cargue la pagina
-		 * 3.- Moverse hasta el listado
-		 * 4.- Ver si hay cuartos con disponibilidad
-		 * 5.- Seleccionar un cuarto
-		 */
+		//Esperar a que se quite el overlay, falla en Test porque no es SPA
+		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		
 		System.out.println("RoomListF - Tamaño de la lista antes: "+allSearchResults.size());
 		
-		//Makes a simple scrooll in order to see the buttons, is not relevant!!!
-		//JavascriptExecutor jse = (JavascriptExecutor)driver;
-		//jse.executeScript("window.scrollBy(0,700)");
-		//-----------------------------------------------------
 		//Cambié el scroll por un Action, hasta ahora parece que esta funcionando bien ;)...
 		Actions actions = new Actions(driver);
 		actions.moveToElement(roomButton).perform();

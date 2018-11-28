@@ -16,10 +16,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import Config.CoreConfig;
 import DataObjects.DOHotelRes;
 import Utility.BasicUtils;
+import junit.framework.Assert;
 
 public class HotelListPageF {
+	enum searchPages{
+		FisrtPage,TwoPages,ThreePages,AllPages
+	}
+	
 	private WebDriverWait wait;
 	private WebDriver driver;
 	
@@ -34,6 +40,7 @@ public class HotelListPageF {
 	By overlayOculto = By.cssSelector(".loader-overlay[style='display: none; opacity: 0;']");
 	
 	By loaderOverlayPage = By.cssSelector(".loader-overlay.ng-trigger");
+	By loaderButton = By.cssSelector(".list-product-rate .loader");
 	By loaderOverlayFiltros = By.cssSelector(".card-body .loader-overlay");
 	
 	@FindBy(how=How.CSS, css=".loader__title")
@@ -43,32 +50,30 @@ public class HotelListPageF {
 	WebElement spiner;
 	
 	//-------------- List Section ----------------------------------
-	@FindBy(how=How.CSS, css=".list-product")
-	WebElement listProduct;
-	
 	@FindBy(how=How.CSS, css=".list-product .list-product-block")
 	List<WebElement> allSearchResults;
 	
 	@FindBy(how=How.CSS, css=".list-product .list-product-block .list-product-rate .list-product-rate-action a")
-	WebElement firstButton;
+	WebElement Button_firstItem;
 	
-	By productRateFinal = By.cssSelector(".list-product-rate .product-rate-final");
-	By Button_firstAvailable = By.cssSelector(".list-product-rate .list-product-rate-action .btn");
+	By BYlistProduct = By.cssSelector(".list-product");
+	By BYproductRateFinal = By.cssSelector(".list-product-rate .product-rate-final");
+	By BYButton_seeOffer = By.cssSelector(".list-product-rate .list-product-rate-action .btn");
 	
 	//--------------- Lateral Widget elements - Basados en SPA-Hoteles!! -------
 	@FindBy(how=How.CSS, css="#ptw-container #destination")
 	WebElement Input_destination;
 	
-	@FindBy(how=How.CSS,css="#start-datepicker .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, css="#start-datepicker .ui-datepicker-trigger")
 	WebElement Image_startDatePicker;
 	
-	@FindBy(how=How.CSS,css="#end-datepicker .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, css="#end-datepicker .ui-datepicker-trigger")
 	WebElement Image_endDatePicker;
 	
-	@FindBy(how=How.CSS,css="#start-datepicker .dropdown-menu .ngb-dp-month-name")
+	@FindBy(how=How.CSS, css="#start-datepicker .dropdown-menu .ngb-dp-month-name")
 	WebElement startDate_Title;
 	
-	@FindBy(how=How.CSS,css="#end-datepicker .dropdown-menu .ngb-dp-month-name")
+	@FindBy(how=How.CSS, css="#end-datepicker .dropdown-menu .ngb-dp-month-name")
 	WebElement endDate_Title;
 	
 	@FindBy(how=How.CSS, css="#start-datepicker .ngb-dp-arrow button.btn")
@@ -98,41 +103,50 @@ public class HotelListPageF {
 	By startDate_dropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
 	By endDate_dropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
 	
+	//Esta funcion se diseño pensando solo en la funcionalidad de las SPA
 	public void SelectFirstHotel() {
-		//Esperar a que se quite el overlay - Solo es necesario en la SPA
-		//wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		//Esperar a que se quite el overlay, falla en Test porque no es SPA
+		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		
-		System.out.println("HotelListF - Tamaño de la lista al inicio: "+allSearchResults.size());
+		Assert.assertTrue("ENF>>>No se encontro ninguna lista de resultados!.", BasicUtils.existsElement(driver,BYlistProduct));
+		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.",allSearchResults.isEmpty());
+		System.out.println("INF - HotelListF - Tamaño de la lista: "+allSearchResults.size());
+		
+		int index = getItemNum_firstHotelAvailable(allSearchResults);
+		if(CoreConfig.FaultValue==index){Assert.assertTrue("LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.",false);}
+		WebElement Button_seeOffer = allSearchResults.get(index).findElement(BYButton_seeOffer);
 		
 		//Necesito esperar a que el elemento este visible
-		wait.until( ExpectedConditions.elementToBeClickable(firstButton));
-		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(firstButton)) );
-		
-		System.out.println("HotelListF - Tamaño de la lista al final: "+allSearchResults.size());
-		
-		//Aqui colocar el codigo para seleccionar el primer hotel que tenga disponibilidad
-		for(int i=0;i<allSearchResults.size();i++){
-			WebElement listProductBlock = allSearchResults.get(i); 
-			if(!listProductBlock.findElements(productRateFinal).isEmpty()) {
-				WebElement rateFinal = driver.findElement(productRateFinal);
-				if(rateFinal.getText().contains("$")) {
-					System.out.println("Se encontro disponibilidad hasta el item: "+i);
-					//listProductBlock.findElement(Button_firstAvailable).click();
-					break;
-				}
-			}
-		}
-		
-		//firstButton.click();
+		wait.until( ExpectedConditions.elementToBeClickable(Button_seeOffer));
+		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(Button_seeOffer)) );
+		Button_seeOffer.click();
 		
 		//En caso de encontrar una nueva tab, switchear a ella.
 		//Esta funcion se agrego para tener compatibilidad con ambiente test
 		verifyIfANewTabOpened();
 	}
 	
-	//NOT READY!
-	public void SelectHotel(int itemList) throws InterruptedException {
-		//Aqui el codigo para seleccionar un hotel especifico de acuerdo al item de la lista
+	public void SelectHotel(int index) throws InterruptedException {
+		if(index>=20){Assert.assertTrue("LAF>>>Parametro invalido, index tiene que ser menor a 20!.",false);}
+		
+		//Esperar a que se quite el overlay, falla en Test porque no es SPA
+		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+
+		Assert.assertTrue("ENF>>>No se encontro ninguna lista de resultados!.",
+				BasicUtils.existsElement(driver, BYlistProduct));
+		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.", allSearchResults.isEmpty());
+		System.out.println("HotelListF - Tamaño de la lista: " + allSearchResults.size());
+		
+		WebElement Button_seeOffer = allSearchResults.get(index).findElement(BYButton_seeOffer);
+
+		// Necesito esperar a que el elemento este visible
+		wait.until(ExpectedConditions.elementToBeClickable(Button_seeOffer));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(Button_seeOffer)));
+		Button_seeOffer.click();
+
+		// En caso de encontrar una nueva tab, switchear a ella.
+		// Esta funcion se agrego para tener compatibilidad con ambiente test
+		verifyIfANewTabOpened();
 	}
 	
 	public void verifyIfANewTabOpened() {
@@ -140,8 +154,7 @@ public class HotelListPageF {
 		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
 		if(browserTabs.size()>1) {
 			//En caso de haber mas de 1 tab, switchear a esa nueva tab.
-			//La primer tab comienza con 0 por eso seleccionamos la 1
-			driver.switchTo().window(browserTabs.get(1));
+			driver.switchTo().window(browserTabs.get(1)); //La primer tab comienza con 0 por eso seleccionamos la 1
 		}
 		System.out.println("HotelListPage - Cantidad de tabs: "+browserTabs.size());
 		
@@ -221,5 +234,40 @@ public class HotelListPageF {
 		driver.findElement(By.xpath(xpath)).click();
 		//String selector = "#end-datepicker div[aria-label*=' " + Integer.toString(day) + " '].ngb-dp-day div";
 		//driver.findElement(By.cssSelector(selector)).click();
+	}
+	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//---------------- FUNCIONES PRIVADAS ------------------------------------------------
+	private int getItemNum_firstHotelAvailable(List<WebElement> allSearchResults) {
+		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.",allSearchResults.isEmpty());
+		
+		int index = CoreConfig.FaultValue;
+		for (int i = 0; i < allSearchResults.size(); i++) {
+			WebElement listProductBlock = allSearchResults.get(i);
+			wait.until( ExpectedConditions.presenceOfNestedElementLocatedBy(listProductBlock, BYButton_seeOffer));
+			
+			if (!listProductBlock.findElements(BYproductRateFinal).isEmpty()) {
+				WebElement rateFinal = listProductBlock.findElement(BYproductRateFinal);
+				if (rateFinal.getText().contains("$")) {
+					int i_masuno = i+1;
+					System.out.println("Info - Se encontro disponibilidad hasta el Hotel No: " + i_masuno);
+					index = i;
+					break;
+				}
+			}
+			//else {
+			//	System.out.println("Info - No se encontro el BY: BYproductRateFinal en el item: " + i);
+			//}
+		}
+		if(CoreConfig.FaultValue==index){System.out.println("No se encontro ningun hotel con disponibilidad!.");}
+		return index;
+	}
+	private int getItemNum_byHotelName(String hotel) {
+		//Aqui el codigo para buscar por el nombre del hotel
+		return 0;
+	}
+	private int getItemNum_byHotelId(int hotelId) {
+		//Aqui el codigo para buscar por Id del Hotel
+		return 0;
 	}
 }

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import FrameworkConfig.GeneralConfig;
+import Config.FrameworkConfig;
 import Helper.DDManager;
 import Utility.BasicUtils;
 
@@ -53,7 +53,7 @@ public class ThankYouPageF {
 		//checkCurrentURLPage();
 		Assert.assertTrue(message.getText().contains("Gracias"),"ThankYouPage -> No se encontro el mensaje de: Gracias");
 		System.out.println("ThankYouPage -> Localizador: "+locator.getText());
-		BasicUtils.ScreenShot(driver, locator.getText(), GeneralConfig.SCREENSHOOT_PATH);
+		BasicUtils.ScreenShot(driver, locator.getText(), FrameworkConfig.SCREENSHOOT_PATH);
 		DDManager.saveLocator(locator.getText());
 	}
 	

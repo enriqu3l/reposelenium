@@ -11,6 +11,7 @@ import java.util.Scanner;
 import org.apache.commons.io.FileUtils;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -83,7 +84,13 @@ public class BasicUtils {
 	     li.click();
 	   }
 	}*/
-		
+	
+	//Makes a simple scrooll in order to see the buttons, is not relevant!!!
+	//JavascriptExecutor jse = (JavascriptExecutor)driver;
+	//jse.executeScript("window.scrollBy(0,700)");
+	//-----------------------------------------------------
+	
+	
 	public static By toByVal(WebElement we) {
 	    // By format = "[foundFrom] -> locator: term"
 	    // see RemoteWebElement toString() implementation
@@ -222,7 +229,7 @@ public class BasicUtils {
 		case "DECEMBER":
 			return 12;
 		default:
-			throw new IllegalArgumentException("toMonthNumber->El parametro no es una opcion valida.");
+			throw new IllegalArgumentException("FIF>>>toMonthNumber->El parametro: "+month+", no es valido!.");
 		}
 	}
 	

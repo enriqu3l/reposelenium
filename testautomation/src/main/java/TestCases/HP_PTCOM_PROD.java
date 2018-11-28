@@ -3,7 +3,7 @@ package TestCases;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
-import FrameworkConfig.GeneralConfig;
+import Config.FrameworkConfig;
 import Helper.BrowserFactory;
 import WorkFlows.HappyPathsWF;
 
@@ -13,7 +13,7 @@ public class HP_PTCOM_PROD {
 	@BeforeMethod
 	public void beforeMethod() {
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(GeneralConfig.DEFAULTBROWSER, GeneralConfig.URL_PTCOM_PROD);
+		driver = BrowserFactory.StartBrowser(FrameworkConfig.DEFAULTBROWSER, FrameworkConfig.URL_PTCOM_PROD);
 	}
 	
 	@Test

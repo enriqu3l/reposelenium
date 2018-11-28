@@ -22,9 +22,9 @@ public class HappyPathsWF {
 		pages.roomListPage_Initialize();
 		pages.roomList_page.SelectRoomDefault();
 		pages.resDetailPage_Initialize();
-		pages.resDetail_page.ClearFillandContinue();
-		pages.payMethodPage_Initialize();
-		pages.payMethod_page.FillCreditForm(DO_CreditCard);
+		//pages.resDetail_page.ClearFillandContinue();
+		//pages.payMethodPage_Initialize();
+		//pages.payMethod_page.FillCreditForm(DO_CreditCard);
 		//pages.payMethod_page.clickOnCompleteReservation();
 		//pages.thankYouPage_Initialize();
 		//pages.thankYou_page.verifyCheckOutCompleted();
@@ -41,9 +41,9 @@ public class HappyPathsWF {
 		pages.roomListPage_Initialize();
 		pages.roomList_page.SelectRoomDefault();
 		pages.resDetailPage_Initialize();
-		pages.resDetail_page.ClearFillandContinue();
-		pages.payMethodPage_Initialize();
-		pages.payMethod_page.FillCreditForm(DO_CreditCard);
+		//pages.resDetail_page.ClearFillandContinue();
+		//pages.payMethodPage_Initialize();
+		//pages.payMethod_page.FillCreditForm(DO_CreditCard);
 		//pages.payMethod_page.clickOnCompleteReservation();
 		//pages.thankYouPage_Initialize();
 		//pages.thankYou_page.verifyCheckOutCompleted();
