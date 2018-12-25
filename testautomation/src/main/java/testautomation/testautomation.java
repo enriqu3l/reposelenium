@@ -1,8 +1,11 @@
 package testautomation;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import Utility.BasicUtils;
+import Helper.BrowserFactory;
 
 public class testautomation {
 
@@ -81,9 +84,49 @@ public class testautomation {
 		//hotelList_page = new HotelListPageF(driver);
 		//hotelList_page.SelectFirstHotel();
 		
-		By listProductBlock = By.cssSelector(".sdsd .sddsd");
-		System.out.println("By.toStrong: ");
+		//By listProductBlock = By.cssSelector(".sdsd .sddsd");
+		//System.out.println("Contenido: "+listProductBlock.toString());
 		
+		/*WebDriver driver = BrowserFactory.StartBrowser("chrome", "http://www.itgeared.com/demo/1506-ajax-loading.html");
+		By link = By.xpath("//*[@id=\"content\"]/a[2]");
+		By text = By.xpath("//*[@id=\"results\"]");
+		driver.findElement(link).click();
+		wait.until(ExpectedConditions.textToBePresentInElementLocated(text,"completed"));
+		String texto = driver.findElement(text).getText();
+		System.out.println("Texto: "+texto);*/
+		WebDriver driver = BrowserFactory.StartBrowser("chrome", "http://qaclickacademy.com/practice.php");
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		By cb1 = By.id("checkBoxOption1");
+		By cb2 = By.id("checkBoxOption2");
+		By cb3 = By.id("checkBoxOption3");
+		By label1 = By.cssSelector("#checkbox-example label[for='bmw']");
+		By label2 = By.cssSelector("#checkbox-example label[for='benz']");
+		By label3 = By.cssSelector("#checkbox-example label[for='honda']");
+		By dropdown = By.id("dropdown-class-example");
+		By inputAlert = By.cssSelector(".alert_example #name");
+		By buttonAlert = By.cssSelector(".alert_example #alertbtn");
+		driver.findElement(cb2).click();
+		
+		String opc="";
+		if(driver.findElement(cb1).isSelected() )
+		{
+			opc = driver.findElement(label1).getText();
+		}else if(driver.findElement(cb2).isSelected()) {
+			opc = driver.findElement(label2).getText();
+		}else if(driver.findElement(cb3).isSelected()) {
+			opc = driver.findElement(label3).getText();
+		}
+		
+		Select select = new Select(driver.findElement(dropdown));
+		select.selectByVisibleText(opc);
+		
+		driver.findElement(inputAlert).sendKeys(opc);
+		driver.findElement(buttonAlert).click();
+		
+		String alertText = driver.switchTo().alert().getText();
+		if(alertText.contains(opc)) {
+			System.out.println("Great! Text Found...");
+		}
 		
 		
 	}

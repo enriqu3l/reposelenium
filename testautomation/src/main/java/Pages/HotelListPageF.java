@@ -51,7 +51,7 @@ public class HotelListPageF {
 	
 	//-------------- List Section ----------------------------------
 	@FindBy(how=How.CSS, css=".list-product .list-product-block")
-	List<WebElement> allSearchResults;
+	List<WebElement> allBlocksResults;
 	
 	@FindBy(how=How.CSS, css=".list-product .list-product-block .list-product-rate .list-product-rate-action a")
 	WebElement Button_firstItem;
@@ -109,16 +109,12 @@ public class HotelListPageF {
 		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		
 		Assert.assertTrue("ENF>>>No se encontro ninguna lista de resultados!.", BasicUtils.existsElement(driver,BYlistProduct));
-		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.",allSearchResults.isEmpty());
-		System.out.println("INF - HotelListF - Tamaño de la lista: "+allSearchResults.size());
+		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.",allBlocksResults.isEmpty());
+		System.out.println("Info - HotelListF - Tamaño de la lista: "+allBlocksResults.size());
 		
-		int index = getItemNum_firstHotelAvailable(allSearchResults);
-		if(CoreConfig.FaultValue==index){Assert.assertTrue("LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.",false);}
-		WebElement Button_seeOffer = allSearchResults.get(index).findElement(BYButton_seeOffer);
-		
-		//Necesito esperar a que el elemento este visible
-		wait.until( ExpectedConditions.elementToBeClickable(Button_seeOffer));
-		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(Button_seeOffer)) );
+		int index = getItemNum_firstHotelAvailable(allBlocksResults);
+		Assert.assertFalse("LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.",CoreConfig.FaultValue==index);
+		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(BYButton_seeOffer);
 		Button_seeOffer.click();
 		
 		//En caso de encontrar una nueva tab, switchear a ella.
@@ -127,25 +123,22 @@ public class HotelListPageF {
 	}
 	
 	public void SelectHotel(int index) throws InterruptedException {
-		if(index>=20){Assert.assertTrue("LAF>>>Parametro invalido, index tiene que ser menor a 20!.",false);}
+		Assert.assertTrue("LAF>>>Parametro invalido, index tiene que ser menor a 20!.",index<20);
 		
 		//Esperar a que se quite el overlay, falla en Test porque no es SPA
 		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 
 		Assert.assertTrue("ENF>>>No se encontro ninguna lista de resultados!.",
 				BasicUtils.existsElement(driver, BYlistProduct));
-		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.", allSearchResults.isEmpty());
-		System.out.println("HotelListF - Tamaño de la lista: " + allSearchResults.size());
+		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.", allBlocksResults.isEmpty());
+		System.out.println("HotelListF - Tamaño de la lista: " + allBlocksResults.size());
 		
-		WebElement Button_seeOffer = allSearchResults.get(index).findElement(BYButton_seeOffer);
-
-		// Necesito esperar a que el elemento este visible
-		wait.until(ExpectedConditions.elementToBeClickable(Button_seeOffer));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(Button_seeOffer)));
+		Assert.assertTrue("LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.",CoreConfig.FaultValue==index);
+		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(BYButton_seeOffer);
 		Button_seeOffer.click();
-
-		// En caso de encontrar una nueva tab, switchear a ella.
-		// Esta funcion se agrego para tener compatibilidad con ambiente test
+		
+		//En caso de encontrar una nueva tab, switchear a ella.
+		//Esta funcion se agrego para tener compatibilidad con ambiente test
 		verifyIfANewTabOpened();
 	}
 	
@@ -246,7 +239,7 @@ public class HotelListPageF {
 			WebElement listProductBlock = allSearchResults.get(i);
 			wait.until( ExpectedConditions.presenceOfNestedElementLocatedBy(listProductBlock, BYButton_seeOffer));
 			
-			if (!listProductBlock.findElements(BYproductRateFinal).isEmpty()) {
+			if(!listProductBlock.findElements(BYproductRateFinal).isEmpty()) {
 				WebElement rateFinal = listProductBlock.findElement(BYproductRateFinal);
 				if (rateFinal.getText().contains("$")) {
 					int i_masuno = i+1;
@@ -255,11 +248,11 @@ public class HotelListPageF {
 					break;
 				}
 			}
-			//else {
-			//	System.out.println("Info - No se encontro el BY: BYproductRateFinal en el item: " + i);
-			//}
+			else{
+				System.out.println("Info - No se encontro tarifa $ en el item: " + i);
+			}
 		}
-		if(CoreConfig.FaultValue==index){System.out.println("No se encontro ningun hotel con disponibilidad!.");}
+		if(CoreConfig.FaultValue==index){System.out.println("Info - No se encontro ningun hotel con disponibilidad!.");}
 		return index;
 	}
 	private int getItemNum_byHotelName(String hotel) {

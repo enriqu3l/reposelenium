@@ -46,7 +46,7 @@ public class RoomListPageF {
 		//Esperar a que se quite el overlay, falla en Test porque no es SPA
 		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		
-		System.out.println("RoomListF - Tamaño de la lista antes: "+allSearchResults.size());
+		System.out.println("Info - RoomListF - Tamaño de la lista: "+allSearchResults.size());
 		
 		//Cambié el scroll por un Action, hasta ahora parece que esta funcionando bien ;)...
 		Actions actions = new Actions(driver);
@@ -54,11 +54,8 @@ public class RoomListPageF {
 		//-----------------------------------------------------
 		
 		wait.until( ExpectedConditions.elementToBeClickable(roomButton) );
-		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(roomButton)) );
+		wait.until( ExpectedConditions.visibilityOf(roomButton));
 		
-		System.out.println("RoomListF - Tamaño de la lista despues: "+allSearchResults.size());
-		
-		//Falla al momento de querer dar click porque aun se encuentra el spiner encima del elemento
 		roomButton.click();
 	}
 	
