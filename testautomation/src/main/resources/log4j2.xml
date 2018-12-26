@@ -21,6 +21,9 @@
 		<Logger name="Pages" level="trace" additivity="true">
 			<AppenderRef ref="File" />
 		</Logger>
+		<Logger name="Helper" level="trace" additivity="true">
+			<AppenderRef ref="File" />
+		</Logger>
 		<Root level="trace">
 			<AppenderRef ref="Console" />
 		</Root>

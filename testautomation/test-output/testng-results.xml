@@ -1,29 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="1" ignored="3" total="4" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="20693" started-at="2018-11-28T16:37:20Z" finished-at="2018-11-28T16:37:40Z">
+  <suite name="HP_Suite" duration-ms="25498" started-at="2018-12-26T07:50:14Z" finished-at="2018-12-26T07:50:39Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="20693" started-at="2018-11-28T16:37:20Z" finished-at="2018-11-28T16:37:40Z">
-      <class name="TestCases.HP_PTCOM_PROD">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:TestCases.HP_PTCOM_PROD@685cb137]" name="beforeMethod" is-config="true" duration-ms="9192" started-at="2018-11-28T16:37:20Z" finished-at="2018-11-28T16:37:29Z">
+    <test name="Test" duration-ms="25498" started-at="2018-12-26T07:50:14Z" finished-at="2018-12-26T07:50:39Z">
+      <class name="TestCases.HP_PTCOMMX_PROD">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@351d00c0]" name="beforeMethod" is-config="true" duration-ms="10974" started-at="2018-12-26T07:50:14Z" finished-at="2018-12-26T07:50:25Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="HappyPath_HotelDefault()[pri:0, instance:TestCases.HP_PTCOM_PROD@685cb137]" name="HappyPath_HotelDefault" duration-ms="11444" started-at="2018-11-28T16:37:29Z" finished-at="2018-11-28T16:37:40Z">
+        <test-method status="FAIL" signature="HappyPath_HotelDefault()[pri:1, instance:TestCases.HP_PTCOMMX_PROD@351d00c0]" name="HappyPath_HotelDefault" duration-ms="12181" started-at="2018-12-26T07:50:25Z" finished-at="2018-12-26T07:50:37Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Se Fallo a proposito jojojo!!! expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Se Fallo a proposito jojojo!!! expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertTrue(Assert.java:44)
+at TestCases.HP_PTCOMMX_PROD.HappyPath_HotelDefault(HP_PTCOMMX_PROD.java:34)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:580)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- HappyPath_HotelDefault -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:TestCases.HP_PTCOM_PROD@685cb137]" name="Close" is-config="true" duration-ms="1" started-at="2018-11-28T16:37:40Z" finished-at="2018-11-28T16:37:40Z">
+        <test-method status="PASS" signature="Close()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@351d00c0]" name="Close" is-config="true" duration-ms="2322" started-at="2018-12-26T07:50:37Z" finished-at="2018-12-26T07:50:39Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:TestCases.HP_PTCOM_PROD@685cb137]" name="End" is-config="true" duration-ms="1" started-at="2018-11-28T16:37:40Z" finished-at="2018-11-28T16:37:40Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@351d00c0]" name="End" is-config="true" duration-ms="0" started-at="2018-12-26T07:50:39Z" finished-at="2018-12-26T07:50:39Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- End -->
-      </class> <!-- TestCases.HP_PTCOM_PROD -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- TestCases.HP_PTCOMMX_PROD -->
+    </test> <!-- Test -->
+  </suite> <!-- HP_Suite -->
 </testng-results>

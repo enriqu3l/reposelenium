@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [HP_Suite]">
+  <listeners>
+    <listener class-name="Helper.ListenersHappyPath"/>
+  </listeners>
+  <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="TestCases.HP_PTCOM_PROD">
+      <class name="TestCases.HP_PTCOMMX_PROD">
         <methods>
-          <include name="Close"/>
+          <include name="beforeMethod"/>
           <include name="End"/>
           <include name="HappyPath_HotelDefault"/>
-          <include name="beforeMethod"/>
+          <include name="Close"/>
         </methods>
-      </class> <!-- TestCases.HP_PTCOM_PROD -->
+      </class> <!-- TestCases.HP_PTCOMMX_PROD -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [HP_Suite] -->

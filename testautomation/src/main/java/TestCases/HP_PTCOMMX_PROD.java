@@ -1,6 +1,7 @@
 package TestCases;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import Config.FrameworkConfig;
@@ -22,23 +23,26 @@ public class HP_PTCOMMX_PROD {
 		return new Object[][] { { "testuser_1", "Test@123" }, { "testuser_1", "Test@123" }};
 	}*/
 	
-	/*
-	@Test
+	@Test (enabled=false, priority = 1)
+	public void HappyPath_HotelFailure() throws InterruptedException{		
+		HappyPathsWF.HPHotelDefault(driver);
+	}
+	
+	@Test (enabled=true, priority = 1)
 	public void HappyPath_HotelDefault() throws InterruptedException{		
 		HappyPathsWF.HPHotelDefault(driver);
-	}*/
+		Assert.assertTrue(false, "Se Fallo a proposito jojojo!!!"); //Fallamos a proposito el test case
+	}
 	
-	/*
-	@Test
+	@Test (enabled=false, priority = 1)
 	public void HappyPath_HotelRandom() throws InterruptedException{		
 		HappyPathsWF.HPHotelRandom(driver);
-	}*/
+	}
 	
-	/*
-	@Test
+	@Test (enabled=false, priority = 1)
 	public void HappyPath_destCol() throws InterruptedException{		
 		
-	}*/
+	}
 
 	@AfterMethod
 	public void Close()
