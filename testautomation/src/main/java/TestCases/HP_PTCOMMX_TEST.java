@@ -13,7 +13,9 @@ import WorkFlows.HappyPathsWF;
 
 public class HP_PTCOMMX_TEST {
 	WebDriver driver;
-	//Aun no funciona para reservas en colombia
+	//Aun no esta compatible para Happy Path en sitio de PTCOMMX_TEST
+	//Necesito eliminar el wait del overlay para que funcione
+	//No es prioridad probar en Test por eso asi lo dejare por lo pronto!
 	
 	@BeforeMethod
 	public void beforeMethod() {

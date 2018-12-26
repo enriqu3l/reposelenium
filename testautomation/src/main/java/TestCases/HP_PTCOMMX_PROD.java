@@ -15,16 +15,24 @@ public class HP_PTCOMMX_PROD {
 		//Set Browser
 		driver = BrowserFactory.StartBrowser(FrameworkConfig.DEFAULTBROWSER, FrameworkConfig.URL_PTCOMMX_PROD_);
 	}
+	
+	/*
+	@DataProvider(name = "Authentication")
+	public static Object[][] credentials() {
+		return new Object[][] { { "testuser_1", "Test@123" }, { "testuser_1", "Test@123" }};
+	}*/
+	
 	/*
 	@Test
 	public void HappyPath_HotelDefault() throws InterruptedException{		
 		HappyPathsWF.HPHotelDefault(driver);
 	}*/
 	
+	/*
 	@Test
 	public void HappyPath_HotelRandom() throws InterruptedException{		
 		HappyPathsWF.HPHotelRandom(driver);
-	}
+	}*/
 	
 	/*
 	@Test
@@ -35,7 +43,7 @@ public class HP_PTCOMMX_PROD {
 	@AfterMethod
 	public void Close()
 	{
-		//driver.close();	
+		driver.close();
 	}
 	
 	@AfterTest

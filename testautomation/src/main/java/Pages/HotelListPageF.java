@@ -3,6 +3,8 @@ package Pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.openqa.selenium.By;
@@ -28,6 +30,7 @@ public class HotelListPageF {
 	
 	private WebDriverWait wait;
 	private WebDriver driver;
+	private static Logger logger = LogManager.getLogger(HotelListPageF.class);
 	
 	public HotelListPageF(WebDriver driver){
 		this.driver = driver;
@@ -110,7 +113,7 @@ public class HotelListPageF {
 		
 		Assert.assertTrue("ENF>>>No se encontro ninguna lista de resultados!.", BasicUtils.existsElement(driver,BYlistProduct));
 		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.",allBlocksResults.isEmpty());
-		System.out.println("Info - HotelListF - Tamaño de la lista: "+allBlocksResults.size());
+		logger.trace("Tamaño de la lista: "+allBlocksResults.size());
 		
 		int index = getItemNum_firstHotelAvailable(allBlocksResults);
 		Assert.assertFalse("LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.",CoreConfig.FaultValue==index);
@@ -131,7 +134,7 @@ public class HotelListPageF {
 		Assert.assertTrue("ENF>>>No se encontro ninguna lista de resultados!.",
 				BasicUtils.existsElement(driver, BYlistProduct));
 		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.", allBlocksResults.isEmpty());
-		System.out.println("HotelListF - Tamaño de la lista: " + allBlocksResults.size());
+		logger.trace("Tamaño de la lista: " + allBlocksResults.size());
 		
 		Assert.assertTrue("LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.",CoreConfig.FaultValue==index);
 		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(BYButton_seeOffer);
@@ -149,7 +152,7 @@ public class HotelListPageF {
 			//En caso de haber mas de 1 tab, switchear a esa nueva tab.
 			driver.switchTo().window(browserTabs.get(1)); //La primer tab comienza con 0 por eso seleccionamos la 1
 		}
-		System.out.println("HotelListPage - Cantidad de tabs: "+browserTabs.size());
+		logger.trace("Cantidad de tabs: "+browserTabs.size());
 		
 		//switch to new tab
 		//driver.switchTo().window(browserTabs.get(1));
@@ -187,7 +190,7 @@ public class HotelListPageF {
 		int day = localDate.getDayOfMonth();
 		String actualDate = BasicUtils.toddMMyyyyFormat(startDate_Title.getText().trim());
 		int TotalMonthDifference = BasicUtils.monthDiference(date, actualDate);	
-		System.out.println("TotalMonthDifference: "+TotalMonthDifference);
+		logger.trace("widget_selectStartDate() TotalMonthDifference: "+TotalMonthDifference);
 		if(TotalMonthDifference>0) {
 			for(int i=0; i<TotalMonthDifference;i++) {
 				startDate_nextMonth.click(); //click hacia adelante
@@ -212,7 +215,7 @@ public class HotelListPageF {
 		int day = localDate.getDayOfMonth();
 		String actualDate = BasicUtils.toddMMyyyyFormat(endDate_Title.getText().trim());
 		int TotalMonthDifference = BasicUtils.monthDiference(date, actualDate);	
-		System.out.println("TotalMonthDifference: "+TotalMonthDifference);
+		logger.trace("widget_selectEndDate() TotalMonthDifference: "+TotalMonthDifference);
 		if(TotalMonthDifference>0) {
 			for(int i=0; i<TotalMonthDifference;i++) {
 				endDate_nextMonth.click(); //click hacia adelante
@@ -243,16 +246,16 @@ public class HotelListPageF {
 				WebElement rateFinal = listProductBlock.findElement(BYproductRateFinal);
 				if (rateFinal.getText().contains("$")) {
 					int i_masuno = i+1;
-					System.out.println("Info - Se encontro disponibilidad hasta el Hotel No: " + i_masuno);
+					logger.trace("getItemNum_firstHotelAvailable() - Se encontro disponibilidad hasta el Hotel No: " + i_masuno);
 					index = i;
 					break;
 				}
 			}
 			else{
-				System.out.println("Info - No se encontro tarifa $ en el item: " + i);
+				logger.trace("getItemNum_firstHotelAvailable() - No se encontro tarifa $ en el item: " + i);
 			}
 		}
-		if(CoreConfig.FaultValue==index){System.out.println("Info - No se encontro ningun hotel con disponibilidad!.");}
+		if(CoreConfig.FaultValue==index){logger.trace("getItemNum_firstHotelAvailable() - No se encontro ningun hotel con disponibilidad!.");}
 		return index;
 	}
 	private int getItemNum_byHotelName(String hotel) {

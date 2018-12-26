@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Properties>
+		<Property name="basePath">C:/PTFrameworkData/Logs</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="File"
+			fileName="${basePath}/Manual.log"
+			filePattern="${basePath}/Manual-%d{yyyy-MM-dd_HH-mm-ss}.log">
+			<PatternLayout
+				pattern="%d{MM/dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<!-- <SizeBasedTriggeringPolicy size="250 MB" /> -->
+			<OnStartupTriggeringPolicy />
+		</RollingFile>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{MM/dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="Pages" level="trace" additivity="true">
+			<AppenderRef ref="File" />
+		</Logger>
+		<Root level="trace">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>

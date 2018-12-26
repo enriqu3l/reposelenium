@@ -1,5 +1,7 @@
 package Pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,9 +17,10 @@ import Helper.DDManager;
 import Utility.BasicUtils;
 
 public class ThankYouPageF {
-	WebDriverWait wait;
-	WebDriver driver;
-	String currentURL;
+	private WebDriverWait wait;
+	private WebDriver driver;
+	private static Logger logger = LogManager.getLogger(ThankYouPageF.class);
+	private String currentURL;
 	
 	public ThankYouPageF(WebDriver driver) {
 		this.driver = driver;
@@ -52,7 +55,7 @@ public class ThankYouPageF {
 		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(locator)));
 		//checkCurrentURLPage();
 		Assert.assertTrue(message.getText().contains("Gracias"),"ThankYouPage -> No se encontro el mensaje de: Gracias");
-		System.out.println("ThankYouPage -> Localizador: "+locator.getText());
+		logger.info("---> Localizador: "+locator.getText());
 		BasicUtils.ScreenShot(driver, locator.getText(), FrameworkConfig.SCREENSHOOT_PATH);
 		DDManager.saveLocator(locator.getText());
 	}
@@ -71,7 +74,8 @@ public class ThankYouPageF {
 	//Por ahora esta funcion no esta siendo utilizada
 	public void SaveLocator() {
 		//Assert.assertTrue(locator.getText());
-		//System.out.println("ThankYouPage -> Localizador: "+locator.getText());
+		//logger.info("---> Localizador: "+locator.getText());
+		//BasicUtils.ScreenShot(driver, locator.getText(), FrameworkConfig.SCREENSHOOT_PATH);
 		//DDManager.saveLocator(locator.getText());
 	}
 }

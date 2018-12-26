@@ -1,5 +1,7 @@
 package Pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,12 +18,15 @@ import DataObjects.DOHotelRes;
 public class HomePageF {
 	private WebDriverWait wait;
 	private WebDriver driver;
+	private static Logger logger = LogManager.getLogger(HomePageF.class);
 	
 	//Constructor
 	public HomePageF(WebDriver _driver){
+		logger.info("Start HomePage constructor");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,30);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
+		logger.info("Launched initElements");
 	}
 	
 	//By.xpath("//*[@id=\"password\"]/div[1]/div/div[1]/input");
@@ -119,6 +124,7 @@ public class HomePageF {
 	By productActive = By.cssSelector("li.ptw-active > a");
 	
 	public void SearchHotel(DOHotelRes DO_HotelRes){
+		logger.info("Starting SearchHotel()");
 		verifyProductSelectedOnWidgetMenu("Hoteles");
 		Input_destHotel.clear();
 		Input_destHotel.sendKeys(DO_HotelRes.getDestination());
@@ -134,12 +140,15 @@ public class HomePageF {
 		Select kids = new Select(Select_bookerHotelMinors0);
 		kids.selectByValue("0");
 		Button_search.click();
+		logger.info("Ending SearchHotel()");
 	}
 	
 	public void verifyProductSelectedOnWidgetMenu(String product) {
+		logger.info("Starting verifyProductSelectedOnWidgetMenu()");
 		if(!widgetMenu.findElement(productActive).getText().equals(product)) {
 			widgetMenu.findElement(By.linkText(product) ).click();
 		}
+		logger.info("Ending verifyProductSelectedOnWidgetMenu()");
 	}
 	
 	//PENDIENTE POR CONSTRUIR

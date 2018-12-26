@@ -20,14 +20,14 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>Happypath</id>
 			<build>
 				<pluginManagement>
 					<plugins>
-					    <!-- plugin to allow us to execute selenium tests -->
+						<!-- plugin to allow us to execute selenium tests -->
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-plugin</artifactId>
@@ -47,7 +47,7 @@
 			<build>
 				<pluginManagement>
 					<plugins>
-					    <!-- plugin to allow us to execute selenium tests -->
+						<!-- plugin to allow us to execute selenium tests -->
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-plugin</artifactId>
@@ -65,6 +65,18 @@
 	</profiles>
 
 	<dependencies>
+		<!-- Libreria para crear logs y reportes de logs -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.11.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.11.1</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/joda-time/joda-time Libreria para 
 			manejo de fechas -->
 		<dependency>

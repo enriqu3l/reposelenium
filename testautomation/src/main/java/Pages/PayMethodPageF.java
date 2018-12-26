@@ -1,5 +1,7 @@
 package Pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +18,7 @@ import DataObjects.DOCreditCard;
 public class PayMethodPageF {
 	private WebDriverWait wait;
 	private WebDriver driver;
+	private static Logger logger = LogManager.getLogger(PayMethodPageF.class);
 	private String currentURL;
 	
 	PayMethodPageF(WebDriver driver){
@@ -86,6 +89,7 @@ public class PayMethodPageF {
 	}*/
 	
 	public void FillCreditForm(DOCreditCard DOCard) {
+		logger.info("Starting FillCreditForm()");
 		Input_cardNumber1.sendKeys(Long.toString(DOCard.getCardNumber()));
 		Select month = new Select (Select_cardMonthExpired1);
 		month.selectByVisibleText(DOCard.getMonth());
@@ -99,11 +103,12 @@ public class PayMethodPageF {
 		//Se agrego este If para el campo Cedula de Ciudadania
 		//de la pagina de pt.co
 		if(driver.getCurrentUrl().contains(".co/")){
-			System.out.println("PayMethodPage - Current URL: "+driver.getCurrentUrl());
+			logger.info("FillCreditForm() - Sending national card number for pt.co");
 			Input_nationalIdCard1.sendKeys("33444");
 		}else {
 			Input_cardZipCode1.sendKeys(Integer.toString(DOCard.getCP()));
 		}
+		logger.info("Ending FillCreditForm()");
 	}
 	
 	public void clearCreditForm() {

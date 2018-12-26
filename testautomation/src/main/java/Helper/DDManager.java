@@ -63,11 +63,11 @@ public class DDManager {
 		
 		int min = 1;  //Comienza en 1 porque la fila de cabecera es la 0
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
-		//Asi se obtiene un numero random entre valor min y max.
+		//Asi se obtiene un numero random entre valor min y max:
 		Random rand = new Random();
 		int randomNum = rand.nextInt((max - min) + 1) + min;
 		
-		System.out.println("randomNum: "+randomNum);
+		System.out.println("Info - DDManager - getRandomHotelRes randomNum: "+randomNum);
 		
 		DOHotelRes DOHotelRes = new DOHotelRes();
 		DOHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));

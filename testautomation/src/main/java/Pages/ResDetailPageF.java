@@ -1,5 +1,7 @@
 package Pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -16,6 +18,7 @@ import Utility.BasicUtils;
 public class ResDetailPageF {
 	private WebDriverWait wait;
 	private WebDriver driver;
+	private static Logger logger = LogManager.getLogger(ResDetailPageF.class);
 	private String currentURL;
 	
 	public ResDetailPageF(WebDriver driver){
@@ -73,7 +76,7 @@ public class ResDetailPageF {
 		Assert.assertTrue(currentURL.contains("detalles-reservacion"));
 	}
 	
-	//Aun no implemento assertions!!!
+	//Aun no implemento assertions en esta pagina
 	public void BasicAssertions() {
 		Assert.assertEquals(descriptionName.getText(), "");
 	}
@@ -85,6 +88,7 @@ public class ResDetailPageF {
 	}
 	
 	public void fillFormDefaultData() {
+		logger.info("Starting fillFormDefaultData()");
 		wait.until(ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(Input_firsName)));
 		Input_firsName.sendKeys("Enrique");
 		Input_lastName.sendKeys("Carrillo");
@@ -97,14 +101,15 @@ public class ResDetailPageF {
 		//Se agrego este If para el campo Cedula de Ciudadania
 		//de la pagina de pt.co
 		if(driver.getCurrentUrl().contains(".co/")) {
-			System.out.println("ResDetailPage - Current URL: "+driver.getCurrentUrl());
+			logger.info("fillFormDefaultData() - Sending national card number for pt.co");
 			Input_nationalIdCard.sendKeys("33444");
 		}
-		
 		checkPolitics();
+		logger.info("Starting fillFormDefaultData()");
 	}
 	
 	public void clearForm() {
+		logger.info("Starting clearForm()");
 		wait.until(ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(Input_firsName)));
 		Input_firsName.clear();
 		Input_lastName.clear();
@@ -114,10 +119,12 @@ public class ResDetailPageF {
 		Input_phone.clear();
 		Input_mobile.clear();
 		uncheckPolitics();
+		logger.info("Ending clearForm()");
 	}
 	
 	public void checkPolitics() {
 		if(!CheckBox_chkConfirm.isSelected()) {
+			logger.warn("checkPolitics() - checkbox was selected!");
 			CheckBox_chkConfirm.click();
 		}
 	}

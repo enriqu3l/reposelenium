@@ -2,6 +2,8 @@ package Pages;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,11 +15,10 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import Utility.BasicUtils;
-
 public class RoomListPageF {
 	private WebDriverWait wait;
 	private WebDriver driver;
+	private static Logger logger = LogManager.getLogger(RoomListPageF.class);
 	
 	public RoomListPageF(WebDriver driver){
 		this.driver = driver;
@@ -43,10 +44,11 @@ public class RoomListPageF {
 	//private By BYroomButton = By.cssSelector(".hotel-rooms-table .room-table .room-table-actions .btn.btn-primary");
 	
 	public void SelectRoomDefault() {
+		logger.info("Starting SelectRoomDefault()");
 		//Esperar a que se quite el overlay, falla en Test porque no es SPA
 		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		
-		System.out.println("Info - RoomListF - Tamaño de la lista: "+allSearchResults.size());
+		logger.trace("Tamaño de la lista de resultados: "+allSearchResults.size());
 		
 		//Cambié el scroll por un Action, hasta ahora parece que esta funcionando bien ;)...
 		Actions actions = new Actions(driver);
@@ -57,6 +59,7 @@ public class RoomListPageF {
 		wait.until( ExpectedConditions.visibilityOf(roomButton));
 		
 		roomButton.click();
+		logger.info("Ending SelectRoomDefault()");
 	}
 	
 	//NOT READY! Necesitamos un trato especial con los botones
