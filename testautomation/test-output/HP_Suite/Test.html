@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>2/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>3/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue Nov 20 17:24:00 CST 2018</td>
+<td>Started on:</td><td>Fri Dec 28 01:27:18 CST 2018</td>
 </tr>
-<tr><td>Total time:</td><td>128 seconds (128635 ms)</td>
+<tr><td>Total time:</td><td>114 seconds (114982 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -75,51 +75,23 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='TestCases.HP_PTCO_PROD.HappyPath_HotelDefault()'><b>HappyPath_HotelDefault</b><br>Test class: TestCases.HP_PTCO_PROD</td>
-<td><div><pre>org.openqa.selenium.NoSuchElementException: Timed out after 30 seconds. Unable to locate the element
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:90)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy11.sendKeys(Unknown Source)
-	at Pages.PayMethodPageF.FillCreditForm(PayMethodPageF.java:84)
-	at WorkFlows.HappyPathsWF.HPHotelDefault(HappyPathsWF.java:26)
-	at TestCases.HP_PTCO_PROD.HappyPath_HotelDefault(HP_PTCO_PROD.java:24)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;id&quot;,&quot;selector&quot;:&quot;cardNumber1&quot;}
-  (Session info: chrome=70.0.3538.110)
-  (Driver info: chromedriver=2.42.591088 (7b2b2dca23cca0862f674758c9a3933e685c27d5),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.11.0&apos;, revision: &apos;e59cfb3&apos;, time: &apos;2018-03-11T20:26:55.152Z&apos;
-System info: host: &apos;MXCDP4LP24&apos;, ip: &apos;192.168.0.5&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.42.591088 (7b2b2dca23cca0..., userDataDir: C:\Users\ENRIQU~1.LOP\AppDa...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:55782}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 70.0.3538.110, webStorageEnabled: true}
-Session ID: c6584c67886e109f69e805e86d79c565
-*** Element info: {Using=id, value=cardNumber1}
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:319)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:365)
-	at org.openqa.selenium.By$ById.findElement(By.java:218)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:311)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.access$001(AjaxElementLocator.java:40)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator$SlowLoadingElement.isLoaded(AjaxElementLocator.java:156)
-	at org.openqa.selenium.support.ui.SlowLoadableComponent.get(SlowLoadableComponent.java:69)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:86)
-	... 30 more
-... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1200470358", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1200470358'><pre>org.openqa.selenium.NoSuchElementException: Timed out after 30 seconds. Unable to locate the element
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:90)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy11.sendKeys(Unknown Source)
-	at Pages.PayMethodPageF.FillCreditForm(PayMethodPageF.java:84)
-	at WorkFlows.HappyPathsWF.HPHotelDefault(HappyPathsWF.java:26)
-	at TestCases.HP_PTCO_PROD.HappyPath_HotelDefault(HP_PTCO_PROD.java:24)
+<td title='testcases.HP_PTCOMMX_PROD.HappyPath_HotelFailure()'><b>HappyPath_HotelFailure</b><br>Test class: testcases.HP_PTCOMMX_PROD<br/>
+<a href="#Output-2015301874" onClick='toggleBox("Output-2015301874", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-2015301874" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-2015301874">
+Starting test HappyPath_HotelFailure<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: expected [true] but found [false]
+	at testcases.HP_PTCOMMX_PROD.HappyPath_HotelFailure(HP_PTCOMMX_PROD.java:32)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2015301874", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2015301874'><pre>java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.failNotEquals(Assert.java:776)
+	at org.testng.Assert.assertTrue(Assert.java:44)
+	at org.testng.Assert.assertTrue(Assert.java:54)
+	at testcases.HP_PTCOMMX_PROD.HappyPath_HotelFailure(HP_PTCOMMX_PROD.java:32)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -145,41 +117,9 @@ Session ID: c6584c67886e109f69e805e86d79c565
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;id&quot;,&quot;selector&quot;:&quot;cardNumber1&quot;}
-  (Session info: chrome=70.0.3538.110)
-  (Driver info: chromedriver=2.42.591088 (7b2b2dca23cca0862f674758c9a3933e685c27d5),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.11.0&apos;, revision: &apos;e59cfb3&apos;, time: &apos;2018-03-11T20:26:55.152Z&apos;
-System info: host: &apos;MXCDP4LP24&apos;, ip: &apos;192.168.0.5&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.42.591088 (7b2b2dca23cca0..., userDataDir: C:\Users\ENRIQU~1.LOP\AppDa...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:55782}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 70.0.3538.110, webStorageEnabled: true}
-Session ID: c6584c67886e109f69e805e86d79c565
-*** Element info: {Using=id, value=cardNumber1}
-	at sun.reflect.GeneratedConstructorAccessor17.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:319)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:365)
-	at org.openqa.selenium.By$ById.findElement(By.java:218)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:311)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.access$001(AjaxElementLocator.java:40)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator$SlowLoadingElement.isLoaded(AjaxElementLocator.java:156)
-	at org.openqa.selenium.support.ui.SlowLoadableComponent.get(SlowLoadableComponent.java:69)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:86)
-	... 30 more
 </pre></div></td>
-<td>49</td>
-<td>TestCases.HP_PTCO_PROD@6093dd95</td></tr>
+<td>0</td>
+<td>testcases.HP_PTCOMMX_PROD@1283bb96</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
@@ -189,15 +129,47 @@ Session ID: c6584c67886e109f69e805e86d79c565
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='TestCases.HP_PTCOMMX_PROD.HappyPath_HotelDefault()'><b>HappyPath_HotelDefault</b><br>Test class: TestCases.HP_PTCOMMX_PROD</td>
+<td title='testcases.HP_PTCOM_PROD.HappyPath_HotelDefault()'><b>HappyPath_HotelDefault</b><br>Test class: testcases.HP_PTCOM_PROD<br/>
+<a href="#Output-1659840424" onClick='toggleBox("Output-1659840424", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1659840424" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1659840424">
+Starting test HappyPath_HotelDefault<br/>
+Staring HPHotelDefault<br/>
+Ending HPHotelDefault<br/>
+</div>
+</td>
 <td></td>
 <td>22</td>
-<td>TestCases.HP_PTCOMMX_PROD@7cd62f43</td></tr>
+<td>testcases.HP_PTCOM_PROD@74f0ea28</td></tr>
 <tr>
-<td title='TestCases.HP_PTCOM_PROD.HappyPath_HotelDefault()'><b>HappyPath_HotelDefault</b><br>Test class: TestCases.HP_PTCOM_PROD</td>
+<td title='testcases.HP_PTCO_PROD.HappyPath_HotelDefault()'><b>HappyPath_HotelDefault</b><br>Test class: testcases.HP_PTCO_PROD<br/>
+<a href="#Output-1574873161" onClick='toggleBox("Output-1574873161", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1574873161" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1574873161">
+Starting test HappyPath_HotelDefault<br/>
+Staring HPHotelDefault<br/>
+Ending HPHotelDefault<br/>
+</div>
+</td>
 <td></td>
 <td>18</td>
-<td>TestCases.HP_PTCOM_PROD@6d4b1c02</td></tr>
+<td>testcases.HP_PTCO_PROD@f6efaab</td></tr>
+<tr>
+<td title='testcases.HP_PTCOMMX_PROD.HappyPath_HotelDefault()'><b>HappyPath_HotelDefault</b><br>Test class: testcases.HP_PTCOMMX_PROD<br/>
+<a href="#Output-1817789863" onClick='toggleBox("Output-1817789863", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1817789863" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1817789863">
+Starting test HappyPath_HotelDefault<br/>
+Staring HPHotelDefault<br/>
+Ending HPHotelDefault<br/>
+</div>
+</td>
+<td></td>
+<td>15</td>
+<td>testcases.HP_PTCOMMX_PROD@1283bb96</td></tr>
 </table><p>
 </body>
 </html>

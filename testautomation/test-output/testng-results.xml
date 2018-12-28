@@ -1,27 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="3" total="4" passed="0">
+<testng-results skipped="0" failed="1" ignored="1" total="5" passed="3">
   <reporter-output>
+    <line>
+      <![CDATA[Starting Browser]]>
+    </line>
+    <line>
+      <![CDATA[Browser Started]]>
+    </line>
+    <line>
+      <![CDATA[Starting test HappyPath_HotelDefault]]>
+    </line>
+    <line>
+      <![CDATA[Staring HPHotelDefault]]>
+    </line>
+    <line>
+      <![CDATA[Ending HPHotelDefault]]>
+    </line>
+    <line>
+      <![CDATA[Closing Browser...]]>
+    </line>
+    <line>
+      <![CDATA[Starting Browser]]>
+    </line>
+    <line>
+      <![CDATA[Browser Started]]>
+    </line>
+    <line>
+      <![CDATA[Starting test HappyPath_HotelDefault]]>
+    </line>
+    <line>
+      <![CDATA[Staring HPHotelDefault]]>
+    </line>
+    <line>
+      <![CDATA[Ending HPHotelDefault]]>
+    </line>
+    <line>
+      <![CDATA[Closing Browser...]]>
+    </line>
+    <line>
+      <![CDATA[Starting Browser]]>
+    </line>
+    <line>
+      <![CDATA[Browser Started]]>
+    </line>
+    <line>
+      <![CDATA[Starting test HappyPath_HotelDefault]]>
+    </line>
+    <line>
+      <![CDATA[Staring HPHotelDefault]]>
+    </line>
+    <line>
+      <![CDATA[Ending HPHotelDefault]]>
+    </line>
+    <line>
+      <![CDATA[Closing Browser...]]>
+    </line>
+    <line>
+      <![CDATA[Starting Browser]]>
+    </line>
+    <line>
+      <![CDATA[Browser Started]]>
+    </line>
+    <line>
+      <![CDATA[Starting test HappyPath_HotelFailure]]>
+    </line>
+    <line>
+      <![CDATA[Closing Browser...]]>
+    </line>
+    <line>
+      <![CDATA[Test Finished]]>
+    </line>
+    <line>
+      <![CDATA[Test Finished]]>
+    </line>
+    <line>
+      <![CDATA[Test Finished]]>
+    </line>
   </reporter-output>
-  <suite name="HP_Suite" duration-ms="25498" started-at="2018-12-26T07:50:14Z" finished-at="2018-12-26T07:50:39Z">
+  <suite name="HP_Suite" duration-ms="114982" started-at="2018-12-28T07:27:18Z" finished-at="2018-12-28T07:29:13Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="25498" started-at="2018-12-26T07:50:14Z" finished-at="2018-12-26T07:50:39Z">
-      <class name="TestCases.HP_PTCOMMX_PROD">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@351d00c0]" name="beforeMethod" is-config="true" duration-ms="10974" started-at="2018-12-26T07:50:14Z" finished-at="2018-12-26T07:50:25Z">
+    <test name="Test" duration-ms="114982" started-at="2018-12-28T07:27:18Z" finished-at="2018-12-28T07:29:13Z">
+      <class name="testcases.HP_PTCO_PROD">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_PTCO_PROD@f6efaab]" name="beforeMethod" is-config="true" duration-ms="26388" started-at="2018-12-28T07:27:50Z" finished-at="2018-12-28T07:28:17Z">
           <reporter-output>
+            <line>
+              <![CDATA[Starting Browser]]>
+            </line>
+            <line>
+              <![CDATA[Browser Started]]>
+            </line>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="FAIL" signature="HappyPath_HotelDefault()[pri:1, instance:TestCases.HP_PTCOMMX_PROD@351d00c0]" name="HappyPath_HotelDefault" duration-ms="12181" started-at="2018-12-26T07:50:25Z" finished-at="2018-12-26T07:50:37Z">
+        <test-method status="PASS" signature="HappyPath_HotelDefault()[pri:0, instance:testcases.HP_PTCO_PROD@f6efaab]" name="HappyPath_HotelDefault" duration-ms="18295" started-at="2018-12-28T07:28:17Z" finished-at="2018-12-28T07:28:35Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Starting test HappyPath_HotelDefault]]>
+            </line>
+            <line>
+              <![CDATA[Staring HPHotelDefault]]>
+            </line>
+            <line>
+              <![CDATA[Ending HPHotelDefault]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- HappyPath_HotelDefault -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_PTCO_PROD@f6efaab]" name="Close" is-config="true" duration-ms="2315" started-at="2018-12-28T07:28:35Z" finished-at="2018-12-28T07:28:37Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Closing Browser...]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- Close -->
+      </class> <!-- testcases.HP_PTCO_PROD -->
+      <class name="testcases.HP_PTCOMMX_PROD">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_PTCOMMX_PROD@1283bb96]" name="beforeMethod" is-config="true" duration-ms="9170" started-at="2018-12-28T07:28:37Z" finished-at="2018-12-28T07:28:47Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Starting Browser]]>
+            </line>
+            <line>
+              <![CDATA[Browser Started]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="HappyPath_HotelDefault()[pri:1, instance:testcases.HP_PTCOMMX_PROD@1283bb96]" name="HappyPath_HotelDefault" duration-ms="15755" started-at="2018-12-28T07:28:47Z" finished-at="2018-12-28T07:29:02Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Starting test HappyPath_HotelDefault]]>
+            </line>
+            <line>
+              <![CDATA[Staring HPHotelDefault]]>
+            </line>
+            <line>
+              <![CDATA[Ending HPHotelDefault]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- HappyPath_HotelDefault -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_PTCOMMX_PROD@1283bb96]" name="Close" is-config="true" duration-ms="125" started-at="2018-12-28T07:29:02Z" finished-at="2018-12-28T07:29:02Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Closing Browser...]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- Close -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_PTCOMMX_PROD@1283bb96]" name="beforeMethod" is-config="true" duration-ms="8430" started-at="2018-12-28T07:29:02Z" finished-at="2018-12-28T07:29:11Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Starting Browser]]>
+            </line>
+            <line>
+              <![CDATA[Browser Started]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="FAIL" signature="HappyPath_HotelFailure()[pri:2, instance:testcases.HP_PTCOMMX_PROD@1283bb96]" name="HappyPath_HotelFailure" duration-ms="4" started-at="2018-12-28T07:29:11Z" finished-at="2018-12-28T07:29:11Z">
           <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Se Fallo a proposito jojojo!!! expected [true] but found [false]]]>
+              <![CDATA[expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Se Fallo a proposito jojojo!!! expected [true] but found [false]
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
 at org.testng.Assert.fail(Assert.java:96)
 at org.testng.Assert.failNotEquals(Assert.java:776)
 at org.testng.Assert.assertTrue(Assert.java:44)
-at TestCases.HP_PTCOMMX_PROD.HappyPath_HotelDefault(HP_PTCOMMX_PROD.java:34)
+at org.testng.Assert.assertTrue(Assert.java:54)
+at testcases.HP_PTCOMMX_PROD.HappyPath_HotelFailure(HP_PTCOMMX_PROD.java:32)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -51,17 +195,72 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
             </full-stacktrace>
           </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
+            <line>
+              <![CDATA[Starting test HappyPath_HotelFailure]]>
+            </line>
           </reporter-output>
-        </test-method> <!-- HappyPath_HotelDefault -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@351d00c0]" name="Close" is-config="true" duration-ms="2322" started-at="2018-12-26T07:50:37Z" finished-at="2018-12-26T07:50:39Z">
+        </test-method> <!-- HappyPath_HotelFailure -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_PTCOMMX_PROD@1283bb96]" name="Close" is-config="true" duration-ms="2068" started-at="2018-12-28T07:29:11Z" finished-at="2018-12-28T07:29:13Z">
           <reporter-output>
+            <line>
+              <![CDATA[Closing Browser...]]>
+            </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:TestCases.HP_PTCOMMX_PROD@351d00c0]" name="End" is-config="true" duration-ms="0" started-at="2018-12-26T07:50:39Z" finished-at="2018-12-26T07:50:39Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.HP_PTCO_PROD@f6efaab]" name="End" is-config="true" duration-ms="0" started-at="2018-12-28T07:29:13Z" finished-at="2018-12-28T07:29:13Z">
           <reporter-output>
+            <line>
+              <![CDATA[Test Finished]]>
+            </line>
           </reporter-output>
         </test-method> <!-- End -->
-      </class> <!-- TestCases.HP_PTCOMMX_PROD -->
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.HP_PTCOMMX_PROD@1283bb96]" name="End" is-config="true" duration-ms="0" started-at="2018-12-28T07:29:13Z" finished-at="2018-12-28T07:29:13Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Test Finished]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- End -->
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.HP_PTCOM_PROD@74f0ea28]" name="End" is-config="true" duration-ms="0" started-at="2018-12-28T07:29:13Z" finished-at="2018-12-28T07:29:13Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Test Finished]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- End -->
+      </class> <!-- testcases.HP_PTCOMMX_PROD -->
+      <class name="testcases.HP_PTCOM_PROD">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_PTCOM_PROD@74f0ea28]" name="beforeMethod" is-config="true" duration-ms="7878" started-at="2018-12-28T07:27:18Z" finished-at="2018-12-28T07:27:26Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Starting Browser]]>
+            </line>
+            <line>
+              <![CDATA[Browser Started]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="HappyPath_HotelDefault()[pri:0, instance:testcases.HP_PTCOM_PROD@74f0ea28]" name="HappyPath_HotelDefault" duration-ms="22047" started-at="2018-12-28T07:27:26Z" finished-at="2018-12-28T07:27:48Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Starting test HappyPath_HotelDefault]]>
+            </line>
+            <line>
+              <![CDATA[Staring HPHotelDefault]]>
+            </line>
+            <line>
+              <![CDATA[Ending HPHotelDefault]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- HappyPath_HotelDefault -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_PTCOM_PROD@74f0ea28]" name="Close" is-config="true" duration-ms="2076" started-at="2018-12-28T07:27:48Z" finished-at="2018-12-28T07:27:50Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Closing Browser...]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- Close -->
+      </class> <!-- testcases.HP_PTCOM_PROD -->
     </test> <!-- Test -->
   </suite> <!-- HP_Suite -->
 </testng-results>

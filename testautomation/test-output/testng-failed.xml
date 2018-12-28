@@ -2,18 +2,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [HP_Suite]">
   <listeners>
-    <listener class-name="Helper.ListenersHappyPath"/>
+    <listener class-name="testlisteners.ListenersHappyPath"/>
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="TestCases.HP_PTCOMMX_PROD">
+      <class name="testcases.HP_PTCOMMX_PROD">
         <methods>
-          <include name="beforeMethod"/>
           <include name="End"/>
-          <include name="HappyPath_HotelDefault"/>
+          <include name="HappyPath_HotelFailure"/>
           <include name="Close"/>
+          <include name="beforeMethod"/>
         </methods>
-      </class> <!-- TestCases.HP_PTCOMMX_PROD -->
+      </class> <!-- testcases.HP_PTCOMMX_PROD -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [HP_Suite] -->
