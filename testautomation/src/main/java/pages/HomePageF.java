@@ -3,6 +3,7 @@ package pages;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -28,9 +30,6 @@ public class HomePageF {
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
 		logger.info("Launched initElements");
 	}
-	
-	//By.xpath("//*[@id=\"password\"]/div[1]/div/div[1]/input");
-	//WebElement WEpassword = wait.until(ExpectedConditions.elementToBeClickable(password));
 	
 	//Esta es la URL a la que estare llegando:
 	//https://www.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F04&checkout=2019%2F02%2F05&rooms=1&adults=2&kids=0&agekids=&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1		
@@ -120,16 +119,19 @@ public class HomePageF {
 	private WebElement Button_search;
 	
 	
-	//------------By--------------------
+	//--------------- Widget--------------------
 	By productActive = By.cssSelector("li.ptw-active > a");
+	By waitdropdownmenu = By.cssSelector(".pt-customJqueryUi .ui-autocomplete");
 	
 	public void SearchHotel(VOHotelRes DO_HotelRes){
 		logger.info("Starting SearchHotel()");
 		verifyProductSelectedOnWidgetMenu("Hoteles");
 		Input_destHotel.clear();
 		Input_destHotel.sendKeys(DO_HotelRes.getDestination());
+		wait.until(ExpectedConditions.attributeContains(waitdropdownmenu, "style", "display: block;"));
+		Input_destHotel.sendKeys(Keys.ENTER);
 		Input_destStartHotel.clear();
-		Input_destStartHotel.sendKeys(DO_HotelRes.getStartDate());		
+		Input_destStartHotel.sendKeys(DO_HotelRes.getStartDate());
 		Input_destEndHotel.clear();
 		Input_destEndHotel.sendKeys(DO_HotelRes.getEndDate());
 		//Image_destEndHotelTrigger.click();  esconde el calendario
