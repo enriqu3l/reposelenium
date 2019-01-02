@@ -43,7 +43,7 @@ public class RoomListPageF {
 	//private By BYrate = By.cssSelector("");
 	//private By BYroomButton = By.cssSelector(".hotel-rooms-table .room-table .room-table-actions .btn.btn-primary");
 	
-	public void SelectRoomDefault() {
+	public void selectFirstRoom() {
 		logger.info("Starting SelectRoomDefault()");
 		//Esperar a que se quite el overlay, falla en Test porque no es SPA
 		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
@@ -62,10 +62,7 @@ public class RoomListPageF {
 		logger.info("Ending SelectRoomDefault()");
 	}
 	
-	//NOT READY! Necesitamos un trato especial con los botones
-	//El PageFactory y AjaxElemetLocatorFactory nos ayuda a esperar a que
-	//los elementos estaticos esten listos pero no podemos (ni debemos) crear
-	//un webelement para cada boton, esos los tenemos que crear dinamicamente en esta funcion
+	//En construccion!
 	public void SelectRoom(int itemList) throws InterruptedException {
 		//Falta implementar esta funcion
 	}
