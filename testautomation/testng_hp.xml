@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="HP_Suite">
+  <listeners>
+    <listener class-name="testlisteners.ListenersHappyPath"></listener>
+  </listeners>
+  
+  <test thread-count="3" name="HP_Reservaciones">
+    <classes>
+      <class name="testcases.HP_PTCOMMX_PROD"/>
+      <!-- <class name="testcases.HP_PTCOM_PROD"/> -->
+      <!-- <class name="testcases.HP_PTCO_PROD"/> -->
+    </classes>
+  </test> <!-- Test -->
+  
+  <test name="HP_HotelesConCambios">
+  	<classes>
+  		<class name="testcases.HP_HotelConCambios">
+  			<methods>
+  				<include name="test_HPHotelConCambioDeFecha"/>
+  			</methods>
+  		</class>
+  	</classes>
+  </test>
+  
+  <test name="HP_ReservacionesMobile">
+  	<classes>
+  		<class name="testcases.HP_Mobile">
+  			<methods>
+  				<exclude name="mobile_Safari"/>
+  				<!-- <exclude name="mobile.*"/> -->
+  			</methods>
+  		</class>
+  	</classes>
+  </test>
+</suite> <!-- Suite -->

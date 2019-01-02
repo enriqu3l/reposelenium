@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
 import utility.BasicUtils;
-import workflows.HappyPathsWF;
+import workflows.HPAllProducts;
 
 public class HP_PTCOMMX_TEST {
 	WebDriver driver;
@@ -26,7 +26,7 @@ public class HP_PTCOMMX_TEST {
 	
 	@Test
 	public void HappyPath_HotelDefault() throws InterruptedException{		
-		HappyPathsWF.HPHotelDefault(driver);
+		HPAllProducts.HPHotelDefault(driver);
 	}
 	
 	/*

@@ -13,7 +13,7 @@ public class FrameworkConfig {
 	
 	//URL - Environments 
 	public static final String URL_PTCOMMX_TEST = "http://test.pricetravel.com.mx";
-	public static final String URL_PTCOMMX_PROD_ = "https://www.pricetravel.com.mx";
+	public static final String URL_PTCOMMX_PROD = "https://www.pricetravel.com.mx";
 	public static final String URL_PTCOM_PROD = "https://www.pricetravel.com";
 	public static final String URL_PTCO_PROD = "https://www.pricetravel.co";
 	
@@ -28,8 +28,12 @@ public class FrameworkConfig {
 	public static final String FILE_LocatorsGenerated = "LocatorsGenerated.xlsx";
 	
 	//BrowserConfig
+	public static final String BROWSER_CHROME = "chrome";
+	public static final String BROWSER_FIREFOX = "firefox";
+	public static final String BROWSER_IE = "ie";
+	public static final String BROWSER_OPERA = "opera";
 	public static final String DEFAULTBROWSER = "chrome";
-	public static final boolean BROWSER_CANCELLNOTIFICATION = true;
+	public static final boolean BROWSER_CANCELNOTIFICATIONS = true;
 	
 	//Enums
 	public static enum Products{

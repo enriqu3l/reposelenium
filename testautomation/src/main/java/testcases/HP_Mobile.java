@@ -8,15 +8,24 @@ import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.HPAllProducts;
 
-public class HP_PTCOMMX_PROD {
+public class HP_Mobile {
 	WebDriver driver;
-	Logger logger = LogManager.getLogger(HP_PTCOMMX_PROD.class);
+	Logger logger = LogManager.getLogger(HP_Mobile.class);
+	
+	@BeforeTest
+	public void prerequisitos() {
+		//Aqui colocar todos los prerequisitos necesario antes de ejecutar las pruebas
+		//Resetear variables
+		//Eliminar contenido de algun archivo
+		//Eliminar datos temporales
+	}
 	
 	@BeforeMethod
 	public void beforeMethod() {
@@ -27,31 +36,41 @@ public class HP_PTCOMMX_PROD {
 		logger.info("Browser Started");
 	}
 	
-	/*
+	
 	@DataProvider(name = "Authentication")
 	public static Object[][] credentials() {
 		return new Object[][] { { "testuser_1", "Test@123" }, { "testuser_1", "Test@123" }};
-	}*/
+	}
 	
 	@Test (enabled=true, priority = 2)
-	public void HappyPath_HotelFailure() throws InterruptedException{
-		Reporter.log("Starting test HappyPath_HotelFailure");
-		logger.info("Starting test HappyPath_HotelFailure");
+	public void mobile_Failure(){
+		Reporter.log("Starting test test_Failure");
+		logger.info("Starting test test_Failure");
 		Assert.assertTrue(false); //Hacer fallar la prueba
 	}
 	
 	@Test (enabled=true, priority = 1)
-	public void HappyPath_HotelDefault() throws InterruptedException{
-		Reporter.log("Starting test HappyPath_HotelDefault");
-		logger.info("Starting test HappyPath_HotelDefault");
-		HPAllProducts.HPHotelDefault(driver);
-		//Assert.assertTrue(false, "Se Fallo a proposito jojojo!!!");
+	public void mobile_Chrome(){
+		Reporter.log("Starting test mobile_Chrome");
+		logger.info("Starting test mobile_Chrome");
 	}
 	
-	@Test (enabled=false, priority = 1)
-	public void HappyPath_HotelRandom() throws InterruptedException{		
-		logger.info("Starting test HappyPath_HotelRandom");
-		HPAllProducts.HPHotelRandom(driver);
+	@Test (enabled=true, priority = 1)
+	public void mobile_Firefox() {		
+		Reporter.log("Starting test mobile_Firefox");
+		logger.info("Starting test mobile_Firefox");
+	}
+	
+	@Test (enabled=true, priority = 1)
+	public void mobile_Safari(){		
+		Reporter.log("Starting test mobile_Safari");
+		logger.info("Starting test mobile_Safari");
+	}
+	
+	@Test (enabled=true, priority = 1)
+	public void login(){		
+		Reporter.log("Starting test login");
+		logger.info("Starting test login");
 	}
 
 	@AfterMethod

@@ -33,16 +33,16 @@ public class DDManager {
 	public static VOHotelRes getHotelResDefault() {
 		LocalDate startDate;
 		LocalDate endDate;
-		VOHotelRes DOHotelRes = new VOHotelRes();
-		DOHotelRes.setIdHotelRes("HR001");
-		DOHotelRes.setDestination(FrameworkConfig.R_DESTIN);
+		VOHotelRes voHotelRes = new VOHotelRes();
+		voHotelRes.setIdHotelRes("HR001");
+		voHotelRes.setDestination(FrameworkConfig.R_DESTIN);
 		startDate = LocalDate.now().plusMonths(FrameworkConfig.R_STARTDATE_PlusMonth);
-		DOHotelRes.setStartDate(startDate.toString("dd/MM/yyyy"));
+		voHotelRes.setStartDate(startDate.toString("dd/MM/yyyy"));
 		endDate = startDate.plusDays(FrameworkConfig.R_ENDDATE_PlusDay);
-		DOHotelRes.setEndDate(endDate.toString("dd/MM/yyyy"));
-		DOHotelRes.setAdults(FrameworkConfig.R_ADULTS);
-		DOHotelRes.setKids(FrameworkConfig.R_KIDS);
-		return DOHotelRes;
+		voHotelRes.setEndDate(endDate.toString("dd/MM/yyyy"));
+		voHotelRes.setAdults(FrameworkConfig.R_ADULTS);
+		voHotelRes.setKids(FrameworkConfig.R_KIDS);
+		return voHotelRes;
 	}//EndFunction
 	
 	public  static VOHotelRes getHotelRes(int item) {
@@ -53,9 +53,9 @@ public class DDManager {
 		if(item<=0){item=1;}
 		if(item>max){item=max;}
 		
-		VOHotelRes DOHotelRes = new VOHotelRes();
-		DOHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, item));
-		return DOHotelRes;
+		VOHotelRes voHotelRes = new VOHotelRes();
+		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, item));
+		return voHotelRes;
 	}//EndFunction
 	
 	public static VOHotelRes getRandomHotelRes() {
@@ -69,25 +69,26 @@ public class DDManager {
 		
 		System.out.println("Info - DDManager - getRandomHotelRes randomNum: "+randomNum);
 		
-		VOHotelRes DOHotelRes = new VOHotelRes();
-		DOHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
-		return DOHotelRes;
+		VOHotelRes voHotelRes = new VOHotelRes();
+		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
+		return voHotelRes;
 	}//EndFunction
 	
 	//-------------------------CREDIT CARD------------------------------
 	public static VOCreditCard getCreditCardDefault() {
+		//Por lo pronto tengo hardcodeada esta funcion!!!
 		//Me falta jalar los datos desde la Clase GeneralConfig
-		VOCreditCard DOCreditCard = new VOCreditCard();
-		DOCreditCard.setNumber(Long.parseLong("4772130000000003"));
-		DOCreditCard.setHolderName("Virginia Chavez");
-		DOCreditCard.setMonth("08");
-		DOCreditCard.setYear("2021");
-		DOCreditCard.setCCV(114);
-		DOCreditCard.setCountry("MX");
-		DOCreditCard.setCP(44777);
-		DOCreditCard.setBank("Bancomer");
-		DOCreditCard.setPayNetwork(FrameworkConfig.CardTypes.VISA);
-		return DOCreditCard;
+		VOCreditCard voCreditCard = new VOCreditCard();
+		voCreditCard.setNumber(Long.parseLong("4772130000000003"));
+		voCreditCard.setHolderName("Virginia Chavez");
+		voCreditCard.setMonth("08");
+		voCreditCard.setYear("2021");
+		voCreditCard.setCCV(114);
+		voCreditCard.setCountry("MX");
+		voCreditCard.setCP(44777);
+		voCreditCard.setBank("Bancomer");
+		voCreditCard.setPayNetwork(FrameworkConfig.CardTypes.VISA);
+		return voCreditCard;
 	}//EndFunction
 	
 	public static VOCreditCard getCreditCard(int item) {
@@ -97,9 +98,9 @@ public class DDManager {
 		if(item<=0){item=1;}
 		if(item>max){item=max;}
 		
-		VOCreditCard DOCreditCard = new VOCreditCard();
-		DOCreditCard.setDataUsingList(ExcelUtils.getRow(filePath, item));
-		return DOCreditCard;
+		VOCreditCard voCreditCard = new VOCreditCard();
+		voCreditCard.setDataUsingList(ExcelUtils.getRow(filePath, item));
+		return voCreditCard;
 	}
 	
 	public static VOCreditCard getRandomCreditCard() {
@@ -110,13 +111,12 @@ public class DDManager {
 		Random rand = new Random();
 		int randomNum = rand.nextInt((max - min) + 1) + min;
 		
-		VOCreditCard DOCreditCard = new VOCreditCard();
-		DOCreditCard.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
-		return DOCreditCard;
+		VOCreditCard voCreditCard = new VOCreditCard();
+		voCreditCard.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
+		return voCreditCard;
 	}
 	
-	//Aun no la usaré, hasta hacer la modificacion para que el archivo LocatorsGenerated.xlsx
-	//sea alojado directamente en C en vez de alojarlo dentro del proyecto
+	//Necesito verificar si funciona correctamente 
 	public static boolean saveLocator(String locator) {
 		String filePath = FrameworkConfig.DATASOURCE_PATH+FrameworkConfig.FILE_LocatorsGenerated;
 		List<String> data = new ArrayList<String>();

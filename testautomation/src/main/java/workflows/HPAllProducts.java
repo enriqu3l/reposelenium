@@ -11,8 +11,8 @@ import pages.Pages;
 import valueobjects.VOCreditCard;
 import valueobjects.VOHotelRes;
 
-public class HappyPathsWF {
-	private static Logger logger = LogManager.getLogger(HappyPathsWF.class);
+public class HPAllProducts {
+	private static Logger logger = LogManager.getLogger(HPAllProducts.class);
 	
 	public static void HPHotelDefault(WebDriver driver) throws InterruptedException{
 		logger.info("Starting HPHotelDefault");
@@ -25,9 +25,9 @@ public class HappyPathsWF {
 		pages.homePage_Initialize();
 		pages.home_page.SearchHotel(DO_HotelRes);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.SelectFirstHotel();
+		pages.hotelList_page.SelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
-		pages.roomList_page.SelectRoomDefault();
+		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();
 		pages.resDetail_page.ClearFillandContinue();
 		//pages.payMethodPage_Initialize();
@@ -48,9 +48,9 @@ public class HappyPathsWF {
 		pages.homePage_Initialize();
 		pages.home_page.SearchHotel(DO_HotelRes);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.SelectFirstHotel();
+		pages.hotelList_page.SelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
-		pages.roomList_page.SelectRoomDefault();
+		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();
 		pages.resDetail_page.ClearFillandContinue();
 		//pages.payMethodPage_Initialize();
