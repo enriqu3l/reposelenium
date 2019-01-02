@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -63,51 +64,58 @@ public class HotelListPageF {
 	By BYproductRateFinal = By.cssSelector(".list-product-rate .product-rate-final");
 	By BYButton_seeOffer = By.cssSelector(".list-product-rate .list-product-rate-action .btn");
 	
-	//--------------- Lateral Widget elements - Basados en SPA-Hoteles!! -------
+	//--------------- Lateral Widget elements - Basados en SPA-Hoteles!! ----------
 	@FindBy(how=How.CSS, css="#ptw-container #destination")
-	WebElement Input_destination;
+	WebElement widget_Input_destination;
+	
+	@FindBy(how=How.CSS, css="#start-datepicker .ap_dest_calendar")
+	WebElement widget_Input_startDate;
+	
+	@FindBy(how=How.CSS, css="#end-datepicker .ap_dest_calendar")
+	WebElement widget_Input_endDate;
 	
 	@FindBy(how=How.CSS, css="#start-datepicker .ui-datepicker-trigger")
-	WebElement Image_startDatePicker;
+	WebElement widget_startDatePicker;
 	
 	@FindBy(how=How.CSS, css="#end-datepicker .ui-datepicker-trigger")
-	WebElement Image_endDatePicker;
+	WebElement widget_endDatePicker;
 	
 	@FindBy(how=How.CSS, css="#start-datepicker .dropdown-menu .ngb-dp-month-name")
-	WebElement startDate_Title;
+	WebElement widget_startDate_Title;
 	
 	@FindBy(how=How.CSS, css="#end-datepicker .dropdown-menu .ngb-dp-month-name")
-	WebElement endDate_Title;
+	WebElement widget_endDate_Title;
 	
 	@FindBy(how=How.CSS, css="#start-datepicker .ngb-dp-arrow button.btn")
-	WebElement startDate_beforeMonth;
+	WebElement widget_startDate_beforeMonth;
 	
 	@FindBy(how=How.CSS, css="#start-datepicker .ngb-dp-arrow.right button.btn")
-	WebElement startDate_nextMonth;
+	WebElement widget_startDate_nextMonth;
 	
 	@FindBy(how=How.CSS, css="#end-datepicker .ngb-dp-arrow button.btn")
-	WebElement endDate_beforeMonth;
+	WebElement widget_endDate_beforeMonth;
 	
 	@FindBy(how=How.CSS, css="#end-datepicker .ngb-dp-arrow.right button.btn")
-	WebElement endDate_nextMonth;
+	WebElement widget_endDate_nextMonth;
 	
 	@FindBy(how=How.CSS, css="#ptw-container #ap_booker_Hotel_rooms")
-	WebElement Select_bookerHotelRooms;
+	WebElement widget_Select_bookerHotelRooms;
 	
 	@FindBy(how=How.CSS, css="#ptw-container .ap_booker_Hotel_adults")
-	WebElement Select_bookerHotelAdults;
+	WebElement widget_Select_bookerHotelAdults;
 	
 	@FindBy(how=How.CSS, css="#ptw-container .ap_booker_Hotel_minors")
-	WebElement Select_bookerHotelMinors;
+	WebElement widget_Select_bookerHotelMinors;
 	
 	@FindBy(how=How.CSS, css="#ptw-container .ptw-submit-btn")
-	WebElement Button_search;
+	WebElement widget_Button_search;
 	
-	By startDate_dropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
-	By endDate_dropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
+	By widget_startDate_dropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
+	By widget_endDate_dropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
+	By widget_dropdownmenu = By.cssSelector("#ptw-container .dropdown-menu");
 	
 	//Esta funcion se diseño pensando solo en la funcionalidad de las SPA
-	public void SelectFirstHotel() {
+	public void SelectFirstHotelAvailable() {
 		//Esperar a que se quite el overlay, falla en Test porque no es SPA
 		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		
@@ -161,68 +169,120 @@ public class HotelListPageF {
 		//driver.switchTo().window(browserTabs.get(0));
 	}
 	
-	//Ya se construyó pero aun no se ha probado
+	//++++++++++++++++++++++++++ WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
+	
+	public void widget_changeDestin(String destin) {
+		logger.info("Starting widget_changeDestin()");
+		//Me falta poner candados para validar el parametro
+		widget_Input_destination.clear();
+		widget_Input_destination.sendKeys(destin);
+		
+		//Wait until dropdown menu appears
+		wait.until(ExpectedConditions.presenceOfElementLocated(widget_dropdownmenu));
+		
+		widget_Input_destination.sendKeys(Keys.ENTER);
+	}
+	
+	public void widget_changeAdults(int adultsNumber) {
+		//Me falta poner candados para validar el parametro
+		
+		Select adults = new Select(widget_Select_bookerHotelAdults);
+		adults.selectByValue(Integer.toString(adultsNumber));
+	}
+	
+	public void widget_search() {
+		logger.info("Starting widget_search()");
+		
+		String url = driver.getCurrentUrl();
+		widget_Button_search.click();
+		
+		//Espero a que el boton lanze una nueva url
+		//(tiempo que tarda el boton en lanzar la accion)
+		wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
+		//wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: block; opacity: 1;"));
+		
+		/*try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+	}
+	
+	//Ya se construyó pero aun no se ha probado!!
 	public void widget_changeSearch(VOHotelRes DO_HotelRes){
-		Input_destination.clear();
-		Input_destination.sendKeys(DO_HotelRes.getDestination());
+		logger.info("Starting widget_changeSearch()");
+		widget_Input_destination.clear();
+		widget_Input_destination.sendKeys(DO_HotelRes.getDestination());
 		widget_selectStartDate(DO_HotelRes.getStartDate());		
 		widget_selectEndDate(DO_HotelRes.getEndDate());
-		Select rooms = new Select(Select_bookerHotelRooms);
+		Select rooms = new Select(widget_Select_bookerHotelRooms);
 		rooms.selectByValue("1");
-		Select adults = new Select(Select_bookerHotelAdults);
+		Select adults = new Select(widget_Select_bookerHotelAdults);
 		adults.selectByValue(Integer.toString(DO_HotelRes.getAdults()));
-		Select kids = new Select(Select_bookerHotelMinors);
+		Select kids = new Select(widget_Select_bookerHotelMinors);
 		kids.selectByValue("0");
-		Button_search.click();
+		widget_search();
 	}
 	
 	//En construccion, ya mero esta lista!!!
 	public void widget_selectStartDate(String date) {
 		//Me falta poner candados para validar el parametro		
 		
+		logger.info("Starting widget_selectStartDate()");
 		//Esperar a que se quite el overlay
 		//wait.until(WaitFor.attributeValue(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		//Abrir el calendario si no esta abierto
-		if(BasicUtils.noExistsElement(driver,startDate_dropdownMenu)){Image_startDatePicker.click();}
+		if(BasicUtils.noExistsElement(driver,widget_startDate_dropdownMenu)){widget_startDatePicker.click();}
 		
 		LocalDate localDate = LocalDate.parse(date,DateTimeFormat.forPattern("dd/MM/yyyy"));
 		int day = localDate.getDayOfMonth();
-		String actualDate = BasicUtils.toddMMyyyyFormat(startDate_Title.getText().trim());
+		String actualDate = BasicUtils.toddMMyyyyFormat(widget_startDate_Title.getText().trim());
+		
 		int TotalMonthDifference = BasicUtils.monthDiference(date, actualDate);	
 		logger.trace("widget_selectStartDate() TotalMonthDifference: "+TotalMonthDifference);
 		if(TotalMonthDifference>0) {
 			for(int i=0; i<TotalMonthDifference;i++) {
-				startDate_nextMonth.click(); //click hacia adelante
+				widget_startDate_nextMonth.click(); //click hacia adelante
 			}
 		}else if(TotalMonthDifference<0) {
 			for(int i=0; i>TotalMonthDifference;i--) {
-				startDate_beforeMonth.click(); //click hacia atras
+				widget_startDate_beforeMonth.click(); //click hacia atras
 			}
 		}
 		String xpath = "//*[@id='start-datepicker']//div[text()='"+day+"']";
 		driver.findElement(By.xpath(xpath)).click();
 		//String selector = "#start-datepicker div[aria-label*=' "+day+" '].ngb-dp-day div";
 		//driver.findElement(By.cssSelector(selector)).click();
+		
+		logger.info("Valor de widget_Input_startDate: " + widget_Input_startDate.getText());
+		
 	}
+	//En construccion, ya mero esta lista!!!
 	public void widget_selectEndDate(String date) {
+		//Me falta poner candados para validar el parametro
+		
+		logger.info("Starting widget_selectEndDate()");
+		logger.trace("actualDate:  "+date);
 		//Esperar a que se quite el overlay
 		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		//Abrir el calendario si no esta abierto
-		if(BasicUtils.noExistsElement(driver,endDate_dropdownMenu)){Image_endDatePicker.click();}
+		if(BasicUtils.noExistsElement(driver,widget_endDate_dropdownMenu)){widget_endDatePicker.click();}
 		
 		LocalDate localDate = LocalDate.parse(date,DateTimeFormat.forPattern("dd/MM/yyyy"));
 		int day = localDate.getDayOfMonth();
-		String actualDate = BasicUtils.toddMMyyyyFormat(endDate_Title.getText().trim());
+		String actualDate = BasicUtils.toddMMyyyyFormat(widget_endDate_Title.getText().trim());
+		logger.trace("actualDate:  "+actualDate);
 		int TotalMonthDifference = BasicUtils.monthDiference(date, actualDate);	
 		logger.trace("widget_selectEndDate() TotalMonthDifference: "+TotalMonthDifference);
 		if(TotalMonthDifference>0) {
 			for(int i=0; i<TotalMonthDifference;i++) {
-				endDate_nextMonth.click(); //click hacia adelante
+				widget_endDate_nextMonth.click(); //click hacia adelante
 			}
 		}else if(TotalMonthDifference<0) {
 			for(int i=0; i>TotalMonthDifference;i--) {
-				endDate_beforeMonth.click(); //click hacia atras
+				widget_endDate_beforeMonth.click(); //click hacia atras
 			}
 		}
 		
@@ -230,10 +290,14 @@ public class HotelListPageF {
 		driver.findElement(By.xpath(xpath)).click();
 		//String selector = "#end-datepicker div[aria-label*=' " + Integer.toString(day) + " '].ngb-dp-day div";
 		//driver.findElement(By.cssSelector(selector)).click();
+		
+		logger.info("Valor de widget_Input_startDate: " + widget_Input_endDate.getText());
 	}
 	
-	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	//---------------- FUNCIONES PRIVADAS ------------------------------------------------
+	//++++++++++++++++++++++++++ END WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
+	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//--------------------------- FUNCIONES PRIVADAS -------------------------------------------
 	private int getItemNum_firstHotelAvailable(List<WebElement> allSearchResults) {
 		Assert.assertFalse("ENF>>>El parametro de la lista de resultados esta vacia!.",allSearchResults.isEmpty());
 		
@@ -260,11 +324,11 @@ public class HotelListPageF {
 		return index;
 	}
 	private int getItemNum_byHotelName(String hotel) {
-		//Aqui el codigo para buscar por el nombre del hotel
+		//Aqui el codigo para buscar el itemNumber por el nombre del hotel
 		return 0;
 	}
 	private int getItemNum_byHotelId(int hotelId) {
-		//Aqui el codigo para buscar por Id del Hotel
+		//Aqui el codigo para buscar el itemNumber por Id del Hotel
 		return 0;
 	}
 }
