@@ -18,9 +18,9 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import config.CoreConfig;
-import junit.framework.Assert;
 import utility.BasicUtils;
 import valueobjects.VOHotelRes;
 
@@ -33,10 +33,11 @@ public class HotelListPageF {
 	private WebDriver driver;
 	private static Logger logger = LogManager.getLogger(HotelListPageF.class);
 	
-	public HotelListPageF(WebDriver driver){
-		this.driver = driver;
-		this.wait = new WebDriverWait(driver,30);
-		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20),this);
+	public HotelListPageF(WebDriver _driver){
+		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
+		this.driver = _driver;
+		this.wait = new WebDriverWait(_driver,30);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 20),this);
 	}
 	
 	//Ejemplos de como buscar attributos en xpath y cssSelector
@@ -116,15 +117,15 @@ public class HotelListPageF {
 	
 	//Esta funcion se diseño pensando solo en la funcionalidad de las SPA
 	public void SelectFirstHotelAvailable() {
-		//Esperar a que se quite el overlay, falla en Test porque no es SPA
-		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		//Esperar a que se quite el overlay, falla en PTCOMMXTest, porque la pagina de Test no usa SPA.
+		waitForOverlay();
 		
-		Assert.assertTrue("ENF>>>No se encontro ninguna lista de resultados!.", BasicUtils.existsElement(driver,BYlistProduct));
-		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.",allBlocksResults.isEmpty());
+		Assert.assertTrue(BasicUtils.existsElement(driver,BYlistProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
+		Assert.assertFalse(allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
 		logger.trace("Tamaño de la lista: "+allBlocksResults.size());
 		
 		int index = getItemNum_firstHotelAvailable(allBlocksResults);
-		Assert.assertFalse("LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.",CoreConfig.FaultValue==index);
+		Assert.assertFalse(CoreConfig.FaultValue==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
 		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(BYButton_seeOffer);
 		Button_seeOffer.click();
 		
@@ -134,17 +135,16 @@ public class HotelListPageF {
 	}
 	
 	public void SelectHotel(int index) throws InterruptedException {
-		Assert.assertTrue("LAF>>>Parametro invalido, index tiene que ser menor a 20!.",index<20);
+		Assert.assertTrue(index<20,"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
 		
-		//Esperar a que se quite el overlay, falla en Test porque no es SPA
-		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		//Esperar a que se quite el overlay, falla en PTCOMMXTest, porque la pagina de Test no usa SPA.
+		waitForOverlay();
 
-		Assert.assertTrue("ENF>>>No se encontro ninguna lista de resultados!.",
-				BasicUtils.existsElement(driver, BYlistProduct));
-		Assert.assertFalse("ENF>>>La lista de resultados esta vacia!.", allBlocksResults.isEmpty());
+		Assert.assertTrue(BasicUtils.existsElement(driver, BYlistProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
+		Assert.assertFalse(allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
 		logger.trace("Tamaño de la lista: " + allBlocksResults.size());
 		
-		Assert.assertTrue("LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.",CoreConfig.FaultValue==index);
+		Assert.assertTrue(CoreConfig.FaultValue==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
 		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(BYButton_seeOffer);
 		Button_seeOffer.click();
 		
@@ -174,6 +174,9 @@ public class HotelListPageF {
 	public void widget_changeDestin(String destin) {
 		logger.info("Starting widget_changeDestin()");
 		//Me falta poner candados para validar el parametro
+		
+		waitForOverlay();
+		
 		widget_Input_destination.clear();
 		widget_Input_destination.sendKeys(destin);
 		
@@ -184,7 +187,10 @@ public class HotelListPageF {
 	}
 	
 	public void widget_changeAdults(int adultsNumber) {
+		logger.info("Starting widget_changeAdults()");
 		//Me falta poner candados para validar el parametro
+		
+		waitForOverlay();
 		
 		Select adults = new Select(widget_Select_bookerHotelAdults);
 		adults.selectByValue(Integer.toString(adultsNumber));
@@ -193,20 +199,14 @@ public class HotelListPageF {
 	public void widget_search() {
 		logger.info("Starting widget_search()");
 		
+		waitForOverlay();
+		
 		String url = driver.getCurrentUrl();
 		widget_Button_search.click();
 		
 		//Espero a que el boton lanze una nueva url
 		//(tiempo que tarda el boton en lanzar la accion)
 		wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
-		//wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: block; opacity: 1;"));
-		
-		/*try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 	}
 	
 	//Ya se construyó pero aun no se ha probado!!
@@ -231,8 +231,8 @@ public class HotelListPageF {
 		
 		logger.info("Starting widget_selectStartDate()");
 		//Esperar a que se quite el overlay
-		//wait.until(WaitFor.attributeValue(loaderOverlayPage, "style", "display: none; opacity: 0;"));
-		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		waitForOverlay();
+		
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,widget_startDate_dropdownMenu)){widget_startDatePicker.click();}
 		
@@ -266,7 +266,7 @@ public class HotelListPageF {
 		logger.info("Starting widget_selectEndDate()");
 		logger.trace("actualDate:  "+date);
 		//Esperar a que se quite el overlay
-		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		waitForOverlay();
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,widget_endDate_dropdownMenu)){widget_endDatePicker.click();}
 		
@@ -296,10 +296,19 @@ public class HotelListPageF {
 	
 	//++++++++++++++++++++++++++ END WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
 	
+	
+	//++++++++++++++++++++++++++++ Wait for Overlay ++++++++++++++++++++++++++++++++++++++++++++
+	public void waitForOverlay() {
+		//Esperar a que se quite el overlay
+		//wait.until(WaitFor.attributeValue(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+	}
+	
+	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	//--------------------------- FUNCIONES PRIVADAS -------------------------------------------
 	private int getItemNum_firstHotelAvailable(List<WebElement> allSearchResults) {
-		Assert.assertFalse("ENF>>>El parametro de la lista de resultados esta vacia!.",allSearchResults.isEmpty());
+		Assert.assertFalse(allSearchResults.isEmpty(),"ENF>>>El parametro de la lista de resultados esta vacia!.");
 		
 		int index = CoreConfig.FaultValue;
 		for (int i = 0; i < allSearchResults.size(); i++) {

@@ -65,8 +65,8 @@ public class HPHotelConCambios {
 	public static void HPHotelConCambioDeOcupantes(WebDriver driver) throws InterruptedException{
 		logger.info("Starting workflow HPHotelConCambioDeOcupantes");
 		Reporter.log("Staring workflow HPHotelConCambioDeOcupantes");
-		VOHotelRes DO_HotelRes = DDManager.getRandomHotelRes();
-		VOCreditCard DO_CreditCard = DDManager.getRandomCreditCard();
+		VOHotelRes DO_HotelRes = DDManager.getHotelResDefault();
+		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.home_page.SearchHotel(DO_HotelRes);

@@ -21,10 +21,11 @@ public class PayMethodPageF {
 	private static Logger logger = LogManager.getLogger(PayMethodPageF.class);
 	private String currentURL;
 	
-	PayMethodPageF(WebDriver driver){
-		this.driver = driver;
-		this.wait = new WebDriverWait(driver,30);
-		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 30),this);
+	PayMethodPageF(WebDriver _driver){
+		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
+		this.driver = _driver;
+		this.wait = new WebDriverWait(_driver,30);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
 	}
 	
 	//-----FormElements-----

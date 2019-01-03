@@ -44,7 +44,7 @@ public class HP_HotelConCambios {
 		
 		//Seleccionando el browser que se usara para las pruebas
 		gbrowser = browser;
-		logger.trace("Broser Seteado: "+gbrowser);
+		logger.trace("Browser Seteado: "+gbrowser);
 		Assert.assertFalse(gbrowser.equals(""),"No se ha seteado un browser valido!");
 	}
 	
@@ -58,33 +58,21 @@ public class HP_HotelConCambios {
 		logger.info("Browser Started");
 	}
 	
-	/*
-	@DataProvider(name = "Authentication")
-	public static Object[][] credentials() {
-		return new Object[][] { { "testuser_1", "Test@123" }, { "testuser_1", "Test@123" }};
-	}*/
-	
-	@Test (enabled=false, priority = 2)
-	public void HappyPath_HotelFailure() throws InterruptedException{
-		Reporter.log("Starting test HappyPath_HotelFailure");
-		Assert.assertTrue(false); //Hacer fallar la prueba
-	}
-	
-	@Test (enabled=true, priority = 1)
+	@Test (enabled=false, priority = 1, groups = { "Group1" })
 	public void test_HPHotelConCambioDeDestino() throws InterruptedException{
 		Reporter.log("Starting test_HPHotelConCambioDeDestino");
 		logger.info("Starting test_HPHotelConCambioDeDestino");
 		HPHotelConCambios.HPHotelConCambioDeDestino(driver);
 	}
 	
-	@Test (enabled=true, priority = 1)
+	@Test (enabled=false, priority = 1, groups = { "Group1" })
 	public void test_HPHotelConCambioDeFecha() throws InterruptedException{		
 		Reporter.log("Starting test_HPHotelConCambioDeFecha");
 		logger.info("Starting test_HPHotelConCambioDeFecha");
 		HPHotelConCambios.HPHotelConCambioDeFecha(driver);
 	}
 	
-	@Test (enabled=true, priority = 1)
+	@Test (enabled=true, priority = 1, groups = { "Group1" })
 	public void test_HPHotelConCambioDeOcupantes() throws InterruptedException{		
 		Reporter.log("Starting test_HPHotelConCambioDeOcupantes");
 		logger.info("Starting test_HPHotelConCambioDeOcupantes");
@@ -96,7 +84,7 @@ public class HP_HotelConCambios {
 	{
 		Reporter.log("Closing Browser...");
 		logger.info("Closing Browser...");
-		//driver.close();
+		driver.close();
 	}
 	
 	@AfterTest

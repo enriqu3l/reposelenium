@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,16 +15,18 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class RoomListPageF {
 	private WebDriverWait wait;
 	private WebDriver driver;
 	private static Logger logger = LogManager.getLogger(RoomListPageF.class);
 	
-	public RoomListPageF(WebDriver driver){
-		this.driver = driver;
-		this.wait = new WebDriverWait(driver,30);
-		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 30),this);
+	public RoomListPageF(WebDriver _driver){
+		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
+		this.driver = _driver;
+		this.wait = new WebDriverWait(_driver,30);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
 	}
 	
 	//+++++++++PageFactory Elements+++++++++++++++++
@@ -46,13 +49,15 @@ public class RoomListPageF {
 	public void selectFirstRoom() {
 		logger.info("Starting SelectRoomDefault()");
 		//Esperar a que se quite el overlay, falla en Test porque no es SPA
-		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		waitForOverlay();
 		
 		logger.trace("Tamaño de la lista de resultados: "+allSearchResults.size());
 		
 		//Cambié el scroll por un Action, hasta ahora parece que esta funcionando bien ;)...
-		Actions actions = new Actions(driver);
-		actions.moveToElement(roomButton).perform();
+		//Actions actions = new Actions(driver);
+		//(actions.moveToElement(roomButton).perform();
+		//Workaround for firefox
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", roomButton);
 		//-----------------------------------------------------
 		
 		wait.until( ExpectedConditions.elementToBeClickable(roomButton) );
@@ -65,5 +70,12 @@ public class RoomListPageF {
 	//En construccion!
 	public void SelectRoom(int itemList) throws InterruptedException {
 		//Falta implementar esta funcion
+	}
+	
+	//++++++++++++++++++++++++++++ Wait for Overlay ++++++++++++++++++++++++++++++++++++++++++++
+	public void waitForOverlay() {
+		//Esperar a que se quite el overlay
+		//wait.until(WaitFor.attributeValue(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 	}
 }

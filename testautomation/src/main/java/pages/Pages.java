@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class Pages {
 	public WebDriver driver;
@@ -12,8 +13,9 @@ public class Pages {
 	public PayMethodPageF payMethod_page;
 	public ThankYouPageF thankYou_page;
 	
-	public Pages(WebDriver driver) {
-		this.driver = driver;
+	public Pages(WebDriver _driver) {
+		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
+		this.driver = _driver;
 	}
 	
 	public void homePage_Initialize() {

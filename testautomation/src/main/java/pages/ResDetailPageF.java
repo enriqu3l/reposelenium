@@ -21,10 +21,11 @@ public class ResDetailPageF {
 	private static Logger logger = LogManager.getLogger(ResDetailPageF.class);
 	private String currentURL;
 	
-	public ResDetailPageF(WebDriver driver){
-		this.driver = driver;
-		this.wait = new WebDriverWait(driver,30);
-		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20),this);
+	public ResDetailPageF(WebDriver _driver){
+		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
+		this.driver = _driver;
+		this.wait = new WebDriverWait(_driver,30);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 20),this);
 	}
 	
 	//-----FormElements-----

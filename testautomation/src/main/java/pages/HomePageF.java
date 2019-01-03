@@ -14,6 +14,7 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import valueobjects.VOHotelRes;
 
@@ -24,6 +25,7 @@ public class HomePageF {
 	
 	//Constructor
 	public HomePageF(WebDriver _driver){
+		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		logger.info("Start HomePage constructor");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,30);
@@ -36,6 +38,7 @@ public class HomePageF {
 	//Si no envio parametros:
 	//https://www.pricetravel.com/hoteles/cancun-area
 	//usará los valores por default para la busqueda
+	
 	
 	@FindBy(how=How.CSS, css="#ptw-menu > ul")
 	@CacheLookup
