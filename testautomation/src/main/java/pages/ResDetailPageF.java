@@ -26,6 +26,10 @@ public class ResDetailPageF {
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,30);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 20),this);
+		logger.info("Launched initElements");
+		
+		//Esperar a que la url sea la correcta
+		wait.until(ExpectedConditions.urlContains("/reservar/detalles-reservacion"));
 	}
 	
 	//-----FormElements-----

@@ -27,6 +27,10 @@ public class RoomListPageF {
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,30);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
+		logger.info("Launched initElements");
+		
+		//Esperar a que la url sea la correcta
+		wait.until(ExpectedConditions.urlContains("/hotel/"));
 	}
 	
 	//+++++++++PageFactory Elements+++++++++++++++++

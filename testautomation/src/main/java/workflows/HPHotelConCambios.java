@@ -15,7 +15,7 @@ public class HPHotelConCambios {
 	
 	public static void HPHotelConCambioDeDestino(WebDriver driver) throws InterruptedException{
 		logger.info("Starting workflow HPHotelConCambioDeDestino");
-		Reporter.log("Staring workflow HPHotelConCambioDeDestino");
+		Reporter.log("Starting workflow HPHotelConCambioDeDestino");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
 		//Estoy usando la data de GeneralConfig por la fecha plusMonth porque aun no implemento en el Excel
 		VOHotelRes DO_HotelRes = DDManager.getHotelResDefault();

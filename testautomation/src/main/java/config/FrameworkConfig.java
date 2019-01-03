@@ -18,21 +18,23 @@ public class FrameworkConfig {
 	public static final String URL_PTCO_PROD = "https://www.pricetravel.co";
 	
 	//Resources Paths
-	public static final String DATASOURCE_PATH = "C:\\PTFrameworkData\\SourceDataFiles\\";
-	public static final String SCREENSHOOT_PATH = "C:\\PTFrameworkData\\Screenshots\\";
+	public static final String PATH_DATASOURCE = "C:\\PTFrameworkData\\SourceDataFiles\\";
+	public static final String PATH_SCREENSHOOT = "C:\\PTFrameworkData\\Screenshots\\";
+	public static final String PATH_SCREENSHOOT_FAILURES = "C:\\PTFrameworkData\\Screenshots\\Failures\\";
+	public static final String PATH_SCREENSHOOT_LOCATORS = "C:\\PTFrameworkData\\Screenshots\\Locators\\";
 	
 	//Files Names
-	public static final String FILE_ClientData = "ClientData.xlsx";
-	public static final String FILE_CreditCardsData = "CreditCardsData.xlsx";
-	public static final String FILE_HotelResData = "HotelResData.xlsx";
-	public static final String FILE_LocatorsGenerated = "LocatorsGenerated.xlsx";
+	public static final String FILE_CLIENTDATA = "ClientData.xlsx";
+	public static final String FILE_CREDITCARDSDATA = "CreditCardsData.xlsx";
+	public static final String FILE_HOTELRESDATA = "HotelResData.xlsx";
+	public static final String FILE_LOCATORSGENERATED = "LocatorsGenerated.xlsx";
 	
 	//BrowserConfig
 	public static final String BROWSER_CHROME = "chrome";
 	public static final String BROWSER_FIREFOX = "firefox";
 	public static final String BROWSER_IE = "ie";
 	public static final String BROWSER_OPERA = "opera";
-	public static final String DEFAULTBROWSER = "chrome";
+	public static final String BROWSER_DEFAULT = "chrome";
 	public static final boolean BROWSER_CANCELNOTIFICATIONS = true;
 	
 	//Enums

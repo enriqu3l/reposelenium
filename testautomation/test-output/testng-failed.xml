@@ -4,9 +4,9 @@
   <listeners>
     <listener class-name="testlisteners.ListenersHappyPath"/>
   </listeners>
-  <test thread-count="5" name="HP_PTCOMMX(failed)">
-    <parameter name="browser" value="firefox"/>
-    <parameter name="url" value="https://www.pricetravel.com.mx"/>
+  <test thread-count="5" name="HP_PTCO(failed)">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="https://www.pricetravel.co"/>
     <classes>
       <class name="testcases.HP_HotelConCambios">
         <methods>
@@ -18,5 +18,5 @@
         </methods>
       </class> <!-- testcases.HP_HotelConCambios -->
     </classes>
-  </test> <!-- HP_PTCOMMX(failed) -->
+  </test> <!-- HP_PTCO(failed) -->
 </suite> <!-- Failed suite [HP_Suite] -->

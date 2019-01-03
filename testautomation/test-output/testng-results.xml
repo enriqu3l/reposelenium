@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="6" total="9" passed="3">
+<testng-results skipped="0" failed="1" ignored="6" total="9" passed="2">
   <reporter-output>
     <line>
       <![CDATA[Starting BeforeTest]]>
@@ -65,16 +65,13 @@
       <![CDATA[Staring workflow HPHotelConCambioDeOcupantes]]>
     </line>
     <line>
-      <![CDATA[Ending HPHotelConCambioDeOcupantes]]>
-    </line>
-    <line>
       <![CDATA[Closing Browser...]]>
     </line>
     <line>
       <![CDATA[Test Finished]]>
     </line>
   </reporter-output>
-  <suite name="HP_Suite" duration-ms="167680" started-at="2019-01-03T19:12:51Z" finished-at="2019-01-03T19:15:39Z">
+  <suite name="HP_Suite" duration-ms="131782" started-at="2019-01-03T20:10:10Z" finished-at="2019-01-03T20:12:22Z">
     <groups>
       <group name="Group1">
         <method signature="HP_HotelConCambios.test_HPHotelConCambioDeOcupantes()[pri:1, instance:testcases.HP_HotelConCambios@799f10e1]" name="test_HPHotelConCambioDeOcupantes" class="testcases.HP_HotelConCambios"/>
@@ -82,9 +79,9 @@
         <method signature="HP_HotelConCambios.test_HPHotelConCambioDeOcupantes()[pri:1, instance:testcases.HP_HotelConCambios@33d512c1]" name="test_HPHotelConCambioDeOcupantes" class="testcases.HP_HotelConCambios"/>
       </group> <!-- Group1 -->
     </groups>
-    <test name="HP_PTCOMMX" duration-ms="36032" started-at="2019-01-03T19:12:51Z" finished-at="2019-01-03T19:13:27Z">
+    <test name="HP_PTCOMMX" duration-ms="40891" started-at="2019-01-03T20:10:10Z" finished-at="2019-01-03T20:10:51Z">
       <class name="testcases.HP_HotelConCambios">
-        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.HP_HotelConCambios@799f10e1]" name="prerequisitos" is-config="true" duration-ms="17" started-at="2019-01-03T19:12:51Z" finished-at="2019-01-03T19:12:51Z">
+        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.HP_HotelConCambios@799f10e1]" name="prerequisitos" is-config="true" duration-ms="17" started-at="2019-01-03T20:10:10Z" finished-at="2019-01-03T20:10:10Z">
           <params>
             <param index="0">
               <value>
@@ -98,7 +95,7 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[org.testng.TestRunner@696f0212]]>
+                <![CDATA[org.testng.TestRunner@1951b871]]>
               </value>
             </param>
           </params>
@@ -108,7 +105,7 @@
             </line>
           </reporter-output>
         </test-method> <!-- prerequisitos -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_HotelConCambios@799f10e1]" name="beforeMethod" is-config="true" duration-ms="10143" started-at="2019-01-03T19:12:51Z" finished-at="2019-01-03T19:13:01Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_HotelConCambios@799f10e1]" name="beforeMethod" is-config="true" duration-ms="11320" started-at="2019-01-03T20:10:10Z" finished-at="2019-01-03T20:10:21Z">
           <reporter-output>
             <line>
               <![CDATA[Starting Browser]]>
@@ -118,7 +115,7 @@
             </line>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="test_HPHotelConCambioDeOcupantes()[pri:1, instance:testcases.HP_HotelConCambios@799f10e1]" name="test_HPHotelConCambioDeOcupantes" duration-ms="25659" started-at="2019-01-03T19:13:01Z" finished-at="2019-01-03T19:13:27Z">
+        <test-method status="PASS" signature="test_HPHotelConCambioDeOcupantes()[pri:1, instance:testcases.HP_HotelConCambios@799f10e1]" name="test_HPHotelConCambioDeOcupantes" duration-ms="27440" started-at="2019-01-03T20:10:21Z" finished-at="2019-01-03T20:10:49Z">
           <reporter-output>
             <line>
               <![CDATA[Starting test_HPHotelConCambioDeOcupantes]]>
@@ -131,14 +128,14 @@
             </line>
           </reporter-output>
         </test-method> <!-- test_HPHotelConCambioDeOcupantes -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_HotelConCambios@799f10e1]" name="Close" is-config="true" duration-ms="186" started-at="2019-01-03T19:13:27Z" finished-at="2019-01-03T19:13:27Z">
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_HotelConCambios@799f10e1]" name="Close" is-config="true" duration-ms="2088" started-at="2019-01-03T20:10:49Z" finished-at="2019-01-03T20:10:51Z">
           <reporter-output>
             <line>
               <![CDATA[Closing Browser...]]>
             </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.HP_HotelConCambios@799f10e1]" name="End" is-config="true" duration-ms="2" started-at="2019-01-03T19:13:27Z" finished-at="2019-01-03T19:13:27Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.HP_HotelConCambios@799f10e1]" name="End" is-config="true" duration-ms="1" started-at="2019-01-03T20:10:51Z" finished-at="2019-01-03T20:10:51Z">
           <reporter-output>
             <line>
               <![CDATA[Test Finished]]>
@@ -147,9 +144,9 @@
         </test-method> <!-- End -->
       </class> <!-- testcases.HP_HotelConCambios -->
     </test> <!-- HP_PTCOMMX -->
-    <test name="HP_PTCOM" duration-ms="60964" started-at="2019-01-03T19:13:27Z" finished-at="2019-01-03T19:14:28Z">
+    <test name="HP_PTCOM" duration-ms="32482" started-at="2019-01-03T20:10:51Z" finished-at="2019-01-03T20:11:24Z">
       <class name="testcases.HP_HotelConCambios">
-        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.HP_HotelConCambios@65fb9ffc]" name="prerequisitos" is-config="true" duration-ms="2" started-at="2019-01-03T19:13:27Z" finished-at="2019-01-03T19:13:27Z">
+        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.HP_HotelConCambios@65fb9ffc]" name="prerequisitos" is-config="true" duration-ms="3" started-at="2019-01-03T20:10:51Z" finished-at="2019-01-03T20:10:51Z">
           <params>
             <param index="0">
               <value>
@@ -163,7 +160,7 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[org.testng.TestRunner@5733f295]]>
+                <![CDATA[org.testng.TestRunner@5c18016b]]>
               </value>
             </param>
           </params>
@@ -173,7 +170,7 @@
             </line>
           </reporter-output>
         </test-method> <!-- prerequisitos -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_HotelConCambios@65fb9ffc]" name="beforeMethod" is-config="true" duration-ms="28416" started-at="2019-01-03T19:13:27Z" finished-at="2019-01-03T19:13:56Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_HotelConCambios@65fb9ffc]" name="beforeMethod" is-config="true" duration-ms="6311" started-at="2019-01-03T20:10:51Z" finished-at="2019-01-03T20:10:57Z">
           <reporter-output>
             <line>
               <![CDATA[Starting Browser]]>
@@ -183,7 +180,7 @@
             </line>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="test_HPHotelConCambioDeOcupantes()[pri:1, instance:testcases.HP_HotelConCambios@65fb9ffc]" name="test_HPHotelConCambioDeOcupantes" duration-ms="30457" started-at="2019-01-03T19:13:56Z" finished-at="2019-01-03T19:14:26Z">
+        <test-method status="PASS" signature="test_HPHotelConCambioDeOcupantes()[pri:1, instance:testcases.HP_HotelConCambios@65fb9ffc]" name="test_HPHotelConCambioDeOcupantes" duration-ms="25944" started-at="2019-01-03T20:10:57Z" finished-at="2019-01-03T20:11:23Z">
           <reporter-output>
             <line>
               <![CDATA[Starting test_HPHotelConCambioDeOcupantes]]>
@@ -196,14 +193,14 @@
             </line>
           </reporter-output>
         </test-method> <!-- test_HPHotelConCambioDeOcupantes -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_HotelConCambios@65fb9ffc]" name="Close" is-config="true" duration-ms="2083" started-at="2019-01-03T19:14:26Z" finished-at="2019-01-03T19:14:28Z">
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_HotelConCambios@65fb9ffc]" name="Close" is-config="true" duration-ms="216" started-at="2019-01-03T20:11:23Z" finished-at="2019-01-03T20:11:24Z">
           <reporter-output>
             <line>
               <![CDATA[Closing Browser...]]>
             </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.HP_HotelConCambios@65fb9ffc]" name="End" is-config="true" duration-ms="2" started-at="2019-01-03T19:14:28Z" finished-at="2019-01-03T19:14:28Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.HP_HotelConCambios@65fb9ffc]" name="End" is-config="true" duration-ms="1" started-at="2019-01-03T20:11:24Z" finished-at="2019-01-03T20:11:24Z">
           <reporter-output>
             <line>
               <![CDATA[Test Finished]]>
@@ -212,9 +209,9 @@
         </test-method> <!-- End -->
       </class> <!-- testcases.HP_HotelConCambios -->
     </test> <!-- HP_PTCOM -->
-    <test name="HP_PTCO" duration-ms="70636" started-at="2019-01-03T19:14:28Z" finished-at="2019-01-03T19:15:39Z">
+    <test name="HP_PTCO" duration-ms="58348" started-at="2019-01-03T20:11:24Z" finished-at="2019-01-03T20:12:22Z">
       <class name="testcases.HP_HotelConCambios">
-        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.HP_HotelConCambios@33d512c1]" name="prerequisitos" is-config="true" duration-ms="3" started-at="2019-01-03T19:14:28Z" finished-at="2019-01-03T19:14:28Z">
+        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.HP_HotelConCambios@33d512c1]" name="prerequisitos" is-config="true" duration-ms="3" started-at="2019-01-03T20:11:24Z" finished-at="2019-01-03T20:11:24Z">
           <params>
             <param index="0">
               <value>
@@ -228,7 +225,7 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[org.testng.TestRunner@1c3146bc]]>
+                <![CDATA[org.testng.TestRunner@33aeca0b]]>
               </value>
             </param>
           </params>
@@ -238,7 +235,7 @@
             </line>
           </reporter-output>
         </test-method> <!-- prerequisitos -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_HotelConCambios@33d512c1]" name="beforeMethod" is-config="true" duration-ms="23527" started-at="2019-01-03T19:14:28Z" finished-at="2019-01-03T19:14:52Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_HotelConCambios@33d512c1]" name="beforeMethod" is-config="true" duration-ms="11692" started-at="2019-01-03T20:11:24Z" finished-at="2019-01-03T20:11:35Z">
           <reporter-output>
             <line>
               <![CDATA[Starting Browser]]>
@@ -248,7 +245,88 @@
             </line>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="test_HPHotelConCambioDeOcupantes()[pri:1, instance:testcases.HP_HotelConCambios@33d512c1]" name="test_HPHotelConCambioDeOcupantes" duration-ms="44993" started-at="2019-01-03T19:14:52Z" finished-at="2019-01-03T19:15:37Z">
+        <test-method status="FAIL" signature="test_HPHotelConCambioDeOcupantes()[pri:1, instance:testcases.HP_HotelConCambios@33d512c1]" name="test_HPHotelConCambioDeOcupantes" duration-ms="43777" started-at="2019-01-03T20:11:35Z" finished-at="2019-01-03T20:12:19Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[Timed out after 30 seconds. Unable to locate the element]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: Timed out after 30 seconds. Unable to locate the element
+at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:90)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at com.sun.proxy.$Proxy30.getWrappedElement(Unknown Source)
+at org.openqa.selenium.remote.internal.WebElementToJsonConverter.apply(WebElementToJsonConverter.java:51)
+at java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+at java.util.Spliterators$ArraySpliterator.forEachRemaining(Unknown Source)
+at java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+at java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(Unknown Source)
+at java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+at java.util.stream.ReferencePipeline.collect(Unknown Source)
+at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:477)
+at pages.RoomListPageF.selectFirstRoom(RoomListPageF.java:64)
+at workflows.HPHotelConCambios.HPHotelConCambioDeOcupantes(HPHotelConCambios.java:78)
+at testcases.HP_HotelConCambios.test_HPHotelConCambioDeOcupantes(HP_HotelConCambios.java:79)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:580)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":".hotel-rooms-table .room-table .room-table-actions .btn.btn-primary"}
+  (Session info: chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.42.591088 (7b2b2dca23cca0862f674758c9a3933e685c27d5),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.11.0', revision: 'e59cfb3', time: '2018-03-11T20:26:55.152Z'
+System info: host: 'MXCDP4LP24', ip: '192.168.0.35', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_181'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.42.591088 (7b2b2dca23cca0..., userDataDir: C:\Users\ENRIQU~1.LOP\AppDa...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:52460}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 71.0.3578.98, webStorageEnabled: true}
+Session ID: 1428e6da88fef39b89cde2baa4562882
+*** Element info: {Using=css selector, value=.hotel-rooms-table .room-table .room-table-actions .btn.btn-primary}
+at sun.reflect.GeneratedConstructorAccessor26.newInstance(Unknown Source)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+at java.lang.reflect.Constructor.newInstance(Unknown Source)
+at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:319)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:413)
+at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:311)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+at org.openqa.selenium.support.pagefactory.AjaxElementLocator.access$001(AjaxElementLocator.java:40)
+at org.openqa.selenium.support.pagefactory.AjaxElementLocator$SlowLoadingElement.isLoaded(AjaxElementLocator.java:156)
+at org.openqa.selenium.support.ui.SlowLoadableComponent.get(SlowLoadableComponent.java:69)
+at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:86)
+... 39 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
             <line>
               <![CDATA[Starting test_HPHotelConCambioDeOcupantes]]>
@@ -256,19 +334,16 @@
             <line>
               <![CDATA[Staring workflow HPHotelConCambioDeOcupantes]]>
             </line>
-            <line>
-              <![CDATA[Ending HPHotelConCambioDeOcupantes]]>
-            </line>
           </reporter-output>
         </test-method> <!-- test_HPHotelConCambioDeOcupantes -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_HotelConCambios@33d512c1]" name="Close" is-config="true" duration-ms="2104" started-at="2019-01-03T19:15:37Z" finished-at="2019-01-03T19:15:39Z">
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_HotelConCambios@33d512c1]" name="Close" is-config="true" duration-ms="2343" started-at="2019-01-03T20:12:20Z" finished-at="2019-01-03T20:12:22Z">
           <reporter-output>
             <line>
               <![CDATA[Closing Browser...]]>
             </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.HP_HotelConCambios@33d512c1]" name="End" is-config="true" duration-ms="0" started-at="2019-01-03T19:15:39Z" finished-at="2019-01-03T19:15:39Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.HP_HotelConCambios@33d512c1]" name="End" is-config="true" duration-ms="1" started-at="2019-01-03T20:12:22Z" finished-at="2019-01-03T20:12:22Z">
           <reporter-output>
             <line>
               <![CDATA[Test Finished]]>

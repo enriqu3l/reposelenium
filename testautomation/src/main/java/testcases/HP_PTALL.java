@@ -47,7 +47,7 @@ public class HP_PTALL {
 		logger.info("***************************** Starting BeforeMethod **********************************");
 		Reporter.log("Starting Browser");
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(FrameworkConfig.DEFAULTBROWSER, gURL);
+		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, gURL);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}

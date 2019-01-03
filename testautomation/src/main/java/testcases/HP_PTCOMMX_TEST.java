@@ -20,7 +20,7 @@ public class HP_PTCOMMX_TEST {
 	@BeforeMethod
 	public void beforeMethod() {
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(FrameworkConfig.DEFAULTBROWSER, FrameworkConfig.URL_PTCOMMX_TEST);
+		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, FrameworkConfig.URL_PTCOMMX_TEST);
 	}
 	
 	

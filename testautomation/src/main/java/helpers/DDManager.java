@@ -46,7 +46,7 @@ public class DDManager {
 	}//EndFunction
 	
 	public  static VOHotelRes getHotelRes(int item) {
-		String filePath = FrameworkConfig.DATASOURCE_PATH+FrameworkConfig.FILE_HotelResData;
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELRESDATA;
 		
 		//Candado que limita los valores que puede tener la variable item
 		int max = ExcelUtils.getRowCount(filePath)-1;
@@ -59,7 +59,7 @@ public class DDManager {
 	}//EndFunction
 	
 	public static VOHotelRes getRandomHotelRes() {
-		String filePath = FrameworkConfig.DATASOURCE_PATH+FrameworkConfig.FILE_HotelResData;
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELRESDATA;
 		
 		int min = 1;  //Comienza en 1 porque la fila de cabecera es la 0
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
@@ -92,7 +92,7 @@ public class DDManager {
 	}//EndFunction
 	
 	public static VOCreditCard getCreditCard(int item) {
-		String filePath = FrameworkConfig.DATASOURCE_PATH+FrameworkConfig.FILE_CreditCardsData;
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_CREDITCARDSDATA;
 		//Candado que limita los valores que puede tener la variable item
 		int max = ExcelUtils.getRowCount(filePath)-1;
 		if(item<=0){item=1;}
@@ -104,7 +104,7 @@ public class DDManager {
 	}
 	
 	public static VOCreditCard getRandomCreditCard() {
-		String filePath = FrameworkConfig.DATASOURCE_PATH+FrameworkConfig.FILE_CreditCardsData;
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_CREDITCARDSDATA;
 		int min = 1;
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
 		//Asi se obtiene un numero random entre valor min y max.
@@ -118,7 +118,7 @@ public class DDManager {
 	
 	//Necesito verificar si funciona correctamente 
 	public static boolean saveLocator(String locator) {
-		String filePath = FrameworkConfig.DATASOURCE_PATH+FrameworkConfig.FILE_LocatorsGenerated;
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_LOCATORSGENERATED;
 		List<String> data = new ArrayList<String>();
 		data.add(locator);
 		data.add(LocalDateTime.now().toString("dd/MM/yyyy_HH:mm:ss"));

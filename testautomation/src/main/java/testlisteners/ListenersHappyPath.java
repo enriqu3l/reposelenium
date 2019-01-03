@@ -31,7 +31,7 @@ public class ListenersHappyPath implements ITestListener{
 		logger.info("Starting onTestFailure()");
 		logger.info("Fallo la prueba: "+result.getName());
 		//Imprimir pantalla de la falla!
-		BasicUtils.ScreenShot(BrowserFactory.driver, "FAILURE-"+result.getName(), FrameworkConfig.SCREENSHOOT_PATH);
+		BasicUtils.ScreenShot(BrowserFactory.driver, "FAILURE-"+result.getName(), FrameworkConfig.PATH_SCREENSHOOT_FAILURES);
 	}
 
 	@Override

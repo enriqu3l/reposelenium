@@ -22,7 +22,7 @@ public class HP_PTCOMMX_PROD {
 	public void beforeMethod() {
 		Reporter.log("Starting Browser");
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(FrameworkConfig.DEFAULTBROWSER, FrameworkConfig.URL_PTCOMMX_PROD);
+		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, FrameworkConfig.URL_PTCOMMX_PROD);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}

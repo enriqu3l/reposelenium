@@ -57,7 +57,7 @@ public class ThankYouPageF {
 		//checkCurrentURLPage();
 		Assert.assertTrue(message.getText().contains("Gracias"),"ThankYouPage -> No se encontro el mensaje de: Gracias");
 		logger.info("---> Localizador: "+locator.getText());
-		BasicUtils.ScreenShot(driver, locator.getText(), FrameworkConfig.SCREENSHOOT_PATH);
+		BasicUtils.ScreenShot(driver, locator.getText(), FrameworkConfig.PATH_SCREENSHOOT_LOCATORS);
 		DDManager.saveLocator(locator.getText());
 	}
 	
