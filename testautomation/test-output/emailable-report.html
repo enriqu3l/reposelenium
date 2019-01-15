@@ -8,63 +8,11 @@
 <body>
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
-<tr><th colspan="7">HP_Suite</th></tr>
-<tr><td><a href="#t0">HP_PTCOMMX</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">40,891</td><td></td><td></td></tr>
-<tr class="stripe"><td><a href="#t1">HP_PTCOM</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">32,482</td><td></td><td></td></tr>
-<tr><td><a href="#t2">HP_PTCO</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">58,348</td><td></td><td></td></tr>
-<tr><th>Total</th><th class="num">2</th><th class="num">0</th><th class="num attn">1</th><th class="num">131,721</th><th colspan="2"></th></tr>
+<tr><th colspan="7">Default suite</th></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">25,754</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">HP_Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">HP_PTCOMMX &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">testcases.HP_HotelConCambios</td><td><a href="#m0">test_HPHotelConCambioDeOcupantes</a></td><td rowspan="1">1546546221960</td><td rowspan="1">27440</td></tr></tbody>
-<tbody id="t1"><tr><th colspan="4">HP_PTCOM &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">testcases.HP_HotelConCambios</td><td><a href="#m1">test_HPHotelConCambioDeOcupantes</a></td><td rowspan="1">1546546257863</td><td rowspan="1">25944</td></tr></tbody>
-<tbody id="t2"><tr><th colspan="4">HP_PTCO &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">testcases.HP_HotelConCambios</td><td><a href="#m2">test_HPHotelConCambioDeOcupantes</a></td><td rowspan="1">1546546295734</td><td rowspan="1">43777</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">testcases.HP_Paginado</td><td><a href="#m0">HappyPath_HotelDefault</a></td><td rowspan="1">1547161818439</td><td rowspan="1">15211</td></tr></tbody>
 </table>
-<h2>HP_PTCOMMX</h2><h3 id="m0">testcases.HP_HotelConCambios#test_HPHotelConCambioDeOcupantes</h3><table class="result"><tr><th>Messages</th></tr><tr><td><div class="messages">Starting test_HPHotelConCambioDeOcupantes<br/>Staring workflow HPHotelConCambioDeOcupantes<br/>Ending HPHotelConCambioDeOcupantes</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h2>HP_PTCOM</h2><h3 id="m1">testcases.HP_HotelConCambios#test_HPHotelConCambioDeOcupantes</h3><table class="result"><tr><th>Messages</th></tr><tr><td><div class="messages">Starting test_HPHotelConCambioDeOcupantes<br/>Staring workflow HPHotelConCambioDeOcupantes<br/>Ending HPHotelConCambioDeOcupantes</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h2>HP_PTCO</h2><h3 id="m2">testcases.HP_HotelConCambios#test_HPHotelConCambioDeOcupantes</h3><table class="result"><tr><th>Messages</th></tr><tr><td><div class="messages">Starting test_HPHotelConCambioDeOcupantes<br/>Staring workflow HPHotelConCambioDeOcupantes</div></td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Timed out after 30 seconds. Unable to locate the element
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:90)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy30.getWrappedElement(Unknown Source)
-	at org.openqa.selenium.remote.internal.WebElementToJsonConverter.apply(WebElementToJsonConverter.java:51)
-	at java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
-	at java.util.Spliterators$ArraySpliterator.forEachRemaining(Unknown Source)
-	at java.util.stream.AbstractPipeline.copyInto(Unknown Source)
-	at java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
-	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(Unknown Source)
-	at java.util.stream.AbstractPipeline.evaluate(Unknown Source)
-	at java.util.stream.ReferencePipeline.collect(Unknown Source)
-	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:477)
-	at pages.RoomListPageF.selectFirstRoom(RoomListPageF.java:64)
-	at workflows.HPHotelConCambios.HPHotelConCambioDeOcupantes(HPHotelConCambios.java:78)
-	at testcases.HP_HotelConCambios.test_HPHotelConCambioDeOcupantes(HP_HotelConCambios.java:79)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;.hotel-rooms-table .room-table .room-table-actions .btn.btn-primary&quot;}
-  (Session info: chrome=71.0.3578.98)
-  (Driver info: chromedriver=2.42.591088 (7b2b2dca23cca0862f674758c9a3933e685c27d5),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.11.0&apos;, revision: &apos;e59cfb3&apos;, time: &apos;2018-03-11T20:26:55.152Z&apos;
-System info: host: &apos;MXCDP4LP24&apos;, ip: &apos;192.168.0.35&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.42.591088 (7b2b2dca23cca0..., userDataDir: C:\Users\ENRIQU~1.LOP\AppDa...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:52460}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 71.0.3578.98, webStorageEnabled: true}
-Session ID: 1428e6da88fef39b89cde2baa4562882
-*** Element info: {Using=css selector, value=.hotel-rooms-table .room-table .room-table-actions .btn.btn-primary}
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:319)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:413)
-	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:311)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.access$001(AjaxElementLocator.java:40)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator$SlowLoadingElement.isLoaded(AjaxElementLocator.java:156)
-	at org.openqa.selenium.support.ui.SlowLoadableComponent.get(SlowLoadableComponent.java:69)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:86)
-	... 39 more
-... Removed 28 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Default test</h2><h3 id="m0">testcases.HP_Paginado#HappyPath_HotelDefault</h3><table class="result"><tr><th>Messages</th></tr><tr><td><div class="messages">Starting test HappyPath_HotelDefault<br/>Starting workflow HPHotelConCambioDeDestino<br/>Ending HPHotelConCambioDeDestino</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

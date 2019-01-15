@@ -49,7 +49,7 @@ public class HPHotelConCambios {
 		pages.home_page.SearchHotel(DO_HotelRes);
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.widget_selectStartDate("10/03/2019");
-		pages.hotelList_page.widget_selectEndDate("14/03/2019");
+		pages.hotelList_page.widgetSelectEndDate("14/03/2019");
 		pages.hotelList_page.widget_search();
 		pages.hotelList_page.SelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();

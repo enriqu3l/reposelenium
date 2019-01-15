@@ -29,14 +29,6 @@ public class HP_PTCO_PROD {
 		logger.info("Starting test HappyPath_HotelDefault");
 		HPAllProducts.HPHotelDefault(driver);
 	}
-	
-	/*
-	@Test
-	public void HappyPath_HotelRandom() throws InterruptedException{
-		Reporter.log("Starting test HappyPath_HotelRandom");
-		logger.info("Starting test HappyPath_HotelRandom");
-		HappyPathsWF.HPHotelRandom();
-	}*/
 
 	@AfterMethod
 	public void Close()

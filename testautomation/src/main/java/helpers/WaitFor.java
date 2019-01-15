@@ -29,14 +29,14 @@ public class WaitFor {
 		};
 	}
 	
-	public static ExpectedCondition<Boolean> attributeChanged(By locator, String attr, String expectedValue){
+	public static ExpectedCondition<Boolean> attributeChanged(By locator, String attr, String actualValue){
 		return new ExpectedCondition<Boolean>() {
 			@Override
 			public Boolean apply(WebDriver input) {
 				 WebElement element = input.findElement(locator);
 		            String attribute = element.getAttribute(attr);
 		            System.out.println("attribute: "+attribute);
-		            if(attribute.equals(expectedValue)) 
+		            if(attribute.equals(actualValue)) 
 		                return false;
 		            else
 		                return true;

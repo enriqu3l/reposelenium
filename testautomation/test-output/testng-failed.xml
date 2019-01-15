@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [HP_Suite]">
-  <listeners>
-    <listener class-name="testlisteners.ListenersHappyPath"/>
-  </listeners>
-  <test thread-count="5" name="HP_PTCO(failed)">
-    <parameter name="browser" value="chrome"/>
-    <parameter name="url" value="https://www.pricetravel.co"/>
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testcases.HP_HotelConCambios">
+      <class name="testcases.HP_Paginado">
         <methods>
+          <include name="HappyPath_HotelDefault"/>
           <include name="beforeMethod"/>
-          <include name="End"/>
           <include name="Close"/>
-          <include name="prerequisitos"/>
-          <include name="test_HPHotelConCambioDeOcupantes"/>
+          <include name="End"/>
         </methods>
-      </class> <!-- testcases.HP_HotelConCambios -->
+      </class> <!-- testcases.HP_Paginado -->
     </classes>
-  </test> <!-- HP_PTCO(failed) -->
-</suite> <!-- Failed suite [HP_Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

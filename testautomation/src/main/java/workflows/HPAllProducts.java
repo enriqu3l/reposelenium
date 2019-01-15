@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
 import helpers.DDManager;
-import pages.HomePageF;
 import pages.Pages;
 import valueobjects.VOCreditCard;
 import valueobjects.VOHotelRes;

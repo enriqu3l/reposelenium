@@ -37,7 +37,7 @@ public class HP_PTALL {
 		else if(gtestName.equals("HP_PTCO")) {gURL = FrameworkConfig.URL_PTCO_PROD;}
 		
 		//Metodo 2 - Obteniendo un parametro
-		//URL = url;
+		//gURL = url;
 		logger.trace("URL: "+gURL);
 		Assert.assertFalse(gURL.equals(""),"No se ha seteado una URL valida!");
 	}

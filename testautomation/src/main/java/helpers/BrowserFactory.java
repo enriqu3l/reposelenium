@@ -20,8 +20,11 @@ import config.FrameworkConfig;
 public class BrowserFactory {
 	public static WebDriver driver;
 	
-	public static WebDriver StartBrowser(String BrowserName, String url) {
-		if(BrowserName.equalsIgnoreCase(FrameworkConfig.BROWSER_FIREFOX)) {
+	public static WebDriver StartBrowser(String _browserName, String _url) {
+		Assert.assertFalse((_browserName.equals("") || _browserName.equals(null)),"El parametro _browserName es nullo o no contiene informacion");
+		Assert.assertFalse((_url.equals("") || _url.equals(null)),"El parametro _url es nullo o no contiene informacion");
+		
+		if(_browserName.equalsIgnoreCase(FrameworkConfig.BROWSER_FIREFOX)) {
 			if(FrameworkConfig.BROWSER_CANCELNOTIFICATIONS) {
 				//Desabilitando las notificaciones
 				FirefoxProfile profile =new FirefoxProfile();
@@ -34,7 +37,7 @@ public class BrowserFactory {
 			}
 			
 		}
-		else if(BrowserName.equalsIgnoreCase(FrameworkConfig.BROWSER_CHROME)) {
+		else if(_browserName.equalsIgnoreCase(FrameworkConfig.BROWSER_CHROME)) {
 			if(FrameworkConfig.BROWSER_CANCELNOTIFICATIONS) {
 				//Opening chrome with notification disabled
 				ChromeOptions ops = new ChromeOptions();
@@ -45,18 +48,18 @@ public class BrowserFactory {
 			}
 			
 		}
-		else if(BrowserName.equalsIgnoreCase(FrameworkConfig.BROWSER_IE)) {
+		else if(_browserName.equalsIgnoreCase(FrameworkConfig.BROWSER_IE)) {
 			//Me falta agregar el if de la cancelacion de notificaciones en ie
 			driver = new InternetExplorerDriver();
 		}
-		else if(BrowserName.equalsIgnoreCase(FrameworkConfig.BROWSER_OPERA)) {
+		else if(_browserName.equalsIgnoreCase(FrameworkConfig.BROWSER_OPERA)) {
 			//Me falta agregar el if de la cancelacion de notificaciones en ie
 			driver = new OperaDriver();
 		}else{
 			Assert.fail("No se ha especificado el browser correctamente (solo puede ser: chrome, firefox, ie, opera)");
 		}
 		driver.manage().window().maximize();
-		driver.get(url);
+		driver.get(_url);
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		
 		return driver;

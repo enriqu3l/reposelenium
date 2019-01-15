@@ -17,9 +17,9 @@ import config.FrameworkConfig;
 import helpers.BrowserFactory;
 import workflows.HPHotelConCambios;
 
-public class HP_HotelConCambios {
+public class HotelListFiltros {
 	WebDriver driver;
-	Logger logger = LogManager.getLogger(HP_HotelConCambios.class);
+	Logger logger = LogManager.getLogger(HotelListFiltros.class);
 	String gtestName = "";
 	String gURL = "";
 	String gbrowser = "";

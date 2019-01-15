@@ -34,7 +34,27 @@
 							<version>3.0.0-M1</version>
 							<configuration>
 								<suiteXmlFiles>
-									<suiteXmlFile>testng_happypath.xml</suiteXmlFile>
+									<suiteXmlFile>testng_hpall_chrome.xml</suiteXmlFile>
+								</suiteXmlFiles>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<profile>
+			<id>HappypathConCambios</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<!-- plugin to allow us to execute selenium tests -->
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<version>3.0.0-M1</version>
+							<configuration>
+								<suiteXmlFiles>
+									<suiteXmlFile>testng_hpallconcambios.xml</suiteXmlFile>
 								</suiteXmlFiles>
 							</configuration>
 						</plugin>

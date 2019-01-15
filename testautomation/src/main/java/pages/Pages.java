@@ -37,7 +37,6 @@ public class Pages {
 		payMethod_page = new PayMethodPageF(driver);
 		//payMethod_page = PageFactory.initElements(BrowserFactory.driver, PayMethodPageF.class);
 	}
-	
 	public void thankYouPage_Initialize() {
 		thankYou_page = new ThankYouPageF(driver);
 	}

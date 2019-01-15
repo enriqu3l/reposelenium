@@ -7,30 +7,27 @@
   
   <test name="HP_PTCOMMX">
   	<parameter name="url" value="https://www.pricetravel.com.mx"/>
+  	<parameter name="browser" value="chrome"/>
   	<classes>
   		<class name="testcases.HP_PTALL">
-  		</class>
-  		<class name="testcases.HP_HotelConCambios">
   		</class>
   	</classes>
   </test>
   
   <test name="HP_PTCOM">
   	<parameter name="url" value="https://www.pricetravel.com"/>
+  	<parameter name="browser" value="chrome"/>
   	<classes>
   		<class name="testcases.HP_PTALL">
-  		</class>
-  		<class name="testcases.HP_HotelConCambios">
   		</class>
   	</classes>
   </test>
   
   <test name="HP_PTCO">
   	<parameter name="url" value="https://www.pricetravel.co"/>
+  	<parameter name="browser" value="chrome"/>
   	<classes>
   		<class name="testcases.HP_PTALL">
-  		</class>
-  		<class name="testcases.HP_HotelConCambios">
   		</class>
   	</classes>
   </test>

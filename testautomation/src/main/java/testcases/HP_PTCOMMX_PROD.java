@@ -3,7 +3,6 @@ package testcases;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -33,27 +32,13 @@ public class HP_PTCOMMX_PROD {
 		return new Object[][] { { "testuser_1", "Test@123" }, { "testuser_1", "Test@123" }};
 	}*/
 	
-	@Test (enabled=true, priority = 2)
-	public void HappyPath_HotelFailure() throws InterruptedException{
-		Reporter.log("Starting test HappyPath_HotelFailure");
-		logger.info("Starting test HappyPath_HotelFailure");
-		Assert.assertTrue(false); //Hacer fallar la prueba
-	}
-	
 	@Test (enabled=true, priority = 1)
 	public void HappyPath_HotelDefault() throws InterruptedException{
 		Reporter.log("Starting test HappyPath_HotelDefault");
 		logger.info("Starting test HappyPath_HotelDefault");
 		HPAllProducts.HPHotelDefault(driver);
-		//Assert.assertTrue(false, "Se Fallo a proposito jojojo!!!");
 	}
 	
-	@Test (enabled=false, priority = 1)
-	public void HappyPath_HotelRandom() throws InterruptedException{		
-		logger.info("Starting test HappyPath_HotelRandom");
-		HPAllProducts.HPHotelRandom(driver);
-	}
-
 	@AfterMethod
 	public void Close()
 	{

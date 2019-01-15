@@ -112,6 +112,10 @@ public class HotelListPageF {
 	@FindBy(how=How.CSS, css="#ptw-container .ptw-submit-btn")
 	WebElement widget_Button_search;
 	
+	By pagination_Next = By.xpath("/html/body/app-root/div/app-list/div[2]/div[2]/app-pager/nav/ul/li[8]/a/span");
+	//@FindBy(how=How.XPATH, xpat="/html/body/app-root/div/app-list/div[2]/div[2]/app-pager/nav/ul/li[8]/a/span/span")
+	//WebElement pagination_Next;
+	
 	By widget_startDate_dropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
 	By widget_endDate_dropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
 	By widget_dropdownmenu = By.cssSelector("#ptw-container .dropdown-menu");
@@ -126,7 +130,7 @@ public class HotelListPageF {
 		logger.trace("Tamaño de la lista: "+allBlocksResults.size());
 		
 		int index = getItemNum_firstHotelAvailable(allBlocksResults);
-		Assert.assertFalse(CoreConfig.FaultValue==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
+		Assert.assertFalse(CoreConfig.FAULTVALUE==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
 		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(BYButton_seeOffer);
 		Button_seeOffer.click();
 		
@@ -145,7 +149,7 @@ public class HotelListPageF {
 		Assert.assertFalse(allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
 		logger.trace("Tamaño de la lista: " + allBlocksResults.size());
 		
-		Assert.assertTrue(CoreConfig.FaultValue==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
+		Assert.assertTrue(CoreConfig.FAULTVALUE==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
 		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(BYButton_seeOffer);
 		Button_seeOffer.click();
 		
@@ -201,13 +205,21 @@ public class HotelListPageF {
 		logger.info("Starting widget_search()");
 		
 		waitForOverlay();
-		
 		String url = driver.getCurrentUrl();
+		
 		widget_Button_search.click();
 		
 		//Espero a que el boton lanze una nueva url
 		//(tiempo que tarda el boton en lanzar la accion)
 		wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
+		
+		//Agrego este Delay dado que tengo problemas cuando cambio solo el destino
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	//Ya se construyó pero aun no se ha probado!!
@@ -216,7 +228,7 @@ public class HotelListPageF {
 		widget_Input_destination.clear();
 		widget_Input_destination.sendKeys(DO_HotelRes.getDestination());
 		widget_selectStartDate(DO_HotelRes.getStartDate());		
-		widget_selectEndDate(DO_HotelRes.getEndDate());
+		widgetSelectEndDate(DO_HotelRes.getEndDate());
 		Select rooms = new Select(widget_Select_bookerHotelRooms);
 		rooms.selectByValue("1");
 		Select adults = new Select(widget_Select_bookerHotelAdults);
@@ -231,8 +243,7 @@ public class HotelListPageF {
 		//Me falta poner candados para validar el parametro		
 		
 		logger.info("Starting widget_selectStartDate()");
-		//Esperar a que se quite el overlay
-		waitForOverlay();
+		waitForOverlay(); //Esperar a que se quite el overlay
 		
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,widget_startDate_dropdownMenu)){widget_startDatePicker.click();}
@@ -258,16 +269,15 @@ public class HotelListPageF {
 		//driver.findElement(By.cssSelector(selector)).click();
 		
 		logger.info("Valor de widget_Input_startDate: " + widget_Input_startDate.getText());
-		
 	}
+	
 	//En construccion, ya mero esta lista!!!
-	public void widget_selectEndDate(String date) {
+	public void widgetSelectEndDate(String date) {
 		//Me falta poner candados para validar el parametro
 		
 		logger.info("Starting widget_selectEndDate()");
 		logger.trace("actualDate:  "+date);
-		//Esperar a que se quite el overlay
-		waitForOverlay();
+		waitForOverlay(); //Esperar a que se quite el overlay
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,widget_endDate_dropdownMenu)){widget_endDatePicker.click();}
 		
@@ -294,8 +304,22 @@ public class HotelListPageF {
 		
 		logger.info("Valor de widget_Input_startDate: " + widget_Input_endDate.getText());
 	}
-	
 	//++++++++++++++++++++++++++ END WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
+	
+	//++++++++++++++++++++++++++ PAGINADO FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++++
+	public void goToNextPage() {
+		waitForOverlay();
+		logger.info("Starting click on next page!!");
+		
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(pagination_Next).click();
+	}
 	
 	
 	//++++++++++++++++++++++++++++ Wait for Overlay ++++++++++++++++++++++++++++++++++++++++++++
@@ -311,7 +335,7 @@ public class HotelListPageF {
 	private int getItemNum_firstHotelAvailable(List<WebElement> allSearchResults) {
 		Assert.assertFalse(allSearchResults.isEmpty(),"ENF>>>El parametro de la lista de resultados esta vacia!.");
 		
-		int index = CoreConfig.FaultValue;
+		int index = CoreConfig.FAULTVALUE;
 		for (int i = 0; i < allSearchResults.size(); i++) {
 			WebElement listProductBlock = allSearchResults.get(i);
 			wait.until( ExpectedConditions.presenceOfNestedElementLocatedBy(listProductBlock, BYButton_seeOffer));
@@ -330,7 +354,7 @@ public class HotelListPageF {
 				logger.trace("getItemNum_firstHotelAvailable() - No se encontro tarifa $ en el item: " + i);
 			}
 		}
-		if(CoreConfig.FaultValue==index){logger.error("getItemNum_firstHotelAvailable() - No se encontro ningun hotel con disponibilidad!.");}
+		if(CoreConfig.FAULTVALUE==index){logger.error("getItemNum_firstHotelAvailable() - No se encontro ningun hotel con disponibilidad!.");}
 		return index;
 	}
 	private int getItemNum_byHotelName(String hotel) {

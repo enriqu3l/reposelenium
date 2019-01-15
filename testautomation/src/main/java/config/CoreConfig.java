@@ -2,9 +2,10 @@ package config;
 
 public class CoreConfig {
 	//FaultValues
-	public static final int FaultValue=-999;
-	public static final long FaultValueL=-999;
-	public static final String FaultValueS="FaultValue";
+	public static final int FAULTVALUE=-999;
+	public static final long FAULTVALUEL=-999;
+	public static final String FAULTVALUES="FaultValue";
 	
-	
+	//Split character
+	public static final String SPLIT = ",";
 }

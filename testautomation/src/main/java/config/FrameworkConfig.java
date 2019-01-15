@@ -8,8 +8,8 @@ public class FrameworkConfig {
 	public static final String R_DESTIN = "Cancún (y alrededores), México";
 	public static final int R_ADULTS = 2;
 	public static final int R_KIDS = 0;
-	public static final int R_STARTDATE_PlusMonth = 1;
-	public static final int R_ENDDATE_PlusDay = 2;
+	public static final int R_STARTDATE_PLUSMONTH = 1;
+	public static final int R_ENDDATE_RESDAYS = 2;
 	
 	//URL - Environments 
 	public static final String URL_PTCOMMX_TEST = "http://test.pricetravel.com.mx";
@@ -28,6 +28,7 @@ public class FrameworkConfig {
 	public static final String FILE_CREDITCARDSDATA = "CreditCardsData.xlsx";
 	public static final String FILE_HOTELRESDATA = "HotelResData.xlsx";
 	public static final String FILE_LOCATORSGENERATED = "LocatorsGenerated.xlsx";
+	public static final String FILE_HOTELLISTWIDGETDATA = "HotelListWidgetData.xlsx";
 	
 	//BrowserConfig
 	public static final String BROWSER_CHROME = "chrome";

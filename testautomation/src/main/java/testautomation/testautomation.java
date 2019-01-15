@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import helpers.BrowserFactory;
+import helpers.DDManager;
 
 public class testautomation {
 
@@ -94,6 +95,8 @@ public class testautomation {
 		wait.until(ExpectedConditions.textToBePresentInElementLocated(text,"completed"));
 		String texto = driver.findElement(text).getText();
 		System.out.println("Texto: "+texto);*/
+		
+		/*
 		WebDriver driver = BrowserFactory.StartBrowser("chrome", "http://qaclickacademy.com/practice.php");
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		By cb1 = By.id("checkBoxOption1");
@@ -127,7 +130,9 @@ public class testautomation {
 		if(alertText.contains(opc)) {
 			System.out.println("Great! Text Found...");
 		}
+		*/
 		
+		DDManager.getHotelResDefaultNew();
 		
 	}
 }

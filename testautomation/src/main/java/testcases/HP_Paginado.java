@@ -9,16 +9,17 @@ import org.testng.annotations.*;
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
 import workflows.HPAllProducts;
+import workflows.HPHotelConPaginado;
 
-public class HP_PTCOM_PROD {
+public class HP_Paginado {
 	WebDriver driver;
-	Logger logger = LogManager.getLogger(HP_PTCOM_PROD.class);
+	Logger logger = LogManager.getLogger(HP_Paginado.class);
 	
 	@BeforeMethod
 	public void beforeMethod() {
 		Reporter.log("Starting Browser");
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, FrameworkConfig.URL_PTCOM_PROD);
+		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, FrameworkConfig.URL_PTCOMMX_PROD);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}
@@ -27,7 +28,7 @@ public class HP_PTCOM_PROD {
 	public void HappyPath_HotelDefault() throws InterruptedException{
 		Reporter.log("Starting test HappyPath_HotelDefault");
 		logger.info("Starting test HappyPath_HotelDefault");
-		HPAllProducts.HPHotelDefault(driver);
+		HPHotelConPaginado.HPHotelConCambioDePagina(driver);
 	}
 
 	@AfterMethod
@@ -35,7 +36,7 @@ public class HP_PTCOM_PROD {
 	{
 		Reporter.log("Closing Browser...");
 		logger.info("Closing Browser...");
-		driver.close();	
+		//driver.close();	
 	}
 	
 	@AfterTest
@@ -43,5 +44,6 @@ public class HP_PTCOM_PROD {
 	{
 		Reporter.log("Test Finished");
 		logger.info("Test Finished");
+		System.out.println("Test Finished");
 	}
 }

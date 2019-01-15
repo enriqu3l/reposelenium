@@ -2,6 +2,8 @@ package utility;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,6 +21,61 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class BasicUtils {
+	
+	//"https://www.pricetravel.com/hoteles/cancun-area","Cancún (y alrededores), México",""
+	public static String buildSPAHotelListLP(String site, String destination, String startDate, String endDate, String adults) {
+		String example = "https://www.pricetravel.com"
+				+ "/hoteles/"
+				+ "cancun-area"
+				+ "?room1.adults=2"
+				+ "&room1.kids=2"
+				+ "&room1.agekids=10,10"
+				+ "&room2.adults=2"
+				+ "&room2.kids=2"
+				+ "&room2.agekids=11,11"
+				+ "&room3.adults=2"
+				+ "&room3.kids=2"
+				+ "&room3.agekids=12,12"
+				+ "&checkin=2019%2F01%2F14"
+				+ "&checkout=2019%2F01%2F15"
+				+ "&rooms=3"
+				+ "&adults=6"
+				+ "&kids=6"
+				+ "&agekids=10,10,11,11,12,12"
+				+ "&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico"
+				+ "&placeid=69364"
+				+ "&placetype=3"
+				+ "&puri=cancun-area"
+				+ "&quotelist=true"
+				+ "&returningfromairport="
+				+ "&startingfromairport="
+				+ "&actiontype=1";
+		
+		try {
+			String x = URLEncoder.encode(example, "UTF-8");
+			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		String url="";
+		url+=site;
+		
+		/*
+		StringBuilder finalStringb =new StringBuilder();
+	    for(String tempString:setInput){
+	          finalStringb.append(",").append(tempString).append(",") ;   
+	    }
+	    String finalS = finalStringb.toString();
+		*/
+		return url;
+	}
+	
+	public static String generateSPARoomListLP() {
+		String url="";
+		
+		return url;
+	}
 	
 	//Check if a element is present
 	public static boolean existsElement(WebDriver driver, By by) {

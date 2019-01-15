@@ -11,6 +11,7 @@ import config.FrameworkConfig;
 import utility.ExcelUtils;
 import valueobjects.VOCreditCard;
 import valueobjects.VOHotelRes;
+import valueobjects.VOHotelResNew;
 
 public class DDManager {
 	/*Ya no usare resources internos, ahora los archivos estaran fuera del proyecto
@@ -30,15 +31,40 @@ public class DDManager {
 	}
 	
 	//-------------------------HOTEL RES------------------------------
+	public static VOHotelResNew getHotelResDefaultNew() {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
+		int defaultRow = 1; //Para leer el primer registro del archivo
+		
+		VOHotelResNew voHotelResNew = new VOHotelResNew();
+		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
+		
+		System.out.println("idHotelRes: "+voHotelResNew.getIdHotelRes());
+		System.out.println("destination: "+voHotelResNew.getDestination());
+		System.out.println("startDate: "+voHotelResNew.getStartDate());
+		System.out.println("endDate: "+voHotelResNew.getEndDate());
+		System.out.println("rooms Count: "+voHotelResNew.getRoomCount());
+		for(int i=0;i<voHotelResNew.getRoomCount();i++) {
+			System.out.println("Adults in room["+i+"]: "+voHotelResNew.getAdultsFromRoom(i));
+			System.out.println("Kids in room["+i+"]: "+voHotelResNew.getKidsFromRoom(i));
+			System.out.println("AgeKids in room["+i+"]: "+voHotelResNew.getAgekidsFromRoom(i));
+			for(int j=0;j<voHotelResNew.getKidsFromRoom(i);j++) {
+				System.out.println("Age of Kid "+j+" in room["+i+"]: "+voHotelResNew.getAgeFromAgekids(i, j));
+			}
+			System.out.println("-----------------------------------");
+		}
+		
+		
+		return voHotelResNew;
+	}//EndFunction
 	public static VOHotelRes getHotelResDefault() {
 		LocalDate startDate;
 		LocalDate endDate;
 		VOHotelRes voHotelRes = new VOHotelRes();
 		voHotelRes.setIdHotelRes("HR001");
 		voHotelRes.setDestination(FrameworkConfig.R_DESTIN);
-		startDate = LocalDate.now().plusMonths(FrameworkConfig.R_STARTDATE_PlusMonth);
+		startDate = LocalDate.now().plusMonths(FrameworkConfig.R_STARTDATE_PLUSMONTH);
 		voHotelRes.setStartDate(startDate.toString("dd/MM/yyyy"));
-		endDate = startDate.plusDays(FrameworkConfig.R_ENDDATE_PlusDay);
+		endDate = startDate.plusDays(FrameworkConfig.R_ENDDATE_RESDAYS);
 		voHotelRes.setEndDate(endDate.toString("dd/MM/yyyy"));
 		voHotelRes.setAdults(FrameworkConfig.R_ADULTS);
 		voHotelRes.setKids(FrameworkConfig.R_KIDS);
