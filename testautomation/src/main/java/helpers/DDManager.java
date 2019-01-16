@@ -30,32 +30,49 @@ public class DDManager {
 	public DDManager() {
 	}
 	
-	//-------------------------HOTEL RES------------------------------
-	public static VOHotelResNew getHotelResDefaultNew() {
+	//------------------------- HOTEL RES NEW ------------------------------
+	public static VOHotelResNew getHotelResNewDefault() {
+		//ATENCION!!
+		//Ahorita lo tengo hardcodeado a hotellistwidgetdata.xlsx, solo para probar, despue lo tengo que modificar
 		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
 		int defaultRow = 1; //Para leer el primer registro del archivo
 		
 		VOHotelResNew voHotelResNew = new VOHotelResNew();
 		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
 		
-		System.out.println("idHotelRes: "+voHotelResNew.getIdHotelRes());
-		System.out.println("destination: "+voHotelResNew.getDestination());
-		System.out.println("startDate: "+voHotelResNew.getStartDate());
-		System.out.println("endDate: "+voHotelResNew.getEndDate());
-		System.out.println("rooms Count: "+voHotelResNew.getRoomCount());
-		for(int i=0;i<voHotelResNew.getRoomCount();i++) {
-			System.out.println("Adults in room["+i+"]: "+voHotelResNew.getAdultsFromRoom(i));
-			System.out.println("Kids in room["+i+"]: "+voHotelResNew.getKidsFromRoom(i));
-			System.out.println("AgeKids in room["+i+"]: "+voHotelResNew.getAgekidsFromRoom(i));
-			for(int j=0;j<voHotelResNew.getKidsFromRoom(i);j++) {
-				System.out.println("Age of Kid "+j+" in room["+i+"]: "+voHotelResNew.getAgeFromAgekids(i, j));
-			}
-			System.out.println("-----------------------------------");
-		}
-		
-		
 		return voHotelResNew;
 	}//EndFunction
+	
+	public  static VOHotelResNew getHotelResNew(int item) {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
+		
+		//Candado que limita los valores que puede tener la variable item
+		int max = ExcelUtils.getRowCount(filePath)-1;
+		if(item<=0){item=1;}
+		if(item>max){item=max;}
+		
+		VOHotelResNew voHotelResNew = new VOHotelResNew();
+		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, item));
+		return voHotelResNew;
+	}//EndFunction
+	
+	public static VOHotelResNew getRandomHotelResNew() {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
+		
+		int min = 1;  //Comienza en 1 porque la fila de cabecera es la 0
+		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
+		//Asi se obtiene un numero random entre valor min y max:
+		Random rand = new Random();
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+		
+		System.out.println("Info - DDManager - getRandomHotelRes randomNum: "+randomNum);
+		
+		VOHotelResNew voHotelResNew = new VOHotelResNew();
+		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
+		return voHotelResNew;
+	}//EndFunction
+	
+	//-------------------------HOTEL RES------------------------------
 	public static VOHotelRes getHotelResDefault() {
 		LocalDate startDate;
 		LocalDate endDate;

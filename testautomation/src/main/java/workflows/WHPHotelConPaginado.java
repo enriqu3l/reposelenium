@@ -10,8 +10,8 @@ import pages.Pages;
 import valueobjects.VOCreditCard;
 import valueobjects.VOHotelRes;
 
-public class HPHotelConPaginado {
-	private static Logger logger = LogManager.getLogger(HPHotelConPaginado.class);
+public class WHPHotelConPaginado {
+	private static Logger logger = LogManager.getLogger(WHPHotelConPaginado.class);
 	
 	public static void HPHotelConCambioDePagina(WebDriver driver) throws InterruptedException{
 		logger.info("Starting workflow HPHotelConCambioDeDestino");
@@ -25,7 +25,7 @@ public class HPHotelConPaginado {
 		pages.home_page.SearchHotel(DO_HotelRes);
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.goToNextPage();
-		pages.hotelList_page.SelectFirstHotelAvailable();
+		pages.hotelList_page.selectFirstHotelAvailable();
 		logger.info("Ending HPHotelConCambioDeDestino");
 		Reporter.log("Ending HPHotelConCambioDeDestino");
 	}	

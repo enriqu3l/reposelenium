@@ -2,6 +2,9 @@ package config;
 
 public class FrameworkConfig {
 	
+	//About Hotel List
+	public static final int TOTALRECORDSPERPAGES = 20;
+	
 	//Default Reservation Data
 	public static final String R_ID = "HR001";
 	public static final String R_ORIGIN = "Ciudad de México (y alrededores), Distrito Federal, México";

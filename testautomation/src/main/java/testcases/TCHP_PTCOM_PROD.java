@@ -8,18 +8,17 @@ import org.testng.annotations.*;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.HPAllProducts;
-import workflows.HPHotelConPaginado;
+import workflows.WHPAllProducts;
 
-public class SPAHLWidget {
+public class TCHP_PTCOM_PROD {
 	WebDriver driver;
-	Logger logger = LogManager.getLogger(SPAHLWidget.class);
+	Logger logger = LogManager.getLogger(TCHP_PTCOM_PROD.class);
 	
 	@BeforeMethod
 	public void beforeMethod() {
 		Reporter.log("Starting Browser");
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, FrameworkConfig.URL_PTCOMMX_PROD);
+		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, FrameworkConfig.URL_PTCOM_PROD);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}
@@ -28,7 +27,7 @@ public class SPAHLWidget {
 	public void HappyPath_HotelDefault() throws InterruptedException{
 		Reporter.log("Starting test HappyPath_HotelDefault");
 		logger.info("Starting test HappyPath_HotelDefault");
-		HPHotelConPaginado.HPHotelConCambioDePagina(driver);
+		WHPAllProducts.HPHotelDefault(driver);
 	}
 
 	@AfterMethod
@@ -36,7 +35,7 @@ public class SPAHLWidget {
 	{
 		Reporter.log("Closing Browser...");
 		logger.info("Closing Browser...");
-		//driver.close();	
+		driver.close();	
 	}
 	
 	@AfterTest
@@ -44,6 +43,5 @@ public class SPAHLWidget {
 	{
 		Reporter.log("Test Finished");
 		logger.info("Test Finished");
-		System.out.println("Test Finished");
 	}
 }

@@ -11,11 +11,11 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.HPAllProducts;
+import workflows.WHPAllProducts;
 
-public class HP_PTCOMMX_PROD {
+public class TCHP_PTCOMMX_PROD {
 	WebDriver driver;
-	Logger logger = LogManager.getLogger(HP_PTCOMMX_PROD.class);
+	Logger logger = LogManager.getLogger(TCHP_PTCOMMX_PROD.class);
 	
 	@BeforeMethod
 	public void beforeMethod() {
@@ -36,7 +36,7 @@ public class HP_PTCOMMX_PROD {
 	public void HappyPath_HotelDefault() throws InterruptedException{
 		Reporter.log("Starting test HappyPath_HotelDefault");
 		logger.info("Starting test HappyPath_HotelDefault");
-		HPAllProducts.HPHotelDefault(driver);
+		WHPAllProducts.HPHotelDefault(driver);
 	}
 	
 	@AfterMethod

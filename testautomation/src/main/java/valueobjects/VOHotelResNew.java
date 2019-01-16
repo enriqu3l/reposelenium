@@ -40,10 +40,10 @@ public class VOHotelResNew {
 	public VOHotelResNew(String idHotelRes, String destination, String startDate, String endDate,
 			List<Map<String, String>> rooms) {
 		super();
-		this.idHotelRes = idHotelRes;
-		this.destination = destination;
-		this.startDate = startDate;
-		this.endDate = endDate;
+		this.idHotelRes = idHotelRes.trim();
+		this.destination = destination.trim();
+		this.startDate = startDate.trim();
+		this.endDate = endDate.trim();
 		this.rooms = rooms;
 	}
 

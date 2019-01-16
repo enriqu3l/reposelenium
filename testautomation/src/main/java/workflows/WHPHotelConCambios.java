@@ -10,8 +10,8 @@ import pages.Pages;
 import valueobjects.VOCreditCard;
 import valueobjects.VOHotelRes;
 
-public class HPHotelConCambios {
-	private static Logger logger = LogManager.getLogger(HPHotelConCambios.class);
+public class WHPHotelConCambios {
+	private static Logger logger = LogManager.getLogger(WHPHotelConCambios.class);
 	
 	public static void HPHotelConCambioDeDestino(WebDriver driver) throws InterruptedException{
 		logger.info("Starting workflow HPHotelConCambioDeDestino");
@@ -24,9 +24,9 @@ public class HPHotelConCambios {
 		pages.homePage_Initialize();
 		pages.home_page.SearchHotel(DO_HotelRes);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.widget_changeDestin("Las Vegas (y alrededores), Nevada, Estados Unidos de América");
-		pages.hotelList_page.widget_search();
-		pages.hotelList_page.SelectFirstHotelAvailable();
+		pages.hotelList_page.widgetChangeDestin("Las Vegas (y alrededores), Nevada, Estados Unidos de América");
+		pages.hotelList_page.widgetClickSubmit();
+		pages.hotelList_page.selectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();
@@ -48,10 +48,10 @@ public class HPHotelConCambios {
 		pages.homePage_Initialize();
 		pages.home_page.SearchHotel(DO_HotelRes);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.widget_selectStartDate("10/03/2019");
-		pages.hotelList_page.widgetSelectEndDate("14/03/2019");
-		pages.hotelList_page.widget_search();
-		pages.hotelList_page.SelectFirstHotelAvailable();
+		pages.hotelList_page.widgetChangeStartDate("10/03/2019");
+		pages.hotelList_page.widgetChangeEndDate("14/03/2019");
+		pages.hotelList_page.widgetClickSubmit();
+		pages.hotelList_page.selectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();
@@ -71,9 +71,9 @@ public class HPHotelConCambios {
 		pages.homePage_Initialize();
 		pages.home_page.SearchHotel(DO_HotelRes);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.widget_changeAdults(4);
-		pages.hotelList_page.widget_search();
-		pages.hotelList_page.SelectFirstHotelAvailable();
+		pages.hotelList_page.widgetChangeAdults(4);
+		pages.hotelList_page.widgetClickSubmit();
+		pages.hotelList_page.selectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();

@@ -15,11 +15,11 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.HPAllProducts;
+import workflows.WHPAllProducts;
 
-public class HP_PTALL {
+public class TCHP_PTALL {
 	WebDriver driver;
-	Logger logger = LogManager.getLogger(HP_PTALL.class);
+	Logger logger = LogManager.getLogger(TCHP_PTALL.class);
 	String gtestName = "";
 	String gURL = "";
 	
@@ -62,7 +62,7 @@ public class HP_PTALL {
 	public void HappyPath_HotelDefault() throws InterruptedException{
 		Reporter.log("Starting test HappyPath_HotelDefault");
 		logger.info("Starting test HappyPath_HotelDefault");
-		HPAllProducts.HPHotelDefault(driver);
+		WHPAllProducts.HPHotelDefault(driver);
 	}
 
 	@AfterMethod

@@ -10,8 +10,8 @@ import pages.Pages;
 import valueobjects.VOCreditCard;
 import valueobjects.VOHotelRes;
 
-public class HPAllProducts {
-	private static Logger logger = LogManager.getLogger(HPAllProducts.class);
+public class WHPAllProducts {
+	private static Logger logger = LogManager.getLogger(WHPAllProducts.class);
 	
 	public static void HPHotelDefault(WebDriver driver) throws InterruptedException{
 		logger.info("Starting HPHotelDefault");
@@ -24,7 +24,7 @@ public class HPAllProducts {
 		pages.homePage_Initialize();
 		pages.home_page.SearchHotel(DO_HotelRes);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.SelectFirstHotelAvailable();
+		pages.hotelList_page.selectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();
@@ -47,7 +47,7 @@ public class HPAllProducts {
 		pages.homePage_Initialize();
 		pages.home_page.SearchHotel(DO_HotelRes);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.SelectFirstHotelAvailable();
+		pages.hotelList_page.selectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();

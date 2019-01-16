@@ -82,6 +82,7 @@ public class BasicUtils {
 		return !driver.findElements(by).isEmpty();
 	}
 	
+	//Check if a element is NOT present
 	public static boolean noExistsElement(WebDriver driver, By by) {
 		return driver.findElements(by).isEmpty();
 	}

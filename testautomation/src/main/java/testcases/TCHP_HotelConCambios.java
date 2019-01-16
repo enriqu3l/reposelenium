@@ -15,11 +15,11 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.HPHotelConCambios;
+import workflows.WHPHotelConCambios;
 
-public class HotelListFiltros {
+public class TCHP_HotelConCambios {
 	WebDriver driver;
-	Logger logger = LogManager.getLogger(HotelListFiltros.class);
+	Logger logger = LogManager.getLogger(TCHP_HotelConCambios.class);
 	String gtestName = "";
 	String gURL = "";
 	String gbrowser = "";
@@ -61,21 +61,21 @@ public class HotelListFiltros {
 	public void test_HPHotelConCambioDeDestino() throws InterruptedException{
 		Reporter.log("Starting @test_HPHotelConCambioDeDestino");
 		logger.info("Starting @test_HPHotelConCambioDeDestino");
-		HPHotelConCambios.HPHotelConCambioDeDestino(driver);
+		WHPHotelConCambios.HPHotelConCambioDeDestino(driver);
 	}
 	
 	@Test (enabled=false, priority = 1, groups = { "HPHotelConCambios" })
 	public void test_HPHotelConCambioDeFecha() throws InterruptedException{		
 		Reporter.log("Starting @test_HPHotelConCambioDeFecha");
 		logger.info("Starting @test_HPHotelConCambioDeFecha");
-		HPHotelConCambios.HPHotelConCambioDeFecha(driver);
+		WHPHotelConCambios.HPHotelConCambioDeFecha(driver);
 	}
 	
 	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
 	public void test_HPHotelConCambioDeOcupantes() throws InterruptedException{		
 		Reporter.log("Starting @test_HPHotelConCambioDeOcupantes");
 		logger.info("Starting @test_HPHotelConCambioDeOcupantes");
-		HPHotelConCambios.HPHotelConCambioDeOcupantes(driver);
+		WHPHotelConCambios.HPHotelConCambioDeOcupantes(driver);
 	}
 
 	@AfterMethod

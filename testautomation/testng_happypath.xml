@@ -6,9 +6,9 @@
 	</listeners>
 	<test thread-count="3" name="Test">
 		<classes>
-			<class name="testcases.HP_PTCOMMX_PROD" />
-			<class name="testcases.HP_PTCOM_PROD" />
-			<class name="testcases.HP_PTCO_PROD" />
+			<class name="testcases.TCHP_PTCOMMX_PROD" />
+			<class name="testcases.TCHP_PTCOM_PROD" />
+			<class name="testcases.TCHP_PTCO_PROD" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

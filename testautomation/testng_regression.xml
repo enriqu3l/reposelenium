@@ -3,7 +3,8 @@
 <suite name="Regression_Suite">
   <test thread-count="3" name="Test">
     <classes>
-      <class name="testcases.SPAHLWidget"/>
+      <class name="testcases.hoteles.TCSPAHLWidget"/>
+      <class name="testcases.hoteles.TCSPAHLPaging"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

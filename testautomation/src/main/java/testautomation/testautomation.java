@@ -5,8 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import config.FrameworkConfig;
 import helpers.BrowserFactory;
 import helpers.DDManager;
+import utility.ExcelUtils;
+import valueobjects.VOHotelResNew;
 
 public class testautomation {
 
@@ -132,7 +135,26 @@ public class testautomation {
 		}
 		*/
 		
-		DDManager.getHotelResDefaultNew();
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
+		int defaultRow = 1; //Para leer el primer registro del archivo
+		
+		VOHotelResNew voHotelResNew = new VOHotelResNew();
+		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
+		
+		System.out.println("idHotelRes: "+voHotelResNew.getIdHotelRes());
+		System.out.println("destination: "+voHotelResNew.getDestination());
+		System.out.println("startDate: "+voHotelResNew.getStartDate());
+		System.out.println("endDate: "+voHotelResNew.getEndDate());
+		System.out.println("rooms Count: "+voHotelResNew.getRoomCount());
+		for(int i=0;i<voHotelResNew.getRoomCount();i++) {
+			System.out.println("Adults in room["+i+"]: "+voHotelResNew.getAdultsFromRoom(i));
+			System.out.println("Kids in room["+i+"]: "+voHotelResNew.getKidsFromRoom(i));
+			System.out.println("AgeKids in room["+i+"]: "+voHotelResNew.getAgekidsFromRoom(i));
+			for(int j=0;j<voHotelResNew.getKidsFromRoom(i);j++) {
+				System.out.println("Age of Kid "+j+" in room["+i+"]: "+voHotelResNew.getAgeFromAgekids(i, j));
+			}
+			System.out.println("-----------------------------------");
+		}
 		
 	}
 }

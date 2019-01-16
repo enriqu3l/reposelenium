@@ -21,8 +21,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import config.CoreConfig;
+import config.FrameworkConfig;
 import utility.BasicUtils;
 import valueobjects.VOHotelRes;
+import valueobjects.VOHotelResNew;
 
 public class HotelListPageF {
 	private WebDriverWait wait;
@@ -42,12 +44,12 @@ public class HotelListPageF {
 	}
 	
 	//Ejemplos de como buscar attributos en xpath y cssSelector
-	By overlayOcultoXPath = By.xpath("//*[@class='loader-overlay'][contains(@style, 'display: none')]");
-	By overlayOculto = By.cssSelector(".loader-overlay[style='display: none; opacity: 0;']");
+	//By overlayOcultoXPath = By.xpath("//*[@class='loader-overlay'][contains(@style, 'display: none')]");
+	//By overlayOculto = By.cssSelector(".loader-overlay[style='display: none; opacity: 0;']");
 	
-	By loaderOverlayPage = By.cssSelector(".loader-overlay.ng-trigger");
-	By loaderButton = By.cssSelector(".list-product-rate .loader");
-	By loaderOverlayFiltros = By.cssSelector(".card-body .loader-overlay");
+	By byLoaderOverlayPage = By.cssSelector(".loader-overlay.ng-trigger");
+	By byLoaderButton = By.cssSelector(".list-product-rate .loader");
+	By byLoaderOverlayFiltros = By.cssSelector(".card-body .loader-overlay");
 	
 	@FindBy(how=How.CSS, css=".loader__title")
 	WebElement loaderTitle;
@@ -55,16 +57,28 @@ public class HotelListPageF {
 	@FindBy(how=How.CSS, css=".spinner")
 	WebElement spiner;
 	
+	
+	//-------------- Header Section --------------------------------
+	By byPageHeaderTitle = By.cssSelector(".page-header .page-header-title");
+	
+	@FindBy(how=How.CSS, css=".page-header .page-header-title")
+	WebElement pageHeaderTitle;
+	
+	
 	//-------------- List Section ----------------------------------
+	@FindBy(how=How.CSS, css=".list-product")
+	WebElement listProduct;
+	
 	@FindBy(how=How.CSS, css=".list-product .list-product-block")
 	List<WebElement> allBlocksResults;
 	
 	@FindBy(how=How.CSS, css=".list-product .list-product-block .list-product-rate .list-product-rate-action a")
 	WebElement Button_firstItem;
 	
-	By BYlistProduct = By.cssSelector(".list-product");
-	By BYproductRateFinal = By.cssSelector(".list-product-rate .product-rate-final");
-	By BYButton_seeOffer = By.cssSelector(".list-product-rate .list-product-rate-action .btn");
+	By byListProduct = By.cssSelector(".list-product");
+	By byProductRateFinal = By.cssSelector(".list-product-rate .product-rate-final");
+	By byButton_seeOffer = By.cssSelector(".list-product-rate .list-product-rate-action .btn");
+	
 	
 	//--------------- Lateral Widget elements - Basados en SPA-Hoteles!! ----------
 	@FindBy(how=How.CSS, css="#ptw-container #destination")
@@ -101,37 +115,45 @@ public class HotelListPageF {
 	WebElement widget_endDate_nextMonth;
 	
 	@FindBy(how=How.CSS, css="#ptw-container #ap_booker_Hotel_rooms")
-	WebElement widget_Select_bookerHotelRooms;
+	WebElement widget_Select_hotelRooms;
 	
 	@FindBy(how=How.CSS, css="#ptw-container .ap_booker_Hotel_adults")
-	WebElement widget_Select_bookerHotelAdults;
+	WebElement widget_Select_hotelAdults;
 	
 	@FindBy(how=How.CSS, css="#ptw-container .ap_booker_Hotel_minors")
-	WebElement widget_Select_bookerHotelMinors;
+	WebElement widget_Select_hotelMinors;
 	
 	@FindBy(how=How.CSS, css="#ptw-container .ptw-submit-btn")
-	WebElement widget_Button_search;
+	WebElement widget_Button_submit;
 	
-	By pagination_Next = By.xpath("/html/body/app-root/div/app-list/div[2]/div[2]/app-pager/nav/ul/li[8]/a/span");
-	//@FindBy(how=How.XPATH, xpat="/html/body/app-root/div/app-list/div[2]/div[2]/app-pager/nav/ul/li[8]/a/span/span")
-	//WebElement pagination_Next;
+	@FindBy(how=How.CSS, css="#ptw-container .ap_booker_Hotelroom")
+	List<WebElement> allBlockRooms;
 	
 	By widget_startDate_dropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
 	By widget_endDate_dropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
 	By widget_dropdownmenu = By.cssSelector("#ptw-container .dropdown-menu");
+	By widget_hotelAdults = By.cssSelector(".ap_booker_Hotel_adults");
+	By widget_hotelMinors = By.cssSelector(".ap_booker_Hotel_minors");
+	
+	
+	//--------------- Lateral Pagination Elements - Basados en SPA-Hoteles!! ----------
+	By byPaginationNext = By.xpath("/html/body/app-root/div/app-list/div[2]/div[2]/app-pager/nav/ul/li[8]/a/span");
+	//@FindBy(how=How.XPATH, xpat="/html/body/app-root/div/app-list/div[2]/div[2]/app-pager/nav/ul/li[8]/a/span/span")
+	//WebElement pagination_Next;
+	
 	
 	//Esta funcion se diseño pensando solo en la funcionalidad de las SPA
-	public void SelectFirstHotelAvailable() {
+	public void selectFirstHotelAvailable() {
 		//Esperar a que se quite el overlay, falla en PTCOMMXTest, porque la pagina de Test no usa SPA.
-		waitForOverlay();
+		waitForContentToBeReady();
 		
-		Assert.assertTrue(BasicUtils.existsElement(driver,BYlistProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
+		Assert.assertTrue(BasicUtils.existsElement(driver,byListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
 		Assert.assertFalse(allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
 		logger.trace("Tamaño de la lista: "+allBlocksResults.size());
 		
 		int index = getItemNum_firstHotelAvailable(allBlocksResults);
 		Assert.assertFalse(CoreConfig.FAULTVALUE==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
-		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(BYButton_seeOffer);
+		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(byButton_seeOffer);
 		Button_seeOffer.click();
 		
 		//En caso de encontrar una nueva tab, switchear a ella.
@@ -139,18 +161,19 @@ public class HotelListPageF {
 		verifyIfANewTabOpened();
 	}
 	
-	public void SelectHotel(int index) throws InterruptedException {
-		Assert.assertTrue(index<20,"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
+	public void selectHotel(int index) throws InterruptedException {
+		Assert.assertTrue((index>=0 && index<FrameworkConfig.TOTALRECORDSPERPAGES),"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
 		
 		//Esperar a que se quite el overlay, falla en PTCOMMXTest, porque la pagina de Test no usa SPA.
-		waitForOverlay();
-
-		Assert.assertTrue(BasicUtils.existsElement(driver, BYlistProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
+		waitForContentToBeReady();
+		
+		Assert.assertTrue(BasicUtils.existsElement(driver, byListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
 		Assert.assertFalse(allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
 		logger.trace("Tamaño de la lista: " + allBlocksResults.size());
 		
-		Assert.assertTrue(CoreConfig.FAULTVALUE==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
-		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(BYButton_seeOffer);
+		//Aqui no estoy verificando si tiene disponibilidad, simplemente lo estoy seleccionando
+		
+		WebElement Button_seeOffer = allBlocksResults.get(index).findElement(byButton_seeOffer);
 		Button_seeOffer.click();
 		
 		//En caso de encontrar una nueva tab, switchear a ella.
@@ -176,11 +199,11 @@ public class HotelListPageF {
 	
 	//++++++++++++++++++++++++++ WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
 	
-	public void widget_changeDestin(String destin) {
+	public void widgetChangeDestin(String destin) {
 		logger.info("Starting widget_changeDestin()");
 		//Me falta poner candados para validar el parametro
 		
-		waitForOverlay();
+		waitForContentToBeReady();
 		
 		widget_Input_destination.clear();
 		widget_Input_destination.sendKeys(destin);
@@ -191,24 +214,27 @@ public class HotelListPageF {
 		widget_Input_destination.sendKeys(Keys.ENTER);
 	}
 	
-	public void widget_changeAdults(int adultsNumber) {
+	public void widgetChangeAdults(int adultsNumber) {
 		logger.info("Starting widget_changeAdults()");
 		//Me falta poner candados para validar el parametro
 		
-		waitForOverlay();
+		waitForContentToBeReady();
 		
-		Select adults = new Select(widget_Select_bookerHotelAdults);
+		Select adults = new Select(widget_Select_hotelAdults);
 		adults.selectByValue(Integer.toString(adultsNumber));
 	}
 	
-	public void widget_search() {
+	public void widgetClickSubmit() {
 		logger.info("Starting widget_search()");
 		
-		waitForOverlay();
+		waitForContentToBeReady();
 		String url = driver.getCurrentUrl();
 		
-		widget_Button_search.click();
+		widget_Button_submit.click();
 		
+		
+		//IMPORTANTE: Si realizo una busqueda con el mismo destino o algun mismo dato,
+		//la url sera la misma y ocurrira un error!!!!!!! Necesito corregir esto!!!
 		//Espero a que el boton lanze una nueva url
 		//(tiempo que tarda el boton en lanzar la accion)
 		wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
@@ -222,28 +248,68 @@ public class HotelListPageF {
 		}
 	}
 	
+	//En construccion!!!!!!!
+	public void widgetChangeSearch(VOHotelResNew voHotelResNew){
+		logger.info("Starting widget_changeSearch()");
+		waitForContentToBeReady();
+		
+		widget_Input_destination.clear();
+		widget_Input_destination.sendKeys(voHotelResNew.getDestination());
+		widgetChangeStartDate(voHotelResNew.getStartDate());
+		widgetChangeEndDate(voHotelResNew.getEndDate());
+		
+		//Aqui el codigo para realizar la seleccion de rooms, adults, kids y agekids
+		
+		Select rooms = new Select(widget_Select_hotelRooms);
+		rooms.selectByValue(Integer.toString(voHotelResNew.getRoomCount()));
+		//rooms.selectByIndex(voHotelResNew.getRoomCount()-1); //-1 porque es Base 0
+		
+		//Aqui ya se crearon los rooms ahora hay que llenar los adultos y niños
+		if(allBlockRooms.size() != voHotelResNew.getRoomCount()) {
+			 logger.error("No se crearon los campos suficientes de rooms, allBlocksRooms:"+allBlockRooms.size());
+			 Assert.fail("LAF>>>No se crearon los campos suficientes de rooms, allBlocksRooms:"+allBlockRooms.size());
+		}
+		
+		for(int i=0;i<allBlockRooms.size();i++) {
+			WebElement weAdults = allBlockRooms.get(i).findElement(widget_hotelAdults);
+			WebElement weKids = allBlockRooms.get(i).findElement(widget_hotelMinors);
+			
+			//adults.sendKeys(Integer.toString(voHotelResNew.getAdultsFromRoom(i)));
+			Select adults = new Select(weAdults);
+			adults.selectByValue(Integer.toString(voHotelResNew.getAdultsFromRoom(i)));
+			
+			Select kids = new Select(weKids);
+			kids.selectByValue(Integer.toString(voHotelResNew.getKidsFromRoom(i)));
+		}
+		
+		//Ahora hay que llenar las edades de los niños
+		
+		
+		widgetClickSubmit();
+	}
+	
 	//Ya se construyó pero aun no se ha probado!!
-	public void widget_changeSearch(VOHotelRes DO_HotelRes){
+	public void widgetChangeSearchOld(VOHotelRes voHotelRes){
 		logger.info("Starting widget_changeSearch()");
 		widget_Input_destination.clear();
-		widget_Input_destination.sendKeys(DO_HotelRes.getDestination());
-		widget_selectStartDate(DO_HotelRes.getStartDate());		
-		widgetSelectEndDate(DO_HotelRes.getEndDate());
-		Select rooms = new Select(widget_Select_bookerHotelRooms);
+		widget_Input_destination.sendKeys(voHotelRes.getDestination());
+		widgetChangeStartDate(voHotelRes.getStartDate());		
+		widgetChangeEndDate(voHotelRes.getEndDate());
+		Select rooms = new Select(widget_Select_hotelRooms);
 		rooms.selectByValue("1");
-		Select adults = new Select(widget_Select_bookerHotelAdults);
-		adults.selectByValue(Integer.toString(DO_HotelRes.getAdults()));
-		Select kids = new Select(widget_Select_bookerHotelMinors);
+		Select adults = new Select(widget_Select_hotelAdults);
+		adults.selectByValue(Integer.toString(voHotelRes.getAdults()));
+		Select kids = new Select(widget_Select_hotelMinors);
 		kids.selectByValue("0");
-		widget_search();
+		widgetClickSubmit();
 	}
 	
 	//En construccion, ya mero esta lista!!!
-	public void widget_selectStartDate(String date) {
-		//Me falta poner candados para validar el parametro		
+	public void widgetChangeStartDate(String date) {
+		//Me falta poner candados para validar el parametro	
 		
 		logger.info("Starting widget_selectStartDate()");
-		waitForOverlay(); //Esperar a que se quite el overlay
+		waitForContentToBeReady(); //Esperar a que se quite el overlay
 		
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,widget_startDate_dropdownMenu)){widget_startDatePicker.click();}
@@ -268,16 +334,16 @@ public class HotelListPageF {
 		//String selector = "#start-datepicker div[aria-label*=' "+day+" '].ngb-dp-day div";
 		//driver.findElement(By.cssSelector(selector)).click();
 		
-		logger.info("Valor de widget_Input_startDate: " + widget_Input_startDate.getText());
+		logger.trace("Valor de widget_Input_startDate: " + widget_Input_startDate.getAttribute("value"));
 	}
 	
 	//En construccion, ya mero esta lista!!!
-	public void widgetSelectEndDate(String date) {
+	public void widgetChangeEndDate(String date) {
 		//Me falta poner candados para validar el parametro
 		
 		logger.info("Starting widget_selectEndDate()");
 		logger.trace("actualDate:  "+date);
-		waitForOverlay(); //Esperar a que se quite el overlay
+		waitForContentToBeReady(); //Esperar a que se quite el overlay
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,widget_endDate_dropdownMenu)){widget_endDatePicker.click();}
 		
@@ -302,13 +368,14 @@ public class HotelListPageF {
 		//String selector = "#end-datepicker div[aria-label*=' " + Integer.toString(day) + " '].ngb-dp-day div";
 		//driver.findElement(By.cssSelector(selector)).click();
 		
-		logger.info("Valor de widget_Input_startDate: " + widget_Input_endDate.getText());
+		logger.trace("Valor de widget_Input_startDate: " + widget_Input_endDate.getAttribute("value"));
 	}
 	//++++++++++++++++++++++++++ END WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
 	
-	//++++++++++++++++++++++++++ PAGINADO FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++++
+	
+	//++++++++++++++++++++++++++ PAGING FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++++
 	public void goToNextPage() {
-		waitForOverlay();
+		waitForContentToBeReady();
 		logger.info("Starting click on next page!!");
 		
 		try {
@@ -318,15 +385,125 @@ public class HotelListPageF {
 			e.printStackTrace();
 		}
 		
-		driver.findElement(pagination_Next).click();
+		driver.findElement(byPaginationNext).click();
+	}
+	//++++++++++++++++++++++++++ END PAGING FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++++
+	
+	
+	//+++++++++++++++++++++++++++ VERIFY FUNCTIONS +++++++++++++++++++++++++++++++++++++++++++++
+	public void verifyWidgetInputDestinationToBe(String expected) {
+		waitForContentToBeReady();
+		
+		String actual = widget_Input_destination.getText().trim();
+		if(actual.isEmpty()) {
+			//Si getText no funciona uso el metodo getAttribute
+			actual = widget_Input_destination.getAttribute("value").trim();
+		}
+		logger.trace("actual:"+actual);
+		
+		if(!actual.contains(expected)) {
+			logger.error("Actual value: ("+actual+") in widget_Input_destination is not equal to expected value: ("+expected+")");
+			Assert.fail("LAF>>>Actual value: ("+actual+") in widget_Input_destination is not equal to expected value: ("+expected+")");
+		}
+	}
+	
+	public void verifyWidgetStartDateToBe(String expected) {
+		waitForContentToBeReady();
+		
+		String actual = widget_Input_startDate.getText().trim();
+		if(actual.isEmpty()) {
+			//Si getText no funciona uso el metodo getAttribute
+			actual = widget_Input_startDate.getAttribute("value").trim();
+		}
+		logger.trace("actual:"+actual);
+		
+		if(!actual.contains(expected)) {
+			logger.error("Actual value: ("+actual+") in widget_Input_startDate is not equal to expected value: ("+expected+")");
+			Assert.fail("LAF>>>Actual value: ("+actual+") in widget_Input_startDate is not equal to expected value: ("+expected+")");
+		}
+	}
+	
+	public void verifyHeaderTitleToBe(String title) {
+		waitForContentToBeReady();
+		
+		String actual = pageHeaderTitle.getText().trim();
+		String expected = title;
+		if(!actual.contains(expected)) {
+			logger.error("Text: ("+actual+") in pageHeaderTitle does not contain the expected: ("+expected+")");
+			Assert.fail("LAF>>>Text: ("+actual+") in pageHeaderTitle does not contain the expected: ("+expected+")");
+		}
+	}
+	
+	public void verifyResultListHasElements() {
+		Assert.assertTrue(BasicUtils.existsElement(driver,byListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
+		Assert.assertFalse(allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
+		logger.trace("Tamaño de la lista: "+allBlocksResults.size());
+	}
+	
+	public void verifyWidgetInputDestinationAutocomplete(List<String> data) {
+		logger.info("Starting widget_changeDestin()");
+		//Me falta poner candados para validar el parametro
+		
+		waitForContentToBeReady();
+		
+		for(int i=0; i<data.size();i++) {
+			widget_Input_destination.clear();
+			widget_Input_destination.sendKeys(data.get(i).toLowerCase().trim());
+			
+			//Wait until dropdown menu appears
+			wait.until(ExpectedConditions.presenceOfElementLocated(widget_dropdownmenu));
+			widget_Input_destination.sendKeys(Keys.ENTER);
+			
+			String actual = widget_Input_destination.getText().toLowerCase().trim();
+			if(actual.isEmpty()) {
+				//Si getText no funciona uso getAttribute
+				actual = widget_Input_destination.getAttribute("value").toLowerCase().trim();
+			}
+			
+			Assert.assertTrue(actual.contains(data.get(i).toLowerCase().trim()),
+					"El input destination no contiene la palabra buscada:"+data.get(i).trim());
+			
+			widget_Input_destination.clear();
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(widget_dropdownmenu));
+		}
+	}
+	
+	//En construccion!!!
+	public void verifyURLToContain(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
-	//++++++++++++++++++++++++++++ Wait for Overlay ++++++++++++++++++++++++++++++++++++++++++++
+	//+++++++++++++++++++++++++++++++++++ WAITS ++++++++++++++++++++++++++++++++++++++++++++++++
+	public void waitForOverlayButtons() {
+		if(BasicUtils.existsElement(driver, byListProduct)) {
+			List<WebElement> allLoaderButtons;
+			allLoaderButtons = listProduct.findElements(byLoaderButton);
+			if(!allLoaderButtons.isEmpty()) {
+				//Esperar a que se quiten todos los overlays de los botones
+				wait.until(ExpectedConditions.invisibilityOfAllElements(allLoaderButtons));
+			}
+		}
+	}
+	
 	public void waitForOverlay() {
 		//Esperar a que se quite el overlay
 		//wait.until(WaitFor.attributeValue(loaderOverlayPage, "style", "display: none; opacity: 0;"));
-		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		wait.until(ExpectedConditions.attributeContains(byLoaderOverlayPage, "style", "display: none; opacity: 0;"));
+	}
+	
+	public void waitForContentToBeReady() {
+		waitForOverlay();
+		waitForOverlayButtons();
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
@@ -338,10 +515,10 @@ public class HotelListPageF {
 		int index = CoreConfig.FAULTVALUE;
 		for (int i = 0; i < allSearchResults.size(); i++) {
 			WebElement listProductBlock = allSearchResults.get(i);
-			wait.until( ExpectedConditions.presenceOfNestedElementLocatedBy(listProductBlock, BYButton_seeOffer));
+			wait.until( ExpectedConditions.presenceOfNestedElementLocatedBy(listProductBlock, byButton_seeOffer));
 			
-			if(!listProductBlock.findElements(BYproductRateFinal).isEmpty()) {
-				WebElement rateFinal = listProductBlock.findElement(BYproductRateFinal);
+			if(!listProductBlock.findElements(byProductRateFinal).isEmpty()) {
+				WebElement rateFinal = listProductBlock.findElement(byProductRateFinal);
 				if (!rateFinal.getText().isEmpty()) {
 					int i_masuno = i+1;
 					logger.trace("getItemNum_firstHotelAvailable() - Se encontro disp. en el Hotel No: " + i_masuno);

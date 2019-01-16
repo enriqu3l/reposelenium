@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="5" total="7" passed="2">
   <reporter-output>
     <line>
       <![CDATA[Starting Browser]]>
@@ -8,13 +8,25 @@
       <![CDATA[Browser Started]]>
     </line>
     <line>
-      <![CDATA[Starting test HappyPath_HotelDefault]]>
+      <![CDATA[Starting test1]]>
     </line>
     <line>
-      <![CDATA[Starting workflow HPHotelConCambioDeDestino]]>
+      <![CDATA[Starting workflow destinationAutocompleteTest]]>
     </line>
     <line>
-      <![CDATA[Ending HPHotelConCambioDeDestino]]>
+      <![CDATA[Closing Browser...]]>
+    </line>
+    <line>
+      <![CDATA[Starting Browser]]>
+    </line>
+    <line>
+      <![CDATA[Browser Started]]>
+    </line>
+    <line>
+      <![CDATA[Starting test2]]>
+    </line>
+    <line>
+      <![CDATA[Starting workflow changeDestinTest]]>
     </line>
     <line>
       <![CDATA[Closing Browser...]]>
@@ -23,12 +35,12 @@
       <![CDATA[Test Finished]]>
     </line>
   </reporter-output>
-  <suite name="Default suite" duration-ms="25754" started-at="2019-01-10T23:10:07Z" finished-at="2019-01-10T23:10:33Z">
+  <suite name="Default suite" duration-ms="48400" started-at="2019-01-16T04:08:50Z" finished-at="2019-01-16T04:09:38Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="25754" started-at="2019-01-10T23:10:07Z" finished-at="2019-01-10T23:10:33Z">
-      <class name="testcases.HP_Paginado">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.HP_Paginado@351d00c0]" name="beforeMethod" is-config="true" duration-ms="10528" started-at="2019-01-10T23:10:07Z" finished-at="2019-01-10T23:10:18Z">
+    <test name="Default test" duration-ms="48400" started-at="2019-01-16T04:08:50Z" finished-at="2019-01-16T04:09:38Z">
+      <class name="testcases.hoteles.TCSPAHLWidget">
+        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@351d00c0]" name="prerequisites" is-config="true" duration-ms="6372" started-at="2019-01-16T04:08:50Z" finished-at="2019-01-16T04:08:56Z">
           <reporter-output>
             <line>
               <![CDATA[Starting Browser]]>
@@ -37,35 +49,59 @@
               <![CDATA[Browser Started]]>
             </line>
           </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="HappyPath_HotelDefault()[pri:0, instance:testcases.HP_Paginado@351d00c0]" name="HappyPath_HotelDefault" duration-ms="15211" started-at="2019-01-10T23:10:18Z" finished-at="2019-01-10T23:10:33Z">
+        </test-method> <!-- prerequisites -->
+        <test-method status="PASS" signature="test1()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@351d00c0]" name="test1" duration-ms="16365" started-at="2019-01-16T04:08:56Z" finished-at="2019-01-16T04:09:13Z">
           <reporter-output>
             <line>
-              <![CDATA[Starting test HappyPath_HotelDefault]]>
+              <![CDATA[Starting test1]]>
             </line>
             <line>
-              <![CDATA[Starting workflow HPHotelConCambioDeDestino]]>
-            </line>
-            <line>
-              <![CDATA[Ending HPHotelConCambioDeDestino]]>
+              <![CDATA[Starting workflow destinationAutocompleteTest]]>
             </line>
           </reporter-output>
-        </test-method> <!-- HappyPath_HotelDefault -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.HP_Paginado@351d00c0]" name="Close" is-config="true" duration-ms="0" started-at="2019-01-10T23:10:33Z" finished-at="2019-01-10T23:10:33Z">
+        </test-method> <!-- test1 -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@351d00c0]" name="Close" is-config="true" duration-ms="1" started-at="2019-01-16T04:09:13Z" finished-at="2019-01-16T04:09:13Z">
           <reporter-output>
             <line>
               <![CDATA[Closing Browser...]]>
             </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.HP_Paginado@351d00c0]" name="End" is-config="true" duration-ms="0" started-at="2019-01-10T23:10:33Z" finished-at="2019-01-10T23:10:33Z">
+        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@351d00c0]" name="prerequisites" is-config="true" duration-ms="5270" started-at="2019-01-16T04:09:13Z" finished-at="2019-01-16T04:09:18Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Starting Browser]]>
+            </line>
+            <line>
+              <![CDATA[Browser Started]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- prerequisites -->
+        <test-method status="PASS" signature="test2()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@351d00c0]" name="test2" duration-ms="20352" started-at="2019-01-16T04:09:18Z" finished-at="2019-01-16T04:09:38Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Starting test2]]>
+            </line>
+            <line>
+              <![CDATA[Starting workflow changeDestinTest]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test2 -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@351d00c0]" name="Close" is-config="true" duration-ms="2" started-at="2019-01-16T04:09:38Z" finished-at="2019-01-16T04:09:38Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Closing Browser...]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- Close -->
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@351d00c0]" name="End" is-config="true" duration-ms="2" started-at="2019-01-16T04:09:38Z" finished-at="2019-01-16T04:09:38Z">
           <reporter-output>
             <line>
               <![CDATA[Test Finished]]>
             </line>
           </reporter-output>
         </test-method> <!-- End -->
-      </class> <!-- testcases.HP_Paginado -->
+      </class> <!-- testcases.hoteles.TCSPAHLWidget -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
