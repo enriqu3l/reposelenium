@@ -29,6 +29,12 @@ public class ExcelUtils {
 	
 	//Esta funcion ya tiene la capacidad de leer archivos externos y recursos internos
 	//Funcion que devuleve una fila, el parametro row=4 devuelve la fila 5
+	/**
+	 * Esta funcion lee un archivo de excel y regresa la fila indicada. Base 0
+	 * @param _filePath
+	 * @param _rowNumber
+	 * @return Lista-String-
+	 */
 	public static List<String> getRow(String _filePath, int _rowNumber){
 		int rowNumber = _rowNumber;
 		List<String> data = new ArrayList<String>();
@@ -256,6 +262,10 @@ public class ExcelUtils {
 	}
 	
 	//Esta funcion ya tiene la capacidad de leer archivos externos y recursos internos
+	/**
+	 * @param _filePath
+	 * @return
+	 */
 	public static int getRowCount(String _filePath) {
 		int row=0;
 		

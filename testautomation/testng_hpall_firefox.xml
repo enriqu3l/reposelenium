@@ -5,29 +5,29 @@
     <listener class-name="testlisteners.ListenersHappyPath"></listener>
   </listeners>
   
-  <test name="HP_PTCOMMX">
+  <test name="HPPTCOMMX">
   	<parameter name="url" value="https://www.pricetravel.com.mx"/>
   	<parameter name="browser" value="firefox"/>
   	<classes>
-  		<class name="testcases.TCHP_PTALL">
+  		<class name="testcases.hphoteles.TCHP_PTALL">
   		</class>
   	</classes>
   </test>
   
-  <test name="HP_PTCOM">
+  <test name="HPPTCOM">
   	<parameter name="url" value="https://www.pricetravel.com"/>
   	<parameter name="browser" value="firefox"/>
   	<classes>
-  		<class name="testcases.TCHP_PTALL">
+  		<class name="testcases.hphoteles.TCHP_PTALL">
   		</class>
   	</classes>
   </test>
   
-  <test name="HP_PTCO">
+  <test name="HPPTCO">
   	<parameter name="url" value="https://www.pricetravel.co"/>
   	<parameter name="browser" value="firefox"/>
   	<classes>
-  		<class name="testcases.TCHP_PTALL">
+  		<class name="testcases.hphoteles.TCHP_PTALL">
   		</class>
   	</classes>
   </test>

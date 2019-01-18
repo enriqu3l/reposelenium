@@ -1,4 +1,4 @@
-package workflows;
+package workflows.hphoteles;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +9,7 @@ import helpers.DDManager;
 import pages.Pages;
 import valueobjects.VOCreditCard;
 import valueobjects.VOHotelRes;
+import valueobjects.VOHotelResNew;
 
 public class WHPHotelConCambios {
 	private static Logger logger = LogManager.getLogger(WHPHotelConCambios.class);
@@ -18,15 +19,15 @@ public class WHPHotelConCambios {
 		Reporter.log("Starting workflow HPHotelConCambioDeDestino");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
 		//Estoy usando la data de GeneralConfig por la fecha plusMonth porque aun no implemento en el Excel
-		VOHotelRes DO_HotelRes = DDManager.getHotelResDefault();
+		VOHotelResNew voHotelResNew = DDManager.getHotelResNewDefault();
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
-		pages.home_page.SearchHotel(DO_HotelRes);
+		pages.home_page.searchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.widgetChangeDestin("Las Vegas (y alrededores), Nevada, Estados Unidos de América");
 		pages.hotelList_page.widgetClickSubmit();
-		pages.hotelList_page.selectFirstHotelAvailable();
+		pages.hotelList_page.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();
@@ -42,16 +43,16 @@ public class WHPHotelConCambios {
 		Reporter.log("Staring workflow HPHotelConCambioDeFecha");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
 		//Estoy usando la data de GeneralConfig por la fecha plusMonth porque aun no implemento en el Excel
-		VOHotelRes DO_HotelRes = DDManager.getHotelResDefault();
+		VOHotelResNew voHotelResNew = DDManager.getHotelResNewDefault();
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
-		pages.home_page.SearchHotel(DO_HotelRes);
+		pages.home_page.searchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.widgetChangeStartDate("10/03/2019");
 		pages.hotelList_page.widgetChangeEndDate("14/03/2019");
 		pages.hotelList_page.widgetClickSubmit();
-		pages.hotelList_page.selectFirstHotelAvailable();
+		pages.hotelList_page.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();
@@ -65,15 +66,15 @@ public class WHPHotelConCambios {
 	public static void HPHotelConCambioDeOcupantes(WebDriver driver) throws InterruptedException{
 		logger.info("Starting workflow HPHotelConCambioDeOcupantes");
 		Reporter.log("Staring workflow HPHotelConCambioDeOcupantes");
-		VOHotelRes DO_HotelRes = DDManager.getHotelResDefault();
+		VOHotelResNew voHotelResNew = DDManager.getHotelResNewDefault();
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
-		pages.home_page.SearchHotel(DO_HotelRes);
+		pages.home_page.searchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.widgetChangeAdults(4);
 		pages.hotelList_page.widgetClickSubmit();
-		pages.hotelList_page.selectFirstHotelAvailable();
+		pages.hotelList_page.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();

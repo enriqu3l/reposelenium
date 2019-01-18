@@ -1,4 +1,4 @@
-package testcases;
+package testcases.hphoteles;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.WHPAllProducts;
+import workflows.hphoteles.WHPHoteles;
 
 public class TCHP_PTCOMMX_PROD {
 	WebDriver driver;
@@ -36,7 +36,7 @@ public class TCHP_PTCOMMX_PROD {
 	public void HappyPath_HotelDefault() throws InterruptedException{
 		Reporter.log("Starting test HappyPath_HotelDefault");
 		logger.info("Starting test HappyPath_HotelDefault");
-		WHPAllProducts.HPHotelDefault(driver);
+		WHPHoteles.HPHotelDefault(driver);
 	}
 	
 	@AfterMethod

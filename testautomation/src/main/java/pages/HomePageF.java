@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import valueobjects.VOHotelRes;
+import valueobjects.VOHotelResNew;
 
 public class HomePageF {
 	private WebDriverWait wait;
@@ -129,7 +130,29 @@ public class HomePageF {
 	By productActive = By.cssSelector("li.ptw-active > a");
 	By waitdropdownmenu = By.cssSelector(".pt-customJqueryUi .ui-autocomplete");
 	
-	public void SearchHotel(VOHotelRes DO_HotelRes){
+	public void searchHotel(VOHotelResNew voHotelResNew){
+		logger.info("Starting SearchHotel()");
+		verifyProductSelectedOnWidgetMenu("Hoteles");
+		Input_destHotel.clear();
+		Input_destHotel.sendKeys(voHotelResNew.getDestination());
+		wait.until(ExpectedConditions.attributeContains(waitdropdownmenu, "style", "display: block;"));
+		Input_destHotel.sendKeys(Keys.ENTER);
+		Input_destStartHotel.clear();
+		Input_destStartHotel.sendKeys(voHotelResNew.getStartDate());
+		Input_destEndHotel.clear();
+		Input_destEndHotel.sendKeys(voHotelResNew.getEndDate());
+		//Image_destEndHotelTrigger.click();  esconde el calendario
+		Select rooms = new Select(Select_bookerHotelRooms);
+		rooms.selectByVisibleText("1");
+		Select adults = new Select(Select_bookerHotelAdults0);
+		adults.selectByValue(Integer.toString(voHotelResNew.getAdultsFromRoom(0)));
+		Select kids = new Select(Select_bookerHotelMinors0);
+		kids.selectByValue(Integer.toString(voHotelResNew.getKidsFromRoom(0)));
+		Button_search.click();
+		logger.info("Ending SearchHotel()");
+	}
+	
+	public void searchHotelOld(VOHotelRes DO_HotelRes){
 		logger.info("Starting SearchHotel()");
 		verifyProductSelectedOnWidgetMenu("Hoteles");
 		Input_destHotel.clear();

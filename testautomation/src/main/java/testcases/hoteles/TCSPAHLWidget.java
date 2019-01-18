@@ -26,25 +26,25 @@ public class TCSPAHLWidget {
 		logger.info("Browser Started");
 	}
 	
-	@Test
+	@Test (enabled=true)
 	public void test1() throws InterruptedException{
 		Reporter.log("Starting test1");
 		logger.info("Starting test1");
-		WSPAHLWidget.destinationAutocompleteTest(driver);
+		WSPAHLWidget.autocompleteDestinationTest(driver);
 	}
 	
-	@Test
+	@Test (enabled=true)
 	public void test2() throws InterruptedException{
 		Reporter.log("Starting test2");
 		logger.info("Starting test2");
-		WSPAHLWidget.changeDestinTest(driver);
+		WSPAHLWidget.searchUsingDifferentDestinTest(driver);
 	}
 	
-	@Test (enabled=false)
+	@Test (enabled=true)
 	public void test3() throws InterruptedException{
 		Reporter.log("Starting test3");
 		logger.info("Starting test3");
-		//HLWidget – Cambiar la fecha de salida
+		WSPAHLWidget.searchUsingDifferentDatesTest(driver);
 	}
 	
 	@Test (enabled=false)
@@ -74,7 +74,7 @@ public class TCSPAHLWidget {
 	{
 		Reporter.log("Closing Browser...");
 		logger.info("Closing Browser...");
-		//driver.close();	
+		driver.close();	
 	}
 	
 	@AfterTest

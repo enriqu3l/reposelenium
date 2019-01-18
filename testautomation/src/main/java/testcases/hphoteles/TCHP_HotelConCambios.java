@@ -1,4 +1,4 @@
-package testcases;
+package testcases.hphoteles;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.WHPHotelConCambios;
+import workflows.hphoteles.WHPHotelConCambios;
 
 public class TCHP_HotelConCambios {
 	WebDriver driver;
@@ -33,9 +33,9 @@ public class TCHP_HotelConCambios {
 		
 		//Metodo 1 - Leyendo el nombre del test
 		gtestName = itc.getName();
-		if(gtestName.equals("HP_PTCOMMX")) {gURL = FrameworkConfig.URL_PTCOMMX_PROD;}
-		else if(gtestName.equals("HP_PTCOM")) {gURL = FrameworkConfig.URL_PTCOM_PROD;}
-		else if(gtestName.equals("HP_PTCO")) {gURL = FrameworkConfig.URL_PTCO_PROD;}
+		if(gtestName.equals("HPPTCOMMX")) {gURL = FrameworkConfig.URL_PTCOMMX_PROD;}
+		else if(gtestName.equals("HPPTCOM")) {gURL = FrameworkConfig.URL_PTCOM_PROD;}
+		else if(gtestName.equals("HPPTCO")) {gURL = FrameworkConfig.URL_PTCO_PROD;}
 		
 		//Metodo 2 - Obteniendo un parametro
 		//URL = url;

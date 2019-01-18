@@ -8,8 +8,8 @@ import org.testng.annotations.*;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.WHPAllProducts;
-import workflows.WHPHotelConPaginado;
+import workflows.hphoteles.WHPHotelConPaginado;
+import workflows.hphoteles.WHPHoteles;
 
 public class TCSPAHLPaging {
 	WebDriver driver;

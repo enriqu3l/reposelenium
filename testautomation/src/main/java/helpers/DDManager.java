@@ -32,25 +32,19 @@ public class DDManager {
 	
 	//------------------------- HOTEL RES NEW ------------------------------
 	public static VOHotelResNew getHotelResNewDefault() {
-		//ATENCION!!
-		//Ahorita lo tengo hardcodeado a hotellistwidgetdata.xlsx, solo para probar, despue lo tengo que modificar
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HPHOTELRESDATA;
 		int defaultRow = 1; //Para leer el primer registro del archivo
-		
 		VOHotelResNew voHotelResNew = new VOHotelResNew();
 		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
-		
 		return voHotelResNew;
 	}//EndFunction
 	
 	public  static VOHotelResNew getHotelResNew(int item) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
-		
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HPHOTELRESDATA;
 		//Candado que limita los valores que puede tener la variable item
 		int max = ExcelUtils.getRowCount(filePath)-1;
 		if(item<=0){item=1;}
 		if(item>max){item=max;}
-		
 		VOHotelResNew voHotelResNew = new VOHotelResNew();
 		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, item));
 		return voHotelResNew;
@@ -58,15 +52,12 @@ public class DDManager {
 	
 	public static VOHotelResNew getRandomHotelResNew() {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
-		
 		int min = 1;  //Comienza en 1 porque la fila de cabecera es la 0
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
 		//Asi se obtiene un numero random entre valor min y max:
 		Random rand = new Random();
 		int randomNum = rand.nextInt((max - min) + 1) + min;
-		
 		System.out.println("Info - DDManager - getRandomHotelRes randomNum: "+randomNum);
-		
 		VOHotelResNew voHotelResNew = new VOHotelResNew();
 		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
 		return voHotelResNew;
@@ -74,6 +65,8 @@ public class DDManager {
 	
 	//-------------------------HOTEL RES------------------------------
 	public static VOHotelRes getHotelResDefault() {
+		//Ya quedo obsoleta esta funcion, ahora ya uso el nuevo formato de archivo excel
+		//Uso la informacion del FrameworkConfig--
 		LocalDate startDate;
 		LocalDate endDate;
 		VOHotelRes voHotelRes = new VOHotelRes();
@@ -90,12 +83,10 @@ public class DDManager {
 	
 	public  static VOHotelRes getHotelRes(int item) {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELRESDATA;
-		
 		//Candado que limita los valores que puede tener la variable item
 		int max = ExcelUtils.getRowCount(filePath)-1;
 		if(item<=0){item=1;}
 		if(item>max){item=max;}
-		
 		VOHotelRes voHotelRes = new VOHotelRes();
 		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, item));
 		return voHotelRes;
@@ -103,19 +94,21 @@ public class DDManager {
 	
 	public static VOHotelRes getRandomHotelRes() {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELRESDATA;
-		
 		int min = 1;  //Comienza en 1 porque la fila de cabecera es la 0
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
 		//Asi se obtiene un numero random entre valor min y max:
 		Random rand = new Random();
 		int randomNum = rand.nextInt((max - min) + 1) + min;
-		
 		System.out.println("Info - DDManager - getRandomHotelRes randomNum: "+randomNum);
-		
 		VOHotelRes voHotelRes = new VOHotelRes();
 		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
 		return voHotelRes;
 	}//EndFunction
+	
+	//------------------------ HotelListWidget ------------------------
+	
+	
+	
 	
 	//-------------------------CREDIT CARD------------------------------
 	public static VOCreditCard getCreditCardDefault() {

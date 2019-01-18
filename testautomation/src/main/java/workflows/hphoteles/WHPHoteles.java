@@ -1,4 +1,4 @@
-package workflows;
+package workflows.hphoteles;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,29 +8,29 @@ import org.testng.Reporter;
 import helpers.DDManager;
 import pages.Pages;
 import valueobjects.VOCreditCard;
-import valueobjects.VOHotelRes;
+import valueobjects.VOHotelResNew;
 
-public class WHPAllProducts {
-	private static Logger logger = LogManager.getLogger(WHPAllProducts.class);
+public class WHPHoteles {
+	private static Logger logger = LogManager.getLogger(WHPHoteles.class);
 	
 	public static void HPHotelDefault(WebDriver driver) throws InterruptedException{
 		logger.info("Starting HPHotelDefault");
 		Reporter.log("Staring HPHotelDefault");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
 		//Estoy usando la data de GeneralConfig por la fecha plusMonth porque aun no implemento en el Excel
-		VOHotelRes DO_HotelRes = DDManager.getHotelResDefault();
+		VOHotelResNew voHotelResNew = DDManager.getHotelResNewDefault();
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
-		pages.home_page.SearchHotel(DO_HotelRes);
+		pages.home_page.searchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.selectFirstHotelAvailable();
+		pages.hotelList_page.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();
 		pages.resDetail_page.ClearFillandContinue();
-		//pages.payMethodPage_Initialize();
-		//pages.payMethod_page.FillCreditForm(DO_CreditCard);
+		pages.payMethodPage_Initialize();
+		pages.payMethod_page.FillCreditForm(DO_CreditCard);
 		//pages.payMethod_page.clickOnCompleteReservation();
 		//pages.thankYouPage_Initialize();
 		//pages.thankYou_page.verifyCheckOutCompleted();
@@ -41,28 +41,23 @@ public class WHPAllProducts {
 	public static void HPHotelRandom(WebDriver driver) throws InterruptedException{
 		logger.info("Starting HPHotelRandom");
 		Reporter.log("Staring HPHotelRandom");
-		VOHotelRes DO_HotelRes = DDManager.getRandomHotelRes();
+		VOHotelResNew voHotelResNew = DDManager.getHotelResNewDefault();
 		VOCreditCard DO_CreditCard = DDManager.getRandomCreditCard();
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
-		pages.home_page.SearchHotel(DO_HotelRes);
+		pages.home_page.searchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.selectFirstHotelAvailable();
+		pages.hotelList_page.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomList_page.selectFirstRoom();
 		pages.resDetailPage_Initialize();
 		pages.resDetail_page.ClearFillandContinue();
-		//pages.payMethodPage_Initialize();
-		//pages.payMethod_page.FillCreditForm(DO_CreditCard);
+		pages.payMethodPage_Initialize();
+		pages.payMethod_page.FillCreditForm(DO_CreditCard);
 		//pages.payMethod_page.clickOnCompleteReservation();
 		//pages.thankYouPage_Initialize();
 		//pages.thankYou_page.verifyCheckOutCompleted();
 		logger.info("Ending HPHotelRandom");
 		Reporter.log("Ending HPHotelRandom");
-	}
-	
-	public static void HPPaqueteDefault(WebDriver driver) throws InterruptedException {
-		logger.info("Starting HPPaqueteDefault");
-		//Aun falta codificar todo lo de paquetes!!!
 	}
 }

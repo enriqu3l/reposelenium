@@ -1,4 +1,4 @@
-package workflows;
+package workflows.hphoteles;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,7 +8,7 @@ import org.testng.Reporter;
 import helpers.DDManager;
 import pages.Pages;
 import valueobjects.VOCreditCard;
-import valueobjects.VOHotelRes;
+import valueobjects.VOHotelResNew;
 
 public class WHPHotelConPaginado {
 	private static Logger logger = LogManager.getLogger(WHPHotelConPaginado.class);
@@ -18,14 +18,14 @@ public class WHPHotelConPaginado {
 		Reporter.log("Starting workflow HPHotelConCambioDeDestino");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
 		//Estoy usando la data de GeneralConfig por la fecha plusMonth porque aun no implemento en el Excel
-		VOHotelRes DO_HotelRes = DDManager.getHotelResDefault();
+		VOHotelResNew voHotelResNew = DDManager.getHotelResNewDefault();
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
-		pages.home_page.SearchHotel(DO_HotelRes);
+		pages.home_page.searchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.goToNextPage();
-		pages.hotelList_page.selectFirstHotelAvailable();
+		pages.hotelList_page.listSelectFirstHotelAvailable();
 		logger.info("Ending HPHotelConCambioDeDestino");
 		Reporter.log("Ending HPHotelConCambioDeDestino");
 	}	

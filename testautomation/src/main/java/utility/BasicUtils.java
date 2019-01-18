@@ -13,7 +13,6 @@ import java.util.Scanner;
 import org.apache.commons.io.FileUtils;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -325,6 +324,22 @@ public class BasicUtils {
 		return monthString;
 	}
 	
+	/**
+	 * Convierte String Date, del formato "dd/MM/yyyy" al formato "yyyy/MM/dd"
+	 * Esta funcion solo acepta el formato: "dd/MM/yyyy"
+	 * @param date String
+	 * @return Regresa el String con el formato "yyyy/MM/dd"
+	 */
+	public static String fromyyyyMMddToddMMyyyyFormat(String date) {
+		LocalDate ld = LocalDate.parse(date, DateTimeFormat.forPattern("dd/MM/yyyy"));
+		return ld.toString("yyyy/MM/dd");
+	}
+	
+	/**
+	 * Esta funcion solo acepta el formato: " mes yyyy ", "mes yyyy" o "mesyyyy"
+	 * @param monthYear String
+	 * @return Regresa el String con el formato "dd/MM/yyyy"
+	 */
 	public static String toddMMyyyyFormat(String monthYear) {
 		//Esta funcion solo acepta el formato: " mes yyyy ", "mes yyyy" o "mesyyyy"
 		String monthYearTrimed = monthYear.trim();

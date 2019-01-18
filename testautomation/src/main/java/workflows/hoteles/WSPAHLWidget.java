@@ -16,14 +16,18 @@ public class WSPAHLWidget {
 private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 
 	/**
-	 * Este test, prueba que almenos 10 destinos diferentes funcionen con autocomplete
+	 * Este test, verifica que el autocomplete se active con 10 palabras diferentes.
 	 * 
-	 * @param driver
+	 * @param driver - WebDriver
 	 * @throws InterruptedException
+	 * @author enrique.lopez
 	 */
-	public static void destinationAutocompleteTest(WebDriver driver) throws InterruptedException{
+	public static void autocompleteDestinationTest(WebDriver driver){
+		
+		//<Setup>
 		logger.info("Starting workflow destinationAutocompleteTest");
 		Reporter.log("Starting workflow destinationAutocompleteTest");
+		//Por lo pronto esta harcodeado a las siguientes palabras de busqueda
 		List<String> data = new ArrayList<String>();
 		data.add("canc");
 		data.add("nueva");
@@ -31,47 +35,102 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		data.add("vallarta");
 		data.add("bogot");
 		Pages pages = new Pages(driver);
+		
+		//<When>
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.verifyWidgetInputDestinationAutocomplete(data);
+		
+		//<Then>
+		pages.hotelList_page.widgetVerifyAutocompleteDestination(data);
+	}
+	
+	public static void AutocompleteTest(WebDriver driver) throws InterruptedException{
+		
+		//<Setup>
+		logger.info("Starting workflow destinationAutocompleteTest");
+		Reporter.log("Starting workflow destinationAutocompleteTest");
+		//Por lo pronto esta harcodeado a las siguientes palabras de busqueda
+		List<String> data = new ArrayList<String>();
+		data.add("canc");
+		data.add("nueva");
+		data.add("vegas");
+		data.add("vallarta");
+		data.add("bogot");
+		Pages pages = new Pages(driver);
+		
+		/*
+		//<When>
+		pages.hotelListPage_Initialize();
+		pages.hotelList_page.sendKeysWidgetDestination(data.get(0));
+		
+		//<Then>
+		pages.hotelList_page.verifyIsDisplayedWidgetDestinationAutocomplete();
+		
+		//<When>
+		
+		pages.hotelList_page.sendKeysWidgetDestination(Keys.ENTER);
+		
+		//<Then>
+		pages.hotelList_page.verifyDestinationContains();
+		pages.hotelList_page.clearDestination();
+		*/
 	}
 
-	public static void changeDestinTest(WebDriver driver) throws InterruptedException{
+	/**
+	 * Este test, valida que el campo destination del widget funcione correctamente.
+	 * Se verifica:
+	 * 1.- Que el campo sea actualizado despues de aplicar la busqueda
+	 * 2.- Que el HeaderTitle cambie al destino buscado
+	 * 3.- Que la pagina resultante de la busqueda contenga listado de hoteles
+	 * 
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author enrique.lopez
+	 */
+	public static void searchUsingDifferentDestinTest(WebDriver driver) throws InterruptedException{
+		//<Setup>
 		logger.info("Starting workflow changeDestinTest");
 		Reporter.log("Starting workflow changeDestinTest");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
 		VOHotelResNew voHotelResNew = DDManager.getHotelResNew(2);
 		Pages pages = new Pages(driver);
+		
+		//<When>
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.widgetChangeDestin(voHotelResNew.getDestination());
 		pages.hotelList_page.widgetClickSubmit();
 		
+		//<Then>
 		//Verificar que el widget tiene el nuevo destino
-		pages.hotelList_page.verifyWidgetInputDestinationToBe(voHotelResNew.getDestination());		
+		pages.hotelList_page.widgetVerifyDestinationToBe(voHotelResNew.getDestination());		
 		//Verificar que el Page Header Title tiene el nuevo destino
 		pages.hotelList_page.verifyHeaderTitleToBe(voHotelResNew.getDestination());
 		//Verificar que tenemos resultados
-		pages.hotelList_page.verifyResultListHasElements();
+		pages.hotelList_page.listVerifyResultListHasElements();
 	}
 	
-	public static void changeStartDateTest(WebDriver driver) {
-		logger.info("Starting workflow changeDestinTest");
-		Reporter.log("Starting workflow changeDestinTest");
+	public static void searchUsingDifferentDatesTest(WebDriver driver) {
+		//<Setup>
+		logger.info("Starting workflow changeStartDateTest");
+		Reporter.log("Starting workflow changeStartDateTest");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
 		VOHotelResNew voHotelResNew = DDManager.getHotelResNew(2);
 		Pages pages = new Pages(driver);
+		
+		//<When>
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.widgetChangeStartDate(voHotelResNew.getStartDate());
+		pages.hotelList_page.widgetChangeEndDate(voHotelResNew.getEndDate());
 		pages.hotelList_page.widgetClickSubmit();
 		
+		//<Then>
 		//Verificar que el widget tiene la nueva fecha
-		pages.hotelList_page.verifyWidgetStartDateToBe(voHotelResNew.getStartDate());
-		//Verificar que la url tiene la nueva fecha
-		pages.hotelList_page.verifyURLToContain(""); //Aun no la construyo
-		//Verificar que tenemos resultados
-		pages.hotelList_page.verifyResultListHasElements();
-	}
-	
-	public static void changeEndDateTest(WebDriver driver) {
+		pages.hotelList_page.widgetVerifyStartDateToBe(voHotelResNew.getStartDate());
+		logger.trace("StartDate yyyy/MM/dd format: "+voHotelResNew.getStartDate());
 		
+		//Verificar que la url tiene la nueva fecha
+		pages.hotelList_page.verifyUrlContains(voHotelResNew.getStartDate("yyyy-MM-dd"), true);
+		
+		//Verificar que tenemos resultados
+		pages.hotelList_page.listVerifyResultListHasElements();
 	}
 }

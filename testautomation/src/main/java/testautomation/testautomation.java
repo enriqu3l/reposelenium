@@ -1,5 +1,6 @@
 package testautomation;
 
+import org.joda.time.LocalDate;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -83,6 +84,14 @@ public class testautomation {
 		System.out.println("Result: "+result);
 		*/
 		
+		/*
+		 * Este ejemplo es usando Java 8 (no joda time)
+		Local date formats: 1. dd/MM/yyyy 2. dd/MM/yy 3. yyyy/MM/dd
+		LocalDate ld = LocalDate.now();
+		System.out.println("ld yyyy/MM/dd format: "+ld.toString("yyyy/MM/dd"));
+		System.out.println("ld dd/MM/yyyy format: "+ld.toString("dd/MM/yyyy"));
+		*/
+		
 		//WebDriver driver = BrowserFactory.StartBrowser("chrome", "https://www.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2018%2F12%2F26&checkout=2018%2F12%2F28&rooms=1&adults=2&kids=0&agekids=&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1");
 		//HotelListPageF hotelList_page;
 		//hotelList_page = new HotelListPageF(driver);
@@ -135,6 +144,8 @@ public class testautomation {
 		}
 		*/
 		
+		/*
+		//Validando el funcionamiento del nuevo archivo de Excel
 		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
 		int defaultRow = 1; //Para leer el primer registro del archivo
 		
@@ -155,6 +166,6 @@ public class testautomation {
 			}
 			System.out.println("-----------------------------------");
 		}
-		
+		*/
 	}
 }

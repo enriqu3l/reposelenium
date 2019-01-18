@@ -1,4 +1,4 @@
-package testcases;
+package testcases.hphoteles;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,31 +15,30 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.WHPAllProducts;
+import workflows.hphoteles.WHPHoteles;
 
 public class TCHP_PTALL {
 	WebDriver driver;
 	Logger logger = LogManager.getLogger(TCHP_PTALL.class);
 	String gtestName = "";
 	String gURL = "";
+	String gbrowser = "";
 	
 	@BeforeTest
-	@Parameters({"url"})
-	public void prerequisitos(String url, ITestContext itc) {
+	@Parameters({"url","browser"})
+	public void prerequisitos(String url, String browser, ITestContext itc) {
 		logger.info("***************************** Starting BeforeTest **********************************");
 		Reporter.log("Starting BeforeTest");
 		logger.info("Starting BeforeTest");
 		
-		//Metodo 1 - Leyendo el nombre del test
-		gtestName = itc.getName();
-		if(gtestName.equals("HP_PTCOMMX")) {gURL = FrameworkConfig.URL_PTCOMMX_PROD;}
-		else if(gtestName.equals("HP_PTCOM")) {gURL = FrameworkConfig.URL_PTCOM_PROD;}
-		else if(gtestName.equals("HP_PTCO")) {gURL = FrameworkConfig.URL_PTCO_PROD;}
-		
-		//Metodo 2 - Obteniendo un parametro
-		//gURL = url;
-		logger.trace("URL: "+gURL);
+		gURL = url;
+		logger.trace("URL Seteada: "+gURL);
 		Assert.assertFalse(gURL.equals(""),"No se ha seteado una URL valida!");
+		
+		//Seleccionando el browser que se usara para las pruebas
+		gbrowser = browser;
+		logger.trace("Browser Seteado: "+gbrowser);
+		Assert.assertFalse(gbrowser.equals(""),"No se ha seteado un browser valido!");
 	}
 	
 	@BeforeMethod
@@ -62,7 +61,7 @@ public class TCHP_PTALL {
 	public void HappyPath_HotelDefault() throws InterruptedException{
 		Reporter.log("Starting test HappyPath_HotelDefault");
 		logger.info("Starting test HappyPath_HotelDefault");
-		WHPAllProducts.HPHotelDefault(driver);
+		WHPHoteles.HPHotelDefault(driver);
 	}
 
 	@AfterMethod

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.testng.Assert;
 
 import config.CoreConfig;
@@ -17,16 +19,16 @@ public class VOHotelResNew {
 	
 	private String idHotelRes;
 	private String destination;
-	private String startDate;
-	private String endDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	private List<Map<String, String>> rooms;
 	
 	public VOHotelResNew() {
 		super();
 		this.idHotelRes = "";
 		this.destination = "";
-		this.startDate = "";
-		this.endDate = "";
+		this.startDate = LocalDate.parse("2000-01-01");
+		this.endDate = LocalDate.parse("2000-01-01");
 		this.rooms = new ArrayList<Map<String, String>>();
 	}
 	
@@ -42,8 +44,19 @@ public class VOHotelResNew {
 		super();
 		this.idHotelRes = idHotelRes.trim();
 		this.destination = destination.trim();
-		this.startDate = startDate.trim();
-		this.endDate = endDate.trim();
+		this.startDate = LocalDate.parse(startDate.trim(),DateTimeFormat.forPattern("dd/MM/yyyy"));
+		this.endDate = LocalDate.parse(endDate.trim(),DateTimeFormat.forPattern("dd/MM/yyyy"));
+		this.rooms = rooms;
+	}
+	
+	
+	public VOHotelResNew(String idHotelRes, String destination, LocalDate startDate, LocalDate endDate,
+			List<Map<String, String>> rooms) {
+		super();
+		this.idHotelRes = idHotelRes.trim();
+		this.destination = destination.trim();
+		this.startDate = startDate;
+		this.endDate = endDate;
 		this.rooms = rooms;
 	}
 
@@ -63,20 +76,82 @@ public class VOHotelResNew {
 		this.destination = destination;
 	}
 
-	public String getStartDate() {
+	public LocalDate getStartDateLocalDateFormat() {
 		return startDate;
 	}
-
-	public void setStartDate(String startDate) {
+	
+	/**
+	 * Regresa la fecha en formato dd/MM/yyyy
+	 * @return String.
+	 */
+	public String getStartDate() {
+		return startDate.toString("dd/MM/yyyy");
+	}
+	
+	/**
+	 * El formato puede ser dd/MM/yyyy, MM/dd/yyyy, yyyy/MM/dd, ...
+	 * @param format. String
+	 * @return String. Fecha en formato indicado
+	 */
+	public String getStartDate(String format) {
+		//Se supone que toString manda a llamar a un: DateTimeFormat.forPattern(format);
+		return startDate.toString(format);
+	}
+	
+	/**
+	 * El formato puede ser cualquiera aceptado por jodatime
+	 * @param format. String
+	 * @return String. Fecha en formato indicado
+	 */
+	public String getStartDate(DateTimeFormatter format) {
+		return startDate.toString(format);
+	}
+	
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
-
-	public String getEndDate() {
-		return endDate;
+	
+	public void setStartDate(String startDate) {
+		this.startDate = LocalDate.parse(startDate.trim(),DateTimeFormat.forPattern("dd/MM/yyyy"));
 	}
 
-	public void setEndDate(String endDate) {
+	public LocalDate getEndDateLocalDateFormat() {
+		return endDate;
+	}
+	
+	/**
+	 * Regresa la fecha en formato dd/MM/yyyy
+	 * @return String.
+	 */
+	public String getEndDate() {
+		return endDate.toString("dd/MM/yyyy");
+	}
+	
+	/**
+	 * El foramto puede ser dd/MM/yyyy, MM/dd/yyyy, yyyy/MM/dd, ...
+	 * @param format. String
+	 * @return String. Fecha en formato indicado
+	 */
+	public String getEndDate(String format) {
+		//Se supone que toString manda a llamar a un: DateTimeFormat.forPattern(format);
+		return endDate.toString(format);
+	}
+	
+	/**
+	 * El foramto puede ser cualquiera aceptado por jodatime
+	 * @param format. String
+	 * @return String. Fecha en formato indicado
+	 */
+	public String getEndDate(DateTimeFormatter format) {
+		return endDate.toString(format);
+	}
+	
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
+	}
+	
+	public void setEndDate(String endDate) {
+		this.endDate = LocalDate.parse(endDate.trim(),DateTimeFormat.forPattern("dd/MM/yyyy"));
 	}
 
 	public List<Map<String, String>> getRooms() {
@@ -99,10 +174,20 @@ public class VOHotelResNew {
 		return rooms.size();
 	}
 	
+	/**
+	 * Regresa el adult del cuarto indicado. Base 0
+	 * @param roomIndex.
+	 * @return int.
+	 */
 	public int getAdultsFromRoom(int roomIndex) {
 		return Integer.parseInt(rooms.get(roomIndex).get(ADULTS));
 	}
 	
+	/**
+	 * Regresa el kid del cuarto indicado. Base 0
+	 * @param roomIndex
+	 * @return
+	 */
 	public int getKidsFromRoom(int roomIndex) {
 		return Integer.parseInt(rooms.get(roomIndex).get(KIDS));
 	}
@@ -184,14 +269,13 @@ public class VOHotelResNew {
 		 */
 		
 		if(data==null || data.isEmpty()){System.out.println("La lista esta vacia");Assert.assertFalse(data.isEmpty(),"data is empty");}
-		LocalDate startDate;
-		LocalDate endDate;
 		this.idHotelRes = data.get(0).trim();
 		this.destination = data.get(1).trim();
-		startDate = LocalDate.now().plusDays(Integer.parseInt(data.get(2).trim()));
-		this.startDate = startDate.toString("dd/MM/yyyy");
-		endDate = startDate.plusDays(Integer.parseInt(data.get(3).trim()));
-		this.endDate = endDate.toString("dd/MM/yyyy");
+		int startDay = Integer.parseInt(data.get(2).trim());
+		this.startDate = LocalDate.now().plusDays(startDay);
+		int endDay = Integer.parseInt(data.get(2).trim()) + Integer.parseInt(data.get(3).trim());
+		this.endDate = LocalDate.now().plusDays(endDay);
+		
 		if(this.rooms==null){this.rooms = new ArrayList<Map<String, String>>();}
 		for(int i=4;i<33;i+=3) {
 			//Validamos que la columna de Adultos NO este vacia o No tenga valor "0", dado que un cuarto no puede tener 0 adultos
