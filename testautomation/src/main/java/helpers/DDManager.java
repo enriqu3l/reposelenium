@@ -39,14 +39,14 @@ public class DDManager {
 		return voHotelResNew;
 	}//EndFunction
 	
-	public  static VOHotelResNew getHotelResNew(int item) {
+	public  static VOHotelResNew getHotelResNew(int row) {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HPHOTELRESDATA;
-		//Candado que limita los valores que puede tener la variable item
+		//Candado que limita los valores que puede tener la variable row
 		int max = ExcelUtils.getRowCount(filePath)-1;
-		if(item<=0){item=1;}
-		if(item>max){item=max;}
+		if(row<=0){row=1;}
+		if(row>max){row=max;}
 		VOHotelResNew voHotelResNew = new VOHotelResNew();
-		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, item));
+		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, row));
 		return voHotelResNew;
 	}//EndFunction
 	
@@ -81,14 +81,14 @@ public class DDManager {
 		return voHotelRes;
 	}//EndFunction
 	
-	public  static VOHotelRes getHotelRes(int item) {
+	public  static VOHotelRes getHotelRes(int row) {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELRESDATA;
-		//Candado que limita los valores que puede tener la variable item
+		//Candado que limita los valores que puede tener la variable row
 		int max = ExcelUtils.getRowCount(filePath)-1;
-		if(item<=0){item=1;}
-		if(item>max){item=max;}
+		if(row<=0){row=1;}
+		if(row>max){row=max;}
 		VOHotelRes voHotelRes = new VOHotelRes();
-		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, item));
+		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, row));
 		return voHotelRes;
 	}//EndFunction
 	
@@ -127,15 +127,15 @@ public class DDManager {
 		return voCreditCard;
 	}//EndFunction
 	
-	public static VOCreditCard getCreditCard(int item) {
+	public static VOCreditCard getCreditCard(int row) {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_CREDITCARDSDATA;
-		//Candado que limita los valores que puede tener la variable item
+		//Candado que limita los valores que puede tener la variable row
 		int max = ExcelUtils.getRowCount(filePath)-1;
-		if(item<=0){item=1;}
-		if(item>max){item=max;}
+		if(row<=0){row=1;}
+		if(row>max){row=max;}
 		
 		VOCreditCard voCreditCard = new VOCreditCard();
-		voCreditCard.setDataUsingList(ExcelUtils.getRow(filePath, item));
+		voCreditCard.setDataUsingList(ExcelUtils.getRow(filePath, row));
 		return voCreditCard;
 	}
 	
@@ -163,7 +163,7 @@ public class DDManager {
 	}
 	
 	public static String getLocator(int item) {
-		//Aqui el codigo para obtener el locator en base a el listado
+		//Aqui el codigo para obtener el locator
 		
 		return "";
 	}

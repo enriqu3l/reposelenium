@@ -19,13 +19,19 @@ public class WHPHotelConPaginado {
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
 		//Estoy usando la data de GeneralConfig por la fecha plusMonth porque aun no implemento en el Excel
 		VOHotelResNew voHotelResNew = DDManager.getHotelResNewDefault();
-		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
+		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.home_page.searchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.goToNextPage();
+		pages.hotelList_page.pagingClickOnNextPage();
 		pages.hotelList_page.listSelectFirstHotelAvailable();
+		pages.roomListPage_Initialize();
+		pages.roomList_page.selectFirstRoom();
+		pages.resDetailPage_Initialize();
+		pages.resDetail_page.ClearFillandContinue();
+		pages.payMethodPage_Initialize();
+		pages.payMethod_page.FillCreditForm(voCreditCard);
 		logger.info("Ending HPHotelConCambioDeDestino");
 		Reporter.log("Ending HPHotelConCambioDeDestino");
 	}	

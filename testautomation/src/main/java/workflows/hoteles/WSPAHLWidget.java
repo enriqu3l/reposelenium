@@ -16,7 +16,7 @@ public class WSPAHLWidget {
 private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 
 	/**
-	 * Este test, verifica que el autocomplete se active con 10 palabras diferentes.
+	 * Este testcase verifica que el autocomplete se active con X palabras diferentes.
 	 * 
 	 * @param driver - WebDriver
 	 * @throws InterruptedException
@@ -25,8 +25,8 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 	public static void autocompleteDestinationTest(WebDriver driver){
 		
 		//<Setup>
-		logger.info("Starting workflow destinationAutocompleteTest");
-		Reporter.log("Starting workflow destinationAutocompleteTest");
+		logger.info("Starting workflow autocompleteDestinationTest");
+		Reporter.log("Starting workflow autocompleteDestinationTest");
 		//Por lo pronto esta harcodeado a las siguientes palabras de busqueda
 		List<String> data = new ArrayList<String>();
 		data.add("canc");
@@ -43,7 +43,8 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		pages.hotelList_page.widgetVerifyAutocompleteDestination(data);
 	}
 	
-	public static void AutocompleteTest(WebDriver driver) throws InterruptedException{
+	//En construccion
+	public static void autocompleteTest(WebDriver driver) throws InterruptedException{
 		
 		//<Setup>
 		logger.info("Starting workflow destinationAutocompleteTest");
@@ -55,9 +56,10 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		data.add("vegas");
 		data.add("vallarta");
 		data.add("bogot");
-		Pages pages = new Pages(driver);
 		
 		/*
+		Pages pages = new Pages(driver);
+		
 		//<When>
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.sendKeysWidgetDestination(data.get(0));
@@ -66,7 +68,6 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		pages.hotelList_page.verifyIsDisplayedWidgetDestinationAutocomplete();
 		
 		//<When>
-		
 		pages.hotelList_page.sendKeysWidgetDestination(Keys.ENTER);
 		
 		//<Then>
@@ -76,7 +77,7 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 	}
 
 	/**
-	 * Este test, valida que el campo destination del widget funcione correctamente.
+	 * Este testcase valida que el campo destination del widget funcione correctamente.
 	 * Se verifica:
 	 * 1.- Que el campo sea actualizado despues de aplicar la busqueda
 	 * 2.- Que el HeaderTitle cambie al destino buscado
@@ -86,7 +87,7 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 	 * @throws InterruptedException
 	 * @author enrique.lopez
 	 */
-	public static void searchUsingDifferentDestinTest(WebDriver driver) throws InterruptedException{
+	public static void searchUsingDifferentDestinTest(WebDriver driver){
 		//<Setup>
 		logger.info("Starting workflow changeDestinTest");
 		Reporter.log("Starting workflow changeDestinTest");
@@ -125,12 +126,27 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		//<Then>
 		//Verificar que el widget tiene la nueva fecha
 		pages.hotelList_page.widgetVerifyStartDateToBe(voHotelResNew.getStartDate());
-		logger.trace("StartDate yyyy/MM/dd format: "+voHotelResNew.getStartDate());
-		
 		//Verificar que la url tiene la nueva fecha
-		pages.hotelList_page.verifyUrlContains(voHotelResNew.getStartDate("yyyy-MM-dd"), true);
-		
+		pages.hotelList_page.verifyUrlContains(voHotelResNew.getStartDate("yyyy-MM-dd"),false);
 		//Verificar que tenemos resultados
+		pages.hotelList_page.listVerifyResultListHasElements();
+	}
+	
+	public static void searchMoreRooms(WebDriver driver) {
+		// <Setup>
+		logger.info("Starting workflow searchMoreRooms");
+		Reporter.log("Starting workflow searchMoreRooms");
+		// Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
+		VOHotelResNew voHotelResNew = DDManager.getHotelResNew(11);// Aqui leo el row 11 donde tengo varios rooms
+		Pages pages = new Pages(driver);
+
+		// <When>
+		pages.hotelListPage_Initialize();
+		pages.hotelList_page.widgetChangeSearch(voHotelResNew);
+		pages.hotelList_page.widgetClickSubmit();
+
+		// <Then>
+		// Verificar que tenemos resultados
 		pages.hotelList_page.listVerifyResultListHasElements();
 	}
 }

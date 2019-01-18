@@ -8,7 +8,7 @@
           <include name="Close"/>
           <include name="End"/>
           <include name="prerequisites"/>
-          <include name="test3"/>
+          <include name="test4"/>
         </methods>
       </class> <!-- testcases.hoteles.TCSPAHLWidget -->
     </classes>

@@ -3,25 +3,50 @@ package testcases.hphoteles;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
 import workflows.hphoteles.WHPHoteles;
 
-public class TCHP_PTCOMMX_PROD {
+public class TCHP_PTAll {
 	WebDriver driver;
-	Logger logger = LogManager.getLogger(TCHP_PTCOMMX_PROD.class);
+	Logger logger = LogManager.getLogger(TCHP_PTAll.class);
+	String gtestName = "";
+	String gURL = "";
+	String gbrowser = "";
+	
+	@BeforeTest
+	@Parameters({"url","browser"})
+	public void prerequisitos(String url, String browser, ITestContext itc) {
+		logger.info("***************************** Starting BeforeTest **********************************");
+		Reporter.log("Starting BeforeTest");
+		logger.info("Starting BeforeTest");
+		
+		gURL = url;
+		logger.trace("URL Seteada: "+gURL);
+		Assert.assertFalse(gURL.equals(""),"No se ha seteado una URL valida!");
+		
+		//Seleccionando el browser que se usara para las pruebas
+		gbrowser = browser;
+		logger.trace("Browser Seteado: "+gbrowser);
+		Assert.assertFalse(gbrowser.equals(""),"No se ha seteado un browser valido!");
+	}
 	
 	@BeforeMethod
 	public void beforeMethod() {
+		logger.info("***************************** Starting BeforeMethod **********************************");
 		Reporter.log("Starting Browser");
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, FrameworkConfig.URL_PTCOMMX_PROD);
+		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, gURL);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}
@@ -38,7 +63,7 @@ public class TCHP_PTCOMMX_PROD {
 		logger.info("Starting test HappyPath_HotelDefault");
 		WHPHoteles.HPHotelDefault(driver);
 	}
-	
+
 	@AfterMethod
 	public void Close()
 	{

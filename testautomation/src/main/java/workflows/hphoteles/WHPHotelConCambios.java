@@ -8,13 +8,12 @@ import org.testng.Reporter;
 import helpers.DDManager;
 import pages.Pages;
 import valueobjects.VOCreditCard;
-import valueobjects.VOHotelRes;
 import valueobjects.VOHotelResNew;
 
 public class WHPHotelConCambios {
 	private static Logger logger = LogManager.getLogger(WHPHotelConCambios.class);
 	
-	public static void HPHotelConCambioDeDestino(WebDriver driver) throws InterruptedException{
+	public static void HPHotelConCambioDeDestino(WebDriver driver){
 		logger.info("Starting workflow HPHotelConCambioDeDestino");
 		Reporter.log("Starting workflow HPHotelConCambioDeDestino");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
@@ -38,7 +37,7 @@ public class WHPHotelConCambios {
 		Reporter.log("Ending HPHotelConCambioDeDestino");
 	}
 	
-	public static void HPHotelConCambioDeFecha(WebDriver driver) throws InterruptedException{
+	public static void HPHotelConCambioDeFecha(WebDriver driver){
 		logger.info("Starting workflow HPHotelConCambioDeFecha");
 		Reporter.log("Staring workflow HPHotelConCambioDeFecha");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
@@ -63,7 +62,7 @@ public class WHPHotelConCambios {
 		Reporter.log("Ending HPHotelConCambioDeFecha");
 	}
 	
-	public static void HPHotelConCambioDeOcupantes(WebDriver driver) throws InterruptedException{
+	public static void HPHotelConCambioDeOcupantes(WebDriver driver){
 		logger.info("Starting workflow HPHotelConCambioDeOcupantes");
 		Reporter.log("Staring workflow HPHotelConCambioDeOcupantes");
 		VOHotelResNew voHotelResNew = DDManager.getHotelResNewDefault();
@@ -84,5 +83,4 @@ public class WHPHotelConCambios {
 		logger.info("Ending HPHotelConCambioDeOcupantes");
 		Reporter.log("Ending HPHotelConCambioDeOcupantes");
 	}
-	
 }

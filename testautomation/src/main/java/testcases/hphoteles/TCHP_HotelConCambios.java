@@ -57,14 +57,14 @@ public class TCHP_HotelConCambios {
 		logger.info("Browser Started");
 	}
 	
-	@Test (enabled=false, priority = 1, groups = { "HPHotelConCambios" })
+	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
 	public void test_HPHotelConCambioDeDestino() throws InterruptedException{
 		Reporter.log("Starting @test_HPHotelConCambioDeDestino");
 		logger.info("Starting @test_HPHotelConCambioDeDestino");
 		WHPHotelConCambios.HPHotelConCambioDeDestino(driver);
 	}
 	
-	@Test (enabled=false, priority = 1, groups = { "HPHotelConCambios" })
+	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
 	public void test_HPHotelConCambioDeFecha() throws InterruptedException{		
 		Reporter.log("Starting @test_HPHotelConCambioDeFecha");
 		logger.info("Starting @test_HPHotelConCambioDeFecha");
