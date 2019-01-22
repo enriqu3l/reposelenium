@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import utility.BasicUtils;
+import valueobjects.VOClient;
 
 public class ResDetailPageF {
 	private WebDriverWait wait;
@@ -26,54 +27,55 @@ public class ResDetailPageF {
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,30);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 20),this);
-		logger.info("Launched initElements");
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("/reservar/detalles-reservacion"));
 	}
 	
-	//-----FormElements-----
+	//--------- Form Reservation Elements ---------
 	@FindBy(how=How.ID, id="firstName")
-	WebElement Input_firsName;
+	WebElement frmReserveInputFirsName;
 	
 	@FindBy(how=How.ID, id="lastName")
-	WebElement Input_lastName;
+	WebElement frmReserveInputLastName;
 	
 	@FindBy(how=How.ID, id="eMail")
-	WebElement Input_eMail;
+	WebElement frmReserveInputEmail;
 	
 	@FindBy(how=How.ID, id="conMail")
 	@CacheLookup
-	WebElement Input_conMail;
+	WebElement frmReserveInputConMail;
 	
 	@FindBy(how=How.ID, id="lada")
 	@CacheLookup
-	WebElement Input_lada;
+	WebElement frmReserveInputLada;
 	
 	@FindBy(how=How.ID, id="phone")
 	@CacheLookup
-	WebElement Input_phone;
+	WebElement frmReserveInputPhone;
 	
 	@FindBy(how=How.ID, id="mobile")
 	@CacheLookup
-	WebElement Input_mobile;
+	WebElement frmReserveInputMobile;
 	
 	@FindBy(how=How.ID, id="chkConfirm")
 	@CacheLookup
-	WebElement CheckBox_chkConfirm;
+	WebElement frmReserveCheckBoxChkConfirm;
 	
 	@FindBy(how=How.CSS, css="#frmReserve a.btn.btn-success.btn-form")
 	@CacheLookup
-	WebElement Button_continue;
+	WebElement frmReserveButtonContinue;
 	
-	//-----Information-----
+	
+	//--------- Resumen de la Reservacion ---------
 	@FindBy(how=How.CSS, id=".aside .card-body .summary-description-name h5")
 	@CacheLookup
 	WebElement descriptionName;
 	
-	//------------  pt.co Elements--------------
-		@FindBy(how=How.ID, id="NationalIdCard")
-		WebElement Input_nationalIdCard;
+	
+	//------------  pt.co Elements --------------
+	@FindBy(how=How.ID, id="NationalIdCard")
+	WebElement frmReserveInputNationalIdCard;
 	
 	public void checkCurrentURLPage() {
 		wait.until(ExpectedConditions.urlContains("detalles-reservacion"));
@@ -86,28 +88,48 @@ public class ResDetailPageF {
 		Assert.assertEquals(descriptionName.getText(), "");
 	}
 	
-	public void ClearFillandContinue() {
+	public void clearAndFillForm(VOClient voClient) {
 		clearForm();
-		fillFormDefaultData();
-		clickOnContinue();
+		fillForm(voClient);
 	}
 	
-	public void fillFormDefaultData() {
+	public void fillForm(VOClient voClient) {
 		logger.info("Starting fillFormDefaultData()");
-		wait.until(ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(Input_firsName)));
-		Input_firsName.sendKeys("Enrique");
-		Input_lastName.sendKeys("Carrillo");
-		Input_eMail.sendKeys("enriquecarrillo119999@gmail.com");
-		Input_conMail.sendKeys("enriquecarrillo119999@gmail.com");
-		Input_lada.sendKeys("33");
-		Input_phone.sendKeys("33443344");
-		Input_mobile.sendKeys("3344334433");
+		wait.until(ExpectedConditions.visibilityOf(frmReserveInputFirsName));
+		frmReserveInputFirsName.sendKeys(voClient.getName());
+		frmReserveInputLastName.sendKeys(voClient.getLastName());
+		frmReserveInputEmail.sendKeys(voClient.getEmail());
+		frmReserveInputConMail.sendKeys(voClient.getEmail());
+		frmReserveInputLada.sendKeys(Integer.toString(voClient.getLada()));
+		frmReserveInputPhone.sendKeys(Integer.toString(voClient.getPhone()));
+		frmReserveInputMobile.sendKeys(Long.toString(voClient.getCellphone()));
+		
+		//Se agrego este If para el campo Cedula de Ciudadania
+		//de la pagina de pt.co
+		if(driver.getCurrentUrl().contains(".co/")) {
+			logger.info("fillForm() - Sending national card number for pt.co");
+			frmReserveInputNationalIdCard.sendKeys(Integer.toString(voClient.getNationalId()));
+		}
+		checkPolitics();
+		logger.info("Starting fillFormDefaultData()");
+	}
+	
+	public void fillForm2() {
+		logger.info("Starting fillFormDefaultData()");
+		wait.until(ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(frmReserveInputFirsName)));
+		frmReserveInputFirsName.sendKeys("Enrique");
+		frmReserveInputLastName.sendKeys("Carrillo");
+		frmReserveInputEmail.sendKeys("enriquecarrillo119999@gmail.com");
+		frmReserveInputConMail.sendKeys("enriquecarrillo119999@gmail.com");
+		frmReserveInputLada.sendKeys("33");
+		frmReserveInputPhone.sendKeys("33443344");
+		frmReserveInputMobile.sendKeys("3344334433");
 		
 		//Se agrego este If para el campo Cedula de Ciudadania
 		//de la pagina de pt.co
 		if(driver.getCurrentUrl().contains(".co/")) {
 			logger.info("fillFormDefaultData() - Sending national card number for pt.co");
-			Input_nationalIdCard.sendKeys("33444");
+			frmReserveInputNationalIdCard.sendKeys("33444");
 		}
 		checkPolitics();
 		logger.info("Starting fillFormDefaultData()");
@@ -115,32 +137,32 @@ public class ResDetailPageF {
 	
 	public void clearForm() {
 		logger.info("Starting clearForm()");
-		wait.until(ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(Input_firsName)));
-		Input_firsName.clear();
-		Input_lastName.clear();
-		Input_eMail.clear();
-		Input_conMail.clear();
-		Input_lada.clear();
-		Input_phone.clear();
-		Input_mobile.clear();
+		wait.until(ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(frmReserveInputFirsName)));
+		frmReserveInputFirsName.clear();
+		frmReserveInputLastName.clear();
+		frmReserveInputEmail.clear();
+		frmReserveInputConMail.clear();
+		frmReserveInputLada.clear();
+		frmReserveInputPhone.clear();
+		frmReserveInputMobile.clear();
 		uncheckPolitics();
 		logger.info("Ending clearForm()");
 	}
 	
 	public void checkPolitics() {
-		if(!CheckBox_chkConfirm.isSelected()) {
+		if(!frmReserveCheckBoxChkConfirm.isSelected()) {
 			logger.warn("checkPolitics() - checkbox was selected!");
-			CheckBox_chkConfirm.click();
+			frmReserveCheckBoxChkConfirm.click();
 		}
 	}
 	
 	public void uncheckPolitics() {
-		if(CheckBox_chkConfirm.isSelected()) {
-			CheckBox_chkConfirm.click();
+		if(frmReserveCheckBoxChkConfirm.isSelected()) {
+			frmReserveCheckBoxChkConfirm.click();
 		}
 	}
 	
 	public void clickOnContinue() {
-		Button_continue.click();
+		frmReserveButtonContinue.click();
 	}
 }

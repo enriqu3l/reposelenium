@@ -58,23 +58,23 @@ public class TCHP_HotelConCambios {
 	}
 	
 	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
-	public void test_HPHotelConCambioDeDestino() throws InterruptedException{
-		Reporter.log("Starting @test_HPHotelConCambioDeDestino");
-		logger.info("Starting @test_HPHotelConCambioDeDestino");
+	public void HPHotelConCambioDeDestino() throws InterruptedException{
+		Reporter.log("Starting @HPHotelConCambioDeDestino");
+		logger.info("Starting @HPHotelConCambioDeDestino");
 		WHPHotelConCambios.HPHotelConCambioDeDestino(driver);
 	}
 	
 	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
-	public void test_HPHotelConCambioDeFecha() throws InterruptedException{		
-		Reporter.log("Starting @test_HPHotelConCambioDeFecha");
-		logger.info("Starting @test_HPHotelConCambioDeFecha");
+	public void HPHotelConCambioDeFecha() throws InterruptedException{		
+		Reporter.log("Starting @HPHotelConCambioDeFecha");
+		logger.info("Starting @HPHotelConCambioDeFecha");
 		WHPHotelConCambios.HPHotelConCambioDeFecha(driver);
 	}
 	
 	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
-	public void test_HPHotelConCambioDeOcupantes() throws InterruptedException{		
-		Reporter.log("Starting @test_HPHotelConCambioDeOcupantes");
-		logger.info("Starting @test_HPHotelConCambioDeOcupantes");
+	public void HPHotelConCambioDeOcupantes() throws InterruptedException{		
+		Reporter.log("Starting @HPHotelConCambioDeOcupantes");
+		logger.info("Starting @HPHotelConCambioDeOcupantes");
 		WHPHotelConCambios.HPHotelConCambioDeOcupantes(driver);
 	}
 

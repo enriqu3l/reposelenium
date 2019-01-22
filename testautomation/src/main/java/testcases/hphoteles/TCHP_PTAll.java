@@ -57,11 +57,18 @@ public class TCHP_PTAll {
 		return new Object[][] { { "testuser_1", "Test@123" }, { "testuser_1", "Test@123" }};
 	}*/
 	
-	@Test (enabled=true, priority = 1)
-	public void HappyPath_HotelDefault() throws InterruptedException{
-		Reporter.log("Starting test HappyPath_HotelDefault");
-		logger.info("Starting test HappyPath_HotelDefault");
+	@Test (enabled=false, priority = 1)
+	public void HPHotelDefault() throws InterruptedException{
+		Reporter.log("Starting test HPHotelDefault");
+		logger.info("Starting test HPHotelDefault");
 		WHPHoteles.HPHotelDefault(driver);
+	}
+	
+	@Test (enabled=true, priority = 2)
+	public void HPHotelRandom() throws InterruptedException{
+		Reporter.log("Starting test HPHotelRandom");
+		logger.info("Starting test HPHotelRandom");
+		WHPHoteles.HPHotelRandom(driver);
 	}
 
 	@AfterMethod

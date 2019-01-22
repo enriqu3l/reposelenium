@@ -26,7 +26,6 @@ import config.CoreConfig;
 import config.FrameworkConfig;
 import utility.BasicUtils;
 import valueobjects.VOHotelRes;
-import valueobjects.VOHotelResNew;
 
 /**
  * Esta clase contiene todos los elementos, acciones y verificaciones necesarios para la pagina SPA Hotel List
@@ -39,11 +38,9 @@ public class HotelListPageF {
 	
 	public HotelListPageF(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
-		logger.info("Start HomePage constructor");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,30);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 20),this);
-		logger.info("Launched initElements");
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("/hoteles/"));
@@ -83,6 +80,7 @@ public class HotelListPageF {
 	
 	private By byListListProduct = By.cssSelector(".list-product");
 	private By byListProductRateFinal = By.cssSelector(".list-product-rate .product-rate-final");
+	private By byListProductHotelName = By.cssSelector(".list-product-item-content .list-product-name");
 	private By byListButtonSeeOffer = By.cssSelector(".list-product-rate .list-product-rate-action .btn");
 	private By byListListProductRateLoaderButton = By.cssSelector(".list-product .list-product-rate .loader");
 	
@@ -158,12 +156,12 @@ public class HotelListPageF {
 		
 		Assert.assertTrue(BasicUtils.existsElement(driver,byListListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
 		Assert.assertFalse(list_allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
-		logger.trace("Tamaño de la lista: "+list_allBlocksResults.size());
+		logger.trace("Cantidad de bloques (hoteles) en la lista de resultados: "+list_allBlocksResults.size());
 		
 		int index = listGetIndexOfFirstHotelAvailable(list_allBlocksResults);
 		Assert.assertFalse(CoreConfig.FAULTVALUE==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
-		WebElement Button_seeOffer = list_allBlocksResults.get(index).findElement(byListButtonSeeOffer);
-		Button_seeOffer.click();
+		WebElement seeOfferButton = list_allBlocksResults.get(index).findElement(byListButtonSeeOffer);
+		seeOfferButton.click();
 		
 		//En caso de encontrar una nueva tab, switchear a ella.
 		//Esta funcion se agrego para tener compatibilidad con ambiente test
@@ -178,12 +176,12 @@ public class HotelListPageF {
 		
 		Assert.assertTrue(BasicUtils.existsElement(driver, byListListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
 		Assert.assertFalse(list_allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
-		logger.trace("Tamaño de la lista: " + list_allBlocksResults.size());
+		logger.trace("Cantidad de bloques (hoteles) en la lista de resultados: " + list_allBlocksResults.size());
 		
 		//Aqui no estoy verificando si tiene disponibilidad, simplemente lo estoy seleccionando
 		
-		WebElement Button_seeOffer = list_allBlocksResults.get(index).findElement(byListButtonSeeOffer);
-		Button_seeOffer.click();
+		WebElement seeOfferButton = list_allBlocksResults.get(index).findElement(byListButtonSeeOffer);
+		seeOfferButton.click();
 		
 		//En caso de encontrar una nueva tab, switchear a ella.
 		//Esta funcion se agrego para tener compatibilidad con ambiente test
@@ -255,23 +253,23 @@ public class HotelListPageF {
 	}
 	
 	//En construccion!!!!!!!
-	public void widgetChangeSearch(VOHotelResNew voHotelResNew){
+	public void widgetChangeSearch(VOHotelRes voHotelRes){
 		logger.info("Starting widgetChangeSearch()");
 		waitForContentToBeReady();
 		
 		widgetInputDestination.clear();
-		widgetInputDestination.sendKeys(voHotelResNew.getDestination());
+		widgetInputDestination.sendKeys(voHotelRes.getDestination());
 		//Wait until dropdown menu appears
 		wait.until(ExpectedConditions.presenceOfElementLocated(byWidgetDestinationDropdownMenu));
 		widgetInputDestination.sendKeys(Keys.ENTER);
 		
-		widgetChangeStartDate(voHotelResNew.getStartDate());
-		widgetChangeEndDate(voHotelResNew.getEndDate());
+		widgetChangeStartDate(voHotelRes.getStartDate());
+		widgetChangeEndDate(voHotelRes.getEndDate());
 		//Aqui el codigo para realizar la seleccion de rooms, adults, kids y agekids
 		Select rooms = new Select(widgetSelectHotelRooms);
-		rooms.selectByValue(Integer.toString(voHotelResNew.getRoomCount()));
+		rooms.selectByValue(Integer.toString(voHotelRes.getRoomCount()));
 		//rooms.selectByIndex(voHotelResNew.getRoomCount()-1); //-1 porque es Base 0
-		if(widgetAllBlockRooms.size() != voHotelResNew.getRoomCount()) {
+		if(widgetAllBlockRooms.size() != voHotelRes.getRoomCount()) {
 			 logger.error("No se crearon los campos suficientes de rooms, allBlocksRooms:"+widgetAllBlockRooms.size());
 			 Assert.fail("LAF>>>No se crearon los campos suficientes de rooms, allBlocksRooms:"+widgetAllBlockRooms.size());
 		}
@@ -281,40 +279,24 @@ public class HotelListPageF {
 			WebElement weKids = widgetAllBlockRooms.get(i).findElement(byWidgetHotelMinors);
 			
 			Select adults = new Select(weAdults);
-			adults.selectByValue(Integer.toString(voHotelResNew.getAdultsFromRoom(i)));
+			adults.selectByValue(Integer.toString(voHotelRes.getAdultsFromRoom(i)));
 			
 			Select kids = new Select(weKids);
-			kids.selectByValue(Integer.toString(voHotelResNew.getKidsFromRoom(i)));
+			kids.selectByValue(Integer.toString(voHotelRes.getKidsFromRoom(i)));
 		}
 		//Ahora hay que llenar las edades de los niños en cada cuarto
 		for(int i=0; i<widgetAllBlockMinorsAges.size();i++) {
 			//Recorrer cada room
-			if(voHotelResNew.getKidsFromRoom(i)>0) {
+			if(voHotelRes.getKidsFromRoom(i)>0) {
 				//Entra solo si el cuarto contiene niños
 				List<WebElement> minors = widgetAllBlockMinorsAges.get(i).findElements(byWidgetAllKidsPerRoom);
 				for(int j=0;j<minors.size();j++) {
 					//Recorrer cada niño y setear la edad
 					Select adults = new Select(minors.get(j));
-					adults.selectByValue(Integer.toString(voHotelResNew.getAgeFromAgekids(i, j)));
+					adults.selectByValue(Integer.toString(voHotelRes.getAgeFromAgekids(i, j)));
 				}
 			}
 		}
-	}
-	
-	//Ya se construyó pero aun no se ha probado!!
-	public void widgetChangeSearchOld(VOHotelRes voHotelRes){
-		logger.info("Starting widgetChangeSearchOld()");
-		widgetInputDestination.clear();
-		widgetInputDestination.sendKeys(voHotelRes.getDestination());
-		widgetChangeStartDate(voHotelRes.getStartDate());		
-		widgetChangeEndDate(voHotelRes.getEndDate());
-		Select rooms = new Select(widgetSelectHotelRooms);
-		rooms.selectByValue("1");
-		Select adults = new Select(widgetSelectHotelAdults);
-		adults.selectByValue(Integer.toString(voHotelRes.getAdults()));
-		Select kids = new Select(widgetSelectHotelMinors);
-		kids.selectByValue("0");
-		widgetClickSubmit();
 	}
 	
 	//En construccion, ya mero esta lista!!!
@@ -427,6 +409,18 @@ public class HotelListPageF {
 		}
 	}
 	
+	public void widgetVerifyEndDateToBe(String expected) {
+		waitForContentToBeReady();
+		String actual = widgetInputEndDate.getAttribute("value").trim();
+		logger.trace("Fecha en el input StartDate:"+actual);
+		if(!actual.contains(expected)) {
+			logger.error("Actual date: ("+actual+") is not as expeted: ("+expected+")");
+			Assert.fail("LAF>>>Actual date: ("+actual+") is not as expeted: ("+expected+")");
+		}else {
+			logger.info("widgetVerifyEndDateToBe PASS");
+		}
+	}
+	
 	public void widgetVerifyAutocompleteDestination(List<String> data) {
 		logger.info("Starting widgetVerifyAutocompleteDestination()");
 		//Me falta poner candados para validar el parametro
@@ -449,7 +443,7 @@ public class HotelListPageF {
 	public void listVerifyResultListHasElements() {
 		Assert.assertTrue(BasicUtils.existsElement(driver,byListListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
 		Assert.assertFalse(list_allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
-		logger.trace("Tamaño de la lista: "+list_allBlocksResults.size());
+		logger.trace("Cantidad de bloques (hoteles) en la lista de resultados: "+list_allBlocksResults.size());
 	}
 	
 	/**
@@ -519,6 +513,7 @@ public class HotelListPageF {
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	//--------------------------- FUNCIONES PRIVADAS -------------------------------------------
 	private int listGetIndexOfFirstHotelAvailable(List<WebElement> allSearchResults) {
+		logger.trace("Starting listGetIndexOfFirstHotelAvailable()");
 		Assert.assertFalse(allSearchResults.isEmpty(),"ENF>>>El parametro de la lista de resultados esta vacia!.");
 		
 		int index = CoreConfig.FAULTVALUE;
@@ -528,19 +523,22 @@ public class HotelListPageF {
 			
 			if(!listProductBlock.findElements(byListProductRateFinal).isEmpty()) {
 				WebElement rateFinal = listProductBlock.findElement(byListProductRateFinal);
+				WebElement hotelName = listProductBlock.findElement(byListProductHotelName);
 				if (!rateFinal.getText().isEmpty()) {
 					int i_masuno = i+1;
-					logger.trace("listGetIndexOfFirstHotelAvailable() - Se encontro disp. en el Hotel No: " + i_masuno);
-					logger.trace("listGetIndexOfFirstHotelAvailable() - Tarifa encontrada: " + rateFinal.getText());
+					logger.trace("Se encontro disp. en el Hotel No: " + i_masuno);
+					logger.trace("Nombre del Hotel: "+hotelName.getText());
+					logger.trace("Tarifa encontrada: " + rateFinal.getText());
 					index = i;
 					break;
 				}
 			}
 			else{
-				logger.trace("getItemNum_firstHotelAvailable() - No se encontro tarifa $ en el item: " + i);
+				logger.trace("No se encontro tarifa $ en el item: " + i);
+				logger.trace("Nombre del Hotel: "+listProductBlock.findElement(byListProductHotelName).getText());
 			}
 		}
-		if(CoreConfig.FAULTVALUE==index){logger.error("listGetIndexOfFirstHotelAvailable() - No se encontro ningun hotel con disponibilidad!.");}
+		if(CoreConfig.FAULTVALUE==index){logger.error("No se encontro ningun hotel con disponibilidad!.");}
 		return index;
 	}
 	private int listGetIndexOfHotelByName(String hotel) {

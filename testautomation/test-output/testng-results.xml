@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="9" total="14" passed="5">
+<testng-results skipped="0" failed="0" ignored="3" total="6" passed="3">
   <reporter-output>
     <line>
-      <![CDATA[Starting Browser]]>
-    </line>
-    <line>
-      <![CDATA[Browser Started]]>
-    </line>
-    <line>
-      <![CDATA[Starting test1]]>
-    </line>
-    <line>
-      <![CDATA[Starting workflow autocompleteDestinationTest]]>
-    </line>
-    <line>
-      <![CDATA[Closing Browser...]]>
+      <![CDATA[Starting BeforeTest]]>
     </line>
     <line>
       <![CDATA[Starting Browser]]>
@@ -23,69 +11,99 @@
       <![CDATA[Browser Started]]>
     </line>
     <line>
-      <![CDATA[Starting test2]]>
+      <![CDATA[Starting test HPHotelRandom]]>
     </line>
     <line>
-      <![CDATA[Starting workflow changeDestinTest]]>
+      <![CDATA[Staring HPHotelRandom]]>
     </line>
     <line>
-      <![CDATA[Closing Browser...]]>
-    </line>
-    <line>
-      <![CDATA[Starting Browser]]>
-    </line>
-    <line>
-      <![CDATA[Browser Started]]>
-    </line>
-    <line>
-      <![CDATA[Starting test3]]>
-    </line>
-    <line>
-      <![CDATA[Starting workflow changeStartDateTest]]>
-    </line>
-    <line>
-      <![CDATA[Closing Browser...]]>
-    </line>
-    <line>
-      <![CDATA[Starting Browser]]>
-    </line>
-    <line>
-      <![CDATA[Browser Started]]>
-    </line>
-    <line>
-      <![CDATA[Starting test4]]>
-    </line>
-    <line>
-      <![CDATA[Starting workflow searchMoreRooms]]>
-    </line>
-    <line>
-      <![CDATA[Closing Browser...]]>
-    </line>
-    <line>
-      <![CDATA[Starting Browser]]>
-    </line>
-    <line>
-      <![CDATA[Browser Started]]>
-    </line>
-    <line>
-      <![CDATA[Starting test1]]>
+      <![CDATA[Ending HPHotelRandom]]>
     </line>
     <line>
       <![CDATA[Closing Browser...]]>
     </line>
     <line>
       <![CDATA[Test Finished]]>
+    </line>
+    <line>
+      <![CDATA[Starting BeforeTest]]>
+    </line>
+    <line>
+      <![CDATA[Starting Browser]]>
+    </line>
+    <line>
+      <![CDATA[Browser Started]]>
+    </line>
+    <line>
+      <![CDATA[Starting test HPHotelRandom]]>
+    </line>
+    <line>
+      <![CDATA[Staring HPHotelRandom]]>
+    </line>
+    <line>
+      <![CDATA[Ending HPHotelRandom]]>
+    </line>
+    <line>
+      <![CDATA[Closing Browser...]]>
+    </line>
+    <line>
+      <![CDATA[Test Finished]]>
+    </line>
+    <line>
+      <![CDATA[Starting BeforeTest]]>
+    </line>
+    <line>
+      <![CDATA[Starting Browser]]>
+    </line>
+    <line>
+      <![CDATA[Browser Started]]>
+    </line>
+    <line>
+      <![CDATA[Starting test HPHotelRandom]]>
+    </line>
+    <line>
+      <![CDATA[Staring HPHotelRandom]]>
+    </line>
+    <line>
+      <![CDATA[Ending HPHotelRandom]]>
+    </line>
+    <line>
+      <![CDATA[Closing Browser...]]>
     </line>
     <line>
       <![CDATA[Test Finished]]>
     </line>
   </reporter-output>
-  <suite name="Regression_Suite" duration-ms="58833" started-at="2019-01-18T07:09:28Z" finished-at="2019-01-18T07:10:27Z">
+  <suite name="HP_Suite" duration-ms="113573" started-at="2019-01-22T20:22:46Z" finished-at="2019-01-22T20:24:39Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="58833" started-at="2019-01-18T07:09:28Z" finished-at="2019-01-18T07:10:27Z">
-      <class name="testcases.hoteles.TCSPAHLPaging">
-        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.hoteles.TCSPAHLPaging@689604d9]" name="prerequisites" is-config="true" duration-ms="4734" started-at="2019-01-18T07:10:22Z" finished-at="2019-01-18T07:10:27Z">
+    <test name="HPPTCOMMX" duration-ms="46513" started-at="2019-01-22T20:22:46Z" finished-at="2019-01-22T20:23:32Z">
+      <class name="testcases.hphoteles.TCHP_PTAll">
+        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.hphoteles.TCHP_PTAll@799f10e1]" name="prerequisitos" is-config="true" duration-ms="18" started-at="2019-01-22T20:22:46Z" finished-at="2019-01-22T20:22:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://www.pricetravel.com.mx]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[org.testng.TestRunner@5bd1ceca]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Starting BeforeTest]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- prerequisitos -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@799f10e1]" name="beforeMethod" is-config="true" duration-ms="11201" started-at="2019-01-22T20:22:46Z" finished-at="2019-01-22T20:22:57Z">
           <reporter-output>
             <line>
               <![CDATA[Starting Browser]]>
@@ -94,38 +112,128 @@
               <![CDATA[Browser Started]]>
             </line>
           </reporter-output>
-        </test-method> <!-- prerequisites -->
-        <test-method status="PASS" signature="test1()[pri:0, instance:testcases.hoteles.TCSPAHLPaging@689604d9]" name="test1" duration-ms="1" started-at="2019-01-18T07:10:27Z" finished-at="2019-01-18T07:10:27Z">
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="HPHotelRandom()[pri:2, instance:testcases.hphoteles.TCHP_PTAll@799f10e1]" name="HPHotelRandom" duration-ms="33142" started-at="2019-01-22T20:22:57Z" finished-at="2019-01-22T20:23:30Z">
           <reporter-output>
             <line>
-              <![CDATA[Starting test1]]>
+              <![CDATA[Starting test HPHotelRandom]]>
+            </line>
+            <line>
+              <![CDATA[Staring HPHotelRandom]]>
+            </line>
+            <line>
+              <![CDATA[Ending HPHotelRandom]]>
             </line>
           </reporter-output>
-        </test-method> <!-- test1 -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hoteles.TCSPAHLPaging@689604d9]" name="Close" is-config="true" duration-ms="41" started-at="2019-01-18T07:10:27Z" finished-at="2019-01-18T07:10:27Z">
+        </test-method> <!-- HPHotelRandom -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@799f10e1]" name="Close" is-config="true" duration-ms="2119" started-at="2019-01-22T20:23:30Z" finished-at="2019-01-22T20:23:32Z">
           <reporter-output>
             <line>
               <![CDATA[Closing Browser...]]>
             </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="End" is-config="true" duration-ms="1" started-at="2019-01-18T07:10:27Z" finished-at="2019-01-18T07:10:27Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@799f10e1]" name="End" is-config="true" duration-ms="1" started-at="2019-01-22T20:23:32Z" finished-at="2019-01-22T20:23:32Z">
           <reporter-output>
             <line>
               <![CDATA[Test Finished]]>
             </line>
           </reporter-output>
         </test-method> <!-- End -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.hoteles.TCSPAHLPaging@689604d9]" name="End" is-config="true" duration-ms="0" started-at="2019-01-18T07:10:27Z" finished-at="2019-01-18T07:10:27Z">
+      </class> <!-- testcases.hphoteles.TCHP_PTAll -->
+    </test> <!-- HPPTCOMMX -->
+    <test name="HPPTCOM" duration-ms="34760" started-at="2019-01-22T20:23:32Z" finished-at="2019-01-22T20:24:07Z">
+      <class name="testcases.hphoteles.TCHP_PTAll">
+        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.hphoteles.TCHP_PTAll@65fb9ffc]" name="prerequisitos" is-config="true" duration-ms="3" started-at="2019-01-22T20:23:32Z" finished-at="2019-01-22T20:23:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://www.pricetravel.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[org.testng.TestRunner@30c31dd7]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Starting BeforeTest]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- prerequisitos -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@65fb9ffc]" name="beforeMethod" is-config="true" duration-ms="7327" started-at="2019-01-22T20:23:32Z" finished-at="2019-01-22T20:23:40Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Starting Browser]]>
+            </line>
+            <line>
+              <![CDATA[Browser Started]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="HPHotelRandom()[pri:2, instance:testcases.hphoteles.TCHP_PTAll@65fb9ffc]" name="HPHotelRandom" duration-ms="25114" started-at="2019-01-22T20:23:40Z" finished-at="2019-01-22T20:24:05Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Starting test HPHotelRandom]]>
+            </line>
+            <line>
+              <![CDATA[Staring HPHotelRandom]]>
+            </line>
+            <line>
+              <![CDATA[Ending HPHotelRandom]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- HPHotelRandom -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@65fb9ffc]" name="Close" is-config="true" duration-ms="2313" started-at="2019-01-22T20:24:05Z" finished-at="2019-01-22T20:24:07Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Closing Browser...]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- Close -->
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@65fb9ffc]" name="End" is-config="true" duration-ms="0" started-at="2019-01-22T20:24:07Z" finished-at="2019-01-22T20:24:07Z">
           <reporter-output>
             <line>
               <![CDATA[Test Finished]]>
             </line>
           </reporter-output>
         </test-method> <!-- End -->
-      </class> <!-- testcases.hoteles.TCSPAHLPaging -->
-      <class name="testcases.hoteles.TCSPAHLWidget">
-        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="prerequisites" is-config="true" duration-ms="5515" started-at="2019-01-18T07:09:28Z" finished-at="2019-01-18T07:09:34Z">
+      </class> <!-- testcases.hphoteles.TCHP_PTAll -->
+    </test> <!-- HPPTCOM -->
+    <test name="HPPTCO" duration-ms="32238" started-at="2019-01-22T20:24:07Z" finished-at="2019-01-22T20:24:39Z">
+      <class name="testcases.hphoteles.TCHP_PTAll">
+        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.hphoteles.TCHP_PTAll@33d512c1]" name="prerequisitos" is-config="true" duration-ms="0" started-at="2019-01-22T20:24:07Z" finished-at="2019-01-22T20:24:07Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://www.pricetravel.co]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[org.testng.TestRunner@499b2a5c]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Starting BeforeTest]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- prerequisitos -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@33d512c1]" name="beforeMethod" is-config="true" duration-ms="10164" started-at="2019-01-22T20:24:07Z" finished-at="2019-01-22T20:24:17Z">
           <reporter-output>
             <line>
               <![CDATA[Starting Browser]]>
@@ -134,106 +242,35 @@
               <![CDATA[Browser Started]]>
             </line>
           </reporter-output>
-        </test-method> <!-- prerequisites -->
-        <test-method status="PASS" signature="test1()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="test1" duration-ms="7988" started-at="2019-01-18T07:09:34Z" finished-at="2019-01-18T07:09:42Z">
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="HPHotelRandom()[pri:2, instance:testcases.hphoteles.TCHP_PTAll@33d512c1]" name="HPHotelRandom" duration-ms="19761" started-at="2019-01-22T20:24:17Z" finished-at="2019-01-22T20:24:37Z">
           <reporter-output>
             <line>
-              <![CDATA[Starting test1]]>
+              <![CDATA[Starting test HPHotelRandom]]>
             </line>
             <line>
-              <![CDATA[Starting workflow autocompleteDestinationTest]]>
+              <![CDATA[Staring HPHotelRandom]]>
+            </line>
+            <line>
+              <![CDATA[Ending HPHotelRandom]]>
             </line>
           </reporter-output>
-        </test-method> <!-- test1 -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="Close" is-config="true" duration-ms="2317" started-at="2019-01-18T07:09:42Z" finished-at="2019-01-18T07:09:44Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Closing Browser...]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- Close -->
-        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="prerequisites" is-config="true" duration-ms="4715" started-at="2019-01-18T07:09:44Z" finished-at="2019-01-18T07:09:49Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Starting Browser]]>
-            </line>
-            <line>
-              <![CDATA[Browser Started]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- prerequisites -->
-        <test-method status="PASS" signature="test2()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="test2" duration-ms="6250" started-at="2019-01-18T07:09:49Z" finished-at="2019-01-18T07:09:55Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Starting test2]]>
-            </line>
-            <line>
-              <![CDATA[Starting workflow changeDestinTest]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- test2 -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="Close" is-config="true" duration-ms="2317" started-at="2019-01-18T07:09:55Z" finished-at="2019-01-18T07:09:58Z">
+        </test-method> <!-- HPHotelRandom -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@33d512c1]" name="Close" is-config="true" duration-ms="2310" started-at="2019-01-22T20:24:37Z" finished-at="2019-01-22T20:24:39Z">
           <reporter-output>
             <line>
               <![CDATA[Closing Browser...]]>
             </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="prerequisites" is-config="true" duration-ms="4876" started-at="2019-01-18T07:09:58Z" finished-at="2019-01-18T07:10:02Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@33d512c1]" name="End" is-config="true" duration-ms="0" started-at="2019-01-22T20:24:39Z" finished-at="2019-01-22T20:24:39Z">
           <reporter-output>
             <line>
-              <![CDATA[Starting Browser]]>
-            </line>
-            <line>
-              <![CDATA[Browser Started]]>
+              <![CDATA[Test Finished]]>
             </line>
           </reporter-output>
-        </test-method> <!-- prerequisites -->
-        <test-method status="PASS" signature="test3()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="test3" duration-ms="4284" started-at="2019-01-18T07:10:02Z" finished-at="2019-01-18T07:10:07Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Starting test3]]>
-            </line>
-            <line>
-              <![CDATA[Starting workflow changeStartDateTest]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- test3 -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="Close" is-config="true" duration-ms="2312" started-at="2019-01-18T07:10:07Z" finished-at="2019-01-18T07:10:09Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Closing Browser...]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- Close -->
-        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="prerequisites" is-config="true" duration-ms="4408" started-at="2019-01-18T07:10:09Z" finished-at="2019-01-18T07:10:13Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Starting Browser]]>
-            </line>
-            <line>
-              <![CDATA[Browser Started]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- prerequisites -->
-        <test-method status="PASS" signature="test4()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="test4" duration-ms="6729" started-at="2019-01-18T07:10:13Z" finished-at="2019-01-18T07:10:20Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Starting test4]]>
-            </line>
-            <line>
-              <![CDATA[Starting workflow searchMoreRooms]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- test4 -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hoteles.TCSPAHLWidget@35d019a3]" name="Close" is-config="true" duration-ms="2315" started-at="2019-01-18T07:10:20Z" finished-at="2019-01-18T07:10:22Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Closing Browser...]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- Close -->
-      </class> <!-- testcases.hoteles.TCSPAHLWidget -->
-    </test> <!-- Test -->
-  </suite> <!-- Regression_Suite -->
+        </test-method> <!-- End -->
+      </class> <!-- testcases.hphoteles.TCHP_PTAll -->
+    </test> <!-- HPPTCO -->
+  </suite> <!-- HP_Suite -->
 </testng-results>

@@ -8,9 +8,10 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
+import config.FrameworkConfig;
 import helpers.DDManager;
 import pages.Pages;
-import valueobjects.VOHotelResNew;
+import valueobjects.VOHotelRes;
 
 public class WSPAHLWidget {
 private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
@@ -23,7 +24,6 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 	 * @author enrique.lopez
 	 */
 	public static void autocompleteDestinationTest(WebDriver driver){
-		
 		//<Setup>
 		logger.info("Starting workflow autocompleteDestinationTest");
 		Reporter.log("Starting workflow autocompleteDestinationTest");
@@ -35,17 +35,14 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		data.add("vallarta");
 		data.add("bogot");
 		Pages pages = new Pages(driver);
-		
 		//<When>
 		pages.hotelListPage_Initialize();
-		
 		//<Then>
 		pages.hotelList_page.widgetVerifyAutocompleteDestination(data);
 	}
 	
 	//En construccion
 	public static void autocompleteTest(WebDriver driver) throws InterruptedException{
-		
 		//<Setup>
 		logger.info("Starting workflow destinationAutocompleteTest");
 		Reporter.log("Starting workflow destinationAutocompleteTest");
@@ -56,20 +53,15 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		data.add("vegas");
 		data.add("vallarta");
 		data.add("bogot");
-		
 		/*
 		Pages pages = new Pages(driver);
-		
 		//<When>
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.sendKeysWidgetDestination(data.get(0));
-		
 		//<Then>
 		pages.hotelList_page.verifyIsDisplayedWidgetDestinationAutocomplete();
-		
 		//<When>
 		pages.hotelList_page.sendKeysWidgetDestination(Keys.ENTER);
-		
 		//<Then>
 		pages.hotelList_page.verifyDestinationContains();
 		pages.hotelList_page.clearDestination();
@@ -92,14 +84,12 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		logger.info("Starting workflow changeDestinTest");
 		Reporter.log("Starting workflow changeDestinTest");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
-		VOHotelResNew voHotelResNew = DDManager.getHotelResNew(2);
+		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA, 2);
 		Pages pages = new Pages(driver);
-		
 		//<When>
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.widgetChangeDestin(voHotelResNew.getDestination());
 		pages.hotelList_page.widgetClickSubmit();
-		
 		//<Then>
 		//Verificar que el widget tiene el nuevo destino
 		pages.hotelList_page.widgetVerifyDestinationToBe(voHotelResNew.getDestination());		
@@ -114,18 +104,17 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		logger.info("Starting workflow changeStartDateTest");
 		Reporter.log("Starting workflow changeStartDateTest");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
-		VOHotelResNew voHotelResNew = DDManager.getHotelResNew(2);
+		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,2);
 		Pages pages = new Pages(driver);
-		
 		//<When>
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.widgetChangeStartDate(voHotelResNew.getStartDate());
 		pages.hotelList_page.widgetChangeEndDate(voHotelResNew.getEndDate());
 		pages.hotelList_page.widgetClickSubmit();
-		
 		//<Then>
 		//Verificar que el widget tiene la nueva fecha
 		pages.hotelList_page.widgetVerifyStartDateToBe(voHotelResNew.getStartDate());
+		pages.hotelList_page.widgetVerifyEndDateToBe(voHotelResNew.getStartDate());
 		//Verificar que la url tiene la nueva fecha
 		pages.hotelList_page.verifyUrlContains(voHotelResNew.getStartDate("yyyy-MM-dd"),false);
 		//Verificar que tenemos resultados
@@ -137,14 +126,12 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		logger.info("Starting workflow searchMoreRooms");
 		Reporter.log("Starting workflow searchMoreRooms");
 		// Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
-		VOHotelResNew voHotelResNew = DDManager.getHotelResNew(11);// Aqui leo el row 11 donde tengo varios rooms
+		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,11);// Aqui leo el row 11 donde tengo varios rooms
 		Pages pages = new Pages(driver);
-
 		// <When>
 		pages.hotelListPage_Initialize();
 		pages.hotelList_page.widgetChangeSearch(voHotelResNew);
 		pages.hotelList_page.widgetClickSubmit();
-
 		// <Then>
 		// Verificar que tenemos resultados
 		pages.hotelList_page.listVerifyResultListHasElements();

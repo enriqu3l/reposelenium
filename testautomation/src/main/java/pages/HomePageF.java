@@ -17,7 +17,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import valueobjects.VOHotelRes;
-import valueobjects.VOHotelResNew;
 
 public class HomePageF {
 	private WebDriverWait wait;
@@ -27,11 +26,9 @@ public class HomePageF {
 	//Constructor
 	public HomePageF(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
-		logger.info("Start HomePage constructor");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,30);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
-		logger.info("Launched initElements");
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("pricetravel."));
@@ -44,139 +41,131 @@ public class HomePageF {
 	//usará los valores por default para la busqueda
 	
 	
+	//--------------- Widget--------------------
 	@FindBy(how=How.CSS, css="#ptw-menu > ul")
 	@CacheLookup
 	private WebElement widgetMenu;
 	
-	//---Hoteles---
+	By widgetProductActive = By.cssSelector("li.ptw-active > a");
+	By widgetAutocompleteDropdownMenu = By.cssSelector(".pt-customJqueryUi .ui-autocomplete");
+	
+	//--------------- Widget Hoteles ---------------
 	@FindBy(how=How.ID, id="var1_1")
 	@CacheLookup
-	private WebElement RadioButton_hotel;
+	private WebElement widgetRadioButtonHotel;
 	
 	@FindBy(how=How.ID, id="var1_3")
 	@CacheLookup
-	private WebElement RadioButton_hotelFlight;
+	private WebElement widgetRadioButtonHotelFlight;
 	
 	@FindBy(how=How.ID, id="ap_dest_hotel")
 	@CacheLookup
-	private WebElement Input_destHotel;
+	private WebElement widgetInputDestHotel;
 	
 	@FindBy(how=How.ID, id="ap_dest_start")
 	@CacheLookup
-	private WebElement Input_destStartHotel;
+	private WebElement widgetInputDestStartHotel;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form  div.ptw-field-group.ptw-field-dates > div:nth-child(1) > img.ui-datepicker-trigger")
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form .ptw-field-date:nth-child(1) .ui-datepicker-trigger")
 	@CacheLookup
-	private WebElement Image_destStartHotelTrigger;
+	private WebElement widgetImageDestStartHotelTrigger;
 	
 	@FindBy(how=How.ID, id="ap_dest_end")
 	@CacheLookup
-	private WebElement Input_destEndHotel;
+	private WebElement widgetInputDestEndHotel;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form  div.ptw-field-group.ptw-field-dates > div:nth-child(2) > img.ui-datepicker-trigger")
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form .ptw-field-date:nth-child(2) .ui-datepicker-trigger")
 	@CacheLookup
-	private WebElement Image_destEndHotelTrigger;
+	private WebElement widgetImageDestEndHotelTrigger;
 	
 	@FindBy(how=How.ID, id="ap_booker_Hotel_rooms")
 	@CacheLookup
-	private WebElement Select_bookerHotelRooms;
+	private WebElement widgetSelectBookerHotelRooms;
 	
 	@FindBy(how=How.ID, id="ap_booker_Hotel_adults0")
 	@CacheLookup
-	private WebElement Select_bookerHotelAdults0;
+	private WebElement widgetSelectBookerHotelAdults0;
 	
 	@FindBy(how=How.ID, id="ap_booker_Hotel_minors0")
 	@CacheLookup
-	private WebElement Select_bookerHotelMinors0;
+	private WebElement widgetSelectBookerHotelMinors0;
 	
-	//---Paquetes---
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form .ptw-submit-btn")
+	@CacheLookup
+	private WebElement widgetButtonSearchHoteles;
+	
+	//--------------- Widget Paquetes ---------------
 	@FindBy(how=How.ID, id="var3_3")
 	@CacheLookup
-	private WebElement RadioButton_hotelFlightPackage;
+	private WebElement widgetRadioButtonHotelFlightPackage;
 	
 	@FindBy(how=How.ID, id="ap_origin_flightPackage")
 	@CacheLookup
-	private WebElement Input_originFlightPackage;
+	private WebElement widgetInputOriginFlightPackage;
 	
 	@FindBy(how=How.ID, id="ap_dest_start")
 	@CacheLookup
-	private WebElement Input_destFlightPackage;
+	private WebElement widgetInputDestFlightPackage;
 	
 	@FindBy(how=How.ID, id="ap_flightPackage_start")
 	@CacheLookup
-	private WebElement Input_flightPackageStart;
+	private WebElement widgetInputFlightPackageStart;
 	
 	@FindBy(how=How.ID, id="ap_flightPackage_end")
 	@CacheLookup
-	private WebElement Input_flightPackageEnd;
+	private WebElement widgetInputFlightPackageEnd;
 	
-	//---Vuelos---
+	@FindBy(how=How.CSS, css="#ap_booker_FlightPackage_form .ptw-submit-btn")
+	@CacheLookup
+	private WebElement widgetButtonSearchPaquetes;
+	
+	//--------------- Widget Vuelos ---------------
 	@FindBy(how=How.ID, id="var2_2")
 	@CacheLookup
-	private WebElement RadioButton_Flight;
+	private WebElement widgetRadioButtonFlight;
 	
 	@FindBy(how=How.ID, id="var2_3")
 	@CacheLookup
-	private WebElement RadioButton_FlightPackage;
+	private WebElement widgetRadioButtonFlightPackage;
+	
+	@FindBy(how=How.CSS, css="#ap_booker_Flight_form .ptw-submit-btn")
+	@CacheLookup
+	private WebElement widgetButtonSearchFlight;
 	
 	//Aun falta de agregar los otros productos....
+
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form > div > div.ptw-buttons > input.ap-data_engine-Hotel.ap_booker_submit.ptw-btn.ptw-submit-btn")
-	@CacheLookup
-	private WebElement Button_search;
-	
-	
-	//--------------- Widget--------------------
-	By productActive = By.cssSelector("li.ptw-active > a");
-	By waitdropdownmenu = By.cssSelector(".pt-customJqueryUi .ui-autocomplete");
-	
-	public void searchHotel(VOHotelResNew voHotelResNew){
+	public void widgetSearchHotel(VOHotelRes voHotelRes){
 		logger.info("Starting SearchHotel()");
 		verifyProductSelectedOnWidgetMenu("Hoteles");
-		Input_destHotel.clear();
-		Input_destHotel.sendKeys(voHotelResNew.getDestination());
-		wait.until(ExpectedConditions.attributeContains(waitdropdownmenu, "style", "display: block;"));
-		Input_destHotel.sendKeys(Keys.ENTER);
-		Input_destStartHotel.clear();
-		Input_destStartHotel.sendKeys(voHotelResNew.getStartDate());
-		Input_destEndHotel.clear();
-		Input_destEndHotel.sendKeys(voHotelResNew.getEndDate());
+		widgetInputDestHotel.clear();
+		widgetInputDestHotel.sendKeys(voHotelRes.getDestination());
+		logger.trace("Destin: "+ voHotelRes.getDestination());
+		wait.until(ExpectedConditions.attributeContains(widgetAutocompleteDropdownMenu, "style", "display: block;"));
+		widgetInputDestHotel.sendKeys(Keys.ENTER);
+		widgetInputDestStartHotel.clear();
+		widgetInputDestStartHotel.sendKeys(voHotelRes.getStartDate());
+		logger.trace("Start Date: "+voHotelRes.getStartDate());
+		widgetInputDestEndHotel.clear();
+		widgetInputDestEndHotel.sendKeys(voHotelRes.getEndDate());
+		logger.trace("End Date: "+voHotelRes.getEndDate());
 		//Image_destEndHotelTrigger.click();  esconde el calendario
-		Select rooms = new Select(Select_bookerHotelRooms);
-		rooms.selectByVisibleText("1");
-		Select adults = new Select(Select_bookerHotelAdults0);
-		adults.selectByValue(Integer.toString(voHotelResNew.getAdultsFromRoom(0)));
-		Select kids = new Select(Select_bookerHotelMinors0);
-		kids.selectByValue(Integer.toString(voHotelResNew.getKidsFromRoom(0)));
-		Button_search.click();
-		logger.info("Ending SearchHotel()");
-	}
-	
-	public void searchHotelOld(VOHotelRes DO_HotelRes){
-		logger.info("Starting SearchHotel()");
-		verifyProductSelectedOnWidgetMenu("Hoteles");
-		Input_destHotel.clear();
-		Input_destHotel.sendKeys(DO_HotelRes.getDestination());
-		wait.until(ExpectedConditions.attributeContains(waitdropdownmenu, "style", "display: block;"));
-		Input_destHotel.sendKeys(Keys.ENTER);
-		Input_destStartHotel.clear();
-		Input_destStartHotel.sendKeys(DO_HotelRes.getStartDate());
-		Input_destEndHotel.clear();
-		Input_destEndHotel.sendKeys(DO_HotelRes.getEndDate());
-		//Image_destEndHotelTrigger.click();  esconde el calendario
-		Select rooms = new Select(Select_bookerHotelRooms);
-		rooms.selectByVisibleText("1");
-		Select adults = new Select(Select_bookerHotelAdults0);
-		adults.selectByValue(Integer.toString(DO_HotelRes.getAdults()));
-		Select kids = new Select(Select_bookerHotelMinors0);
-		kids.selectByValue("0");
-		Button_search.click();
+		Select rooms = new Select(widgetSelectBookerHotelRooms);
+		rooms.selectByVisibleText(Integer.toString(voHotelRes.getRoomCount()));
+		logger.trace("Rooms: "+voHotelRes.getRoomCount());
+		Select adults = new Select(widgetSelectBookerHotelAdults0);
+		adults.selectByValue(Integer.toString(voHotelRes.getAdultsFromRoom(0)));
+		logger.trace("Adults: "+voHotelRes.getAdultsFromRoom(0));
+		Select kids = new Select(widgetSelectBookerHotelMinors0);
+		kids.selectByValue(Integer.toString(voHotelRes.getKidsFromRoom(0)));
+		logger.trace("Kids: "+voHotelRes.getKidsFromRoom(0));
+		widgetButtonSearchHoteles.click();
 		logger.info("Ending SearchHotel()");
 	}
 	
 	public void verifyProductSelectedOnWidgetMenu(String product) {
 		logger.info("Starting verifyProductSelectedOnWidgetMenu()");
-		if(!widgetMenu.findElement(productActive).getText().equals(product)) {
+		if(!widgetMenu.findElement(widgetProductActive).getText().equals(product)) {
 			widgetMenu.findElement(By.linkText(product) ).click();
 		}
 		logger.info("Ending verifyProductSelectedOnWidgetMenu()");

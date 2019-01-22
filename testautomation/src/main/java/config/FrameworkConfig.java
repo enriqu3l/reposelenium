@@ -29,10 +29,9 @@ public class FrameworkConfig {
 	//Files Names
 	public static final String FILE_CLIENTDATA = "ClientData.xlsx";
 	public static final String FILE_CREDITCARDSDATA = "CreditCardsData.xlsx";
-	public static final String FILE_HOTELRESDATA = "HotelResData.xlsx";
 	public static final String FILE_LOCATORSGENERATED = "LocatorsGenerated.xlsx";
 	public static final String FILE_HPHOTELRESDATA = "HPHotelResData.xlsx";
-	public static final String FILE_HOTELLISTWIDGETDATA = "HotelListWidgetData.xlsx";
+	public static final String FILE_REGRESSIONHOTELRESDATA = "RegressionHotelResData.xlsx";
 	
 	//BrowserConfig
 	public static final String BROWSER_CHROME = "chrome";

@@ -55,7 +55,7 @@ public class ThankYouPageF {
 		wait.until( ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(locator)));
 		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(locator)));
 		//checkCurrentURLPage();
-		Assert.assertTrue(message.getText().contains("Gracias"),"ThankYouPage -> No se encontro el mensaje de: Gracias");
+		Assert.assertTrue(message.getText().contains("Gracias"),"LAF>>>No se encontro el mensaje de: Gracias");
 		logger.info("---> Localizador: "+locator.getText());
 		BasicUtils.ScreenShot(driver, locator.getText(), FrameworkConfig.PATH_SCREENSHOOT_LOCATORS);
 		DDManager.saveLocator(locator.getText());
@@ -65,7 +65,7 @@ public class ThankYouPageF {
 		//Este wait no es necesario dado que estoy usando AjaxElementFactory
 		//wait.until(ExpectedConditions.urlContains("completar-reservacion"));
 		currentURL = driver.getCurrentUrl();
-		Assert.assertTrue(currentURL.contains("completar-reservacion"));
+		Assert.assertTrue(currentURL.contains("LAF>>>completar-reservacion"));
 	}
 	
 	public void seeReservationButtonClick() {		

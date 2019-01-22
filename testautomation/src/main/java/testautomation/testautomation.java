@@ -10,7 +10,7 @@ import config.FrameworkConfig;
 import helpers.BrowserFactory;
 import helpers.DDManager;
 import utility.ExcelUtils;
-import valueobjects.VOHotelResNew;
+import valueobjects.VOHotelRes;
 
 public class testautomation {
 

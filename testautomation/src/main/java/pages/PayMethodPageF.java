@@ -26,7 +26,6 @@ public class PayMethodPageF {
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,30);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
-		logger.info("Launched initElements");
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("/reservar/forma-pago"));
@@ -93,7 +92,7 @@ public class PayMethodPageF {
 		Input_cardZipCode1.sendKeys("44777");
 	}*/
 	
-	public void FillCreditForm(VOCreditCard DOCard) {
+	public void fillCreditForm(VOCreditCard DOCard) {
 		logger.info("Starting FillCreditForm()");
 		Input_cardNumber1.sendKeys(Long.toString(DOCard.getCardNumber()));
 		Select month = new Select (Select_cardMonthExpired1);

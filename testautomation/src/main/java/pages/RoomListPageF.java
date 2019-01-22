@@ -27,14 +27,13 @@ public class RoomListPageF {
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,30);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
-		logger.info("Launched initElements");
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("/hotel/"));
 	}
 	
 	//+++++++++PageFactory Elements+++++++++++++++++
-	@FindBy(how=How.CSS, css=".hotel-rooms-table .room-table")
+	@FindBy(how=How.CSS, css=".hotel-rooms-table .room-table[style='display: block;']")
 	private List<WebElement> allSearchResults;
 	
 	@FindBy(how=How.CSS, css=".hotel-rooms-table .room-table .room-table-actions .btn.btn-primary")
@@ -55,7 +54,7 @@ public class RoomListPageF {
 		//Esperar a que se quite el overlay, falla en Test porque no es SPA
 		waitForOverlay();
 		
-		logger.trace("Tamaño de la lista de resultados: "+allSearchResults.size());
+		logger.trace("Cantidad de bloques (rooms) en la lista de resultados: "+allSearchResults.size());
 		
 		//Cambié el scroll por un Action, hasta ahora parece que esta funcionando bien ;)...
 		//Actions actions = new Actions(driver);

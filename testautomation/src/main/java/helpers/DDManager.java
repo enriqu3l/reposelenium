@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
 import config.FrameworkConfig;
 import utility.ExcelUtils;
+import valueobjects.VOClient;
 import valueobjects.VOCreditCard;
 import valueobjects.VOHotelRes;
-import valueobjects.VOHotelResNew;
 
 public class DDManager {
 	/*Ya no usare resources internos, ahora los archivos estaran fuera del proyecto
@@ -30,59 +29,17 @@ public class DDManager {
 	public DDManager() {
 	}
 	
-	//------------------------- HOTEL RES NEW ------------------------------
-	public static VOHotelResNew getHotelResNewDefault() {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HPHOTELRESDATA;
+	//------------------------- HOTEL RES ------------------------------
+	public static VOHotelRes getHotelResDefault(String file) {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
 		int defaultRow = 1; //Para leer el primer registro del archivo
-		VOHotelResNew voHotelResNew = new VOHotelResNew();
-		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
-		return voHotelResNew;
-	}//EndFunction
-	
-	public  static VOHotelResNew getHotelResNew(int row) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HPHOTELRESDATA;
-		//Candado que limita los valores que puede tener la variable row
-		int max = ExcelUtils.getRowCount(filePath)-1;
-		if(row<=0){row=1;}
-		if(row>max){row=max;}
-		VOHotelResNew voHotelResNew = new VOHotelResNew();
-		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, row));
-		return voHotelResNew;
-	}//EndFunction
-	
-	public static VOHotelResNew getRandomHotelResNew() {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
-		int min = 1;  //Comienza en 1 porque la fila de cabecera es la 0
-		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
-		//Asi se obtiene un numero random entre valor min y max:
-		Random rand = new Random();
-		int randomNum = rand.nextInt((max - min) + 1) + min;
-		System.out.println("Info - DDManager - getRandomHotelRes randomNum: "+randomNum);
-		VOHotelResNew voHotelResNew = new VOHotelResNew();
-		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
-		return voHotelResNew;
-	}//EndFunction
-	
-	//-------------------------HOTEL RES------------------------------
-	public static VOHotelRes getHotelResDefault() {
-		//Ya quedo obsoleta esta funcion, ahora ya uso el nuevo formato de archivo excel
-		//Uso la informacion del FrameworkConfig--
-		LocalDate startDate;
-		LocalDate endDate;
 		VOHotelRes voHotelRes = new VOHotelRes();
-		voHotelRes.setIdHotelRes("HR001");
-		voHotelRes.setDestination(FrameworkConfig.R_DESTIN);
-		startDate = LocalDate.now().plusMonths(FrameworkConfig.R_STARTDATE_PLUSMONTH);
-		voHotelRes.setStartDate(startDate.toString("dd/MM/yyyy"));
-		endDate = startDate.plusDays(FrameworkConfig.R_ENDDATE_RESDAYS);
-		voHotelRes.setEndDate(endDate.toString("dd/MM/yyyy"));
-		voHotelRes.setAdults(FrameworkConfig.R_ADULTS);
-		voHotelRes.setKids(FrameworkConfig.R_KIDS);
+		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
 		return voHotelRes;
 	}//EndFunction
 	
-	public  static VOHotelRes getHotelRes(int row) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELRESDATA;
+	public  static VOHotelRes getHotelRes(String file,int row) {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
 		//Candado que limita los valores que puede tener la variable row
 		int max = ExcelUtils.getRowCount(filePath)-1;
 		if(row<=0){row=1;}
@@ -92,8 +49,8 @@ public class DDManager {
 		return voHotelRes;
 	}//EndFunction
 	
-	public static VOHotelRes getRandomHotelRes() {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELRESDATA;
+	public static VOHotelRes getRandomHotelRes(String file) {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
 		int min = 1;  //Comienza en 1 porque la fila de cabecera es la 0
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
 		//Asi se obtiene un numero random entre valor min y max:
@@ -105,25 +62,48 @@ public class DDManager {
 		return voHotelRes;
 	}//EndFunction
 	
-	//------------------------ HotelListWidget ------------------------
 	
 	
+	//------------------------- CLIENT DATA ------------------------------
+	public static VOClient getClientDataDefault(String file) {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		int defaultRow = 1; //Para leer el primer registro del archivo
+		VOClient voClient = new VOClient();
+		voClient.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
+		return voClient;
+	}
+	public static VOClient getClientData(String file, int row) {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		//Candado que limita los valores que puede tener la variable row
+		int max = ExcelUtils.getRowCount(filePath)-1;
+		if(row<=0){row=1;}
+		if(row>max){row=max;}
+		VOClient voClient = new VOClient();
+		voClient.setDataUsingList(ExcelUtils.getRow(filePath, row));
+		return voClient;
+	}
+	
+	public static VOClient getRandomClient(String file) {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		int min = 1;
+		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
+		//Asi se obtiene un numero random entre valor min y max.
+		Random rand = new Random();
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+		
+		VOClient voClient = new VOClient();
+		voClient.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
+		return voClient;
+	}
 	
 	
 	//-------------------------CREDIT CARD------------------------------
 	public static VOCreditCard getCreditCardDefault() {
-		//Por lo pronto tengo hardcodeada esta funcion!!!
-		//Me falta jalar los datos desde la Clase GeneralConfig
+		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_CREDITCARDSDATA;
+		int row = 1; //Hardcodeada para que lea el primer registro del archivo excel
+		
 		VOCreditCard voCreditCard = new VOCreditCard();
-		voCreditCard.setNumber(Long.parseLong("4772130000000003"));
-		voCreditCard.setHolderName("Virginia Chavez");
-		voCreditCard.setMonth("08");
-		voCreditCard.setYear("2021");
-		voCreditCard.setCCV(114);
-		voCreditCard.setCountry("MX");
-		voCreditCard.setCP(44777);
-		voCreditCard.setBank("Bancomer");
-		voCreditCard.setPayNetwork(FrameworkConfig.CardTypes.VISA);
+		voCreditCard.setDataUsingList(ExcelUtils.getRow(filePath, row));
 		return voCreditCard;
 	}//EndFunction
 	
@@ -151,6 +131,9 @@ public class DDManager {
 		voCreditCard.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
 		return voCreditCard;
 	}
+	
+	
+	//------------------------- LOCATORS GENERATED------------------------------
 	
 	//Necesito verificar si funciona correctamente 
 	public static boolean saveLocator(String locator) {
