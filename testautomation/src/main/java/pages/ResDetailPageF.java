@@ -68,9 +68,18 @@ public class ResDetailPageF {
 	
 	
 	//--------- Resumen de la Reservacion ---------
-	@FindBy(how=How.CSS, id=".aside .card-body .summary-description-name h5")
+	@FindBy(how=How.CSS, css=".aside .card-body .summary-description-name h5")
 	@CacheLookup
-	WebElement descriptionName;
+	WebElement summaryHotelName;
+	
+	@FindBy(how=How.CSS, css=".aside .card-body .list-note li:nth-child(1)")
+	WebElement summaryStartDate;
+	
+	@FindBy(how=How.CSS, css=".aside .card-body .list-note li:nth-child(2)")
+	WebElement summaryEndDate;
+	
+	@FindBy(how=How.CSS, css=".aside .summary-product-rates .summary-table-rates .ap_summaryTotalAmount")
+	WebElement summaryTotalAmount;
 	
 	
 	//------------  pt.co Elements --------------
@@ -83,16 +92,19 @@ public class ResDetailPageF {
 		Assert.assertTrue(currentURL.contains("detalles-reservacion"));
 	}
 	
-	//Aun no implemento assertions en esta pagina
-	public void BasicAssertions() {
-		Assert.assertEquals(descriptionName.getText(), "");
-	}
-	
 	public void clearAndFillForm(VOClient voClient) {
 		clearForm();
+		printSummaryInfo();
 		fillForm(voClient);
 	}
 	
+	private void printSummaryInfo() {
+		logger.info("Summary Hotel Name: " + summaryHotelName.getText());
+		logger.info("Summary Start Date: " + summaryStartDate.getText());
+		logger.info("Summary End Date: " + summaryEndDate.getText());
+		logger.info("Summary Total Amount: "+ summaryTotalAmount.getText());
+	}
+
 	public void fillForm(VOClient voClient) {
 		logger.info("Starting fillFormDefaultData()");
 		wait.until(ExpectedConditions.visibilityOf(frmReserveInputFirsName));
@@ -111,28 +123,7 @@ public class ResDetailPageF {
 			frmReserveInputNationalIdCard.sendKeys(Integer.toString(voClient.getNationalId()));
 		}
 		checkPolitics();
-		logger.info("Starting fillFormDefaultData()");
-	}
-	
-	public void fillForm2() {
-		logger.info("Starting fillFormDefaultData()");
-		wait.until(ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(frmReserveInputFirsName)));
-		frmReserveInputFirsName.sendKeys("Enrique");
-		frmReserveInputLastName.sendKeys("Carrillo");
-		frmReserveInputEmail.sendKeys("enriquecarrillo119999@gmail.com");
-		frmReserveInputConMail.sendKeys("enriquecarrillo119999@gmail.com");
-		frmReserveInputLada.sendKeys("33");
-		frmReserveInputPhone.sendKeys("33443344");
-		frmReserveInputMobile.sendKeys("3344334433");
-		
-		//Se agrego este If para el campo Cedula de Ciudadania
-		//de la pagina de pt.co
-		if(driver.getCurrentUrl().contains(".co/")) {
-			logger.info("fillFormDefaultData() - Sending national card number for pt.co");
-			frmReserveInputNationalIdCard.sendKeys("33444");
-		}
-		checkPolitics();
-		logger.info("Starting fillFormDefaultData()");
+		logger.info("Ending fillFormDefaultData()");
 	}
 	
 	public void clearForm() {
@@ -149,6 +140,17 @@ public class ResDetailPageF {
 		logger.info("Ending clearForm()");
 	}
 	
+	public void clickOnContinue() {
+		frmReserveButtonContinue.click();
+	}
+	
+	
+	//------------ Verifys ----------------------
+	public void verifySummaryHotelNameToBe() {
+		//codigo para verificar que el nombre del Hotel es correcto
+		//Assert.assertEquals(descriptionName.getText(), "");
+	}
+	
 	public void checkPolitics() {
 		if(!frmReserveCheckBoxChkConfirm.isSelected()) {
 			logger.warn("checkPolitics() - checkbox was selected!");
@@ -160,9 +162,5 @@ public class ResDetailPageF {
 		if(frmReserveCheckBoxChkConfirm.isSelected()) {
 			frmReserveCheckBoxChkConfirm.click();
 		}
-	}
-	
-	public void clickOnContinue() {
-		frmReserveButtonContinue.click();
 	}
 }

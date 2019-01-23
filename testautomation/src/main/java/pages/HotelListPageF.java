@@ -24,6 +24,7 @@ import org.testng.Assert;
 
 import config.CoreConfig;
 import config.FrameworkConfig;
+import helpers.WaitFor;
 import utility.BasicUtils;
 import valueobjects.VOHotelRes;
 
@@ -237,19 +238,19 @@ public class HotelListPageF {
 		waitForContentToBeReady();
 		String url = driver.getCurrentUrl();
 		widgetButtonSubmit.click();
-		//IMPORTANTE: Si realizo una busqueda con el mismo destino o algun mismo dato,
-		//            la url sera la misma y ocurrira un error!!!!!!! Necesito corregir esto!!!
-		//Espero a que el boton lanze una nueva url
-		//(tiempo que tarda el boton en lanzar la accion)
-		wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
 		
-		/*Agrego este Delay dado que tengo problemas cuando no cambia la url
+		//A continuacion pongo un wait para esperar a que el boton lanze la accion
+		
+		//Esperar a que la url cambie, No lo estoy usando porque falla cuando no hay cambios en la url
+		//wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
+		
+		//Agrego este Delay dado que tengo problemas cuando no cambia la url
+		WaitFor.attributeChanged(byLoaderOverlayPage, "style", "display: none; opacity: 0;");
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
 	//En construccion!!!!!!!
@@ -387,13 +388,11 @@ public class HotelListPageF {
 			//Si getText no funciona uso el metodo getAttribute
 			actual = widgetInputDestination.getAttribute("value").trim();
 		}
-		logger.trace("actual:"+actual);
-		
 		if(!actual.contains(expected)) {
-			logger.error("Actual date: ("+actual+") is not as expeted: ("+expected+")");
-			Assert.fail("LAF>>>Actual date: ("+actual+") is not as expeted: ("+expected+")");
+			logger.error("Actual destin: ("+actual+") is not as expeted: ("+expected+")");
+			Assert.fail("LAF>>>Actual destin: ("+actual+") is not as expeted: ("+expected+")");
 		}else {
-			logger.info("widgetVerifyStartDateToBe PASS");
+			logger.info("widgetVerifyDestinationToBe PASS");
 		}
 	}
 	

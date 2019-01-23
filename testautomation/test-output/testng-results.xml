@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="3" total="6" passed="3">
+<testng-results skipped="0" failed="0" ignored="1" total="2" passed="1">
   <reporter-output>
     <line>
       <![CDATA[Starting BeforeTest]]>
@@ -25,61 +25,13 @@
     <line>
       <![CDATA[Test Finished]]>
     </line>
-    <line>
-      <![CDATA[Starting BeforeTest]]>
-    </line>
-    <line>
-      <![CDATA[Starting Browser]]>
-    </line>
-    <line>
-      <![CDATA[Browser Started]]>
-    </line>
-    <line>
-      <![CDATA[Starting test HPHotelRandom]]>
-    </line>
-    <line>
-      <![CDATA[Staring HPHotelRandom]]>
-    </line>
-    <line>
-      <![CDATA[Ending HPHotelRandom]]>
-    </line>
-    <line>
-      <![CDATA[Closing Browser...]]>
-    </line>
-    <line>
-      <![CDATA[Test Finished]]>
-    </line>
-    <line>
-      <![CDATA[Starting BeforeTest]]>
-    </line>
-    <line>
-      <![CDATA[Starting Browser]]>
-    </line>
-    <line>
-      <![CDATA[Browser Started]]>
-    </line>
-    <line>
-      <![CDATA[Starting test HPHotelRandom]]>
-    </line>
-    <line>
-      <![CDATA[Staring HPHotelRandom]]>
-    </line>
-    <line>
-      <![CDATA[Ending HPHotelRandom]]>
-    </line>
-    <line>
-      <![CDATA[Closing Browser...]]>
-    </line>
-    <line>
-      <![CDATA[Test Finished]]>
-    </line>
   </reporter-output>
-  <suite name="HP_Suite" duration-ms="113573" started-at="2019-01-22T20:22:46Z" finished-at="2019-01-22T20:24:39Z">
+  <suite name="HP_Suite" duration-ms="28424" started-at="2019-01-23T04:35:47Z" finished-at="2019-01-23T04:36:15Z">
     <groups>
     </groups>
-    <test name="HPPTCOMMX" duration-ms="46513" started-at="2019-01-22T20:22:46Z" finished-at="2019-01-22T20:23:32Z">
+    <test name="HPPTCOMMX" duration-ms="28424" started-at="2019-01-23T04:35:47Z" finished-at="2019-01-23T04:36:15Z">
       <class name="testcases.hphoteles.TCHP_PTAll">
-        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.hphoteles.TCHP_PTAll@799f10e1]" name="prerequisitos" is-config="true" duration-ms="18" started-at="2019-01-22T20:22:46Z" finished-at="2019-01-22T20:22:46Z">
+        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.hphoteles.TCHP_PTAll@4c371370]" name="prerequisitos" is-config="true" duration-ms="12" started-at="2019-01-23T04:35:47Z" finished-at="2019-01-23T04:35:47Z">
           <params>
             <param index="0">
               <value>
@@ -93,7 +45,7 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[org.testng.TestRunner@5bd1ceca]]>
+                <![CDATA[org.testng.TestRunner@1051817b]]>
               </value>
             </param>
           </params>
@@ -103,7 +55,7 @@
             </line>
           </reporter-output>
         </test-method> <!-- prerequisitos -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@799f10e1]" name="beforeMethod" is-config="true" duration-ms="11201" started-at="2019-01-22T20:22:46Z" finished-at="2019-01-22T20:22:57Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@4c371370]" name="beforeMethod" is-config="true" duration-ms="11990" started-at="2019-01-23T04:35:47Z" finished-at="2019-01-23T04:35:59Z">
           <reporter-output>
             <line>
               <![CDATA[Starting Browser]]>
@@ -113,7 +65,7 @@
             </line>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="HPHotelRandom()[pri:2, instance:testcases.hphoteles.TCHP_PTAll@799f10e1]" name="HPHotelRandom" duration-ms="33142" started-at="2019-01-22T20:22:57Z" finished-at="2019-01-22T20:23:30Z">
+        <test-method status="PASS" signature="HPHotelRandom()[pri:2, instance:testcases.hphoteles.TCHP_PTAll@4c371370]" name="HPHotelRandom" duration-ms="14093" started-at="2019-01-23T04:35:59Z" finished-at="2019-01-23T04:36:13Z">
           <reporter-output>
             <line>
               <![CDATA[Starting test HPHotelRandom]]>
@@ -126,14 +78,14 @@
             </line>
           </reporter-output>
         </test-method> <!-- HPHotelRandom -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@799f10e1]" name="Close" is-config="true" duration-ms="2119" started-at="2019-01-22T20:23:30Z" finished-at="2019-01-22T20:23:32Z">
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@4c371370]" name="Close" is-config="true" duration-ms="2312" started-at="2019-01-23T04:36:13Z" finished-at="2019-01-23T04:36:15Z">
           <reporter-output>
             <line>
               <![CDATA[Closing Browser...]]>
             </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@799f10e1]" name="End" is-config="true" duration-ms="1" started-at="2019-01-22T20:23:32Z" finished-at="2019-01-22T20:23:32Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@4c371370]" name="End" is-config="true" duration-ms="1" started-at="2019-01-23T04:36:15Z" finished-at="2019-01-23T04:36:15Z">
           <reporter-output>
             <line>
               <![CDATA[Test Finished]]>
@@ -142,135 +94,5 @@
         </test-method> <!-- End -->
       </class> <!-- testcases.hphoteles.TCHP_PTAll -->
     </test> <!-- HPPTCOMMX -->
-    <test name="HPPTCOM" duration-ms="34760" started-at="2019-01-22T20:23:32Z" finished-at="2019-01-22T20:24:07Z">
-      <class name="testcases.hphoteles.TCHP_PTAll">
-        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.hphoteles.TCHP_PTAll@65fb9ffc]" name="prerequisitos" is-config="true" duration-ms="3" started-at="2019-01-22T20:23:32Z" finished-at="2019-01-22T20:23:32Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[https://www.pricetravel.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[org.testng.TestRunner@30c31dd7]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[Starting BeforeTest]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- prerequisitos -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@65fb9ffc]" name="beforeMethod" is-config="true" duration-ms="7327" started-at="2019-01-22T20:23:32Z" finished-at="2019-01-22T20:23:40Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Starting Browser]]>
-            </line>
-            <line>
-              <![CDATA[Browser Started]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="HPHotelRandom()[pri:2, instance:testcases.hphoteles.TCHP_PTAll@65fb9ffc]" name="HPHotelRandom" duration-ms="25114" started-at="2019-01-22T20:23:40Z" finished-at="2019-01-22T20:24:05Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Starting test HPHotelRandom]]>
-            </line>
-            <line>
-              <![CDATA[Staring HPHotelRandom]]>
-            </line>
-            <line>
-              <![CDATA[Ending HPHotelRandom]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- HPHotelRandom -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@65fb9ffc]" name="Close" is-config="true" duration-ms="2313" started-at="2019-01-22T20:24:05Z" finished-at="2019-01-22T20:24:07Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Closing Browser...]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@65fb9ffc]" name="End" is-config="true" duration-ms="0" started-at="2019-01-22T20:24:07Z" finished-at="2019-01-22T20:24:07Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Test Finished]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- End -->
-      </class> <!-- testcases.hphoteles.TCHP_PTAll -->
-    </test> <!-- HPPTCOM -->
-    <test name="HPPTCO" duration-ms="32238" started-at="2019-01-22T20:24:07Z" finished-at="2019-01-22T20:24:39Z">
-      <class name="testcases.hphoteles.TCHP_PTAll">
-        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.hphoteles.TCHP_PTAll@33d512c1]" name="prerequisitos" is-config="true" duration-ms="0" started-at="2019-01-22T20:24:07Z" finished-at="2019-01-22T20:24:07Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[https://www.pricetravel.co]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[org.testng.TestRunner@499b2a5c]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[Starting BeforeTest]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- prerequisitos -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@33d512c1]" name="beforeMethod" is-config="true" duration-ms="10164" started-at="2019-01-22T20:24:07Z" finished-at="2019-01-22T20:24:17Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Starting Browser]]>
-            </line>
-            <line>
-              <![CDATA[Browser Started]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="HPHotelRandom()[pri:2, instance:testcases.hphoteles.TCHP_PTAll@33d512c1]" name="HPHotelRandom" duration-ms="19761" started-at="2019-01-22T20:24:17Z" finished-at="2019-01-22T20:24:37Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Starting test HPHotelRandom]]>
-            </line>
-            <line>
-              <![CDATA[Staring HPHotelRandom]]>
-            </line>
-            <line>
-              <![CDATA[Ending HPHotelRandom]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- HPHotelRandom -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@33d512c1]" name="Close" is-config="true" duration-ms="2310" started-at="2019-01-22T20:24:37Z" finished-at="2019-01-22T20:24:39Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Closing Browser...]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.hphoteles.TCHP_PTAll@33d512c1]" name="End" is-config="true" duration-ms="0" started-at="2019-01-22T20:24:39Z" finished-at="2019-01-22T20:24:39Z">
-          <reporter-output>
-            <line>
-              <![CDATA[Test Finished]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- End -->
-      </class> <!-- testcases.hphoteles.TCHP_PTAll -->
-    </test> <!-- HPPTCO -->
   </suite> <!-- HP_Suite -->
 </testng-results>

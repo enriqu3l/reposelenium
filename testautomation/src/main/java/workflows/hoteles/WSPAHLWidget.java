@@ -38,7 +38,7 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		//<When>
 		pages.hotelListPage_Initialize();
 		//<Then>
-		pages.hotelList_page.widgetVerifyAutocompleteDestination(data);
+		pages.hotelListPage.widgetVerifyAutocompleteDestination(data);
 	}
 	
 	//En construccion
@@ -88,15 +88,15 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		Pages pages = new Pages(driver);
 		//<When>
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.widgetChangeDestin(voHotelResNew.getDestination());
-		pages.hotelList_page.widgetClickSubmit();
+		pages.hotelListPage.widgetChangeDestin(voHotelResNew.getDestination());
+		pages.hotelListPage.widgetClickSubmit();
 		//<Then>
 		//Verificar que el widget tiene el nuevo destino
-		pages.hotelList_page.widgetVerifyDestinationToBe(voHotelResNew.getDestination());		
+		pages.hotelListPage.widgetVerifyDestinationToBe(voHotelResNew.getDestination());		
 		//Verificar que el Page Header Title tiene el nuevo destino
-		pages.hotelList_page.verifyHeaderTitleToBe(voHotelResNew.getDestination());
+		pages.hotelListPage.verifyHeaderTitleToBe(voHotelResNew.getDestination());
 		//Verificar que tenemos resultados
-		pages.hotelList_page.listVerifyResultListHasElements();
+		pages.hotelListPage.listVerifyResultListHasElements();
 	}
 	
 	public static void searchUsingDifferentDatesTest(WebDriver driver) {
@@ -108,17 +108,17 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		Pages pages = new Pages(driver);
 		//<When>
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.widgetChangeStartDate(voHotelResNew.getStartDate());
-		pages.hotelList_page.widgetChangeEndDate(voHotelResNew.getEndDate());
-		pages.hotelList_page.widgetClickSubmit();
+		pages.hotelListPage.widgetChangeStartDate(voHotelResNew.getStartDate());
+		pages.hotelListPage.widgetChangeEndDate(voHotelResNew.getEndDate());
+		pages.hotelListPage.widgetClickSubmit();
 		//<Then>
 		//Verificar que el widget tiene la nueva fecha
-		pages.hotelList_page.widgetVerifyStartDateToBe(voHotelResNew.getStartDate());
-		pages.hotelList_page.widgetVerifyEndDateToBe(voHotelResNew.getStartDate());
+		pages.hotelListPage.widgetVerifyStartDateToBe(voHotelResNew.getStartDate());
+		pages.hotelListPage.widgetVerifyEndDateToBe(voHotelResNew.getStartDate());
 		//Verificar que la url tiene la nueva fecha
-		pages.hotelList_page.verifyUrlContains(voHotelResNew.getStartDate("yyyy-MM-dd"),false);
+		pages.hotelListPage.verifyUrlContains(voHotelResNew.getStartDate("yyyy-MM-dd"),false);
 		//Verificar que tenemos resultados
-		pages.hotelList_page.listVerifyResultListHasElements();
+		pages.hotelListPage.listVerifyResultListHasElements();
 	}
 	
 	public static void searchMoreRooms(WebDriver driver) {
@@ -130,10 +130,32 @@ private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.widgetChangeSearch(voHotelResNew);
-		pages.hotelList_page.widgetClickSubmit();
+		pages.hotelListPage.widgetChangeSearch(voHotelResNew);
+		pages.hotelListPage.widgetClickSubmit();
 		// <Then>
 		// Verificar que tenemos resultados
-		pages.hotelList_page.listVerifyResultListHasElements();
+		pages.hotelListPage.listVerifyResultListHasElements();
+	}
+
+	public static void prueba(WebDriver driver) {
+		//Esta funcion la uso para pruebas durante el desarrollo
+		
+		//<Setup>
+		logger.info("Starting workflow changeDestinTest");
+		Reporter.log("Starting workflow changeDestinTest");
+		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
+		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA, 1);
+		Pages pages = new Pages(driver);
+		//<When>
+		pages.hotelListPage_Initialize();
+		pages.hotelListPage.widgetChangeDestin(voHotelResNew.getDestination());
+		pages.hotelListPage.widgetClickSubmit();
+		//<Then>
+		//Verificar que el widget tiene el nuevo destino
+		pages.hotelListPage.widgetVerifyDestinationToBe(voHotelResNew.getDestination());		
+		//Verificar que el Page Header Title tiene el nuevo destino
+		pages.hotelListPage.verifyHeaderTitleToBe(voHotelResNew.getDestination());
+		//Verificar que tenemos resultados
+		pages.hotelListPage.listVerifyResultListHasElements();
 	}
 }

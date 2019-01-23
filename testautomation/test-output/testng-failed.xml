@@ -4,19 +4,19 @@
   <listeners>
     <listener class-name="testlisteners.ListenersHappyPath"/>
   </listeners>
-  <test thread-count="5" name="HPPTCO(failed)">
+  <test thread-count="5" name="HPPTCOMMX(failed)">
     <parameter name="browser" value="chrome"/>
-    <parameter name="url" value="https://www.pricetravel.co"/>
+    <parameter name="url" value="https://us.pricetravel.com"/>
     <classes>
       <class name="testcases.hphoteles.TCHP_PTAll">
         <methods>
           <include name="prerequisitos"/>
           <include name="End"/>
           <include name="Close"/>
-          <include name="HappyPath_HotelDefault"/>
+          <include name="HPHotelRandom"/>
           <include name="beforeMethod"/>
         </methods>
       </class> <!-- testcases.hphoteles.TCHP_PTAll -->
     </classes>
-  </test> <!-- HPPTCO(failed) -->
+  </test> <!-- HPPTCOMMX(failed) -->
 </suite> <!-- Failed suite [HP_Suite] -->

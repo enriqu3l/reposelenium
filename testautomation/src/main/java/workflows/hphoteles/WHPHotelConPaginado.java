@@ -23,17 +23,17 @@ public class WHPHotelConPaginado {
 		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
-		pages.home_page.widgetSearchHotel(voHotelResNew);
+		pages.homePage.widgetSearchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
-		pages.hotelList_page.pagingClickOnNextPage();
-		pages.hotelList_page.listSelectFirstHotelAvailable();
+		pages.hotelListPage.pagingClickOnNextPage();
+		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
-		pages.roomList_page.selectFirstRoom();
+		pages.roomListPage.selectFirstRoom();
 		pages.resDetailPage_Initialize();
-		pages.resDetail_page.clearAndFillForm(voClient);
-		pages.resDetail_page.clickOnContinue();
+		pages.resDetailPage.clearAndFillForm(voClient);
+		pages.resDetailPage.clickOnContinue();
 		pages.payMethodPage_Initialize();
-		pages.payMethod_page.fillCreditForm(voCreditCard);
+		pages.payMethodPage.fillCreditForm(voCreditCard);
 		logger.info("Ending HPHotelConCambioDeDestino");
 		Reporter.log("Ending HPHotelConCambioDeDestino");
 	}	

@@ -27,6 +27,9 @@
 		<Logger name="testcases" level="trace" additivity="true">
 			<AppenderRef ref="File" />
 		</Logger>
+		<Logger name="workflows" level="trace" additivity="true">
+			<AppenderRef ref="File" />
+		</Logger>
 		<Root level="trace">
 			<AppenderRef ref="Console" />
 		</Root>

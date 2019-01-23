@@ -33,43 +33,46 @@ public class PayMethodPageF {
 	
 	//-----FormElements-----
 	@FindBy(how=How.ID, id="cardNumber1")
-	WebElement Input_cardNumber1;
+	WebElement frmReserveInputCardNumber1;
 	
 	@FindBy(how=How.ID, id="cardMonthExpired1")
-	WebElement Select_cardMonthExpired1;
+	WebElement frmReserveSelectCardMonthExpired1;
 	
 	@FindBy(how=How.ID, id="cardYearExpired1")
-	WebElement Select_cardYearExpired1;
+	WebElement frmReserveSelectCardYearExpired1;
 	
 	@FindBy(how=How.ID, id="cardHolderName1")
-	WebElement Input_cardHolderName1;
+	WebElement frmReserveInputCardHolderName1;
 	
 	@FindBy(how=How.ID, id="cardSecurityCode1")
-	WebElement Input_cardSecurityCode1;
+	WebElement frmReserveInputCardSecurityCode1;
 	
 	@FindBy(how=How.ID, id="cCountry1")
-	WebElement Select_cardCountry1;
+	WebElement frmReserveSelectCardCountry1;
 	
 	@FindBy(how=How.ID, id="cZipCode1")
-	WebElement Input_cardZipCode1;
+	WebElement frmReserveInputCardZipCode1;
 	
 	@FindBy(how=How.CSS, css=".item-accordion.btn-accordion")
-	WebElement Accordion_codePromotions;
+	WebElement frmReserveAccordionCodePromotions;
 	
 	@FindBy(how=How.ID, id="promocodeInput")
-	WebElement Input_promocode;
+	WebElement frmReserveInputPromocode;
 	
 	@FindBy(how=How.ID, id="validatePromocode")
-	WebElement Button_validatePromocode;
+	WebElement frmReserveButtonValidatePromocode;
+	
+	@FindBy (how=How.CSS, css="#frmReserve .countdown-message .countdown-subtitle strong")
+	WebElement frmReserveMessageLocator;
 	
 	//FinalButton
 	@FindBy(how=How.ID, id="validatePayForms")
-	WebElement Button_validatePayForms;
+	WebElement frmReserveButtonValidatePayForms;
 	
 	
 	//------------  pt.co Elements--------------
 	@FindBy(how=How.ID, id="NationalIdCard1")
-	WebElement Input_nationalIdCard1;
+	WebElement frmReserveInputNationalIdCard1;
 	
 	public void checkCurrentURLPage() {
 		wait.until(ExpectedConditions.urlContains("forma-pago"));
@@ -77,80 +80,78 @@ public class PayMethodPageF {
 		Assert.assertTrue(currentURL.contains("forma-pago"));
 	}
 	
-	/*Esta funcion NO debera ser usada, se ha creado una funcion del DOManager para generar
-	 * la informacion Default
-	 * public void FillCreditFormDefaultData() {
-		Input_cardNumber1.sendKeys("1111111111114444");
-		Select month = new Select (Select_cardMonthExpired1);
-		month.selectByVisibleText("02");
-		Select year = new Select(Select_cardYearExpired1);
-		year.selectByVisibleText("2021");
-		Input_cardHolderName1.sendKeys("Virginia Chavez");
-		Input_cardSecurityCode1.sendKeys("014");
-		Select country = new Select(Select_cardCountry1);
-		country.selectByValue("MX");
-		Input_cardZipCode1.sendKeys("44777");
-	}*/
-	
-	public void fillCreditForm(VOCreditCard DOCard) {
+	public void fillCreditForm(VOCreditCard voCreditCard) {
 		logger.info("Starting FillCreditForm()");
-		Input_cardNumber1.sendKeys(Long.toString(DOCard.getCardNumber()));
-		Select month = new Select (Select_cardMonthExpired1);
-		month.selectByVisibleText(DOCard.getMonth());
-		Select year = new Select(Select_cardYearExpired1);
-		year.selectByVisibleText(DOCard.getYear());
-		Input_cardHolderName1.sendKeys(DOCard.getHolderName());
-		Input_cardSecurityCode1.sendKeys(Integer.toString(DOCard.getCCV()));
-		Select country = new Select(Select_cardCountry1);
-		country.selectByValue(DOCard.getCountry());
+		
+		verifyLocatorIsDisplayed();
+		
+		frmReserveInputCardNumber1.sendKeys(Long.toString(voCreditCard.getCardNumber()));
+		Select month = new Select (frmReserveSelectCardMonthExpired1);
+		month.selectByVisibleText(voCreditCard.getMonth());
+		Select year = new Select(frmReserveSelectCardYearExpired1);
+		year.selectByVisibleText(voCreditCard.getYear());
+		frmReserveInputCardHolderName1.sendKeys(voCreditCard.getHolderName());
+		frmReserveInputCardSecurityCode1.sendKeys(Integer.toString(voCreditCard.getCCV()));
+		Select country = new Select(frmReserveSelectCardCountry1);
+		country.selectByValue(voCreditCard.getCountry());
 		
 		//Se agrego este If para el campo Cedula de Ciudadania
 		//de la pagina de pt.co
 		if(driver.getCurrentUrl().contains(".co/")){
 			logger.info("FillCreditForm() - Sending national card number for pt.co");
-			Input_nationalIdCard1.sendKeys("33444");
+			frmReserveInputNationalIdCard1.sendKeys("33444");
 		}else {
-			Input_cardZipCode1.sendKeys(Integer.toString(DOCard.getCP()));
+			frmReserveInputCardZipCode1.sendKeys(Integer.toString(voCreditCard.getCP()));
 		}
 		logger.info("Ending FillCreditForm()");
 	}
 	
+	private void verifyLocatorIsDisplayed() {
+		//Aqui el codigo para verificar que se creo el Localizador
+		
+		//Por lo pronto solo reviso que el elemento "frmReserveMessageLocator" no este vacio
+		if(frmReserveMessageLocator.getText().isEmpty()) {
+			logger.error("El localizador no se muestra en la pagina. Localizador: "+frmReserveMessageLocator.getText());
+			Assert.fail("LAF>>>El localizador no se muestra en la pagina");
+		}else {
+			logger.trace("Localizador: "+frmReserveMessageLocator.getText());
+		}
+	}
+
 	public void clearCreditForm() {
-		Input_cardNumber1.clear();
-		Select month = new Select (Select_cardMonthExpired1);
+		frmReserveInputCardNumber1.clear();
+		Select month = new Select (frmReserveSelectCardMonthExpired1);
 		month.deselectAll();
-		Select year = new Select(Select_cardYearExpired1);
+		Select year = new Select(frmReserveSelectCardYearExpired1);
 		year.deselectAll();
-		Input_cardHolderName1.clear();
-		Input_cardSecurityCode1.clear();
-		Select country = new Select(Select_cardCountry1);
+		frmReserveInputCardHolderName1.clear();
+		frmReserveInputCardSecurityCode1.clear();
+		Select country = new Select(frmReserveSelectCardCountry1);
 		country.deselectAll();
-		Input_cardZipCode1.clear();
+		frmReserveInputCardZipCode1.clear();
 	}
 	
 	public void clickOnCompleteReservation() {
-		Button_validatePayForms.click();
+		frmReserveButtonValidatePayForms.click();
 	}
 	
 	//En construccion!!
-	public boolean pay1or2cards(int opc) {
-		if(opc==1){
-			//Aqui el codigo para pago con 1 tarjeta
-			return true;
-		}else if(opc==2){
-			//Aqui el codigo para pago con 2 tarjetas
-			return true;
-		}else {
-			return false; 
-		}
+	public boolean selectPayWith1Card(int opc) {
+		
+		return false;
+	}
+	public boolean selectPayWith2Cards(int opc) {
+		
+		return false;
 	}
 	
+	
 	public void enterCodePromotions(String code) {
-		Accordion_codePromotions.click();
-		Input_promocode.sendKeys(code);
-		Button_validatePromocode.click();
+		frmReserveAccordionCodePromotions.click();
+		frmReserveInputPromocode.sendKeys(code);
+		frmReserveButtonValidatePromocode.click();
 		
-		//Falta validar que el codigoProm sea valido
-		Assert.assertEquals("current", "expected");
+		//Falta verificar que el codigoProm exista y que sea valido
+		//Assert.assertEquals("current", "expected");
 	}
 }

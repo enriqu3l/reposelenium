@@ -55,6 +55,13 @@ public class TCSPAHLWidget {
 	}
 	
 	@Test (enabled=false)
+	public void prueba() throws InterruptedException{
+		Reporter.log("Starting prueba");
+		logger.info("Starting prueba");
+		WSPAHLWidget.prueba(driver);
+	}
+	
+	@Test (enabled=false)
 	public void test5() throws InterruptedException{
 		//HLWidget – Cambiar los adultos
 	}

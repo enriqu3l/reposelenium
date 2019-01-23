@@ -6,12 +6,12 @@ import org.testng.Assert;
 public class Pages {
 	public WebDriver driver;
 	
-	public HomePageF home_page;
-	public HotelListPageF hotelList_page;
-	public RoomListPageF roomList_page;
-	public ResDetailPageF resDetail_page;
-	public PayMethodPageF payMethod_page;
-	public ThankYouPageF thankYou_page;
+	public HomePageF homePage;
+	public HotelListPageF hotelListPage;
+	public RoomListPageF roomListPage;
+	public ResDetailPageF resDetailPage;
+	public PayMethodPageF payMethodPage;
+	public ThankYouPageF thankYouPage;
 	
 	public Pages(WebDriver _driver) {
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
@@ -19,25 +19,25 @@ public class Pages {
 	}
 	
 	public void homePage_Initialize() {
-		home_page = new HomePageF(driver);
+		homePage = new HomePageF(driver);
 	}
 
 	public void hotelListPage_Initialize() {
-		hotelList_page = new HotelListPageF(driver);
+		hotelListPage = new HotelListPageF(driver);
 	}
 	
 	public void roomListPage_Initialize() {
-		roomList_page = new RoomListPageF(driver);
+		roomListPage = new RoomListPageF(driver);
 	}
 	
 	public void resDetailPage_Initialize() {
-		resDetail_page = new ResDetailPageF(driver);
+		resDetailPage = new ResDetailPageF(driver);
 	}
 	public void payMethodPage_Initialize() {
-		payMethod_page = new PayMethodPageF(driver);
+		payMethodPage = new PayMethodPageF(driver);
 		//payMethod_page = PageFactory.initElements(BrowserFactory.driver, PayMethodPageF.class);
 	}
 	public void thankYouPage_Initialize() {
-		thankYou_page = new ThankYouPageF(driver);
+		thankYouPage = new ThankYouPageF(driver);
 	}
 }
