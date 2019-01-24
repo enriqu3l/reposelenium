@@ -34,14 +34,8 @@ public class HomePageF {
 		wait.until(ExpectedConditions.urlContains("pricetravel."));
 	}
 	
-	//Esta es la URL a la que estare llegando:
-	//https://www.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F04&checkout=2019%2F02%2F05&rooms=1&adults=2&kids=0&agekids=&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1		
-	//Si no envio parametros:
-	//https://www.pricetravel.com/hoteles/cancun-area
-	//usará los valores por default para la busqueda
-	
-	
 	//--------------- Widget--------------------
+	//@FindBy(how=How.CSS, using="#ptw-menu > ul")
 	@FindBy(how=How.CSS, css="#ptw-menu > ul")
 	@CacheLookup
 	private WebElement widgetMenu;
@@ -132,23 +126,30 @@ public class HomePageF {
 	@CacheLookup
 	private WebElement widgetButtonSearchFlight;
 	
-	//Aun falta de agregar los otros productos....
+	//Falta de agregar elementos de los otros productos....
 
-	
-	public void widgetSearchHotel(VOHotelRes voHotelRes){
-		logger.info("Starting SearchHotel()");
-		verifyProductSelectedOnWidgetMenu("Hoteles");
+	public void widgetSelectHotelDestin(String destin) {
+		logger.info("Starting widgetSelectHotelDestin()");
 		widgetInputDestHotel.clear();
-		widgetInputDestHotel.sendKeys(voHotelRes.getDestination());
-		logger.trace("Destin: "+ voHotelRes.getDestination());
+		widgetInputDestHotel.sendKeys(destin);
+		logger.trace("Destin: "+ destin);
 		wait.until(ExpectedConditions.attributeContains(widgetAutocompleteDropdownMenu, "style", "display: block;"));
 		widgetInputDestHotel.sendKeys(Keys.ENTER);
+	}
+	
+	public void widgetSelectHotelStartDate(String startDate) {
 		widgetInputDestStartHotel.clear();
-		widgetInputDestStartHotel.sendKeys(voHotelRes.getStartDate());
-		logger.trace("Start Date: "+voHotelRes.getStartDate());
+		widgetInputDestStartHotel.sendKeys(startDate);
+		logger.trace("Start Date: "+startDate);
+	}
+	
+	public void widgetSelectHotelEndDate(String endDate) {
 		widgetInputDestEndHotel.clear();
-		widgetInputDestEndHotel.sendKeys(voHotelRes.getEndDate());
-		logger.trace("End Date: "+voHotelRes.getEndDate());
+		widgetInputDestEndHotel.sendKeys(endDate);
+		logger.trace("End Date: "+endDate);
+	}
+	
+	public void widgetSelectHotelOccupants(VOHotelRes voHotelRes) {
 		//Image_destEndHotelTrigger.click();  esconde el calendario
 		Select rooms = new Select(widgetSelectBookerHotelRooms);
 		rooms.selectByVisibleText(Integer.toString(voHotelRes.getRoomCount()));
@@ -163,7 +164,16 @@ public class HomePageF {
 		logger.info("Ending SearchHotel()");
 	}
 	
-	public void verifyProductSelectedOnWidgetMenu(String product) {
+	public void widgetSearchHotel(VOHotelRes voHotelRes){
+		logger.info("Starting SearchHotel()");
+		widgetVerifyProductSelected("Hoteles");
+		widgetSelectHotelDestin(voHotelRes.getDestination());
+		widgetSelectHotelStartDate(voHotelRes.getStartDate());
+		widgetSelectHotelEndDate(voHotelRes.getEndDate());
+		widgetSelectHotelOccupants(voHotelRes);
+	}
+	
+	public void widgetVerifyProductSelected(String product) {
 		logger.info("Starting verifyProductSelectedOnWidgetMenu()");
 		if(!widgetMenu.findElement(widgetProductActive).getText().equals(product)) {
 			widgetMenu.findElement(By.linkText(product) ).click();
@@ -177,34 +187,3 @@ public class HomePageF {
 		
 	}
 }
-
-/*Knowledge
-
-1.- Cuando se abre una nueva tab, asegurarse de seleccionarla
-porque el driver no switchea por si solo a la nueva tab!!
-
-2.- Si primero se inicializa un webElement (con pageFactory o usando findElement())
-y despues se usa un wait para esperar a que carge un contenido, no se podra encontrar ni usar!!
-Te esperara un sin fin de errores!!!
-Lo correcto es poner un wait hasta que el elemento este cargado en la pagina y despues
-inicializarlo con PageFactory o con findElement().
-Por todo lo anterior se recomienda esperar con un wait ExpectedCondition a que
-el contenido esta propiamente cargado para despues ya inicializar webElements
-*/
-
-/*Mover el mouse al "Input Destino" para que no afecte la seleccion de los elementos
-try {
-	Point location = Input_destHotel.getLocation();
-    Robot robot;
-	robot = new Robot();
-	robot.mouseMove(location.getX(),location.getY()+120);
-} catch (AWTException e) {
-	e.printStackTrace();
-	System.out.println("Error moviendo mouse: "+e.toString());
-}*/
-
-/*
- * Los actions no mueven el mouse, solo realizan acciones a nivel de DOM!!
- * Actions a = new Actions(driver);
- * a.moveToElement(Input_destHotel).build().perform();
-*/

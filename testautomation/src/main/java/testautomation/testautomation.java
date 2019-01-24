@@ -169,3 +169,34 @@ public class testautomation {
 		*/
 	}
 }
+
+/*Knowledge
+
+1.- Cuando se abre una nueva tab, asegurarse de seleccionarla
+porque el driver no switchea por si solo a la nueva tab!!
+
+2.- Si primero se inicializa un webElement (con pageFactory o usando findElement())
+y despues se usa un wait para esperar a que carge un contenido, no se podra encontrar ni usar!!
+Te esperara un sin fin de errores!!!
+Lo correcto es poner un wait hasta que el elemento este cargado en la pagina y despues
+inicializarlo con PageFactory o con findElement().
+Por todo lo anterior se recomienda esperar con un wait ExpectedCondition a que
+el contenido esta propiamente cargado para despues ya inicializar webElements
+*/
+
+/*Mover el mouse al "Input Destino" para que no afecte la seleccion de los elementos
+try {
+	Point location = Input_destHotel.getLocation();
+    Robot robot;
+	robot = new Robot();
+	robot.mouseMove(location.getX(),location.getY()+120);
+} catch (AWTException e) {
+	e.printStackTrace();
+	System.out.println("Error moviendo mouse: "+e.toString());
+}*/
+
+/*
+ * Los actions no mueven el mouse, solo realizan acciones a nivel de DOM!!
+ * Actions a = new Actions(driver);
+ * a.moveToElement(Input_destHotel).build().perform();
+*/
