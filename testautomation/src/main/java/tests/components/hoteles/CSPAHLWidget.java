@@ -13,8 +13,8 @@ import helpers.DDManager;
 import pages.Pages;
 import valueobjects.VOHotelRes;
 
-public class WSPAHLWidget {
-	private static Logger logger = LogManager.getLogger(WSPAHLWidget.class);
+public class CSPAHLWidget {
+	private static Logger logger = LogManager.getLogger(CSPAHLWidget.class);
 
 	/**
 	 * Este testcase verifica que el autocomplete se active con X palabras diferentes.
@@ -25,8 +25,8 @@ public class WSPAHLWidget {
 	 */
 	public static void autocompleteDestinationTest(WebDriver driver){
 		// <Setup>
-		logger.info("Starting workflow autocompleteDestinationTest");
-		Reporter.log("Starting workflow autocompleteDestinationTest");
+		logger.info("Starting autocompleteDestinationTest");
+		Reporter.log("Starting autocompleteDestinationTest");
 		//Por lo pronto esta harcodeado a las siguientes palabras de busqueda
 		List<String> data = new ArrayList<String>();
 		data.add("canc");
@@ -52,8 +52,8 @@ public class WSPAHLWidget {
 	 */
 	public static void datePickersFunctionalityTest(WebDriver driver) {
 		// <Setup>
-		logger.info("Starting workflow datePickersFunctionalityTest");
-		Reporter.log("Starting workflow datePickersFunctionalityTest");
+		logger.info("Starting datePickersFunctionalityTest");
+		Reporter.log("Starting datePickersFunctionalityTest");
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.hotelListPage_Initialize();
@@ -71,8 +71,8 @@ public class WSPAHLWidget {
 	 */
 	public static void searchWithEmptyFieldsTest(WebDriver driver){
 		// <Setup>
-		logger.info("Starting workflow searchWithEmptyFieldsTest");
-		Reporter.log("Starting workflow searchWithEmptyFieldsTest");
+		logger.info("Starting searchWithEmptyFieldsTest");
+		Reporter.log("Starting searchWithEmptyFieldsTest");
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.hotelListPage_Initialize();
@@ -97,8 +97,8 @@ public class WSPAHLWidget {
 	 */
 	public static void searchDifferentDestinTest(WebDriver driver){
 		// <Setup>
-		logger.info("Starting workflow searchDifferentDestinTest");
-		Reporter.log("Starting workflow searchDifferentDestinTest");
+		logger.info("Starting searchDifferentDestinTest");
+		Reporter.log("Starting searchDifferentDestinTest");
 		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA, 2);
 		Pages pages = new Pages(driver);
 		// <When>
@@ -124,8 +124,8 @@ public class WSPAHLWidget {
 	 */
 	public static void searchDifferentDatesTest(WebDriver driver) {
 		// <Setup>
-		logger.info("Starting workflow searchDifferentDatesTest");
-		Reporter.log("Starting workflow searchDifferentDatesTest");
+		logger.info("Starting searchDifferentDatesTest");
+		Reporter.log("Starting searchDifferentDatesTest");
 		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,2);
 		Pages pages = new Pages(driver);
 		// <When>
@@ -153,8 +153,8 @@ public class WSPAHLWidget {
 	 */
 	public static void searchDifferentOccupantsTest(WebDriver driver) {
 		// <Setup>
-		logger.info("Starting workflow searchDifferentOccupantsTest");
-		Reporter.log("Starting workflow searchDifferentOccupantsTest");
+		logger.info("Starting searchDifferentOccupantsTest");
+		Reporter.log("Starting searchDifferentOccupantsTest");
 		VOHotelRes voHotelRes = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,11);// Aqui leo el row 11 donde tengo varios rooms
 		Pages pages = new Pages(driver);
 		// <When>
@@ -177,8 +177,8 @@ public class WSPAHLWidget {
 	 */
 	public static void searchDifferentReservationTest(WebDriver driver) {
 		// <Setup>
-		logger.info("Starting workflow searchDifferentReservationTest");
-		Reporter.log("Starting workflow searchDifferentReservationTest");
+		logger.info("Starting searchDifferentReservationTest");
+		Reporter.log("Starting searchDifferentReservationTest");
 		// Obtengo el row 12 del archivo
 		VOHotelRes voHotelRes = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,12);
 		Pages pages = new Pages(driver);
@@ -199,8 +199,8 @@ public class WSPAHLWidget {
 		//Estoy revisando el comportamiento cuando realizo una busqueda pero sin realizar cambios...
 		
 		//<Setup>
-		logger.info("Starting workflow prueba");
-		Reporter.log("Starting workflow prueba");
+		logger.info("Starting prueba");
+		Reporter.log("Starting prueba");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
 		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA, 1);
 		Pages pages = new Pages(driver);

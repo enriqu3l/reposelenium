@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import tests.components.hoteles.WSPAHLWidget;
+import tests.components.hoteles.CSPAHLWidget;
 
 public class TCSPAHLPaging {
 	WebDriver driver;

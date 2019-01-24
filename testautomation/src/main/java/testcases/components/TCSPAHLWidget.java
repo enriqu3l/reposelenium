@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import tests.components.hoteles.WSPAHLWidget;
+import tests.components.hoteles.CSPAHLWidget;
 
 public class TCSPAHLWidget {
 	WebDriver driver;
@@ -31,56 +31,56 @@ public class TCSPAHLWidget {
 	public void test1(){
 		Reporter.log("Starting test1");
 		logger.info("Starting test1");
-		WSPAHLWidget.autocompleteDestinationTest(driver);
+		CSPAHLWidget.autocompleteDestinationTest(driver);
 	}
 	
 	@Test (enabled=true)
 	public void test2() {
 		Reporter.log("Starting test2");
 		logger.info("Starting test2");
-		WSPAHLWidget.datePickersFunctionalityTest(driver);
+		CSPAHLWidget.datePickersFunctionalityTest(driver);
 	}
 	
 	@Test (enabled=true)
 	public void test3(){
 		Reporter.log("Starting test3");
 		logger.info("Starting test3");
-		WSPAHLWidget.searchWithEmptyFieldsTest(driver);
+		CSPAHLWidget.searchWithEmptyFieldsTest(driver);
 	}
 	
 	@Test (enabled=true)
 	public void test4(){
 		Reporter.log("Starting test4");
 		logger.info("Starting test4");
-		WSPAHLWidget.searchDifferentDestinTest(driver);
+		CSPAHLWidget.searchDifferentDestinTest(driver);
 	}
 	
 	@Test (enabled=true)
 	public void test5(){
 		Reporter.log("Starting test5");
 		logger.info("Starting test5");
-		WSPAHLWidget.searchDifferentDatesTest(driver);
+		CSPAHLWidget.searchDifferentDatesTest(driver);
 	}
 	
 	@Test (enabled=true)
 	public void test6(){
 		Reporter.log("Starting test6");
 		logger.info("Starting test6");
-		WSPAHLWidget.searchDifferentOccupantsTest(driver);
+		CSPAHLWidget.searchDifferentOccupantsTest(driver);
 	}
 	
 	@Test (enabled=true)
 	public void test7(){
 		Reporter.log("Starting test7");
 		logger.info("Starting test7");
-		WSPAHLWidget.searchDifferentReservationTest(driver);
+		CSPAHLWidget.searchDifferentReservationTest(driver);
 	}
 	
 	@Test (enabled=false)
 	public void prueba(){
 		Reporter.log("Starting prueba");
 		logger.info("Starting prueba");
-		WSPAHLWidget.prueba(driver);
+		CSPAHLWidget.prueba(driver);
 	}
 	
 	@AfterMethod
