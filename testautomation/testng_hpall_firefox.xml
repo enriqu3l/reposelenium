@@ -9,7 +9,7 @@
   	<parameter name="url" value="https://www.pricetravel.com.mx"/>
   	<parameter name="browser" value="firefox"/>
   	<classes>
-  		<class name="testcases.hphoteles.TCHP_PTAll">
+  		<class name="testcases.workflows.TCHP_PTAll">
   		</class>
   	</classes>
   </test>
@@ -18,7 +18,7 @@
   	<parameter name="url" value="https://www.pricetravel.com"/>
   	<parameter name="browser" value="firefox"/>
   	<classes>
-  		<class name="testcases.hphoteles.TCHP_PTAll">
+  		<class name="testcases.workflows.TCHP_PTAll">
   		</class>
   	</classes>
   </test>
@@ -27,7 +27,7 @@
   	<parameter name="url" value="https://www.pricetravel.co"/>
   	<parameter name="browser" value="firefox"/>
   	<classes>
-  		<class name="testcases.hphoteles.TCHP_PTAll">
+  		<class name="testcases.workflows.TCHP_PTAll">
   		</class>
   	</classes>
   </test>

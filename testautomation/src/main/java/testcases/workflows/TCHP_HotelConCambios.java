@@ -1,4 +1,4 @@
-package testcases.hphoteles;
+package testcases.workflows;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.hphoteles.WHPHotelConCambios;
+import tests.workflows.hoteles.WHPHotelConCambios;
 
 public class TCHP_HotelConCambios {
 	WebDriver driver;

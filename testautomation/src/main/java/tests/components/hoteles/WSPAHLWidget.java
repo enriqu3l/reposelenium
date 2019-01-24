@@ -1,4 +1,4 @@
-package workflows.hoteles;
+package tests.components.hoteles;
 
 import java.util.ArrayList;
 import java.util.List;

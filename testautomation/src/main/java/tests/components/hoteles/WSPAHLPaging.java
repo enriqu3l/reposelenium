@@ -1,4 +1,4 @@
-package workflows.hoteles;
+package tests.components.hoteles;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

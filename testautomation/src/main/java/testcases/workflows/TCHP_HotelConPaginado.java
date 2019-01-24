@@ -1,4 +1,4 @@
-package testcases.hphoteles;
+package testcases.workflows;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.hphoteles.WHPHotelConPaginado;
+import tests.workflows.hoteles.WHPHotelConPaginado;
 
 public class TCHP_HotelConPaginado {
 	WebDriver driver;

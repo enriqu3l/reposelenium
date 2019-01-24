@@ -7,15 +7,15 @@
   
   <test thread-count="3" name="HP_Reservaciones">
     <classes>
-      <class name="testcases.hphoteles.TCHP_PTCOMMX_PROD"/>
-      <!-- <class name="testcases.hphoteles.TCHP_PTCOM_PROD"/> -->
-      <!-- <class name="testcases.hphoteles.TCHP_PTCO_PROD"/> -->
+      <class name="testcases.workflows.TCHP_PTCOMMX_PROD"/>
+      <!-- <class name="testcases.workflows.TCHP_PTCOM_PROD"/> -->
+      <!-- <class name="testcases.workflows.TCHP_PTCO_PROD"/> -->
     </classes>
   </test> <!-- Test -->
   
   <test name="HP_HotelesConCambios">
   	<classes>
-  		<class name="testcases.hphoteles.TCHP_HotelConCambios">
+  		<class name="testcases.workflows.TCHP_HotelConCambios">
   			<methods>
   				<include name="test_HPHotelConCambioDeFecha"/>
   			</methods>
@@ -25,7 +25,7 @@
   
   <test name="HP_ReservacionesMobile">
   	<classes>
-  		<class name="testcases.hphoteles.TCHP_Mobile">
+  		<class name="testcases.workflows.TCHP_Mobile">
   			<methods>
   				<exclude name="mobile_Safari"/>
   				<!-- <exclude name="mobile.*"/> -->

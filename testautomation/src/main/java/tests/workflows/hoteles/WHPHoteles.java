@@ -1,4 +1,4 @@
-package workflows.hphoteles;
+package tests.workflows.hoteles;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

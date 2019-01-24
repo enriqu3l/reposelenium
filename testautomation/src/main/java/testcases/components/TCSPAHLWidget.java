@@ -1,4 +1,4 @@
-package testcases.hoteles;
+package testcases.components;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import workflows.hoteles.WSPAHLWidget;
+import tests.components.hoteles.WSPAHLWidget;
 
 public class TCSPAHLWidget {
 	WebDriver driver;
