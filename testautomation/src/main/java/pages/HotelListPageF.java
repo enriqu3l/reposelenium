@@ -86,9 +86,12 @@ public class HotelListPageF {
 	private By byListListProductRateLoaderButton = By.cssSelector(".list-product .list-product-rate .loader");
 	
 	
-	//--------------- Lateral Widget elements - Basados en SPA-Hoteles ----------
+	//--------------- Widget Elements - Basados en SPA-Hoteles ----------
 	@FindBy(how=How.CSS, css="#ptw-container #destination")
 	private WebElement widgetInputDestination;
+	
+	@FindBy(how=How.CSS, css="#ptw-container #Err_PlaceName")
+	private WebElement widgetErrorPlace;
 	
 	@FindBy(how=How.CSS, css="#start-datepicker .ap_dest_calendar")
 	private WebElement widgetInputStartDate;
@@ -189,25 +192,14 @@ public class HotelListPageF {
 		verifyIfANewTabOpened();
 	}
 	
-	public void verifyIfANewTabOpened() {
-		//Obtener las tabs existentes
-		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
-		if(browserTabs.size()>1) {
-			//En caso de haber mas de 1 tab, switchear a esa nueva tab.
-			driver.switchTo().window(browserTabs.get(1)); //La primer tab comienza con 0 por eso seleccionamos la 1
-		}
-		logger.trace("Cantidad de tabs: "+browserTabs.size());
-		
-		//switch to new tab
-		//driver.switchTo().window(browserTabs.get(1));
-		//check is it correct page opened or not (e.g. check page's title) then close tab and get back
-		//driver.close();
-		//driver.switchTo().window(browserTabs.get(0));
+	//++++++++++++++++++++++++++ WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
+	public void widgetClearDestination() {
+		waitForContentToBeReady();
+		widgetInputDestination.clear(); //Este metodo no lanza evento de tecla
+		widgetInputDestination.sendKeys(" "+Keys.BACK_SPACE); //Enviar " " para que lance un evento de tecla
 	}
 	
-	//++++++++++++++++++++++++++ WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
-	
-	public void widgetChangeDestin(String destin) {
+	public void widgetSelectDestin(String destin) {
 		logger.info("Starting widget_changeDestin()");
 		//Me falta poner candados para validar el parametro
 		
@@ -222,14 +214,14 @@ public class HotelListPageF {
 		widgetInputDestination.sendKeys(Keys.ENTER);
 	}
 	
-	public void widgetChangeAdults(int adultsNumber) {
+	public void widgetSelectAdults(int adultsNumber) {
 		logger.info("Starting widget_changeAdults()");
-		//Me falta poner candados para validar el parametro
+		Assert.assertTrue(adultsNumber>0 && adultsNumber<9,"LAF>>>el parametro adultsNumber esta fuera de rango");
 		
 		waitForContentToBeReady();
 		
 		Select adults = new Select(widgetSelectHotelAdults);
-		adults.selectByValue(Integer.toString(adultsNumber));
+		adults.selectByVisibleText(Integer.toString(adultsNumber));
 	}
 	
 	public void widgetClickSubmit() {
@@ -253,23 +245,10 @@ public class HotelListPageF {
 		}
 	}
 	
-	//En construccion!!!!!!!
-	public void widgetChangeSearch(VOHotelRes voHotelRes){
-		logger.info("Starting widgetChangeSearch()");
-		waitForContentToBeReady();
-		
-		widgetInputDestination.clear();
-		widgetInputDestination.sendKeys(voHotelRes.getDestination());
-		//Wait until dropdown menu appears
-		wait.until(ExpectedConditions.presenceOfElementLocated(byWidgetDestinationDropdownMenu));
-		widgetInputDestination.sendKeys(Keys.ENTER);
-		
-		widgetChangeStartDate(voHotelRes.getStartDate());
-		widgetChangeEndDate(voHotelRes.getEndDate());
+	public void widgetSelectOccupants(VOHotelRes voHotelRes) {
 		//Aqui el codigo para realizar la seleccion de rooms, adults, kids y agekids
 		Select rooms = new Select(widgetSelectHotelRooms);
-		rooms.selectByValue(Integer.toString(voHotelRes.getRoomCount()));
-		//rooms.selectByIndex(voHotelResNew.getRoomCount()-1); //-1 porque es Base 0
+		rooms.selectByVisibleText(Integer.toString(voHotelRes.getRoomCount()));
 		if(widgetAllBlockRooms.size() != voHotelRes.getRoomCount()) {
 			 logger.error("No se crearon los campos suficientes de rooms, allBlocksRooms:"+widgetAllBlockRooms.size());
 			 Assert.fail("LAF>>>No se crearon los campos suficientes de rooms, allBlocksRooms:"+widgetAllBlockRooms.size());
@@ -280,10 +259,15 @@ public class HotelListPageF {
 			WebElement weKids = widgetAllBlockRooms.get(i).findElement(byWidgetHotelMinors);
 			
 			Select adults = new Select(weAdults);
-			adults.selectByValue(Integer.toString(voHotelRes.getAdultsFromRoom(i)));
+			adults.selectByVisibleText(Integer.toString(voHotelRes.getAdultsFromRoom(i)));
 			
 			Select kids = new Select(weKids);
-			kids.selectByValue(Integer.toString(voHotelRes.getKidsFromRoom(i)));
+			kids.selectByVisibleText(Integer.toString(voHotelRes.getKidsFromRoom(i)));
+		}
+		//Validar que se crearon campos de rooms para los agekids
+		if(widgetAllBlockMinorsAges.size() != voHotelRes.getRoomCount()) {
+			 logger.error("No se crearon los campos suficientes de rooms para los agekids, widgetAllBlockMinorsAges:"+widgetAllBlockMinorsAges.size());
+			 Assert.fail("LAF>>>No se crearon los campos suficientes de rooms para los agekids, widgetAllBlockMinorsAges:"+widgetAllBlockMinorsAges.size());
 		}
 		//Ahora hay que llenar las edades de los niños en cada cuarto
 		for(int i=0; i<widgetAllBlockMinorsAges.size();i++) {
@@ -293,16 +277,16 @@ public class HotelListPageF {
 				List<WebElement> minors = widgetAllBlockMinorsAges.get(i).findElements(byWidgetAllKidsPerRoom);
 				for(int j=0;j<minors.size();j++) {
 					//Recorrer cada niño y setear la edad
-					Select adults = new Select(minors.get(j));
-					adults.selectByValue(Integer.toString(voHotelRes.getAgeFromAgekids(i, j)));
+					Select minor = new Select(minors.get(j));
+					minor.selectByVisibleText(Integer.toString(voHotelRes.getAgeFromAgekids(i, j)));
 				}
 			}
 		}
 	}
 	
-	//En construccion, ya mero esta lista!!!
-	public void widgetChangeStartDate(String date) {
-		//Me falta poner candados para validar el parametro	
+	public void widgetSelectStartDate(String date) {
+		if(date.isEmpty()) {Assert.fail("LAF>>>El parametro date esta vacio");}
+		
 		logger.info("Starting widgetChangeStartDate()");
 		waitForContentToBeReady(); //Esperar a que se quite el overlay
 		//Abrir el calendario si no esta abierto
@@ -311,7 +295,7 @@ public class HotelListPageF {
 		int day = localDate.getDayOfMonth();
 		String actualDate = BasicUtils.toddMMyyyyFormat(widgetStartDateTitle.getText().trim());
 		int TotalMonthDifference = BasicUtils.monthDiference(date, actualDate);	
-		logger.trace("widget_selectStartDate() TotalMonthDifference: "+TotalMonthDifference);
+		logger.trace("widgetSelectStartDate() TotalMonthDifference: "+TotalMonthDifference);
 		if(TotalMonthDifference>0) {
 			for(int i=0; i<TotalMonthDifference;i++) {
 				widgetStartDateNextMonth.click(); //click hacia adelante
@@ -323,26 +307,21 @@ public class HotelListPageF {
 		}
 		String xpath = "//*[@id='start-datepicker']//div[text()='"+day+"']";
 		driver.findElement(By.xpath(xpath)).click();
-		//String selector = "#start-datepicker div[aria-label*=' "+day+" '].ngb-dp-day div";
-		//driver.findElement(By.cssSelector(selector)).click();
-		logger.trace("Valor de widget_Input_startDate: " + widgetInputStartDate.getAttribute("value"));
+		logger.trace("Valor de widgetInputStartDate: " + widgetInputStartDate.getAttribute("value"));
 	}
 	
-	//En construccion, ya mero esta lista!!!
-	public void widgetChangeEndDate(String date) {
-		//Me falta poner candados para validar el parametro
+	public void widgetSelectEndDate(String date) {
+		if(date.isEmpty()) {Assert.fail("LAF>>>El parametro date esta vacio");}
 		
 		logger.info("Starting widgetChangeEndDate()");
-		logger.trace("actualDate:  "+date);
 		waitForContentToBeReady(); //Esperar a que se quite el overlay
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,byWidgetEndDateDropdownMenu)){widgetEndDatePicker.click();}
 		LocalDate localDate = LocalDate.parse(date,DateTimeFormat.forPattern("dd/MM/yyyy"));
 		int day = localDate.getDayOfMonth();
 		String actualDate = BasicUtils.toddMMyyyyFormat(widgetEndDateTitle.getText().trim());
-		logger.trace("actualDate:  "+actualDate);
 		int TotalMonthDifference = BasicUtils.monthDiference(date, actualDate);	
-		logger.trace("widget_selectEndDate() TotalMonthDifference: "+TotalMonthDifference);
+		logger.trace("widgetChangeEndDate() TotalMonthDifference: "+TotalMonthDifference);
 		if(TotalMonthDifference>0) {
 			for(int i=0; i<TotalMonthDifference;i++) {
 				widgetEndDateNextMonth.click(); //click hacia adelante
@@ -354,9 +333,16 @@ public class HotelListPageF {
 		}
 		String xpath = "//*[@id='end-datepicker']//div[text()='"+day+"']";
 		driver.findElement(By.xpath(xpath)).click();
-		//String selector = "#end-datepicker div[aria-label*=' " + Integer.toString(day) + " '].ngb-dp-day div";
-		//driver.findElement(By.cssSelector(selector)).click();
-		logger.trace("Valor de widget_Input_startDate: " + widgetInputEndDate.getAttribute("value"));
+		logger.trace("Valor de widgetInputEndDate: " + widgetInputEndDate.getAttribute("value"));
+	}
+	
+	public void widgetSelectReservation(VOHotelRes voHotelRes){
+		logger.info("Starting widgetChangeSearch()");
+		waitForContentToBeReady();
+		widgetSelectDestin(voHotelRes.getDestination());
+		widgetSelectStartDate(voHotelRes.getStartDate());
+		widgetSelectEndDate(voHotelRes.getEndDate());
+		widgetSelectOccupants(voHotelRes);
 	}
 	//++++++++++++++++++++++++++ END WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
 	
@@ -382,7 +368,6 @@ public class HotelListPageF {
 	//+++++++++++++++++++++++++++ VERIFY FUNCTIONS +++++++++++++++++++++++++++++++++++++++++++++
 	public void widgetVerifyDestinationToBe(String expected) {
 		waitForContentToBeReady();
-		
 		String actual = widgetInputDestination.getText().trim();
 		if(actual.isEmpty()) {
 			//Si getText no funciona uso el metodo getAttribute
@@ -420,22 +405,136 @@ public class HotelListPageF {
 		}
 	}
 	
-	public void widgetVerifyAutocompleteDestination(List<String> data) {
+	public void widgetVerifyAutocompleteDestination(List<String> words) {
 		logger.info("Starting widgetVerifyAutocompleteDestination()");
-		//Me falta poner candados para validar el parametro
+		if(words.isEmpty()) {Assert.fail("LAF>>>El parametro words esta vacio");}
 		
 		waitForContentToBeReady();
-		for(int i=0; i<data.size();i++) {
+		for(int i=0; i<words.size();i++) {
 			widgetInputDestination.clear();
-			widgetInputDestination.sendKeys(data.get(i).toLowerCase().trim());
+			widgetInputDestination.sendKeys(words.get(i).toLowerCase().trim());
 			//Wait until dropdown menu appears
 			wait.until(ExpectedConditions.presenceOfElementLocated(byWidgetDestinationDropdownMenu));
 			widgetInputDestination.sendKeys(Keys.ENTER);
 			String actual = widgetInputDestination.getAttribute("value").toLowerCase().trim();
-			Assert.assertTrue(actual.contains(data.get(i).toLowerCase().trim()),
-					"El input destination no contiene la palabra buscada:"+data.get(i).trim());
+			Assert.assertTrue(actual.contains(words.get(i).toLowerCase().trim()),
+					"El input destination no contiene la palabra buscada:"+words.get(i).trim());
 			widgetInputDestination.clear();
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(byWidgetDestinationDropdownMenu));
+		}
+	}
+	
+	public void widgetVerifyOccupantsToBe(VOHotelRes voHotelRes) {
+		logger.info("Starting widgetVerifyOccupantsToBe()");
+		waitForContentToBeReady();
+		
+		//Validar que los rooms sean los mismos
+		Select rooms = new Select(widgetSelectHotelRooms);
+		String selectedOption = rooms.getFirstSelectedOption().getText();
+		Assert.assertEquals(Integer.toString(voHotelRes.getRoomCount()), selectedOption);
+		//Validar que se crearon campos para cada room
+		if(widgetAllBlockRooms.size() != voHotelRes.getRoomCount()) {
+			 logger.error("No se crearon los campos suficientes de rooms, allBlocksRooms:"+widgetAllBlockRooms.size());
+			 Assert.fail("LAF>>>No se crearon los campos suficientes de rooms, allBlocksRooms:"+widgetAllBlockRooms.size());
+		}
+		//Validar los adultos y niños en cada cuarto
+		for(int i=0;i<widgetAllBlockRooms.size();i++) {
+			WebElement weAdults = widgetAllBlockRooms.get(i).findElement(byWidgetHotelAdults);
+			WebElement weKids = widgetAllBlockRooms.get(i).findElement(byWidgetHotelMinors);
+			
+			Select adults = new Select(weAdults);
+			String adultsSelected =adults.getFirstSelectedOption().getText();
+			Assert.assertEquals(Integer.toString(voHotelRes.getAdultsFromRoom(i)), adultsSelected);
+			
+			Select kids = new Select(weKids);
+			String kidsSelected = kids.getFirstSelectedOption().getText();
+			Assert.assertEquals(Integer.toString(voHotelRes.getKidsFromRoom(i)), kidsSelected);
+		}
+		//Validar que se crearon campos de rooms para los agekids
+		if(widgetAllBlockMinorsAges.size() != voHotelRes.getRoomCount()) {
+			 logger.error("No se crearon los campos suficientes de rooms para los agekids, widgetAllBlockMinorsAges:"+widgetAllBlockMinorsAges.size());
+			 Assert.fail("LAF>>>No se crearon los campos suficientes de rooms para los agekids, widgetAllBlockMinorsAges:"+widgetAllBlockMinorsAges.size());
+		}
+		//Validar las edades de los niños de cada cuarto
+		for(int i=0; i<widgetAllBlockMinorsAges.size();i++) {
+			//Recorrer cada room
+			if(voHotelRes.getKidsFromRoom(i)>0) {
+				//Entra solo si el cuarto contiene niños
+				List<WebElement> minors = widgetAllBlockMinorsAges.get(i).findElements(byWidgetAllKidsPerRoom);
+				for(int j=0;j<minors.size();j++) {
+					//Recorrer cada niño y setear la edad
+					Select minor = new Select(minors.get(j));
+					String ageMinorSelected = minor.getFirstSelectedOption().getText();
+					Assert.assertEquals(Integer.toString(voHotelRes.getAgeFromAgekids(i, j)), ageMinorSelected);
+				}
+			}
+		}
+	}
+
+	public void widgetVerifyReservationToBe(VOHotelRes voHotelRes) {
+		logger.info("Starting widgetVerifyReservationInfoToBe()");
+		waitForContentToBeReady();
+		
+		widgetVerifyDestinationToBe(voHotelRes.getDestination());
+		widgetVerifyStartDateToBe(voHotelRes.getStartDate());
+		widgetVerifyEndDateToBe(voHotelRes.getEndDate());
+		widgetVerifyOccupantsToBe(voHotelRes);
+	}
+	
+	public void widgetVerifyErrorPlace() {
+		waitForContentToBeReady();
+		wait.until(ExpectedConditions.visibilityOf(widgetErrorPlace));
+		if(!(widgetErrorPlace.isDisplayed() && widgetErrorPlace.getText().contains("dest"))) {
+			logger.error("No se muestra el mensaje de Error del campo destino");
+			Assert.fail("ENF>>>No se muestra el mensaje de Error del campo destino");
+		}else {
+			logger.info("widgetVerifyErrorPlace PASS");
+		}
+			
+	}
+	
+	/**
+	 * Esta funcion verifica que se abran y cierren los dropdowns de las fechas en 10 iteraciones
+	 */
+	public void widgetVerifyOpenAndCloseDatePickers() {
+		waitForContentToBeReady();
+		logger.info("Starting widgetVerifyOpenAndCloseDatePickers()");
+		
+		for(int i=0;i<10;i++) {
+			//Validar StartDatePicker
+			if(BasicUtils.existsElement(driver,byWidgetStartDateDropdownMenu)){widgetStartDatePicker.click();}
+			widgetStartDatePicker.click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(byWidgetStartDateDropdownMenu));
+			widgetStartDatePicker.click();
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(byWidgetStartDateDropdownMenu));
+			Assert.assertTrue(BasicUtils.noExistsElement(driver, byWidgetStartDateDropdownMenu),"LAF>>>Error el StartDatePicker DropDown Menu no se esta cerrando");
+			
+			//Validar EndDatePicker
+			if(BasicUtils.existsElement(driver,byWidgetEndDateDropdownMenu)){widgetEndDatePicker.click();}
+			widgetEndDatePicker.click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(byWidgetEndDateDropdownMenu));
+			widgetEndDatePicker.click();
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(byWidgetEndDateDropdownMenu));
+			Assert.assertTrue(BasicUtils.noExistsElement(driver, byWidgetEndDateDropdownMenu),"LAF>>>Error el EndDatePicker DropDown Menu no se esta cerrando");
+		}
+		logger.info("widgetVerifyOpenAndCloseDatePickers PASS");
+	}
+	
+	public void widgetVerifyCurrentUrlDateOnDatePickers() {
+		waitForContentToBeReady();
+		logger.info("Starting widgetVerifyCurrentDateOnDatePickers()");
+		String inputStartDate = widgetInputStartDate.getAttribute("value").trim();
+		boolean result1 = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkin",inputStartDate);
+		String inputEndDate = widgetInputEndDate.getAttribute("value").trim();
+		boolean result2 = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkout",inputEndDate);
+		if(!result1) {
+			logger.error("La fecha de StartDate no coincide con la URL");
+			Assert.fail("LAF>>>La fecha de StartDate no coincide con la URL");
+		}else if(!result2){
+			logger.error("La fecha de EndDate no coincide con la URL");
+			Assert.fail("LAF>>>La fecha de EndDate no coincide con la URL");
+		}else {
+			logger.info("verifyUrlStartDateToBe PASS");
 		}
 	}
 	
@@ -445,32 +544,30 @@ public class HotelListPageF {
 		logger.trace("Cantidad de bloques (hoteles) en la lista de resultados: "+list_allBlocksResults.size());
 	}
 	
-	/**
-	 * @param expected - String - Valor a evaluar que este presente en la URL
-	 * @param encoding - Boolean - Para indicar si se quiere codificar el parametro antes de buscarlo en la URL
-	 * @author enrique.lopez
-	 */
-	public void verifyUrlContains(String expected, boolean encoding) {
-		String expected2 = expected;
-		if(encoding) {
-			try {
-				expected2= URLEncoder.encode(expected, "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-		}
-		String current = driver.getCurrentUrl();
-		if(current.contains(expected2)) {
-			logger.info("Assert Ok. URL contains:"+expected2);
+	public void verifyUrlStartDateToBe(String value) {
+		waitForContentToBeReady();
+		boolean result = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkin",value);
+		if(!result) {
+			logger.error("La fecha de StartDate no coincide con la URL");
+			Assert.fail("LAF>>>La fecha de StartDate no coincide con la URL");
 		}else {
-			logger.error("Error. URL does not contain: "+expected2);
-			Assert.fail("Error. URL does not contain: "+expected2);
+			logger.info("verifyUrlStartDateToBe PASS");
+		}
+	}
+	
+	public void verifyUrlEndDateToBe(String value) {
+		waitForContentToBeReady();
+		boolean result = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkout",value);
+		if(!result) {
+			logger.error("La fecha de EndDate no coincide con la URL");
+			Assert.fail("LAF>>>La fecha de EndDate no coincide con la URL");
+		}else {
+			logger.info("verifyUrlEndDateToBe PASS");
 		}
 	}
 	
 	public void verifyHeaderTitleToBe(String title) {
 		waitForContentToBeReady();
-		
 		String actual = pageHeaderTitle.getText().trim();
 		String expected = title;
 		if(!actual.contains(expected)) {
@@ -479,12 +576,25 @@ public class HotelListPageF {
 		}
 	}
 	
+	public void verifyIfANewTabOpened() {
+		//Obtener las tabs existentes
+		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+		if(browserTabs.size()>1) {
+			//En caso de haber mas de 1 tab, switchear a esa nueva tab.
+			driver.switchTo().window(browserTabs.get(1)); //La primer tab comienza con 0 por eso seleccionamos la 1
+		}
+		logger.trace("Cantidad de tabs: "+browserTabs.size());
+		
+		//switch to new tab
+		//driver.switchTo().window(browserTabs.get(1));
+		//check is it correct page opened or not (e.g. check page's title) then close tab and get back
+		//driver.close();
+		//driver.switchTo().window(browserTabs.get(0));
+	}
+	
 	//+++++++++++++++++++++++++++++++++++ WAITS ++++++++++++++++++++++++++++++++++++++++++++++++
 	public void waitForLoaderButtons() {
-		////Este primer metodo se tardaba porque entraba el PageFactory y esperaba 30 seg!!
-		//wait.until(ExpectedConditions.invisibilityOfAllElements(listListProductRateLoaderButton)); 
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(byListListProductRateLoaderButton));
-		
 		/*Todas esas validaciones no son necesarias dado que la funcion invisibilityOfAllElements
 		 * revisa la funcion isDisplayed y ademas si detecta una excepcion retorna verdadero
 		if(BasicUtils.existsElement(driver, byListListProduct)) {
@@ -499,7 +609,6 @@ public class HotelListPageF {
 	
 	public void waitForOverlay() {
 		//Esperar a que se quite el overlay
-		//wait.until(WaitFor.attributeValue(loaderOverlayPage, "style", "display: none; opacity: 0;"));
 		wait.until(ExpectedConditions.attributeContains(byLoaderOverlayPage, "style", "display: none; opacity: 0;"));
 	}
 	

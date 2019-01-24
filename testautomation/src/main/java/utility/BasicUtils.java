@@ -3,14 +3,22 @@ package utility;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URIBuilder;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.openqa.selenium.By;
@@ -18,8 +26,91 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class BasicUtils {
+	
+	/**
+	 * @param url - String - Url en la que se desea buscar
+	 * @param expected - String - Valor a evaluar que este presente en la URL
+	 * @param encoding - Boolean - Para indicar si se quiere codificar el parametro antes de buscarlo en la URL
+	 * @author enrique.lopez
+	 */
+	public static boolean checkUrlContains(String url, String expected, boolean encoding) {
+		String expected2 = expected;
+		if(encoding) {
+			try {
+				expected2= URLEncoder.encode(expected, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		return url.contains(expected2);
+	}
+	
+	/**
+	 * Esta funcion revisa que un determinado valor se encuentre en un parametro de una url
+	 * @param url - Url en la que se desea validar la existencia del valor
+	 * @param paramName - Parametro que se desea obtener de la url
+	 * @param expected - Valor que se desea comparar con el valor del parametro obtenido
+	 * @return
+	 */
+	public static boolean checkValueOnUrlParam(String url, String paramName, String expected){
+		System.out.println("checkValueOnUrlParam-> url:("+url+") paramName:("+paramName+") expected:("+expected+")");
+		String urlParamValue = getParamValue(url,paramName);
+		System.out.println("checkValueOnUrlParam-> urlParamValue:("+urlParamValue+")");
+		String expectedValue = expected;
+		if(paramName.equals("checkin") || paramName.equals("checkout")) {
+			System.out.println("checkValueOnUrlParam-> comparing dates...");
+			LocalDate ldUrlParamValue = convertToLocalDate(urlParamValue);
+			LocalDate ldExpectedValue = convertToLocalDate(expectedValue);
+			return ldUrlParamValue.equals(ldExpectedValue);
+		}
+		return urlParamValue.equals(expectedValue);
+    }
+	
+	public static String getParamValue(String url, String paramName){
+        List<NameValuePair> queryParams = null;
+		try {
+			queryParams = new URIBuilder(url).getQueryParams();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+        return queryParams.stream()
+                .filter(param -> param.getName().equalsIgnoreCase(paramName))
+                .map(NameValuePair::getValue)
+                .findFirst()
+                .orElse("");
+    }
+	
+	//Esta funcion devuelve un map con todos los parametros 
+	public static Map<String, List<String>> getQueryParams(String url) {
+	    try {
+	        Map<String, List<String>> params = new HashMap<String, List<String>>();
+	        String[] urlParts = url.split("\\?");
+	        if (urlParts.length > 1) {
+	            String query = urlParts[1];
+	            for (String param : query.split("&")) {
+	                String[] pair = param.split("=");
+	                String key = URLDecoder.decode(pair[0], "UTF-8");
+	                String value = "";
+	                if (pair.length > 1) {
+	                    value = URLDecoder.decode(pair[1], "UTF-8");
+	                }
+
+	                List<String> values = params.get(key);
+	                if (values == null) {
+	                    values = new ArrayList<String>();
+	                    params.put(key, values);
+	                }
+	                values.add(value);
+	            }
+	        }
+	        return params;
+	    } catch (UnsupportedEncodingException ex) {
+	        throw new AssertionError(ex);
+	    }
+	}
 	
 	//"https://www.pricetravel.com/hoteles/cancun-area","Cancún (y alrededores), México",""
 	public static String buildSPAHotelListLP(String site, String destination, String startDate, String endDate, String adults) {
@@ -107,31 +198,6 @@ public class BasicUtils {
 		}
 		return dateFormat.format(current);
 	}
-	
-	/*//Seleccionar una fecha de un calendario, usar formato: dd/mm/yyyy
-	public static void selectDateFromCalendar(WebDriver d,String setDateStr) {
-		d.findElement(By.id("datepicker")).click();
-		
-		String currDateStr = d.findElement(By.className("ui-datepicker-title")).getText();
-		Date setDate = new SimpleDateFormat( pattern: "dd/MM/yyyy").parse(setDateStr);
-	}*/
-	
-	/*WebElement select = driver.findElement(By.id("ap_origin_flightPackage"));
-	List<WebElement> options = select.findElements(By.tagName("li"));
-	for (WebElement option1 : options) {
-		if("SYDNEY, New South Wales, Australia, 1001".equals(option1.getText().trim()))
-	    option1.click();   
-	}  
-	
-	selenium.typeKeys("county_search", "lake");
-	for (int second = 0;; second++) {
-	    if (second >= 60) fail("timeout");
-	    try { if (selenium.isTextPresent("Lake County, IL")) break; } catch (Exception e) {}
-	    Thread.sleep(1000);
-	}
-	selenium.mouseOver("//html/body/ul/li/a[. = \"Lake County, IL\"]");
-	selenium.click("//html/body/ul/li/a[. = \"Lake County, IL\"]");
-	*/
 	   
 	//Como obtener elementos de una tag ul
 	/*WebElement countryUL= driver.findElement(By.xpath("//[@id='country_id']/ul"));
@@ -200,20 +266,19 @@ public class BasicUtils {
 		}
 	}//End of function
 	
-	//Guardar un ScreenShot y permite ponerle un nombre a la capture y decidir donde guardar la capture
 	/**
+	 * Guardar un ScreenShot y permite ponerle un nombre a la captura y decidir donde guardar la captura.
+	 * La imagen se guarda en formato png
 	 * @param webDriver
 	 * @param name
 	 * @param path
 	 */
 	public static void ScreenShot(WebDriver d, String _name, String _path) {
 		File src=((TakesScreenshot)d).getScreenshotAs(OutputType.FILE);
-		try
-		{
+		try{
 			FileUtils.copyFile(src, new File(_path+"Screen_"+_name+"_"+System.currentTimeMillis()+".png"));
 		}
-		catch (IOException e)
-		{
+		catch (IOException e){
 			System.out.println(e.getMessage());
 		}
 	}//End of function
@@ -369,5 +434,24 @@ public class BasicUtils {
 			TotalMountDifference =  monthDifference+(yearDifference*12);
 		}
 		return TotalMountDifference;
+	}
+
+	/**
+	 * Esta funcion comvierte solo fechas del tipo "yyyy-MM-dd" "yyyy/MM/dd" y "dd/MM/yyyy"
+	 * Cualquier otro formato devolvera una excepcion o null
+	 * @param date
+	 * @return
+	 */
+	public static LocalDate convertToLocalDate(String date) {
+		if(date.contains("-")) {
+			return LocalDate.parse(date.trim());
+		}else if(date.contains("/")) {
+			if(date.indexOf("/")>=4) {
+				return LocalDate.parse(date.trim(),DateTimeFormat.forPattern("yyyy/MM/dd"));
+			}else if(date.indexOf("/")<=2) {
+				return LocalDate.parse(date.trim(),DateTimeFormat.forPattern("dd/MM/yyyy"));
+			}
+		}
+		return null;
 	}
 }

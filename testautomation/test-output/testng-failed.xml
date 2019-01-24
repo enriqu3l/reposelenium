@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [HP_Suite]">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Regression_Suite]">
   <listeners>
-    <listener class-name="testlisteners.ListenersHappyPath"/>
+    <listener class-name="testlisteners.ListenersRegression"/>
   </listeners>
-  <test thread-count="5" name="HPPTCOMMX(failed)">
-    <parameter name="browser" value="chrome"/>
-    <parameter name="url" value="https://us.pricetravel.com"/>
+  <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="testcases.hphoteles.TCHP_PTAll">
+      <class name="testcases.hoteles.TCSPAHLWidget">
         <methods>
-          <include name="prerequisitos"/>
-          <include name="End"/>
           <include name="Close"/>
-          <include name="HPHotelRandom"/>
-          <include name="beforeMethod"/>
+          <include name="End"/>
+          <include name="test2"/>
+          <include name="prerequisites"/>
         </methods>
-      </class> <!-- testcases.hphoteles.TCHP_PTAll -->
+      </class> <!-- testcases.hoteles.TCSPAHLWidget -->
     </classes>
-  </test> <!-- HPPTCOMMX(failed) -->
-</suite> <!-- Failed suite [HP_Suite] -->
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Regression_Suite] -->

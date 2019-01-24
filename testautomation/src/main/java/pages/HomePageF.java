@@ -154,10 +154,10 @@ public class HomePageF {
 		rooms.selectByVisibleText(Integer.toString(voHotelRes.getRoomCount()));
 		logger.trace("Rooms: "+voHotelRes.getRoomCount());
 		Select adults = new Select(widgetSelectBookerHotelAdults0);
-		adults.selectByValue(Integer.toString(voHotelRes.getAdultsFromRoom(0)));
+		adults.selectByVisibleText(Integer.toString(voHotelRes.getAdultsFromRoom(0)));
 		logger.trace("Adults: "+voHotelRes.getAdultsFromRoom(0));
 		Select kids = new Select(widgetSelectBookerHotelMinors0);
-		kids.selectByValue(Integer.toString(voHotelRes.getKidsFromRoom(0)));
+		kids.selectByVisibleText(Integer.toString(voHotelRes.getKidsFromRoom(0)));
 		logger.trace("Kids: "+voHotelRes.getKidsFromRoom(0));
 		widgetButtonSearchHoteles.click();
 		logger.info("Ending SearchHotel()");

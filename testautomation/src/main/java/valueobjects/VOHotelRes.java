@@ -33,11 +33,11 @@ public class VOHotelRes {
 	}
 	
 	/**
-	 * @param idHotelRes String. Identificador de la reservacion
-	 * @param destination String. destino
-	 * @param startDate String. fecha de inicio de la reservacion
-	 * @param endDate String. fecha final de la reservacion
-	 * @param rooms List-Map-String,String--. Lista con los datos de cada room
+	 * @param idHotelRes - String. Identificador de la reservacion
+	 * @param destination - String. destino
+	 * @param startDate - String. fecha de inicio de la reservacion
+	 * @param endDate - String. fecha final de la reservacion
+	 * @param rooms - List-Map-String,String--. Lista con los datos de cada room
 	 */
 	public VOHotelRes(String idHotelRes, String destination, String startDate, String endDate,
 			List<Map<String, String>> rooms) {

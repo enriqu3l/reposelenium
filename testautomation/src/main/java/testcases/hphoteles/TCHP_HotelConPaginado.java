@@ -38,7 +38,7 @@ public class TCHP_HotelConPaginado {
 	{
 		Reporter.log("Closing Browser...");
 		logger.info("Closing Browser...");
-		//driver.close();	
+		driver.close();	
 	}
 	
 	@AfterTest
