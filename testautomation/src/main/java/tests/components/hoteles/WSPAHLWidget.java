@@ -38,6 +38,7 @@ public class WSPAHLWidget {
 		// <When>
 		pages.hotelListPage_Initialize();
 		// <Then>
+		//Verificar que el autocompletado del campo destino funcione correctamente
 		pages.hotelListPage.widgetVerifyAutocompleteDestination(data);
 	}
 	
@@ -57,10 +58,17 @@ public class WSPAHLWidget {
 		// <When>
 		pages.hotelListPage_Initialize();
 		// <Then>
+		//Verificar que las fechas iniciales sean las que tenga la URL
 		pages.hotelListPage.widgetVerifyCurrentUrlDateOnDatePickers();
+		//Verificar que que el datepicker se abra y se cierre en 10 iteraciones
 		pages.hotelListPage.widgetVerifyOpenAndCloseDatePickers();
 	}
 	
+	/**
+	 * Este testcase verifica que no se pueda consultar si se tienen campos vacios
+	 * Solo el campo "destino" puede estar vacio, por lo que solo se verifica este.
+	 * @param driver
+	 */
 	public static void searchWithEmptyFieldsTest(WebDriver driver){
 		// <Setup>
 		logger.info("Starting workflow searchWithEmptyFieldsTest");
@@ -71,6 +79,7 @@ public class WSPAHLWidget {
 		pages.hotelListPage.widgetClearDestination();
 		pages.hotelListPage.widgetClickSubmit();
 		// <Then>
+		//Verificar que se muestre el mensaje de error si no se ingresa un destino
 		pages.hotelListPage.widgetVerifyErrorPlace();
 		
 	}
@@ -105,6 +114,14 @@ public class WSPAHLWidget {
 		pages.hotelListPage.listVerifyResultListHasElements();
 	}
 	
+	/**
+	 * Este testcase verifica que se puedan cambiar las fechas de la reservacion
+	 * Se verifica:
+	 * 1.- Que el widget tiene la nueva fecha
+	 * 2.- Que la url tiene la nueva fecha
+	 * 3.- Que la lista de resultados tenga elementos
+	 * @param driver
+	 */
 	public static void searchDifferentDatesTest(WebDriver driver) {
 		// <Setup>
 		logger.info("Starting workflow searchDifferentDatesTest");
@@ -123,10 +140,17 @@ public class WSPAHLWidget {
 		//Verificar que la url tiene la nueva fecha
 		pages.hotelListPage.verifyUrlStartDateToBe(voHotelResNew.getStartDate("yyyy-MM-dd"));
 		pages.hotelListPage.verifyUrlEndDateToBe(voHotelResNew.getEndDate("yyyy-MM-dd"));
-		//Verificar que tenemos resultados
+		//Verificar que la lista de resultados tenga elementos
 		pages.hotelListPage.listVerifyResultListHasElements();
 	}
 	
+	/**
+	 * Este testcase verifica que se puedan cambiar los ocupantes
+	 * Se verifica:
+	 * 1.- Que los ocupantes sean los que se seleccionaron
+	 * 2.- Que la lista de resultados tenga elementos
+	 * @param driver
+	 */
 	public static void searchDifferentOccupantsTest(WebDriver driver) {
 		// <Setup>
 		logger.info("Starting workflow searchDifferentOccupantsTest");
@@ -138,12 +162,19 @@ public class WSPAHLWidget {
 		pages.hotelListPage.widgetSelectOccupants(voHotelRes);
 		pages.hotelListPage.widgetClickSubmit();
 		// <Then>
-		// erificar que tenemos resultados
-		pages.hotelListPage.listVerifyResultListHasElements();
 		//Verificar que los ocupantes sean los que se seleccionaron
 		pages.hotelListPage.widgetVerifyOccupantsToBe(voHotelRes);
+		//Verificar que la lista de resultados tenga elementos
+		pages.hotelListPage.listVerifyResultListHasElements();
 	}
 	
+	/**
+	 * Este testcase verifica que se puedan cambiar toda la reservacion
+	 * Se verifica:
+	 * 1.- Que la info de la reservacion sea la que se selecciono
+	 * 2.- Que la lista de resultados tenga elementos
+	 * @param driver
+	 */
 	public static void searchDifferentReservationTest(WebDriver driver) {
 		// <Setup>
 		logger.info("Starting workflow searchDifferentReservationTest");
@@ -156,10 +187,10 @@ public class WSPAHLWidget {
 		pages.hotelListPage.widgetSelectReservation(voHotelRes);
 		pages.hotelListPage.widgetClickSubmit();
 		// <Then>
-		// erificar que tenemos resultados
-		pages.hotelListPage.listVerifyResultListHasElements();
 		//Verificar que la info de la reservacion sea la que se selecciono
 		pages.hotelListPage.widgetVerifyReservationToBe(voHotelRes);
+		//Verificar que la lista de resultados tenga elementos
+		pages.hotelListPage.listVerifyResultListHasElements();
 	}
 	
 	//Funciones para pruebas durante el desarrollo
