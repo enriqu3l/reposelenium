@@ -106,7 +106,7 @@ public class ResDetailPageF {
 	}
 
 	public void fillForm(VOClient voClient) {
-		logger.info("Starting fillFormDefaultData()");
+		logger.info("Starting fillForm()");
 		wait.until(ExpectedConditions.visibilityOf(frmReserveInputFirsName));
 		frmReserveInputFirsName.sendKeys(voClient.getName());
 		frmReserveInputLastName.sendKeys(voClient.getLastName());
@@ -116,19 +116,18 @@ public class ResDetailPageF {
 		frmReserveInputPhone.sendKeys(Integer.toString(voClient.getPhone()));
 		frmReserveInputMobile.sendKeys(Long.toString(voClient.getCellphone()));
 		
-		//Se agrego este If para el campo Cedula de Ciudadania
-		//de la pagina de pt.co
+		//Se agrego este If para el campo Cedula de Ciudadania de la pagina de pt.co
 		if(driver.getCurrentUrl().contains(".co/")) {
 			logger.info("fillForm() - Sending national card number for pt.co");
 			frmReserveInputNationalIdCard.sendKeys(Integer.toString(voClient.getNationalId()));
 		}
 		checkPolitics();
-		logger.info("Ending fillFormDefaultData()");
+		logger.info("Ending fillForm()");
 	}
 	
 	public void clearForm() {
 		logger.info("Starting clearForm()");
-		wait.until(ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(frmReserveInputFirsName)));
+		wait.until(ExpectedConditions.visibilityOf(frmReserveInputFirsName));
 		frmReserveInputFirsName.clear();
 		frmReserveInputLastName.clear();
 		frmReserveInputEmail.clear();

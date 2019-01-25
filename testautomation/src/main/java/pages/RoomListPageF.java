@@ -39,7 +39,7 @@ public class RoomListPageF {
 	@FindBy(how=How.CSS, css=".hotel-rooms-table .room-table .room-table-actions .btn.btn-primary")
 	private WebElement roomButton;
 	
-	By loaderOverlayPage = By.cssSelector(".loader-overlay.ng-trigger");
+	By byLoaderOverlayPage = By.cssSelector(".loader-overlay.ng-trigger");
 	
 	//Los lementos que se cargan al inicio junto con la pagina se declaran con @FindBy
 	//Los elementos que se cargan despues, por cuestion de AJAX o por una SPA se declararan
@@ -79,6 +79,6 @@ public class RoomListPageF {
 	public void waitForOverlay() {
 		//Esperar a que se quite el overlay
 		//wait.until(WaitFor.attributeValue(loaderOverlayPage, "style", "display: none; opacity: 0;"));
-		wait.until(ExpectedConditions.attributeContains(loaderOverlayPage, "style", "display: none; opacity: 0;"));
+		wait.until(ExpectedConditions.attributeContains(byLoaderOverlayPage, "style", "display: none; opacity: 0;"));
 	}
 }

@@ -26,7 +26,7 @@ public class WHPHotelConCambios {
 		pages.homePage.widgetSearchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
 		//Lo tengo hardcodeado a Las vegas, necesito hacerlo dinamico con un archivo o una funcion
-		pages.hotelListPage.widgetSelectDestin("Las Vegas (y alrededores), Nevada, Estados Unidos de América");
+		pages.hotelListPage.widgetSetDestin("Las Vegas (y alrededores), Nevada, Estados Unidos de América");
 		pages.hotelListPage.widgetClickSubmit();
 		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
@@ -50,8 +50,8 @@ public class WHPHotelConCambios {
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSelectStartDate("10/03/2019");
-		pages.hotelListPage.widgetSelectEndDate("14/03/2019");
+		pages.hotelListPage.widgetSetStartDate("10/03/2019");
+		pages.hotelListPage.widgetSetEndDate("14/03/2019");
 		pages.hotelListPage.widgetClickSubmit();
 		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
@@ -75,7 +75,7 @@ public class WHPHotelConCambios {
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
 		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSelectAdults(4);
+		pages.hotelListPage.widgetSetAdults(4);
 		pages.hotelListPage.widgetClickSubmit();
 		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();

@@ -103,7 +103,7 @@ public class CSPAHLWidget {
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSelectDestin(voHotelResNew.getDestination());
+		pages.hotelListPage.widgetSetDestin(voHotelResNew.getDestination());
 		pages.hotelListPage.widgetClickSubmit();
 		// <Then>
 		//Verificar que el widget tiene el nuevo destino
@@ -130,8 +130,8 @@ public class CSPAHLWidget {
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSelectStartDate(voHotelResNew.getStartDate());
-		pages.hotelListPage.widgetSelectEndDate(voHotelResNew.getEndDate());
+		pages.hotelListPage.widgetSetStartDate(voHotelResNew.getStartDate());
+		pages.hotelListPage.widgetSetEndDate(voHotelResNew.getEndDate());
 		pages.hotelListPage.widgetClickSubmit();
 		// <Then>
 		//Verificar que el widget tiene la nueva fecha
@@ -159,7 +159,7 @@ public class CSPAHLWidget {
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSelectOccupants(voHotelRes);
+		pages.hotelListPage.widgetSetOccupants(voHotelRes);
 		pages.hotelListPage.widgetClickSubmit();
 		// <Then>
 		//Verificar que los ocupantes sean los que se seleccionaron
@@ -184,7 +184,7 @@ public class CSPAHLWidget {
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSelectReservation(voHotelRes);
+		pages.hotelListPage.widgetSetReservation(voHotelRes);
 		pages.hotelListPage.widgetClickSubmit();
 		// <Then>
 		//Verificar que la info de la reservacion sea la que se selecciono
@@ -206,7 +206,7 @@ public class CSPAHLWidget {
 		Pages pages = new Pages(driver);
 		//<When>
 		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSelectDestin(voHotelResNew.getDestination());
+		pages.hotelListPage.widgetSetDestin(voHotelResNew.getDestination());
 		pages.hotelListPage.widgetClickSubmit();
 		//<Then>
 		//Verificar que el widget tiene el nuevo destino

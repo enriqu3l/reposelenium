@@ -27,6 +27,7 @@ public class ThankYouPageF {
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,30);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
+		wait.until(ExpectedConditions.urlContains("completar-reservacion"));
 	}
 	
 	//---------Elements-------
@@ -40,43 +41,39 @@ public class ThankYouPageF {
 	WebElement email;
 	
 	@FindBy(how=How.CSS, css="#content .innerModule p a.but")
-	WebElement Button_seeReservation;
+	WebElement buttonSeeReservation;
 	
 	@FindBy(how=How.CSS, css="#createAccount .btn")
-	WebElement Button_createAccount;
+	WebElement buttonCreateAccount;
 	
 	@FindBy(how=How.CSS, css="#content .lastModule .ap_submit")
-	WebElement Link_reserveOtherRoom;
+	WebElement linkReserveOtherRoom;
 	
 	@FindBy(how=How.LINK_TEXT, linkText="Regresar a la página principal")
-	WebElement Link_returnToMainPage;
+	WebElement linkReturnToMainPage;
 	
 	public void verifyCheckOutCompleted(){
-		wait.until( ExpectedConditions.presenceOfElementLocated(BasicUtils.toByVal(locator)));
-		wait.until( ExpectedConditions.visibilityOfElementLocated(BasicUtils.toByVal(locator)));
-		//checkCurrentURLPage();
+		wait.until( ExpectedConditions.visibilityOf(locator));
 		Assert.assertTrue(message.getText().contains("Gracias"),"LAF>>>No se encontro el mensaje de: Gracias");
 		logger.info("---> Localizador: "+locator.getText());
-		BasicUtils.ScreenShot(driver, locator.getText(), FrameworkConfig.PATH_SCREENSHOOT_LOCATORS);
-		DDManager.saveLocator(locator.getText());
+		saveScreenShot();
+		saveLocator();
 	}
 	
 	public void checkCurrentURLPage() {
-		//Este wait no es necesario dado que estoy usando AjaxElementFactory
-		//wait.until(ExpectedConditions.urlContains("completar-reservacion"));
 		currentURL = driver.getCurrentUrl();
-		Assert.assertTrue(currentURL.contains("LAF>>>completar-reservacion"));
+		Assert.assertTrue(currentURL.contains("completar-reservacion"));
 	}
 	
-	public void seeReservationButtonClick() {		
-		Button_seeReservation.click();
+	public void clickButtonSeeReservation() {		
+		buttonSeeReservation.click();
 	}
 	
-	//Por ahora esta funcion no esta siendo utilizada
-	public void SaveLocator() {
-		//Assert.assertTrue(locator.getText());
-		//logger.info("---> Localizador: "+locator.getText());
-		//BasicUtils.ScreenShot(driver, locator.getText(), FrameworkConfig.SCREENSHOOT_PATH);
-		//DDManager.saveLocator(locator.getText());
+	public void saveScreenShot() {
+		BasicUtils.ScreenShot(driver, locator.getText(), FrameworkConfig.PATH_SCREENSHOOT_LOCATORS);
+	}
+	
+	public void saveLocator() {
+		DDManager.saveLocator(locator.getText());
 	}
 }

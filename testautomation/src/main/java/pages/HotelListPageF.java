@@ -74,10 +74,10 @@ public class HotelListPageF {
 	private List<WebElement> listListProductRateLoaderButton; //No lo use porque entraba PageFactory y tardaba 30seg
 	
 	@FindBy(how=How.CSS, css=".list-product .list-product-block")
-	private List<WebElement> list_allBlocksResults;
+	private List<WebElement> listAllBlocksResults;
 	
 	@FindBy(how=How.CSS, css=".list-product .list-product-block .list-product-rate .list-product-rate-action a")
-	private WebElement list_buttonFirstItem;
+	private WebElement listButtonFirstItem; //primer boton
 	
 	private By byListListProduct = By.cssSelector(".list-product");
 	private By byListProductRateFinal = By.cssSelector(".list-product-rate .product-rate-final");
@@ -153,99 +153,72 @@ public class HotelListPageF {
 	private  WebElement pagingNextPage;
 	private By byPagingNextPage = By.cssSelector(".pagination > *:last-child a");
 	
-	//Esta funcion se diseño pensando solo en la funcionalidad de las SPA
 	public void listSelectFirstHotelAvailable() {
-		//Esperar a que se quite el overlay, falla en PTCOMMXTest, porque la pagina de Test no usa SPA.
 		waitForContentToBeReady();
-		
-		Assert.assertTrue(BasicUtils.existsElement(driver,byListListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
-		Assert.assertFalse(list_allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
-		logger.trace("Cantidad de bloques (hoteles) en la lista de resultados: "+list_allBlocksResults.size());
-		
-		int index = listGetIndexOfFirstHotelAvailable(list_allBlocksResults);
+		int index = listGetIndexOfFirstHotelAvailable();
 		Assert.assertFalse(CoreConfig.FAULTVALUE==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
-		WebElement seeOfferButton = list_allBlocksResults.get(index).findElement(byListButtonSeeOffer);
-		seeOfferButton.click();
-		
-		//En caso de encontrar una nueva tab, switchear a ella.
-		//Esta funcion se agrego para tener compatibilidad con ambiente test
-		verifyIfANewTabOpened();
+		listClickButtonSeeOffer(index);
 	}
 	
-	public void listSelectHotelByIndex(int index) throws InterruptedException {
-		Assert.assertTrue((index>=0 && index<FrameworkConfig.TOTALRECORDSPERPAGES),"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
-		
-		//Esperar a que se quite el overlay, falla en PTCOMMXTest, porque la pagina de Test no usa SPA.
+	public void listClickButtonSeeOffer(int btnIndex){
+		Assert.assertTrue((btnIndex>=0 && btnIndex<FrameworkConfig.TOTALRECORDSPERPAGES),"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
 		waitForContentToBeReady();
-		
-		Assert.assertTrue(BasicUtils.existsElement(driver, byListListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
-		Assert.assertFalse(list_allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
-		logger.trace("Cantidad de bloques (hoteles) en la lista de resultados: " + list_allBlocksResults.size());
-		
-		//Aqui no estoy verificando si tiene disponibilidad, simplemente lo estoy seleccionando
-		
-		WebElement seeOfferButton = list_allBlocksResults.get(index).findElement(byListButtonSeeOffer);
-		seeOfferButton.click();
-		
-		//En caso de encontrar una nueva tab, switchear a ella.
-		//Esta funcion se agrego para tener compatibilidad con ambiente test
-		verifyIfANewTabOpened();
+		listVerifyResultListHasElements();
+		WebElement buttonSeeOffer = listAllBlocksResults.get(btnIndex).findElement(byListButtonSeeOffer);
+		buttonSeeOffer.click();
+		verifyIfANewTabOpened();  //En caso de encontrar una nueva tab, switchear a ella.
 	}
 	
 	//++++++++++++++++++++++++++ WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
+	public String widgetGetDestination() {
+		return widgetInputDestination.getAttribute("value").trim();
+	}
+	
+	public String widgetGetStartDate() {
+		return widgetInputStartDate.getAttribute("value").trim();
+	}
+	
+	public String widgetGetEndDate() {
+		return widgetInputEndDate.getAttribute("value").trim();
+	}
+	
+	public String widgetGetRooms() {
+		Select rooms = new Select(widgetSelectHotelRooms);
+		return rooms.getFirstSelectedOption().getText();
+	}
+	
 	public void widgetClearDestination() {
 		waitForContentToBeReady();
 		widgetInputDestination.clear(); //Este metodo no lanza evento de tecla
 		widgetInputDestination.sendKeys(" "+Keys.BACK_SPACE); //Enviar " " para que lance un evento de tecla
 	}
 	
-	public void widgetSelectDestin(String destin) {
-		logger.info("Starting widget_changeDestin()");
-		//Me falta poner candados para validar el parametro
-		
+	public void widgetSetDestin(String destin) {
 		waitForContentToBeReady();
 		
 		widgetInputDestination.clear();
 		widgetInputDestination.sendKeys(destin);
-		
 		//Wait until dropdown menu appears
 		wait.until(ExpectedConditions.presenceOfElementLocated(byWidgetDestinationDropdownMenu));
 		
 		widgetInputDestination.sendKeys(Keys.ENTER);
 	}
 	
-	public void widgetSelectAdults(int adultsNumber) {
-		logger.info("Starting widget_changeAdults()");
+	public void widgetSetRooms(String roomsNumber) {
+		waitForContentToBeReady();
+		Select rooms = new Select(widgetSelectHotelRooms);
+		rooms.selectByVisibleText(roomsNumber);
+	}
+	
+	public void widgetSetAdults(int adultsNumber) {
 		Assert.assertTrue(adultsNumber>0 && adultsNumber<9,"LAF>>>el parametro adultsNumber esta fuera de rango");
-		
 		waitForContentToBeReady();
 		
 		Select adults = new Select(widgetSelectHotelAdults);
 		adults.selectByVisibleText(Integer.toString(adultsNumber));
 	}
 	
-	public void widgetClickSubmit() {
-		logger.info("Starting widgetClickSubmit()");
-		
-		waitForContentToBeReady();
-		String url = driver.getCurrentUrl();
-		widgetButtonSubmit.click();
-		
-		//A continuacion pongo un wait para esperar a que el boton lanze la accion
-		
-		//Esperar a que la url cambie, No lo estoy usando porque falla cuando no hay cambios en la url
-		//wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
-		
-		//Agrego este Delay dado que tengo problemas cuando no cambia la url
-		WaitFor.attributeChanged(byLoaderOverlayPage, "style", "display: none; opacity: 0;");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void widgetSelectOccupants(VOHotelRes voHotelRes) {
+	public void widgetSetOccupants(VOHotelRes voHotelRes) {
 		//Aqui el codigo para realizar la seleccion de rooms, adults, kids y agekids
 		Select rooms = new Select(widgetSelectHotelRooms);
 		rooms.selectByVisibleText(Integer.toString(voHotelRes.getRoomCount()));
@@ -284,7 +257,7 @@ public class HotelListPageF {
 		}
 	}
 	
-	public void widgetSelectStartDate(String date) {
+	public void widgetSetStartDate(String date) {
 		if(date.isEmpty()) {Assert.fail("LAF>>>El parametro date esta vacio");}
 		
 		logger.info("Starting widgetChangeStartDate()");
@@ -310,7 +283,7 @@ public class HotelListPageF {
 		logger.trace("Valor de widgetInputStartDate: " + widgetInputStartDate.getAttribute("value"));
 	}
 	
-	public void widgetSelectEndDate(String date) {
+	public void widgetSetEndDate(String date) {
 		if(date.isEmpty()) {Assert.fail("LAF>>>El parametro date esta vacio");}
 		
 		logger.info("Starting widgetChangeEndDate()");
@@ -336,13 +309,34 @@ public class HotelListPageF {
 		logger.trace("Valor de widgetInputEndDate: " + widgetInputEndDate.getAttribute("value"));
 	}
 	
-	public void widgetSelectReservation(VOHotelRes voHotelRes){
+	public void widgetSetReservation(VOHotelRes voHotelRes){
 		logger.info("Starting widgetChangeSearch()");
 		waitForContentToBeReady();
-		widgetSelectDestin(voHotelRes.getDestination());
-		widgetSelectStartDate(voHotelRes.getStartDate());
-		widgetSelectEndDate(voHotelRes.getEndDate());
-		widgetSelectOccupants(voHotelRes);
+		widgetSetDestin(voHotelRes.getDestination());
+		widgetSetStartDate(voHotelRes.getStartDate());
+		widgetSetEndDate(voHotelRes.getEndDate());
+		widgetSetOccupants(voHotelRes);
+	}
+	
+	public void widgetClickSubmit() {
+		logger.info("Starting widgetClickSubmit()");
+		
+		waitForContentToBeReady();
+		String url = driver.getCurrentUrl();
+		widgetButtonSubmit.click();
+		
+		//A continuacion pongo un wait para esperar a que el boton lanze la accion
+		
+		//Esperar a que la url cambie, No lo estoy usando porque falla cuando no hay cambios en la url
+		//wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
+		
+		//Agrego este Delay dado que tengo problemas cuando no cambia la url
+		WaitFor.attributeChanged(byLoaderOverlayPage, "style", "display: none; opacity: 0;");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	//++++++++++++++++++++++++++ END WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
 	
@@ -368,11 +362,7 @@ public class HotelListPageF {
 	//+++++++++++++++++++++++++++ VERIFY FUNCTIONS +++++++++++++++++++++++++++++++++++++++++++++
 	public void widgetVerifyDestinationToBe(String expected) {
 		waitForContentToBeReady();
-		String actual = widgetInputDestination.getText().trim();
-		if(actual.isEmpty()) {
-			//Si getText no funciona uso el metodo getAttribute
-			actual = widgetInputDestination.getAttribute("value").trim();
-		}
+		String actual = widgetGetDestination();
 		if(!actual.contains(expected)) {
 			logger.error("Actual destin: ("+actual+") is not as expeted: ("+expected+")");
 			Assert.fail("LAF>>>Actual destin: ("+actual+") is not as expeted: ("+expected+")");
@@ -383,7 +373,7 @@ public class HotelListPageF {
 	
 	public void widgetVerifyStartDateToBe(String expected) {
 		waitForContentToBeReady();
-		String actual = widgetInputStartDate.getAttribute("value").trim();
+		String actual = widgetGetStartDate();
 		logger.trace("Fecha en el input StartDate:"+actual);
 		if(!actual.contains(expected)) {
 			logger.error("Actual date: ("+actual+") is not as expeted: ("+expected+")");
@@ -395,7 +385,7 @@ public class HotelListPageF {
 	
 	public void widgetVerifyEndDateToBe(String expected) {
 		waitForContentToBeReady();
-		String actual = widgetInputEndDate.getAttribute("value").trim();
+		String actual = widgetGetEndDate();
 		logger.trace("Fecha en el input StartDate:"+actual);
 		if(!actual.contains(expected)) {
 			logger.error("Actual date: ("+actual+") is not as expeted: ("+expected+")");
@@ -411,15 +401,12 @@ public class HotelListPageF {
 		
 		waitForContentToBeReady();
 		for(int i=0; i<words.size();i++) {
-			widgetInputDestination.clear();
-			widgetInputDestination.sendKeys(words.get(i).toLowerCase().trim());
-			//Wait until dropdown menu appears
-			wait.until(ExpectedConditions.presenceOfElementLocated(byWidgetDestinationDropdownMenu));
-			widgetInputDestination.sendKeys(Keys.ENTER);
-			String actual = widgetInputDestination.getAttribute("value").toLowerCase().trim();
+			
+			widgetSetDestin(words.get(i).toLowerCase().trim());
+			String actual = widgetGetDestination().toLowerCase();
 			Assert.assertTrue(actual.contains(words.get(i).toLowerCase().trim()),
 					"El input destination no contiene la palabra buscada:"+words.get(i).trim());
-			widgetInputDestination.clear();
+			widgetClearDestination();
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(byWidgetDestinationDropdownMenu));
 		}
 	}
@@ -429,9 +416,8 @@ public class HotelListPageF {
 		waitForContentToBeReady();
 		
 		//Validar que los rooms sean los mismos
-		Select rooms = new Select(widgetSelectHotelRooms);
-		String selectedOption = rooms.getFirstSelectedOption().getText();
-		Assert.assertEquals(Integer.toString(voHotelRes.getRoomCount()), selectedOption);
+		String roomsSelected = widgetGetRooms();
+		Assert.assertEquals(Integer.toString(voHotelRes.getRoomCount()), roomsSelected);
 		//Validar que se crearon campos para cada room
 		if(widgetAllBlockRooms.size() != voHotelRes.getRoomCount()) {
 			 logger.error("No se crearon los campos suficientes de rooms, allBlocksRooms:"+widgetAllBlockRooms.size());
@@ -523,9 +509,9 @@ public class HotelListPageF {
 	public void widgetVerifyCurrentUrlDateOnDatePickers() {
 		waitForContentToBeReady();
 		logger.info("Starting widgetVerifyCurrentDateOnDatePickers()");
-		String inputStartDate = widgetInputStartDate.getAttribute("value").trim();
+		String inputStartDate = widgetGetStartDate();
 		boolean result1 = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkin",inputStartDate);
-		String inputEndDate = widgetInputEndDate.getAttribute("value").trim();
+		String inputEndDate = widgetGetEndDate();
 		boolean result2 = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkout",inputEndDate);
 		if(!result1) {
 			logger.error("La fecha de StartDate no coincide con la URL");
@@ -540,8 +526,8 @@ public class HotelListPageF {
 	
 	public void listVerifyResultListHasElements() {
 		Assert.assertTrue(BasicUtils.existsElement(driver,byListListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
-		Assert.assertFalse(list_allBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
-		logger.trace("Cantidad de bloques (hoteles) en la lista de resultados: "+list_allBlocksResults.size());
+		Assert.assertFalse(listAllBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
+		logger.trace("Cantidad de bloques (hoteles) en la lista de resultados: "+listAllBlocksResults.size());
 	}
 	
 	public void verifyUrlStartDateToBe(String value) {
@@ -595,16 +581,7 @@ public class HotelListPageF {
 	//+++++++++++++++++++++++++++++++++++ WAITS ++++++++++++++++++++++++++++++++++++++++++++++++
 	public void waitForLoaderButtons() {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(byListListProductRateLoaderButton));
-		/*Todas esas validaciones no son necesarias dado que la funcion invisibilityOfAllElements
-		 * revisa la funcion isDisplayed y ademas si detecta una excepcion retorna verdadero
-		if(BasicUtils.existsElement(driver, byListListProduct)) {
-			List<WebElement> allLoaderButtons;
-			allLoaderButtons = listListProduct.findElements(byLoaderButton);
-			if(!allLoaderButtons.isEmpty()) {
-				//Esperar a que se quiten todos los overlays de los botones
-				wait.until(ExpectedConditions.invisibilityOfAllElements(allLoaderButtons));
-			}
-		}*/
+		//La funcion invisibilityOfAllElements revisa si isDisplayed y si no existe retorna verdadero
 	}
 	
 	public void waitForOverlay() {
@@ -620,15 +597,13 @@ public class HotelListPageF {
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	//--------------------------- FUNCIONES PRIVADAS -------------------------------------------
-	private int listGetIndexOfFirstHotelAvailable(List<WebElement> allSearchResults) {
+	private int listGetIndexOfFirstHotelAvailable() {
 		logger.trace("Starting listGetIndexOfFirstHotelAvailable()");
-		Assert.assertFalse(allSearchResults.isEmpty(),"ENF>>>El parametro de la lista de resultados esta vacia!.");
-		
+		listVerifyResultListHasElements();
 		int index = CoreConfig.FAULTVALUE;
-		for (int i = 0; i < allSearchResults.size(); i++) {
-			WebElement listProductBlock = allSearchResults.get(i);
+		for (int i = 0; i < listAllBlocksResults.size(); i++) {
+			WebElement listProductBlock = listAllBlocksResults.get(i);
 			wait.until( ExpectedConditions.presenceOfNestedElementLocatedBy(listProductBlock, byListButtonSeeOffer));
-			
 			if(!listProductBlock.findElements(byListProductRateFinal).isEmpty()) {
 				WebElement rateFinal = listProductBlock.findElement(byListProductRateFinal);
 				WebElement hotelName = listProductBlock.findElement(byListProductHotelName);

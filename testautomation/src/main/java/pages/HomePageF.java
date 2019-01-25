@@ -34,14 +34,14 @@ public class HomePageF {
 		wait.until(ExpectedConditions.urlContains("pricetravel."));
 	}
 	
-	//--------------- Widget--------------------
+	//--------------- Widget------------------------
 	//@FindBy(how=How.CSS, using="#ptw-menu > ul")
 	@FindBy(how=How.CSS, css="#ptw-menu > ul")
 	@CacheLookup
 	private WebElement widgetMenu;
 	
-	By widgetProductActive = By.cssSelector("li.ptw-active > a");
-	By widgetAutocompleteDropdownMenu = By.cssSelector(".pt-customJqueryUi .ui-autocomplete");
+	By byWidgetProductActive = By.cssSelector("li.ptw-active > a");
+	By byWidgetAutocompleteDropdownMenu = By.cssSelector(".pt-customJqueryUi .ui-autocomplete");
 	
 	//--------------- Widget Hoteles ---------------
 	@FindBy(how=How.ID, id="var1_1")
@@ -133,7 +133,7 @@ public class HomePageF {
 		widgetInputDestHotel.clear();
 		widgetInputDestHotel.sendKeys(destin);
 		logger.trace("Destin: "+ destin);
-		wait.until(ExpectedConditions.attributeContains(widgetAutocompleteDropdownMenu, "style", "display: block;"));
+		wait.until(ExpectedConditions.attributeContains(byWidgetAutocompleteDropdownMenu, "style", "display: block;"));
 		widgetInputDestHotel.sendKeys(Keys.ENTER);
 	}
 	
@@ -175,7 +175,7 @@ public class HomePageF {
 	
 	public void widgetVerifyProductSelected(String product) {
 		logger.info("Starting verifyProductSelectedOnWidgetMenu()");
-		if(!widgetMenu.findElement(widgetProductActive).getText().equals(product)) {
+		if(!widgetMenu.findElement(byWidgetProductActive).getText().equals(product)) {
 			widgetMenu.findElement(By.linkText(product) ).click();
 		}
 		logger.info("Ending verifyProductSelectedOnWidgetMenu()");
