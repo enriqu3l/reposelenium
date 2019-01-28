@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
+import helpers.DDManager;
 import tests.components.hoteles.CSPAHLWidget;
 
 public class TCSPAHLWidget {
@@ -21,7 +22,9 @@ public class TCSPAHLWidget {
 	public void prerequisites() {
 		Reporter.log("Starting Browser");
 		//String url = "https://www.pricetravel.com/hoteles/cancun-area?checkin=2019-02-01&checkout=2019-02-03&placetype=3&placeid=69364&source=SPA-Hotel-List&rooms=1&room1.adults=2&agekids=";
-		String url = "https://www.pricetravel.com/hoteles/las-vegas-y-alrededores-nevada-us?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F01&checkout=2019%2F02%2F03&rooms=1&adults=2&kids=0&agekids=&pdisplay=Las%20Vegas%20(y%20alrededores),%20Nevada,%20Estados%20Unidos%20de%20Am%C3%A9rica&placeid=67907&placetype=3&puri=las-vegas-y-alrededores-nevada-us&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1";
+		//String url = "https://www.pricetravel.com/hoteles/las-vegas-y-alrededores-nevada-us?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F01&checkout=2019%2F02%2F03&rooms=1&adults=2&kids=0&agekids=&pdisplay=Las%20Vegas%20(y%20alrededores),%20Nevada,%20Estados%20Unidos%20de%20Am%C3%A9rica&placeid=67907&placetype=3&puri=las-vegas-y-alrededores-nevada-us&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1";
+		//String url = "https://stage-spa.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F02&checkout=2019%2F02%2F04&rooms=1&adults=2&kids=0&agekids=&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1";
+		String url = DDManager.getHotelListLPDefault(FrameworkConfig.FILE_HOTELLANDINGPAGEDATA);
 		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, url);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
@@ -34,42 +37,42 @@ public class TCSPAHLWidget {
 		CSPAHLWidget.autocompleteDestinationTest(driver);
 	}
 	
-	@Test (enabled=true)
+	@Test (enabled=false)
 	public void test2() {
 		Reporter.log("Starting test2");
 		logger.info("Starting test2");
 		CSPAHLWidget.datePickersFunctionalityTest(driver);
 	}
 	
-	@Test (enabled=true)
+	@Test (enabled=false)
 	public void test3(){
 		Reporter.log("Starting test3");
 		logger.info("Starting test3");
 		CSPAHLWidget.searchWithEmptyFieldsTest(driver);
 	}
 	
-	@Test (enabled=true)
+	@Test (enabled=false)
 	public void test4(){
 		Reporter.log("Starting test4");
 		logger.info("Starting test4");
 		CSPAHLWidget.searchDifferentDestinTest(driver);
 	}
 	
-	@Test (enabled=true)
+	@Test (enabled=false)
 	public void test5(){
 		Reporter.log("Starting test5");
 		logger.info("Starting test5");
 		CSPAHLWidget.searchDifferentDatesTest(driver);
 	}
 	
-	@Test (enabled=true)
+	@Test (enabled=false)
 	public void test6(){
 		Reporter.log("Starting test6");
 		logger.info("Starting test6");
 		CSPAHLWidget.searchDifferentOccupantsTest(driver);
 	}
 	
-	@Test (enabled=true)
+	@Test (enabled=false)
 	public void test7(){
 		Reporter.log("Starting test7");
 		logger.info("Starting test7");

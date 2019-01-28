@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.logging.log4j.Logger;
+import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
 import config.FrameworkConfig;
+import utility.BasicUtils;
 import utility.ExcelUtils;
 import valueobjects.VOClient;
 import valueobjects.VOCreditCard;
@@ -149,5 +152,21 @@ public class DDManager {
 		//Aqui el codigo para obtener el locator
 		
 		return "";
+	}
+	
+	//-------------------------- Landing Pages ----------------------------------
+	public static String getHotelListLPDefault(String file) {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		int defaultRow = 1; //Para leer el primer registro del archivo
+		List<String> data = ExcelUtils.getRow(filePath, defaultRow);
+		return BasicUtils.createUrlHotelLPFromList(data);
+	}
+
+	//En construccion, Aun no esta lista!
+	public static String getRoomListLPDefault(String file) {
+		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		int defaultRow = 3; //Para leer el tercer registro del archivo
+		List<String> data = ExcelUtils.getRow(filePath, defaultRow);
+		return BasicUtils.createUrlHotelLPFromList(data);
 	}
 }

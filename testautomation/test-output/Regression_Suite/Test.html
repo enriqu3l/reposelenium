@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>8/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>1/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Thu Jan 24 13:58:43 CST 2019</td>
+<td>Started on:</td><td>Fri Jan 25 12:41:52 CST 2019</td>
 </tr>
-<tr><td>Total time:</td><td>134 seconds (134647 ms)</td>
+<tr><td>Total time:</td><td>46 seconds (46118 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,8 +67,8 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
@@ -81,102 +81,100 @@ function toggleAllBoxes() {
 <a href="#Output-230526532" onClick="toggleAllBoxes();">Show all outputs</a>
 <div class='log' id="Output-230526532">
 Starting test1<br/>
-Starting workflow autocompleteDestinationTest<br/>
+Starting autocompleteDestinationTest<br/>
 </div>
 </td>
-<td></td>
-<td>14</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for value to contain &quot;display: none; opacity: 0;&quot;. Current value: &quot;null&quot; (tried for 30 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:81)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:271)
+	at pages.HotelListPageF.waitForOverlay(HotelListPageF.java:589)
+	at pages.HotelListPageF.waitForContentToBeReady(HotelListPageF.java:593)
+	at pages.HotelListPageF.widgetVerifyAutocompleteDestination(HotelListPageF.java:402)
+	at tests.components.hoteles.CSPAHLWidget.autocompleteDestinationTest(CSPAHLWidget.java:42)
+	at testcases.components.TCSPAHLWidget.test1(TCSPAHLWidget.java:35)
+Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.cssSelector: .loader-overlay.ng-trigger
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.11.0&apos;, revision: &apos;e59cfb3&apos;, time: &apos;2018-03-11T20:26:55.152Z&apos;
+System info: host: &apos;MXCDP4LP24&apos;, ip: &apos;10.8.0.195&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.ExpectedConditions.lambda$findElement$0(ExpectedConditions.java:896)
+	at java.util.Optional.orElseThrow(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:895)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:44)
+	at org.openqa.selenium.support.ui.ExpectedConditions$39.apply(ExpectedConditions.java:1171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$39.apply(ExpectedConditions.java:1166)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:248)
+	... 30 more
+... Removed 25 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace230526532", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace230526532'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for value to contain &quot;display: none; opacity: 0;&quot;. Current value: &quot;null&quot; (tried for 30 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:81)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:271)
+	at pages.HotelListPageF.waitForOverlay(HotelListPageF.java:589)
+	at pages.HotelListPageF.waitForContentToBeReady(HotelListPageF.java:593)
+	at pages.HotelListPageF.widgetVerifyAutocompleteDestination(HotelListPageF.java:402)
+	at tests.components.hoteles.CSPAHLWidget.autocompleteDestinationTest(CSPAHLWidget.java:42)
+	at testcases.components.TCSPAHLWidget.test1(TCSPAHLWidget.java:35)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:580)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:716)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:988)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.cssSelector: .loader-overlay.ng-trigger
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.11.0&apos;, revision: &apos;e59cfb3&apos;, time: &apos;2018-03-11T20:26:55.152Z&apos;
+System info: host: &apos;MXCDP4LP24&apos;, ip: &apos;10.8.0.195&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.ExpectedConditions.lambda$findElement$0(ExpectedConditions.java:896)
+	at java.util.Optional.orElseThrow(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:895)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:44)
+	at org.openqa.selenium.support.ui.ExpectedConditions$39.apply(ExpectedConditions.java:1171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$39.apply(ExpectedConditions.java:1166)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:248)
+	... 30 more
+</pre></div></td>
+<td>30</td>
 <td>testcases.components.TCSPAHLWidget@689604d9</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
 <tr>
 <td title='testcases.components.TCSPAHLPaging.test1()'><b>test1</b><br>Test class: testcases.components.TCSPAHLPaging<br/>
-<a href="#Output-203409950" onClick='toggleBox("Output-203409950", this, "Show output", "Hide output");'>Show output</a>
+<a href="#Output-1593224710" onClick='toggleBox("Output-1593224710", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-203409950" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-203409950">
+<a href="#Output-1593224710" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1593224710">
 Starting test1<br/>
 </div>
 </td>
 <td></td>
 <td>0</td>
 <td>testcases.components.TCSPAHLPaging@18078bef</td></tr>
-<tr>
-<td title='testcases.components.TCSPAHLWidget.test2()'><b>test2</b><br>Test class: testcases.components.TCSPAHLWidget<br/>
-<a href="#Output-295304806" onClick='toggleBox("Output-295304806", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-295304806" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-295304806">
-Starting test2<br/>
-Starting workflow datePickersFunctionalityTest<br/>
-</div>
-</td>
-<td></td>
-<td>5</td>
-<td>testcases.components.TCSPAHLWidget@689604d9</td></tr>
-<tr>
-<td title='testcases.components.TCSPAHLWidget.test3()'><b>test3</b><br>Test class: testcases.components.TCSPAHLWidget<br/>
-<a href="#Output-455888635" onClick='toggleBox("Output-455888635", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-455888635" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-455888635">
-Starting test3<br/>
-Starting workflow searchWithEmptyFieldsTest<br/>
-</div>
-</td>
-<td></td>
-<td>5</td>
-<td>testcases.components.TCSPAHLWidget@689604d9</td></tr>
-<tr>
-<td title='testcases.components.TCSPAHLWidget.test4()'><b>test4</b><br>Test class: testcases.components.TCSPAHLWidget<br/>
-<a href="#Output-710623214" onClick='toggleBox("Output-710623214", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-710623214" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-710623214">
-Starting test4<br/>
-Starting workflow searchDifferentDestinTest<br/>
-</div>
-</td>
-<td></td>
-<td>8</td>
-<td>testcases.components.TCSPAHLWidget@689604d9</td></tr>
-<tr>
-<td title='testcases.components.TCSPAHLWidget.test5()'><b>test5</b><br>Test class: testcases.components.TCSPAHLWidget<br/>
-<a href="#Output-1982958205" onClick='toggleBox("Output-1982958205", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-1982958205" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-1982958205">
-Starting test5<br/>
-Starting workflow searchDifferentDatesTest<br/>
-</div>
-</td>
-<td></td>
-<td>11</td>
-<td>testcases.components.TCSPAHLWidget@689604d9</td></tr>
-<tr>
-<td title='testcases.components.TCSPAHLWidget.test6()'><b>test6</b><br>Test class: testcases.components.TCSPAHLWidget<br/>
-<a href="#Output-829737737" onClick='toggleBox("Output-829737737", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-829737737" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-829737737">
-Starting test6<br/>
-Starting workflow searchDifferentOccupantsTest<br/>
-</div>
-</td>
-<td></td>
-<td>20</td>
-<td>testcases.components.TCSPAHLWidget@689604d9</td></tr>
-<tr>
-<td title='testcases.components.TCSPAHLWidget.test7()'><b>test7</b><br>Test class: testcases.components.TCSPAHLWidget<br/>
-<a href="#Output-608817143" onClick='toggleBox("Output-608817143", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-608817143" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-608817143">
-Starting test7<br/>
-Starting workflow searchDifferentReservationTest<br/>
-</div>
-</td>
-<td></td>
-<td>9</td>
-<td>testcases.components.TCSPAHLWidget@689604d9</td></tr>
 </table><p>
 </body>
 </html>

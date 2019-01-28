@@ -26,27 +26,24 @@ public class TCHP_PTAll {
 	
 	@BeforeTest
 	@Parameters({"url","browser"})
-	public void prerequisitos(String url, String browser, ITestContext itc) {
+	public void setConfigVariables(String url, String browser, ITestContext itc) {
 		logger.info("***************************** Starting BeforeTest **********************************");
 		Reporter.log("Starting BeforeTest");
 		logger.info("Starting BeforeTest");
-		
 		gURL = url;
-		logger.trace("URL Seteada: "+gURL);
-		Assert.assertFalse(gURL.equals(""),"No se ha seteado una URL valida!");
-		
-		//Seleccionando el browser que se usara para las pruebas
 		gbrowser = browser;
-		logger.trace("Browser Seteado: "+gbrowser);
+		Assert.assertFalse(gURL.equals(""),"No se ha seteado una URL valida!");
 		Assert.assertFalse(gbrowser.equals(""),"No se ha seteado un browser valido!");
+		logger.trace("URL Seteada: "+gURL);
+		logger.trace("Browser Seteado: "+gbrowser);
 	}
 	
 	@BeforeMethod
-	public void beforeMethod() {
+	public void prerequisites() {
 		logger.info("***************************** Starting BeforeMethod **********************************");
 		Reporter.log("Starting Browser");
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, gURL);
+		driver = BrowserFactory.StartBrowser(gbrowser, gURL);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}

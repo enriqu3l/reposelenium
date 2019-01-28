@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="1" total="2" passed="1">
+<testng-results skipped="0" failed="0" ignored="7" total="8" passed="1">
   <reporter-output>
-    <line>
-      <![CDATA[Starting BeforeTest]]>
-    </line>
     <line>
       <![CDATA[Starting Browser]]>
     </line>
@@ -11,13 +8,10 @@
       <![CDATA[Browser Started]]>
     </line>
     <line>
-      <![CDATA[Starting test HPHotelRandom]]>
+      <![CDATA[Starting test1]]>
     </line>
     <line>
-      <![CDATA[Staring HPHotelRandom]]>
-    </line>
-    <line>
-      <![CDATA[Ending HPHotelRandom]]>
+      <![CDATA[Starting autocompleteDestinationTest]]>
     </line>
     <line>
       <![CDATA[Closing Browser...]]>
@@ -26,36 +20,12 @@
       <![CDATA[Test Finished]]>
     </line>
   </reporter-output>
-  <suite name="HP_Suite" duration-ms="27153" started-at="2019-01-24T20:01:20Z" finished-at="2019-01-24T20:01:48Z">
+  <suite name="Default suite" duration-ms="20011" started-at="2019-01-28T19:29:53Z" finished-at="2019-01-28T19:30:13Z">
     <groups>
     </groups>
-    <test name="HPPTCOMMX" duration-ms="27153" started-at="2019-01-24T20:01:20Z" finished-at="2019-01-24T20:01:48Z">
-      <class name="testcases.workflows.TCHP_PTAll">
-        <test-method status="PASS" signature="prerequisitos(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.workflows.TCHP_PTAll@4c371370]" name="prerequisitos" is-config="true" duration-ms="11" started-at="2019-01-24T20:01:20Z" finished-at="2019-01-24T20:01:20Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[https://www.pricetravel.com.mx]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[org.testng.TestRunner@1051817b]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[Starting BeforeTest]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- prerequisitos -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:testcases.workflows.TCHP_PTAll@4c371370]" name="beforeMethod" is-config="true" duration-ms="10333" started-at="2019-01-24T20:01:20Z" finished-at="2019-01-24T20:01:31Z">
+    <test name="Default test" duration-ms="20011" started-at="2019-01-28T19:29:53Z" finished-at="2019-01-28T19:30:13Z">
+      <class name="testcases.components.TCSPAHLWidget">
+        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.components.TCSPAHLWidget@55b699ef]" name="prerequisites" is-config="true" duration-ms="5887" started-at="2019-01-28T19:29:53Z" finished-at="2019-01-28T19:29:59Z">
           <reporter-output>
             <line>
               <![CDATA[Starting Browser]]>
@@ -64,35 +34,32 @@
               <![CDATA[Browser Started]]>
             </line>
           </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="HPHotelRandom()[pri:2, instance:testcases.workflows.TCHP_PTAll@4c371370]" name="HPHotelRandom" duration-ms="14721" started-at="2019-01-24T20:01:31Z" finished-at="2019-01-24T20:01:45Z">
+        </test-method> <!-- prerequisites -->
+        <test-method status="PASS" signature="test1()[pri:0, instance:testcases.components.TCSPAHLWidget@55b699ef]" name="test1" duration-ms="11788" started-at="2019-01-28T19:29:59Z" finished-at="2019-01-28T19:30:11Z">
           <reporter-output>
             <line>
-              <![CDATA[Starting test HPHotelRandom]]>
+              <![CDATA[Starting test1]]>
             </line>
             <line>
-              <![CDATA[Staring HPHotelRandom]]>
-            </line>
-            <line>
-              <![CDATA[Ending HPHotelRandom]]>
+              <![CDATA[Starting autocompleteDestinationTest]]>
             </line>
           </reporter-output>
-        </test-method> <!-- HPHotelRandom -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.workflows.TCHP_PTAll@4c371370]" name="Close" is-config="true" duration-ms="2068" started-at="2019-01-24T20:01:45Z" finished-at="2019-01-24T20:01:48Z">
+        </test-method> <!-- test1 -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.components.TCSPAHLWidget@55b699ef]" name="Close" is-config="true" duration-ms="2317" started-at="2019-01-28T19:30:11Z" finished-at="2019-01-28T19:30:13Z">
           <reporter-output>
             <line>
               <![CDATA[Closing Browser...]]>
             </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.workflows.TCHP_PTAll@4c371370]" name="End" is-config="true" duration-ms="1" started-at="2019-01-24T20:01:48Z" finished-at="2019-01-24T20:01:48Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.components.TCSPAHLWidget@55b699ef]" name="End" is-config="true" duration-ms="0" started-at="2019-01-28T19:30:13Z" finished-at="2019-01-28T19:30:13Z">
           <reporter-output>
             <line>
               <![CDATA[Test Finished]]>
             </line>
           </reporter-output>
         </test-method> <!-- End -->
-      </class> <!-- testcases.workflows.TCHP_PTAll -->
-    </test> <!-- HPPTCOMMX -->
-  </suite> <!-- HP_Suite -->
+      </class> <!-- testcases.components.TCSPAHLWidget -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

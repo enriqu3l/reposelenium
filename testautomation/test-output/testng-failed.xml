@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Regression_Suite]">
-  <listeners>
-    <listener class-name="testlisteners.ListenersRegression"/>
-  </listeners>
-  <test thread-count="5" name="Test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testcases.hoteles.TCSPAHLWidget">
+      <class name="testcases.components.TCSPAHLWidget">
         <methods>
-          <include name="Close"/>
-          <include name="End"/>
-          <include name="test2"/>
+          <include name="test1"/>
           <include name="prerequisites"/>
+          <include name="End"/>
+          <include name="Close"/>
         </methods>
-      </class> <!-- testcases.hoteles.TCSPAHLWidget -->
+      </class> <!-- testcases.components.TCSPAHLWidget -->
     </classes>
-  </test> <!-- Test(failed) -->
-</suite> <!-- Failed suite [Regression_Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

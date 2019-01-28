@@ -44,14 +44,15 @@ public class HotelListPageF {
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 20),this);
 		
 		//Esperar a que la url sea la correcta
-		wait.until(ExpectedConditions.urlContains("/hoteles/"));
+		wait.until(ExpectedConditions.urlContains("/hoteles"));
 	}
 	
 	//Ejemplos de como buscar attributos en xpath y cssSelector
 	//By overlayOcultoXPath = By.xpath("//*[@class='loader-overlay'][contains(@style, 'display: none')]");
 	//By overlayOculto = By.cssSelector(".loader-overlay[style='display: none; opacity: 0;']");
 	
-	private By byLoaderOverlayPage = By.cssSelector(".loader-overlay.ng-trigger");
+	private By byLoaderOverlayPage = By.xpath("//*[@class='loader__title']/parent::*/parent::*");
+	private By byLoaderOverlayPage2 = By.cssSelector(".loader-overlay.ng-trigger"); //no funciona en stage-spa
 	private By byLoaderButton = By.cssSelector(".list-product-rate .loader");
 	private By byLoaderOverlayFiltros = By.cssSelector(".card-body .loader-overlay");
 	
@@ -69,10 +70,7 @@ public class HotelListPageF {
 	private WebElement pageHeaderTitle;
 	
 	
-	//-------------- List Section ----------------------------------
-	@FindBy(how=How.CSS, css=".list-product .list-product-rate .loader")
-	private List<WebElement> listListProductRateLoaderButton; //No lo use porque entraba PageFactory y tardaba 30seg
-	
+	//-------------- List Section ----------------------------------	
 	@FindBy(how=How.CSS, css=".list-product .list-product-block")
 	private List<WebElement> listAllBlocksResults;
 	

@@ -6,14 +6,14 @@
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="testcases.hoteles.TCSPAHLWidget">
+      <class name="testcases.components.TCSPAHLWidget">
         <methods>
-          <include name="Close"/>
-          <include name="End"/>
-          <include name="test2"/>
+          <include name="test1"/>
           <include name="prerequisites"/>
+          <include name="End"/>
+          <include name="Close"/>
         </methods>
-      </class> <!-- testcases.hoteles.TCSPAHLWidget -->
+      </class> <!-- testcases.components.TCSPAHLWidget -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Regression_Suite] -->

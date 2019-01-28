@@ -32,6 +32,7 @@ public class FrameworkConfig {
 	public static final String FILE_LOCATORSGENERATED = "LocatorsGenerated.xlsx";
 	public static final String FILE_HPHOTELRESDATA = "HPHotelResData.xlsx";
 	public static final String FILE_REGRESSIONHOTELRESDATA = "RegressionHotelResData.xlsx";
+	public static final String FILE_HOTELLANDINGPAGEDATA = "HotelLandingPageData.xlsx";
 	
 	//BrowserConfig
 	public static final String BROWSER_CHROME = "chrome";

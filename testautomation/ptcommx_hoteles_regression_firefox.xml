@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression_Suite">
+  <listeners>
+    <listener class-name="testlisteners.ListenersRegression"></listener>
+  </listeners>
+  <test thread-count="3" name="Test">
+    <classes>
+      <class name="testcases.components.TCSPAHLWidget"/>
+      <class name="testcases.components.TCSPAHLPaging"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
 import helpers.DDManager;
+import utility.BasicUtils;
 import utility.ExcelUtils;
 import valueobjects.VOHotelRes;
 
@@ -167,6 +168,9 @@ public class testautomation {
 			System.out.println("-----------------------------------");
 		}
 		*/
+		
+		String url = BasicUtils.createUrlHotelLP("www.pricetravel.com", "hotel/grand-oasis-cancun", "2019-02-20", "2019-02-23", "3", "69364", "SPA-Hotel-List", "1", "1", "2");
+		System.out.println("URL: "+url);
 	}
 }
 

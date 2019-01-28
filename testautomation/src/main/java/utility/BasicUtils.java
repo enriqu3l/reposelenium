@@ -112,58 +112,69 @@ public class BasicUtils {
 	    }
 	}
 	
-	//"https://www.pricetravel.com/hoteles/cancun-area","Cancún (y alrededores), México",""
-	public static String buildSPAHotelListLP(String site, String destination, String startDate, String endDate, String adults) {
-		String example = "https://www.pricetravel.com"
-				+ "/hoteles/"
-				+ "cancun-area"
-				+ "?room1.adults=2"
-				+ "&room1.kids=2"
-				+ "&room1.agekids=10,10"
-				+ "&room2.adults=2"
-				+ "&room2.kids=2"
-				+ "&room2.agekids=11,11"
-				+ "&room3.adults=2"
-				+ "&room3.kids=2"
-				+ "&room3.agekids=12,12"
-				+ "&checkin=2019%2F01%2F14"
-				+ "&checkout=2019%2F01%2F15"
-				+ "&rooms=3"
-				+ "&adults=6"
-				+ "&kids=6"
-				+ "&agekids=10,10,11,11,12,12"
-				+ "&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico"
-				+ "&placeid=69364"
-				+ "&placetype=3"
-				+ "&puri=cancun-area"
-				+ "&quotelist=true"
-				+ "&returningfromairport="
-				+ "&startingfromairport="
-				+ "&actiontype=1";
-		
+	/**
+	 * Devuelve una URL de tipo: ->https://www.pricetravel.com/hoteles/cancun-area?chekin=2019-02-20&checkout=2019-02-23&placetype=3&placeid=69364&source=SPA-Hotel-List&rooms=1&room1.adults=2&room1.kids=&room1.agekids=&agekids= 
+	 * 
+	 * @param host - example: www.pricetravel.com
+	 * @param path - example: hoteles/cancun-area
+	 * @param startDate - example: 2019-03-01
+	 * @param endDate - example: 2019-03-03
+	 * @param placetype - example: 3
+	 * @param placeid - example: 69364
+	 * @param source - example: SPA-Hotel-List
+	 * @param rooms - exmaple: 1
+	 * @param adults - example: 2
+	 * @return
+	 */
+	public static String createUrlHotelLP(String host, String path, String startDate, String endDate, String placetype, String placeid, String source, String page, String rooms, String adults) {
+		String checkin = startDate;
+		String checkout = endDate;
 		try {
-			String x = URLEncoder.encode(example, "UTF-8");
-			
+			checkin = URLEncoder.encode(startDate, "UTF-8");
+			checkout = URLEncoder.encode(endDate, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		
+		URIBuilder builder = new URIBuilder();
+		builder.setScheme("https");
+		builder.setHost(host.toLowerCase().trim());
+		builder.setPath(path.toLowerCase().trim());
+		builder.addParameter("checkin", checkin.trim());
+		builder.addParameter("checkout", checkout.trim());
+		builder.addParameter("placetype", placetype.trim());
+		builder.addParameter("placeid", placeid.trim());
+		builder.addParameter("source", source.trim());
+		builder.addParameter("page", page.trim());
+		builder.addParameter("rooms", rooms.trim());
+		builder.addParameter("room1.adults", adults.trim());
+		builder.addParameter("room1.kids", "");
+		builder.addParameter("room1.agekids", "");
+		builder.addParameter("agekids", "");
 		String url="";
-		url+=site;
-		
-		/*
-		StringBuilder finalStringb =new StringBuilder();
-	    for(String tempString:setInput){
-	          finalStringb.append(",").append(tempString).append(",") ;   
-	    }
-	    String finalS = finalStringb.toString();
-		*/
+		try {
+			url = builder.build().toString();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		if(url.isEmpty()) {System.out.println("Error al construir la url");}
 		return url;
 	}
 	
-	public static String generateSPARoomListLP() {
-		String url="";
+	public static String createUrlHotelLPFromList(List<String> data) {
+		String host = data.get(1);
+		String path = data.get(2)+"/"+data.get(3);
+		int startDay = Integer.parseInt(data.get(4).trim());
+		String startDate = LocalDate.now().plusDays(startDay).toString();
+		int endDay = Integer.parseInt(data.get(4).trim()) + Integer.parseInt(data.get(5).trim());
+		String endDate = LocalDate.now().plusDays(endDay).toString();
+		String placetype = data.get(6);
+		String placeid = data.get(7);
+		String source = data.get(8);
+		String page = data.get(9);
+		String rooms = data.get(10);
+		String adults = data.get(11);
 		
+		String url = createUrlHotelLP(host, path, startDate, endDate, placetype, placeid, source, page, rooms, adults);
 		return url;
 	}
 	
