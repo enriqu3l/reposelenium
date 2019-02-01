@@ -1,4 +1,4 @@
-package tests.components.hoteles;
+package tests.components.pt;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

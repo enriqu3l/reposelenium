@@ -1,4 +1,4 @@
-package tests.workflows.hoteles;
+package tests.workflows.interjet;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,7 +7,7 @@ import org.testng.Reporter;
 
 import config.FrameworkConfig;
 import helpers.DDManager;
-import pages.Pages;
+import pages.interjet.Pages;
 import valueobjects.VOClient;
 import valueobjects.VOCreditCard;
 import valueobjects.VOHotelRes;
@@ -18,13 +18,14 @@ public class WHPHoteles {
 	public static void HPHotelDefault(WebDriver driver) throws InterruptedException{
 		logger.info("Starting HPHotelDefault");
 		Reporter.log("Staring HPHotelDefault");
-		VOHotelRes voHotelResNew = DDManager.getHotelResDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
+		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_HPHOTELRESDATA, 12);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
-		pages.hotelListPage_Initialize();
+		pages.homePage.widgetClickSearchButton();
+		/*pages.hotelListPage_Initialize();
 		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomListPage.selectFirstRoom();
@@ -36,6 +37,7 @@ public class WHPHoteles {
 		//pages.payMethodPage.clickOnCompleteReservation();
 		//pages.thankYouPage_Initialize();
 		//pages.thankYouPage.verifyCheckOutCompleted();
+		*/
 		logger.info("Ending HPHotelDefault");
 		Reporter.log("Ending HPHotelDefault");
 	}
@@ -49,7 +51,7 @@ public class WHPHoteles {
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
-		pages.hotelListPage_Initialize();
+		/*pages.hotelListPage_Initialize();
 		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
 		pages.roomListPage.selectFirstRoom();
@@ -61,33 +63,8 @@ public class WHPHoteles {
 		//pages.payMethodPage.clickOnCompleteReservation();
 		//pages.thankYouPage_Initialize();
 		//pages.thankYouPage.verifyCheckOutCompleted();
+		*/
 		logger.info("Ending HPHotelRandom");
 		Reporter.log("Ending HPHotelRandom");
-	}
-	
-	//PDV
-	public static void HPPDVHotel(WebDriver driver) throws InterruptedException{
-		logger.info("Starting HPPDVHotel");
-		Reporter.log("Staring HPPDVHotel");
-		VOHotelRes voHotelResNew = DDManager.getHotelResDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
-		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
-		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
-		Pages pages = new Pages(driver);
-		pages.homePage_Initialize();
-		pages.homePage.widgetSearchHotel(voHotelResNew);
-		pages.hotelListPage_Initialize();
-		pages.hotelListPage.listSelectFirstHotelAvailable();
-		pages.roomListPage_Initialize();
-		pages.roomListPage.selectFirstRoom();
-		pages.resDetailPage_Initialize();
-		pages.resDetailPage.clearAndFillForm(voClient);
-		//pages.resDetailPage.clickOnContinue();
-		//pages.payMethodPage_Initialize();
-		//pages.payMethodPage.fillCreditForm(DO_CreditCard);
-		//pages.payMethodPage.clickOnCompleteReservation();
-		//pages.thankYouPage_Initialize();
-		//pages.thankYouPage.verifyCheckOutCompleted();
-		logger.info("Ending HPPDVHotel");
-		Reporter.log("Ending HPPDVHotel");
 	}
 }

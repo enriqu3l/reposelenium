@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [HP_Suite]">
+  <listeners>
+    <listener class-name="testlisteners.ListenersHappyPath"/>
+  </listeners>
+  <test thread-count="5" name="HPPTCOMMX(failed)">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="https://www.interjetvacations.com.mx/hoteles"/>
     <classes>
-      <class name="testcases.components.TCSPAHLWidget">
+      <class name="testcases.healthcheck.interjet.TCHP_Hoteles">
         <methods>
-          <include name="test1"/>
-          <include name="prerequisites"/>
-          <include name="End"/>
+          <include name="setConfigVariables"/>
           <include name="Close"/>
+          <include name="End"/>
+          <include name="HPHotelDefault"/>
+          <include name="prerequisites"/>
         </methods>
-      </class> <!-- testcases.components.TCSPAHLWidget -->
+      </class> <!-- testcases.healthcheck.interjet.TCHP_Hoteles -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- HPPTCOMMX(failed) -->
+</suite> <!-- Failed suite [HP_Suite] -->

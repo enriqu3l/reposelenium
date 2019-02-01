@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="7" total="8" passed="1">
+<testng-results skipped="0" failed="0" ignored="1" total="2" passed="1">
   <reporter-output>
+    <line>
+      <![CDATA[Starting BeforeTest]]>
+    </line>
     <line>
       <![CDATA[Starting Browser]]>
     </line>
@@ -8,10 +11,13 @@
       <![CDATA[Browser Started]]>
     </line>
     <line>
-      <![CDATA[Starting test1]]>
+      <![CDATA[Starting test HPHotelDefault]]>
     </line>
     <line>
-      <![CDATA[Starting autocompleteDestinationTest]]>
+      <![CDATA[Staring HPHotelDefault]]>
+    </line>
+    <line>
+      <![CDATA[Ending HPHotelDefault]]>
     </line>
     <line>
       <![CDATA[Closing Browser...]]>
@@ -20,12 +26,36 @@
       <![CDATA[Test Finished]]>
     </line>
   </reporter-output>
-  <suite name="Default suite" duration-ms="20011" started-at="2019-01-28T19:29:53Z" finished-at="2019-01-28T19:30:13Z">
+  <suite name="HP_Suite" duration-ms="28741" started-at="2019-01-31T03:17:59Z" finished-at="2019-01-31T03:18:28Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="20011" started-at="2019-01-28T19:29:53Z" finished-at="2019-01-28T19:30:13Z">
-      <class name="testcases.components.TCSPAHLWidget">
-        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.components.TCSPAHLWidget@55b699ef]" name="prerequisites" is-config="true" duration-ms="5887" started-at="2019-01-28T19:29:53Z" finished-at="2019-01-28T19:29:59Z">
+    <test name="HPPTCOMMX" duration-ms="28741" started-at="2019-01-31T03:17:59Z" finished-at="2019-01-31T03:18:28Z">
+      <class name="testcases.healthcheck.interjet.TCHP_Hoteles">
+        <test-method status="PASS" signature="setConfigVariables(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.healthcheck.interjet.TCHP_Hoteles@4c371370]" name="setConfigVariables" is-config="true" duration-ms="13" started-at="2019-01-31T03:17:59Z" finished-at="2019-01-31T03:17:59Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://www.interjetvacations.com.mx/hoteles]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[org.testng.TestRunner@681aad3b]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Starting BeforeTest]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- setConfigVariables -->
+        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.healthcheck.interjet.TCHP_Hoteles@4c371370]" name="prerequisites" is-config="true" duration-ms="9212" started-at="2019-01-31T03:17:59Z" finished-at="2019-01-31T03:18:08Z">
           <reporter-output>
             <line>
               <![CDATA[Starting Browser]]>
@@ -35,31 +65,34 @@
             </line>
           </reporter-output>
         </test-method> <!-- prerequisites -->
-        <test-method status="PASS" signature="test1()[pri:0, instance:testcases.components.TCSPAHLWidget@55b699ef]" name="test1" duration-ms="11788" started-at="2019-01-28T19:29:59Z" finished-at="2019-01-28T19:30:11Z">
+        <test-method status="PASS" signature="HPHotelDefault()[pri:1, instance:testcases.healthcheck.interjet.TCHP_Hoteles@4c371370]" name="HPHotelDefault" duration-ms="19494" started-at="2019-01-31T03:18:08Z" finished-at="2019-01-31T03:18:28Z">
           <reporter-output>
             <line>
-              <![CDATA[Starting test1]]>
+              <![CDATA[Starting test HPHotelDefault]]>
             </line>
             <line>
-              <![CDATA[Starting autocompleteDestinationTest]]>
+              <![CDATA[Staring HPHotelDefault]]>
+            </line>
+            <line>
+              <![CDATA[Ending HPHotelDefault]]>
             </line>
           </reporter-output>
-        </test-method> <!-- test1 -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.components.TCSPAHLWidget@55b699ef]" name="Close" is-config="true" duration-ms="2317" started-at="2019-01-28T19:30:11Z" finished-at="2019-01-28T19:30:13Z">
+        </test-method> <!-- HPHotelDefault -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.healthcheck.interjet.TCHP_Hoteles@4c371370]" name="Close" is-config="true" duration-ms="0" started-at="2019-01-31T03:18:28Z" finished-at="2019-01-31T03:18:28Z">
           <reporter-output>
             <line>
               <![CDATA[Closing Browser...]]>
             </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.components.TCSPAHLWidget@55b699ef]" name="End" is-config="true" duration-ms="0" started-at="2019-01-28T19:30:13Z" finished-at="2019-01-28T19:30:13Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.healthcheck.interjet.TCHP_Hoteles@4c371370]" name="End" is-config="true" duration-ms="1" started-at="2019-01-31T03:18:28Z" finished-at="2019-01-31T03:18:28Z">
           <reporter-output>
             <line>
               <![CDATA[Test Finished]]>
             </line>
           </reporter-output>
         </test-method> <!-- End -->
-      </class> <!-- testcases.components.TCSPAHLWidget -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- testcases.healthcheck.interjet.TCHP_Hoteles -->
+    </test> <!-- HPPTCOMMX -->
+  </suite> <!-- HP_Suite -->
 </testng-results>

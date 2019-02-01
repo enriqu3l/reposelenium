@@ -1,4 +1,4 @@
-package pages;
+package pages.pt;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -160,8 +160,11 @@ public class HomePageF {
 		Select kids = new Select(widgetSelectBookerHotelMinors0);
 		kids.selectByVisibleText(Integer.toString(voHotelRes.getKidsFromRoom(0)));
 		logger.trace("Kids: "+voHotelRes.getKidsFromRoom(0));
-		widgetButtonSearchHoteles.click();
 		logger.info("Ending SearchHotel()");
+	}
+	
+	public void widgetClickSearchButton() {
+		widgetButtonSearchHoteles.click();
 	}
 	
 	public void widgetSearchHotel(VOHotelRes voHotelRes){

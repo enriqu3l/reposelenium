@@ -1,4 +1,4 @@
-package testcases.workflows;
+package testcases.healthcheck.interjet;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,13 +13,12 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import tests.workflows.hoteles.WHPHoteles;
+import tests.workflows.interjet.WHPHoteles;
 
-public class TCHP_PTAll {
+public class TCHP_Hoteles {
 	WebDriver driver;
-	Logger logger = LogManager.getLogger(TCHP_PTAll.class);
+	Logger logger = LogManager.getLogger(TCHP_Hoteles.class);
 	String gtestName = "";
 	String gURL = "";
 	String gbrowser = "";
@@ -48,20 +47,14 @@ public class TCHP_PTAll {
 		logger.info("Browser Started");
 	}
 	
-	/*
-	@DataProvider(name = "Authentication")
-	public static Object[][] credentials() {
-		return new Object[][] { { "testuser_1", "Test@123" }, { "testuser_1", "Test@123" }};
-	}*/
-	
-	@Test (enabled=false, priority = 1)
+	@Test (enabled=true, priority = 1)
 	public void HPHotelDefault() throws InterruptedException{
 		Reporter.log("Starting test HPHotelDefault");
 		logger.info("Starting test HPHotelDefault");
 		WHPHoteles.HPHotelDefault(driver);
 	}
 	
-	@Test (enabled=true, priority = 2)
+	@Test (enabled=false, priority = 2)
 	public void HPHotelRandom() throws InterruptedException{
 		Reporter.log("Starting test HPHotelRandom");
 		logger.info("Starting test HPHotelRandom");
@@ -73,7 +66,7 @@ public class TCHP_PTAll {
 	{
 		Reporter.log("Closing Browser...");
 		logger.info("Closing Browser...");
-		driver.close();
+		//driver.close();
 	}
 	
 	@AfterTest

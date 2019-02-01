@@ -1,4 +1,4 @@
-package tests.components.hoteles;
+package tests.components.pt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +10,11 @@ import org.testng.Reporter;
 
 import config.FrameworkConfig;
 import helpers.DDManager;
-import pages.Pages;
+import pages.pt.Pages;
 import valueobjects.VOHotelRes;
 
-public class CSPAHLWidget {
-	private static Logger logger = LogManager.getLogger(CSPAHLWidget.class);
+public class CSPAHLWidget2 {
+	private static Logger logger = LogManager.getLogger(CSPAHLWidget2.class);
 
 	/**
 	 * Este testcase verifica que el autocomplete se active con X palabras diferentes.
@@ -36,10 +36,10 @@ public class CSPAHLWidget {
 		data.add("bogot");
 		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelListPage_Initialize();
+		pages.stageHotelListPage_Initialize();
 		// <Then>
 		//Verificar que el autocompletado del campo destino funcione correctamente
-		pages.hotelListPage.widgetVerifyAutocompleteDestination(data);
+		pages.stageHotelListPage.widgetVerifyAutocompleteDestination(data);
 	}
 	
 	/**
@@ -56,12 +56,12 @@ public class CSPAHLWidget {
 		Reporter.log("Starting datePickersFunctionalityTest");
 		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelListPage_Initialize();
+		pages.stageHotelListPage_Initialize();
 		// <Then>
 		//Verificar que las fechas iniciales sean las que tenga la URL
-		pages.hotelListPage.widgetVerifyCurrentUrlDateOnDatePickers();
+		pages.stageHotelListPage.widgetVerifyCurrentUrlDateOnDatePickers();
 		//Verificar que que el datepicker se abra y se cierre en 10 iteraciones
-		pages.hotelListPage.widgetVerifyOpenAndCloseDatePickers();
+		pages.stageHotelListPage.widgetVerifyOpenAndCloseDatePickers();
 	}
 	
 	/**
@@ -75,12 +75,12 @@ public class CSPAHLWidget {
 		Reporter.log("Starting searchWithEmptyFieldsTest");
 		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetClearDestination();
-		pages.hotelListPage.widgetClickSubmit();
+		pages.stageHotelListPage_Initialize();
+		pages.stageHotelListPage.widgetClearDestination();
+		pages.stageHotelListPage.widgetClickSubmit();
 		// <Then>
 		//Verificar que se muestre el mensaje de error si no se ingresa un destino
-		pages.hotelListPage.widgetVerifyErrorPlace();
+		pages.stageHotelListPage.widgetVerifyErrorPlace();
 		
 	}
 	
@@ -102,16 +102,16 @@ public class CSPAHLWidget {
 		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA, 2);
 		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSetDestin(voHotelResNew.getDestination());
-		pages.hotelListPage.widgetClickSubmit();
+		pages.stageHotelListPage_Initialize();
+		pages.stageHotelListPage.widgetSetDestin(voHotelResNew.getDestination());
+		pages.stageHotelListPage.widgetClickSubmit();
 		// <Then>
 		//Verificar que el widget tiene el nuevo destino
-		pages.hotelListPage.widgetVerifyDestinationToBe(voHotelResNew.getDestination());		
+		pages.stageHotelListPage.widgetVerifyDestinationToBe(voHotelResNew.getDestination());		
 		//Verificar que el Page Header Title tiene el nuevo destino
-		pages.hotelListPage.verifyHeaderTitleToBe(voHotelResNew.getDestination());
+		pages.stageHotelListPage.verifyHeaderTitleToBe(voHotelResNew.getDestination());
 		//Verificar que tenemos resultados
-		pages.hotelListPage.listVerifyResultListHasElements();
+		pages.stageHotelListPage.listVerifyResultListHasElements();
 	}
 	
 	/**
@@ -129,23 +129,24 @@ public class CSPAHLWidget {
 		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,2);
 		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSetStartDate(voHotelResNew.getStartDate());
-		pages.hotelListPage.widgetSetEndDate(voHotelResNew.getEndDate());
-		pages.hotelListPage.widgetClickSubmit();
+		pages.stageHotelListPage_Initialize();
+		pages.stageHotelListPage.widgetSetStartDate(voHotelResNew.getStartDate());
+		pages.stageHotelListPage.widgetSetEndDate(voHotelResNew.getEndDate());
+		pages.stageHotelListPage.widgetClickSubmit();
 		// <Then>
 		//Verificar que el widget tiene la nueva fecha
-		pages.hotelListPage.widgetVerifyStartDateToBe(voHotelResNew.getStartDate());
-		pages.hotelListPage.widgetVerifyEndDateToBe(voHotelResNew.getEndDate());
+		pages.stageHotelListPage.widgetVerifyStartDateToBe(voHotelResNew.getStartDate());
+		pages.stageHotelListPage.widgetVerifyEndDateToBe(voHotelResNew.getEndDate());
 		//Verificar que la url tiene la nueva fecha
-		pages.hotelListPage.verifyUrlStartDateToBe(voHotelResNew.getStartDate("yyyy-MM-dd"));
-		pages.hotelListPage.verifyUrlEndDateToBe(voHotelResNew.getEndDate("yyyy-MM-dd"));
+		pages.stageHotelListPage.verifyUrlStartDateToBe(voHotelResNew.getStartDate("yyyy-MM-dd"));
+		pages.stageHotelListPage.verifyUrlEndDateToBe(voHotelResNew.getEndDate("yyyy-MM-dd"));
 		//Verificar que la lista de resultados tenga elementos
-		pages.hotelListPage.listVerifyResultListHasElements();
+		pages.stageHotelListPage.listVerifyResultListHasElements();
 	}
 	
 	/**
 	 * Este testcase verifica que se puedan cambiar los ocupantes
+	 * Nota: Se esta leyendo el row 11 del archivo de excel
 	 * Se verifica:
 	 * 1.- Que los ocupantes sean los que se seleccionaron
 	 * 2.- Que la lista de resultados tenga elementos
@@ -158,14 +159,14 @@ public class CSPAHLWidget {
 		VOHotelRes voHotelRes = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,11);// Aqui leo el row 11 donde tengo varios rooms
 		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSetOccupants(voHotelRes);
-		pages.hotelListPage.widgetClickSubmit();
+		pages.stageHotelListPage_Initialize();
+		pages.stageHotelListPage.widgetSetOccupants(voHotelRes);
+		pages.stageHotelListPage.widgetClickSubmit();
 		// <Then>
 		//Verificar que los ocupantes sean los que se seleccionaron
-		pages.hotelListPage.widgetVerifyOccupantsToBe(voHotelRes);
+		pages.stageHotelListPage.widgetVerifyOccupantsToBe(voHotelRes);
 		//Verificar que la lista de resultados tenga elementos
-		pages.hotelListPage.listVerifyResultListHasElements();
+		pages.stageHotelListPage.listVerifyResultListHasElements();
 	}
 	
 	/**
@@ -183,14 +184,14 @@ public class CSPAHLWidget {
 		VOHotelRes voHotelRes = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,12);
 		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSetReservation(voHotelRes);
-		pages.hotelListPage.widgetClickSubmit();
+		pages.stageHotelListPage_Initialize();
+		pages.stageHotelListPage.widgetSetReservation(voHotelRes);
+		pages.stageHotelListPage.widgetClickSubmit();
 		// <Then>
 		//Verificar que la info de la reservacion sea la que se selecciono
-		pages.hotelListPage.widgetVerifyReservationToBe(voHotelRes);
+		pages.stageHotelListPage.widgetVerifyReservationToBe(voHotelRes);
 		//Verificar que la lista de resultados tenga elementos
-		pages.hotelListPage.listVerifyResultListHasElements();
+		pages.stageHotelListPage.listVerifyResultListHasElements();
 	}
 	
 	//Funciones para pruebas durante el desarrollo
@@ -205,15 +206,15 @@ public class CSPAHLWidget {
 		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA, 1);
 		Pages pages = new Pages(driver);
 		//<When>
-		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSetDestin(voHotelResNew.getDestination());
-		pages.hotelListPage.widgetClickSubmit();
+		pages.stageHotelListPage_Initialize();
+		pages.stageHotelListPage.widgetSetDestin(voHotelResNew.getDestination());
+		pages.stageHotelListPage.widgetClickSubmit();
 		//<Then>
 		//Verificar que el widget tiene el nuevo destino
-		pages.hotelListPage.widgetVerifyDestinationToBe(voHotelResNew.getDestination());		
+		pages.stageHotelListPage.widgetVerifyDestinationToBe(voHotelResNew.getDestination());		
 		//Verificar que el Page Header Title tiene el nuevo destino
-		pages.hotelListPage.verifyHeaderTitleToBe(voHotelResNew.getDestination());
+		pages.stageHotelListPage.verifyHeaderTitleToBe(voHotelResNew.getDestination());
 		//Verificar que tenemos resultados
-		pages.hotelListPage.listVerifyResultListHasElements();
+		pages.stageHotelListPage.listVerifyResultListHasElements();
 	}
 }

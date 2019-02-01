@@ -6,8 +6,8 @@
   </listeners>
   <test thread-count="3" name="Test">
     <classes>
-      <class name="testcases.components.TCSPAHLWidget"/>
-      <class name="testcases.components.TCSPAHLPaging"/>
+      <class name="testcases.regression.pt.TCSPAHLWidget"/>
+      <class name="testcases.regression.pt.TCSPAHLPaging"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

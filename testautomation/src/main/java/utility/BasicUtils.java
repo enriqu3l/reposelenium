@@ -122,6 +122,7 @@ public class BasicUtils {
 	 * @param placetype - example: 3
 	 * @param placeid - example: 69364
 	 * @param source - example: SPA-Hotel-List
+	 * @param page - example: 1
 	 * @param rooms - exmaple: 1
 	 * @param adults - example: 2
 	 * @return

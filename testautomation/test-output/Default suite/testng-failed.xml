@@ -3,14 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testcases.components.TCSPAHLWidget">
+      <class name="testcases.healthcheck.interjet.TCHP_Hoteles">
         <methods>
-          <include name="test1"/>
-          <include name="prerequisites"/>
-          <include name="End"/>
+          <include name="setConfigVariables"/>
           <include name="Close"/>
+          <include name="End"/>
+          <include name="HPHotelRandom"/>
+          <include name="prerequisites"/>
         </methods>
-      </class> <!-- testcases.components.TCSPAHLWidget -->
+      </class> <!-- testcases.healthcheck.interjet.TCHP_Hoteles -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

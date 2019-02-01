@@ -1,4 +1,4 @@
-package tests.workflows.hoteles;
+package tests.workflows.pt;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,7 +7,7 @@ import org.testng.Reporter;
 
 import config.FrameworkConfig;
 import helpers.DDManager;
-import pages.Pages;
+import pages.pt.Pages;
 import valueobjects.VOClient;
 import valueobjects.VOCreditCard;
 import valueobjects.VOHotelRes;
@@ -24,6 +24,7 @@ public class WHPHotelConPaginado {
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
+		pages.homePage.widgetClickSearchButton();
 		pages.hotelListPage_Initialize();
 		pages.hotelListPage.pagingClickOnNextPage();
 		pages.hotelListPage.listSelectFirstHotelAvailable();

@@ -1,4 +1,4 @@
-package pages;
+package pages.pt;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -53,7 +53,7 @@ public class HotelListPageF {
 	
 	private By byLoaderOverlayPage = By.xpath("//*[@class='loader__title']/parent::*/parent::*");
 	private By byLoaderOverlayPage2 = By.cssSelector(".loader-overlay.ng-trigger"); //no funciona en stage-spa
-	private By byLoaderButton = By.cssSelector(".list-product-rate .loader");
+	//private By byLoaderButton = By.cssSelector(".list-product-rate .loader"); //Ya lo declare en la seccion del listado
 	private By byLoaderOverlayFiltros = By.cssSelector(".card-body .loader-overlay");
 	
 	@FindBy(how=How.CSS, css=".loader__title")
@@ -74,7 +74,7 @@ public class HotelListPageF {
 	@FindBy(how=How.CSS, css=".list-product .list-product-block")
 	private List<WebElement> listAllBlocksResults;
 	
-	@FindBy(how=How.CSS, css=".list-product .list-product-block .list-product-rate .list-product-rate-action a")
+	@FindBy(how=How.CSS, css=".list-product-block .list-product-rate .list-product-rate-action a")
 	private WebElement listButtonFirstItem; //primer boton
 	
 	private By byListListProduct = By.cssSelector(".list-product");
@@ -85,10 +85,10 @@ public class HotelListPageF {
 	
 	
 	//--------------- Widget Elements - Basados en SPA-Hoteles ----------
-	@FindBy(how=How.CSS, css="#ptw-container #destination")
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel #destination")
 	private WebElement widgetInputDestination;
 	
-	@FindBy(how=How.CSS, css="#ptw-container #Err_PlaceName")
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel #Err_PlaceName")
 	private WebElement widgetErrorPlace;
 	
 	@FindBy(how=How.CSS, css="#start-datepicker .ap_dest_calendar")
@@ -121,27 +121,27 @@ public class HotelListPageF {
 	@FindBy(how=How.CSS, css="#end-datepicker .ngb-dp-arrow.right button.btn")
 	private WebElement widgetEndDateNextMonth;
 	
-	@FindBy(how=How.CSS, css="#ptw-container #ap_booker_Hotel_rooms")
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel #ap_booker_Hotel_rooms")
 	private WebElement widgetSelectHotelRooms;
 	
-	@FindBy(how=How.CSS, css="#ptw-container .ap_booker_Hotel_adults")
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotel_adults")
 	private WebElement widgetSelectHotelAdults;
 	
-	@FindBy(how=How.CSS, css="#ptw-container .ap_booker_Hotel_minors")
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotel_minors")
 	private WebElement widgetSelectHotelMinors;
 	
-	@FindBy(how=How.CSS, css="#ptw-container .ptw-submit-btn")
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ptw-submit-btn")
 	private WebElement widgetButtonSubmit;
 	
-	@FindBy(how=How.CSS, css="#ptw-container .ap_booker_Hotelroom")
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotelroom")
 	private  List<WebElement> widgetAllBlockRooms;
 	
-	@FindBy(how=How.CSS, css="#ptw-container .ap_minorsAges_Hotel_container")
-	private  List<WebElement> widgetAllBlockMinorsAges;
+	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_minorsAges_Hotel_container")
+	private  List<WebElement> widgetMinorsAgesHotelContainer;
 	
 	private By byWidgetStartDateDropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
 	private By byWidgetEndDateDropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
-	private By byWidgetDestinationDropdownMenu = By.cssSelector("#ptw-container .dropdown-menu");
+	private By byWidgetDestinationDropdownMenu = By.cssSelector("#ap_booker_Hotel .dropdown-menu");
 	private By byWidgetHotelAdults = By.cssSelector(".ap_booker_Hotel_adults");
 	private By byWidgetHotelMinors = By.cssSelector(".ap_booker_Hotel_minors");
 	private By byWidgetAllKidsPerRoom = By.cssSelector(".ap_age.ap_Hotel_year");
@@ -182,7 +182,7 @@ public class HotelListPageF {
 	
 	public String widgetGetRooms() {
 		Select rooms = new Select(widgetSelectHotelRooms);
-		return rooms.getFirstSelectedOption().getText();
+		return rooms.getFirstSelectedOption().getText().trim();
 	}
 	
 	public void widgetClearDestination() {
@@ -221,8 +221,8 @@ public class HotelListPageF {
 		Select rooms = new Select(widgetSelectHotelRooms);
 		rooms.selectByVisibleText(Integer.toString(voHotelRes.getRoomCount()));
 		if(widgetAllBlockRooms.size() != voHotelRes.getRoomCount()) {
-			 logger.error("No se crearon los campos suficientes de rooms, allBlocksRooms:"+widgetAllBlockRooms.size());
-			 Assert.fail("LAF>>>No se crearon los campos suficientes de rooms, allBlocksRooms:"+widgetAllBlockRooms.size());
+			 logger.error("No se crearon los suficientes rooms containers, allBlocksRooms:"+widgetAllBlockRooms.size());
+			 Assert.fail("LAF>>>No se crearon los suficientes rooms containers, allBlocksRooms:"+widgetAllBlockRooms.size());
 		}
 		//Ya se crearon los rooms ahora hay que llenar los adultos y niños
 		for(int i=0;i<widgetAllBlockRooms.size();i++) {
@@ -236,16 +236,16 @@ public class HotelListPageF {
 			kids.selectByVisibleText(Integer.toString(voHotelRes.getKidsFromRoom(i)));
 		}
 		//Validar que se crearon campos de rooms para los agekids
-		if(widgetAllBlockMinorsAges.size() != voHotelRes.getRoomCount()) {
-			 logger.error("No se crearon los campos suficientes de rooms para los agekids, widgetAllBlockMinorsAges:"+widgetAllBlockMinorsAges.size());
-			 Assert.fail("LAF>>>No se crearon los campos suficientes de rooms para los agekids, widgetAllBlockMinorsAges:"+widgetAllBlockMinorsAges.size());
+		if(widgetMinorsAgesHotelContainer.size() != voHotelRes.getRoomCount()) {
+			 logger.error("La cantidad de rooms no coincide con la cantidad de agecontainers, widgetMinorsAgesHotelContainer:"+widgetMinorsAgesHotelContainer.size());
+			 Assert.fail("LAF>>>La cantidad de rooms no coincide con la cantidad de agecontainers, widgetMinorsAgesHotelContainer:"+widgetMinorsAgesHotelContainer.size());
 		}
 		//Ahora hay que llenar las edades de los niños en cada cuarto
-		for(int i=0; i<widgetAllBlockMinorsAges.size();i++) {
+		for(int i=0; i<widgetMinorsAgesHotelContainer.size();i++) {
 			//Recorrer cada room
 			if(voHotelRes.getKidsFromRoom(i)>0) {
 				//Entra solo si el cuarto contiene niños
-				List<WebElement> minors = widgetAllBlockMinorsAges.get(i).findElements(byWidgetAllKidsPerRoom);
+				List<WebElement> minors = widgetMinorsAgesHotelContainer.get(i).findElements(byWidgetAllKidsPerRoom);
 				for(int j=0;j<minors.size();j++) {
 					//Recorrer cada niño y setear la edad
 					Select minor = new Select(minors.get(j));
@@ -258,7 +258,8 @@ public class HotelListPageF {
 	public void widgetSetStartDate(String date) {
 		if(date.isEmpty()) {Assert.fail("LAF>>>El parametro date esta vacio");}
 		
-		logger.info("Starting widgetChangeStartDate()");
+		logger.info("Starting widgetSetStartDate()");
+		logger.info("widgetSetStartDate() parametro recibido:"+date);
 		waitForContentToBeReady(); //Esperar a que se quite el overlay
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,byWidgetStartDateDropdownMenu)){widgetStartDatePicker.click();}
@@ -266,7 +267,7 @@ public class HotelListPageF {
 		int day = localDate.getDayOfMonth();
 		String actualDate = BasicUtils.toddMMyyyyFormat(widgetStartDateTitle.getText().trim());
 		int TotalMonthDifference = BasicUtils.monthDiference(date, actualDate);	
-		logger.trace("widgetSelectStartDate() TotalMonthDifference: "+TotalMonthDifference);
+		logger.trace("widgetSetStartDate() TotalMonthDifference: "+TotalMonthDifference);
 		if(TotalMonthDifference>0) {
 			for(int i=0; i<TotalMonthDifference;i++) {
 				widgetStartDateNextMonth.click(); //click hacia adelante
@@ -284,7 +285,8 @@ public class HotelListPageF {
 	public void widgetSetEndDate(String date) {
 		if(date.isEmpty()) {Assert.fail("LAF>>>El parametro date esta vacio");}
 		
-		logger.info("Starting widgetChangeEndDate()");
+		logger.info("Starting widgetSetEndDate()");
+		logger.info("widgetSetEndDate() parametro recibido:"+date);
 		waitForContentToBeReady(); //Esperar a que se quite el overlay
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,byWidgetEndDateDropdownMenu)){widgetEndDatePicker.click();}
@@ -292,7 +294,7 @@ public class HotelListPageF {
 		int day = localDate.getDayOfMonth();
 		String actualDate = BasicUtils.toddMMyyyyFormat(widgetEndDateTitle.getText().trim());
 		int TotalMonthDifference = BasicUtils.monthDiference(date, actualDate);	
-		logger.trace("widgetChangeEndDate() TotalMonthDifference: "+TotalMonthDifference);
+		logger.trace("widgetSetEndDate() TotalMonthDifference: "+TotalMonthDifference);
 		if(TotalMonthDifference>0) {
 			for(int i=0; i<TotalMonthDifference;i++) {
 				widgetEndDateNextMonth.click(); //click hacia adelante
@@ -435,16 +437,16 @@ public class HotelListPageF {
 			Assert.assertEquals(Integer.toString(voHotelRes.getKidsFromRoom(i)), kidsSelected);
 		}
 		//Validar que se crearon campos de rooms para los agekids
-		if(widgetAllBlockMinorsAges.size() != voHotelRes.getRoomCount()) {
-			 logger.error("No se crearon los campos suficientes de rooms para los agekids, widgetAllBlockMinorsAges:"+widgetAllBlockMinorsAges.size());
-			 Assert.fail("LAF>>>No se crearon los campos suficientes de rooms para los agekids, widgetAllBlockMinorsAges:"+widgetAllBlockMinorsAges.size());
+		if(widgetMinorsAgesHotelContainer.size() != voHotelRes.getRoomCount()) {
+			 logger.error("No se crearon los campos suficientes de rooms para los agekids, widgetAllBlockMinorsAges:"+widgetMinorsAgesHotelContainer.size());
+			 Assert.fail("LAF>>>No se crearon los campos suficientes de rooms para los agekids, widgetAllBlockMinorsAges:"+widgetMinorsAgesHotelContainer.size());
 		}
 		//Validar las edades de los niños de cada cuarto
-		for(int i=0; i<widgetAllBlockMinorsAges.size();i++) {
+		for(int i=0; i<widgetMinorsAgesHotelContainer.size();i++) {
 			//Recorrer cada room
 			if(voHotelRes.getKidsFromRoom(i)>0) {
 				//Entra solo si el cuarto contiene niños
-				List<WebElement> minors = widgetAllBlockMinorsAges.get(i).findElements(byWidgetAllKidsPerRoom);
+				List<WebElement> minors = widgetMinorsAgesHotelContainer.get(i).findElements(byWidgetAllKidsPerRoom);
 				for(int j=0;j<minors.size();j++) {
 					//Recorrer cada niño y setear la edad
 					Select minor = new Select(minors.get(j));

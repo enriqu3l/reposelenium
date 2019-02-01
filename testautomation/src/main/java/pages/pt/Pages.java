@@ -1,4 +1,4 @@
-package pages;
+package pages.pt;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -12,6 +12,7 @@ public class Pages {
 	public ResDetailPageF resDetailPage;
 	public PayMethodPageF payMethodPage;
 	public ThankYouPageF thankYouPage;
+	public StageHotelListPageF stageHotelListPage;
 	
 	public Pages(WebDriver _driver) {
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
@@ -39,5 +40,9 @@ public class Pages {
 	}
 	public void thankYouPage_Initialize() {
 		thankYouPage = new ThankYouPageF(driver);
+	}
+	
+	public void stageHotelListPage_Initialize() {
+		stageHotelListPage = new StageHotelListPageF(driver);
 	}
 }

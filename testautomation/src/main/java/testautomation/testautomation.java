@@ -169,8 +169,13 @@ public class testautomation {
 		}
 		*/
 		
-		String url = BasicUtils.createUrlHotelLP("www.pricetravel.com", "hotel/grand-oasis-cancun", "2019-02-20", "2019-02-23", "3", "69364", "SPA-Hotel-List", "1", "1", "2");
-		System.out.println("URL: "+url);
+		//String url = BasicUtils.createUrlHotelLP("www.pricetravel.com", "hotel/grand-oasis-cancun", "2019-02-20", "2019-02-23", "3", "69364", "SPA-Hotel-List", "1", "1", "2");
+		//System.out.println("URL: "+url);
+		
+		int i=01;
+		int j=10;
+		System.out.println("Valor de i:"+Integer.toString(i)+"<-");
+		System.out.println("Valor de j:"+Integer.toString(j)+"<-");
 	}
 }
 

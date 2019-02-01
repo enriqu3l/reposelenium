@@ -1,4 +1,4 @@
-package testcases.workflows;
+package testcases.healthcheck.pt;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
-import tests.workflows.hoteles.WHPHotelConPaginado;
+import tests.workflows.pt.WHPHotelConPaginado;
 
 public class TCHP_HotelConPaginado {
 	WebDriver driver;

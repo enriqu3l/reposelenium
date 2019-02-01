@@ -1,4 +1,4 @@
-package testcases.components;
+package testcases.regression.pt;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import config.FrameworkConfig;
 import helpers.BrowserFactory;
 import helpers.DDManager;
-import tests.components.hoteles.CSPAHLWidget;
+import tests.components.pt.CSPAHLWidget;
 
 public class TCSPAHLPaging {
 	WebDriver driver;
