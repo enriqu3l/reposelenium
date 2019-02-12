@@ -33,6 +33,7 @@ public class FrameworkConfig {
 	public static final String FILE_HPHOTELRESDATA = "HPHotelResData.xlsx";
 	public static final String FILE_REGRESSIONHOTELRESDATA = "RegressionHotelResData.xlsx";
 	public static final String FILE_HOTELLANDINGPAGEDATA = "HotelLandingPageData.xlsx";
+	public static final String FILE_INTERJETHOTELRESDATA = "InterjetHotelResData.xlsx";
 	
 	//BrowserConfig
 	public static final String BROWSER_CHROME = "chrome";
@@ -41,6 +42,7 @@ public class FrameworkConfig {
 	public static final String BROWSER_OPERA = "opera";
 	public static final String BROWSER_DEFAULT = "chrome";
 	public static final boolean BROWSER_CANCELNOTIFICATIONS = true;
+	public static final int BROWSER_PAGELOADTIMEOUT = 40;
 	
 	//Enums
 	public static enum Products{
