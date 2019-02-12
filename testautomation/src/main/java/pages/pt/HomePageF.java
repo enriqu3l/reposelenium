@@ -146,6 +146,8 @@ public class HomePageF {
 	public void widgetSelectHotelEndDate(String endDate) {
 		widgetInputDestEndHotel.clear();
 		widgetInputDestEndHotel.sendKeys(endDate);
+		//Aqui voy a cerrar el datepicker dropdown haciendo click en el icono
+		widgetImageDestEndHotelTrigger.click();
 		logger.trace("End Date: "+endDate);
 	}
 	

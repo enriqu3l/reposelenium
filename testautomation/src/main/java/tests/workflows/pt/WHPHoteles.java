@@ -15,7 +15,7 @@ import valueobjects.VOHotelRes;
 public class WHPHoteles {
 	private static Logger logger = LogManager.getLogger(WHPHoteles.class);
 	
-	public static void HPHotelDefault(WebDriver driver) throws InterruptedException{
+	public static void HPHotelDefault(WebDriver driver){
 		logger.info("Starting HPHotelDefault");
 		Reporter.log("Staring HPHotelDefault");
 		VOHotelRes voHotelResNew = DDManager.getHotelResDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
@@ -41,7 +41,7 @@ public class WHPHoteles {
 		Reporter.log("Ending HPHotelDefault");
 	}
 	
-	public static void HPHotelRandom(WebDriver driver) throws InterruptedException{
+	public static void HPHotelRandom(WebDriver driver){
 		logger.info("Starting HPHotelRandom");
 		Reporter.log("Staring HPHotelRandom");
 		VOHotelRes voHotelResNew = DDManager.getRandomHotelRes(FrameworkConfig.FILE_HPHOTELRESDATA);
@@ -68,7 +68,7 @@ public class WHPHoteles {
 	}
 	
 	//PDV
-	public static void HPPDVHotel(WebDriver driver) throws InterruptedException{
+	public static void HPPDVHotel(WebDriver driver){
 		logger.info("Starting HPPDVHotel");
 		Reporter.log("Staring HPPDVHotel");
 		VOHotelRes voHotelResNew = DDManager.getHotelResDefault(FrameworkConfig.FILE_HPHOTELRESDATA);

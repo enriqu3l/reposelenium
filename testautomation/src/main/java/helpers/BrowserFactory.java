@@ -60,7 +60,7 @@ public class BrowserFactory {
 		}
 		driver.manage().window().maximize();
 		driver.get(_url);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(FrameworkConfig.BROWSER_PAGELOADTIMEOUT, TimeUnit.SECONDS);
 		
 		return driver;
 	}
