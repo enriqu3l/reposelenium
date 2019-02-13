@@ -11,9 +11,9 @@ import config.FrameworkConfig;
 import helpers.BrowserFactory;
 import utility.BasicUtils;
 
-public class ListenersHappyPath implements ITestListener{
+public class ListenerHealthCheck implements ITestListener{
 	private WebDriver driver = null;
-	private static Logger logger = LogManager.getLogger(ListenersHappyPath.class);
+	private static Logger logger = LogManager.getLogger(ListenerHealthCheck.class);
 
 	@Override
 	public void onTestStart(ITestResult result) {

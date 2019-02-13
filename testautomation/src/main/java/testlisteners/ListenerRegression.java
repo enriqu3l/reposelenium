@@ -11,9 +11,9 @@ import config.FrameworkConfig;
 import helpers.BrowserFactory;
 import utility.BasicUtils;
 
-public class ListenersRegression implements ITestListener{
+public class ListenerRegression implements ITestListener{
 	private WebDriver driver = null;
-	private static Logger logger = LogManager.getLogger(ListenersRegression.class);
+	private static Logger logger = LogManager.getLogger(ListenerRegression.class);
 
 	@Override
 	public void onTestStart(ITestResult result) {

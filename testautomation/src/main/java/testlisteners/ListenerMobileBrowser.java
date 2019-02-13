@@ -11,9 +11,9 @@ import config.FrameworkConfig;
 import helpers.MobileBrowserFactory;
 import utility.BasicUtils;
 
-public class ListenersMobileBrowser implements ITestListener{
+public class ListenerMobileBrowser implements ITestListener{
 	private WebDriver driver = null;
-	private static Logger logger = LogManager.getLogger(ListenersMobileBrowser.class);
+	private static Logger logger = LogManager.getLogger(ListenerMobileBrowser.class);
 
 	@Override
 	public void onTestStart(ITestResult result) {

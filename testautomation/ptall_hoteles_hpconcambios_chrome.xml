@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="HP_Suite">
   <listeners>
-    <listener class-name="testlisteners.ListenersHappyPath"></listener>
+    <listener class-name="testlisteners.ListenerHealthCheck"></listener>
   </listeners>
   
   <test name="HPPTCOMMX">
