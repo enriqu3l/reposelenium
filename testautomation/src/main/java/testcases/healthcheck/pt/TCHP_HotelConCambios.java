@@ -49,10 +49,11 @@ public class TCHP_HotelConCambios {
 	}
 	
 	@BeforeMethod
-	public void beforeMethod() {
+	public void beforeMethod(ITestContext itc) {
 		logger.info("***************************** Starting @BeforeMethod **********************************");
 		Reporter.log("Starting Browser");
 		driver = BrowserFactory.StartBrowser(gbrowser, gURL);
+		itc.setAttribute("WebDriver", driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}

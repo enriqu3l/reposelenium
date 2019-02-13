@@ -3,6 +3,7 @@ package testcases.healthcheck.pt;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -18,10 +19,11 @@ public class TCHP_HotelConPaginado {
 	Logger logger = LogManager.getLogger(TCHP_HotelConPaginado.class);
 	
 	@BeforeMethod
-	public void beforeMethod() {
+	public void beforeMethod(ITestContext itc) {
 		Reporter.log("Starting Browser");
 		//Set Browser
 		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, FrameworkConfig.URL_PTCOMMX_PROD);
+		itc.setAttribute("WebDriver", driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}

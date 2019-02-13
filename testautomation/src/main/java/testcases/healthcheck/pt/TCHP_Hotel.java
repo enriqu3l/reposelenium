@@ -39,11 +39,12 @@ public class TCHP_Hotel {
 	}
 	
 	@BeforeMethod
-	public void prerequisites() {
+	public void prerequisites(ITestContext itc) {
 		logger.info("***************************** Starting BeforeMethod **********************************");
 		Reporter.log("Starting Browser");
 		//Set Browser
 		driver = BrowserFactory.StartBrowser(gbrowser, gURL);
+		itc.setAttribute("WebDriver", driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}

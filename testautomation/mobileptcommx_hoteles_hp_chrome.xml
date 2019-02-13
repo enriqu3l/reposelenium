@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="HP_Suite">
-  <test name="HPPTCOMMX">
-  	<parameter name="url" value="https://www.pricetravel.com.mx"/>
-  	<parameter name="browser" value="chrome"/>
-  	<classes>
-  		<class name="testcases.healthcheck.ptmobile.TCMOBILE_HP_Hotel">
-  		</class>
-  	</classes>
-  </test>
+	<listeners>
+		<listener class-name="testlisteners.ListenersMobileBrowser"></listener>
+	</listeners>
+	<test name="HPPTCOMMX">
+		<parameter name="url" value="https://www.pricetravel.com.mx" />
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="testcases.healthcheck.ptmobile.TCMOBILE_HP_Hotel">
+			</class>
+		</classes>
+	</test>
 </suite> <!-- Suite -->

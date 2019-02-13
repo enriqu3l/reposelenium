@@ -38,12 +38,13 @@ public class TCMOBILE_HP_Hotel {
 	}
 	
 	@BeforeMethod
-	public void prerequisites() {
+	public void prerequisites(ITestContext itc) {
 		logger.info("***************************** Starting BeforeMethod **********************************");
 		Reporter.log("Starting Browser");
 		//Set Browser
 		//driver = MobileBrowserFactory.StartBrowser("NEXUS_5X_API_24","7.0",gbrowser, gURL);
 		driver = MobileBrowserFactory.StartBrowser("Samsung Galaxy S6","5.1",gbrowser, gURL);
+		itc.setAttribute("WebDriver", driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}

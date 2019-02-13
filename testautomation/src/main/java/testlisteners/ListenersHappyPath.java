@@ -2,6 +2,7 @@ package testlisteners;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -11,6 +12,7 @@ import helpers.BrowserFactory;
 import utility.BasicUtils;
 
 public class ListenersHappyPath implements ITestListener{
+	private WebDriver driver = null;
 	private static Logger logger = LogManager.getLogger(ListenersHappyPath.class);
 
 	@Override
@@ -30,8 +32,12 @@ public class ListenersHappyPath implements ITestListener{
 		// TODO Auto-generated method stub
 		logger.info("Starting onTestFailure()");
 		logger.info("Fallo la prueba: "+result.getName());
+		
+		ITestContext context = result.getTestContext();
+	    driver = (WebDriver) context.getAttribute("WebDriver");
+	    
 		//Imprimir pantalla de la falla!
-		BasicUtils.ScreenShot(BrowserFactory.driver, "FAILURE-"+result.getName(), FrameworkConfig.PATH_SCREENSHOOT_FAILURES);
+		BasicUtils.ScreenShot(driver, "FAILURE-"+result.getName(), FrameworkConfig.PATH_SCREENSHOOT_FAILURES);
 	}
 
 	@Override
