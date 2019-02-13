@@ -62,11 +62,18 @@ public class TCHP_Hotel {
 		WHPHoteles.HPHotelDefault(driver);
 	}
 	
-	@Test (enabled=true, priority = 2)
+	@Test (enabled=false, priority = 2)
 	public void HPHotelRandom() throws InterruptedException{
 		Reporter.log("Starting test HPHotelRandom");
 		logger.info("Starting test HPHotelRandom");
 		WHPHoteles.HPHotelRandom(driver);
+	}
+	
+	@Test (enabled=true, priority = 3)
+	public void HPHotelHPHotelUsingDataRow() throws InterruptedException{
+		Reporter.log("Starting test HPHotelHPHotelUsingDataRow");
+		logger.info("Starting test HPHotelHPHotelUsingDataRow");
+		WHPHoteles.HPHotelUsingDataRow(driver, 11);
 	}
 
 	@AfterMethod
