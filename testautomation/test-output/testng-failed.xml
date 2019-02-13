@@ -2,21 +2,21 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [HP_Suite]">
   <listeners>
-    <listener class-name="testlisteners.ListenersHappyPath"/>
+    <listener class-name="testlisteners.ListenersMobileBrowser"/>
   </listeners>
   <test thread-count="5" name="HPPTCOMMX(failed)">
     <parameter name="browser" value="chrome"/>
-    <parameter name="url" value="https://www.interjetvacations.com.mx/hoteles"/>
+    <parameter name="url" value="https://www.pricetravel.com.mx"/>
     <classes>
-      <class name="testcases.healthcheck.interjet.TCHP_Hoteles">
+      <class name="testcases.healthcheck.ptmobile.TCMOBILE_HP_Hotel">
         <methods>
           <include name="setConfigVariables"/>
-          <include name="Close"/>
-          <include name="End"/>
           <include name="HPHotelDefault"/>
           <include name="prerequisites"/>
+          <include name="Close"/>
+          <include name="End"/>
         </methods>
-      </class> <!-- testcases.healthcheck.interjet.TCHP_Hoteles -->
+      </class> <!-- testcases.healthcheck.ptmobile.TCMOBILE_HP_Hotel -->
     </classes>
   </test> <!-- HPPTCOMMX(failed) -->
 </suite> <!-- Failed suite [HP_Suite] -->

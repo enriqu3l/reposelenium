@@ -11,13 +11,13 @@
       <![CDATA[Browser Started]]>
     </line>
     <line>
-      <![CDATA[Starting test HPHotelDefault]]>
+      <![CDATA[Starting test HPHotelRandom]]>
     </line>
     <line>
-      <![CDATA[Staring HPHotelDefault]]>
+      <![CDATA[Staring HPHotelRandom]]>
     </line>
     <line>
-      <![CDATA[Ending HPHotelDefault]]>
+      <![CDATA[Ending HPHotelRandom]]>
     </line>
     <line>
       <![CDATA[Closing Browser...]]>
@@ -26,16 +26,16 @@
       <![CDATA[Test Finished]]>
     </line>
   </reporter-output>
-  <suite name="HP_Suite" duration-ms="28741" started-at="2019-01-31T03:17:59Z" finished-at="2019-01-31T03:18:28Z">
+  <suite name="HP_Suite" duration-ms="49844" started-at="2019-02-13T14:56:04Z" finished-at="2019-02-13T14:56:54Z">
     <groups>
     </groups>
-    <test name="HPPTCOMMX" duration-ms="28741" started-at="2019-01-31T03:17:59Z" finished-at="2019-01-31T03:18:28Z">
-      <class name="testcases.healthcheck.interjet.TCHP_Hoteles">
-        <test-method status="PASS" signature="setConfigVariables(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.healthcheck.interjet.TCHP_Hoteles@4c371370]" name="setConfigVariables" is-config="true" duration-ms="13" started-at="2019-01-31T03:17:59Z" finished-at="2019-01-31T03:17:59Z">
+    <test name="HPPTCOMMX" duration-ms="49844" started-at="2019-02-13T14:56:04Z" finished-at="2019-02-13T14:56:54Z">
+      <class name="testcases.healthcheck.pt.TCHP_Hotel">
+        <test-method status="PASS" signature="setConfigVariables(java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:testcases.healthcheck.pt.TCHP_Hotel@77888435]" name="setConfigVariables" is-config="true" duration-ms="12" started-at="2019-02-13T14:56:04Z" finished-at="2019-02-13T14:56:04Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[https://www.interjetvacations.com.mx/hoteles]]>
+                <![CDATA[https://www.pricetravel.com.mx]]>
               </value>
             </param>
             <param index="1">
@@ -45,7 +45,7 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[org.testng.TestRunner@681aad3b]]>
+                <![CDATA[org.testng.TestRunner@6f0ae0ee]]>
               </value>
             </param>
           </params>
@@ -55,7 +55,14 @@
             </line>
           </reporter-output>
         </test-method> <!-- setConfigVariables -->
-        <test-method status="PASS" signature="prerequisites()[pri:0, instance:testcases.healthcheck.interjet.TCHP_Hoteles@4c371370]" name="prerequisites" is-config="true" duration-ms="9212" started-at="2019-01-31T03:17:59Z" finished-at="2019-01-31T03:18:08Z">
+        <test-method status="PASS" signature="prerequisites(org.testng.ITestContext)[pri:0, instance:testcases.healthcheck.pt.TCHP_Hotel@77888435]" name="prerequisites" is-config="true" duration-ms="11093" started-at="2019-02-13T14:56:04Z" finished-at="2019-02-13T14:56:15Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6f0ae0ee]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
             <line>
               <![CDATA[Starting Browser]]>
@@ -65,34 +72,34 @@
             </line>
           </reporter-output>
         </test-method> <!-- prerequisites -->
-        <test-method status="PASS" signature="HPHotelDefault()[pri:1, instance:testcases.healthcheck.interjet.TCHP_Hoteles@4c371370]" name="HPHotelDefault" duration-ms="19494" started-at="2019-01-31T03:18:08Z" finished-at="2019-01-31T03:18:28Z">
+        <test-method status="PASS" signature="HPHotelRandom()[pri:2, instance:testcases.healthcheck.pt.TCHP_Hotel@77888435]" name="HPHotelRandom" duration-ms="36406" started-at="2019-02-13T14:56:15Z" finished-at="2019-02-13T14:56:52Z">
           <reporter-output>
             <line>
-              <![CDATA[Starting test HPHotelDefault]]>
+              <![CDATA[Starting test HPHotelRandom]]>
             </line>
             <line>
-              <![CDATA[Staring HPHotelDefault]]>
+              <![CDATA[Staring HPHotelRandom]]>
             </line>
             <line>
-              <![CDATA[Ending HPHotelDefault]]>
+              <![CDATA[Ending HPHotelRandom]]>
             </line>
           </reporter-output>
-        </test-method> <!-- HPHotelDefault -->
-        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.healthcheck.interjet.TCHP_Hoteles@4c371370]" name="Close" is-config="true" duration-ms="0" started-at="2019-01-31T03:18:28Z" finished-at="2019-01-31T03:18:28Z">
+        </test-method> <!-- HPHotelRandom -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:testcases.healthcheck.pt.TCHP_Hotel@77888435]" name="Close" is-config="true" duration-ms="2314" started-at="2019-02-13T14:56:52Z" finished-at="2019-02-13T14:56:54Z">
           <reporter-output>
             <line>
               <![CDATA[Closing Browser...]]>
             </line>
           </reporter-output>
         </test-method> <!-- Close -->
-        <test-method status="PASS" signature="End()[pri:0, instance:testcases.healthcheck.interjet.TCHP_Hoteles@4c371370]" name="End" is-config="true" duration-ms="1" started-at="2019-01-31T03:18:28Z" finished-at="2019-01-31T03:18:28Z">
+        <test-method status="PASS" signature="End()[pri:0, instance:testcases.healthcheck.pt.TCHP_Hotel@77888435]" name="End" is-config="true" duration-ms="0" started-at="2019-02-13T14:56:54Z" finished-at="2019-02-13T14:56:54Z">
           <reporter-output>
             <line>
               <![CDATA[Test Finished]]>
             </line>
           </reporter-output>
         </test-method> <!-- End -->
-      </class> <!-- testcases.healthcheck.interjet.TCHP_Hoteles -->
+      </class> <!-- testcases.healthcheck.pt.TCHP_Hotel -->
     </test> <!-- HPPTCOMMX -->
   </suite> <!-- HP_Suite -->
 </testng-results>

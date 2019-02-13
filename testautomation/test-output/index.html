@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-HP_Suite">
-                    <span>C:\Users\enrique.lopez\git\reposelenium\testautomation\interjetvacationscommx_hoteles_hp_chrome.xml</span>
+                    <span>C:\Users\enrique.lopez\git\reposelenium\testautomation\ptcommx_hoteles_hp_chrome.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -102,7 +102,7 @@
                     <div class="method-list-content passed suite-HP_Suite">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-HP_Suite" title="testcases.healthcheck.interjet.TCHP_Hoteles" hash-for-method="HPHotelDefault">HPHotelDefault</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-HP_Suite" title="testcases.healthcheck.pt.TCHP_Hotel" hash-for-method="HPHotelRandom">HPHotelRandom</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-HP_Suite -->
@@ -120,14 +120,14 @@
           <div class="suite-HP_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">testcases.healthcheck.interjet.TCHP_Hoteles</span>
+              <span class="class-name">testcases.healthcheck.pt.TCHP_Hotel</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="HPHotelDefault">
-                  </a> <!-- HPHotelDefault -->
-                  <span class="method-name">HPHotelDefault</span>
+                  <a name="HPHotelRandom">
+                  </a> <!-- HPHotelRandom -->
+                  <span class="method-name">HPHotelRandom</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -135,7 +135,7 @@
         </div> <!-- panel HP_Suite -->
         <div panel-name="test-xml-HP_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\enrique.lopez\git\reposelenium\testautomation\interjetvacationscommx_hoteles_hp_chrome.xml</span>
+            <span class="header-content">C:\Users\enrique.lopez\git\reposelenium\testautomation\ptcommx_hoteles_hp_chrome.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -147,9 +147,9 @@
   &lt;/listeners&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;HPPTCOMMX&quot;&gt;
     &lt;parameter name=&quot;browser&quot; value=&quot;chrome&quot;/&gt;
-    &lt;parameter name=&quot;url&quot; value=&quot;https://www.interjetvacations.com.mx/hoteles&quot;/&gt;
+    &lt;parameter name=&quot;url&quot; value=&quot;https://www.pricetravel.com.mx&quot;/&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;testcases.healthcheck.interjet.TCHP_Hoteles&quot;/&gt;
+      &lt;class name=&quot;testcases.healthcheck.pt.TCHP_Hotel&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- HPPTCOMMX --&gt;
 &lt;/suite&gt; &lt;!-- HP_Suite --&gt;
@@ -191,14 +191,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'HPHotelDefault')
-data.setCell(0, 2, 'testcases.healthcheck.interjet.TCHP_Hoteles')
-data.setCell(0, 3, 19494);
+data.setCell(0, 1, 'HPHotelRandom')
+data.setCell(0, 2, 'testcases.healthcheck.pt.TCHP_Hotel')
+data.setCell(0, 3, 36406);
 window.suiteTableData['HP_Suite']= { tableData: data, tableDiv: 'times-div-HP_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 19 seconds</span>
+              <span class="suite-total-time">Total running time: 36 seconds</span>
               <div id="times-div-HP_Suite">
               </div> <!-- times-div-HP_Suite -->
             </div> <!-- times-div -->
@@ -210,11 +210,11 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">HPHotelDefault</span>
+              <span class="reporter-method-name">HPHotelRandom</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output">Starting test HPHotelDefault</span>
-                <span class="reporter-method-output">Staring HPHotelDefault</span>
-                <span class="reporter-method-output">Ending HPHotelDefault</span>
+                <span class="reporter-method-output">Starting test HPHotelRandom</span>
+                <span class="reporter-method-output">Staring HPHotelRandom</span>
+                <span class="reporter-method-output">Ending HPHotelRandom</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -225,9 +225,9 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">testcases.healthcheck.interjet.TCHP_Hoteles</span>
+              <span class="ignored-class-name">testcases.healthcheck.pt.TCHP_Hotel</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">HPHotelRandom</span>
+                <span class="ignored-method-name">HPHotelDefault</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -239,26 +239,26 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">testcases.healthcheck.interjet.TCHP_Hoteles</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">testcases.healthcheck.pt.TCHP_Hotel</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
-                <span class="method-name">setConfigVariables(https://www.interjetvacations.com.mx/hoteles, chrome, org.testng.TestRunner@681aad3b)</span>
+                <span class="method-name">setConfigVariables(https://www.pricetravel.com.mx, chrome, org.testng.TestRunner@6f0ae0ee)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
               <div class="configuration-method before">
-                <span class="method-name">prerequisites</span>
-                <span class="method-start">22 ms</span>
+                <span class="method-name">prerequisites(org.testng.TestRunner@6f0ae0ee)</span>
+                <span class="method-start">20 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">HPHotelDefault</span>
-                <span class="method-start">9234 ms</span>
+                <span class="method-name">HPHotelRandom</span>
+                <span class="method-start">11113 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">Close</span>
-                <span class="method-start">28730 ms</span>
+                <span class="method-start">47521 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-test after">
                 <span class="method-name">End</span>
-                <span class="method-start">28731 ms</span>
+                <span class="method-start">49838 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -8,7 +8,7 @@
           <include name="setConfigVariables"/>
           <include name="Close"/>
           <include name="End"/>
-          <include name="HPHotelRandom"/>
+          <include name="HPHotelDefault"/>
           <include name="prerequisites"/>
         </methods>
       </class> <!-- testcases.healthcheck.interjet.TCHP_Hoteles -->
