@@ -67,6 +67,32 @@ public class WHPHoteles {
 		Reporter.log("Ending HPHotelRandom");
 	}
 	
+	public static void HPHotelUsingDataRow(WebDriver driver, int dataRow){
+		logger.info("Starting HPHotelDefault");
+		Reporter.log("Staring HPHotelDefault");
+		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_HPHOTELRESDATA, dataRow);
+		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
+		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
+		Pages pages = new Pages(driver);
+		pages.homePage_Initialize();
+		pages.homePage.widgetSearchHotel(voHotelResNew);
+		pages.homePage.widgetClickSearchButton();
+		pages.hotelListPage_Initialize();
+		pages.hotelListPage.listSelectFirstHotelAvailable();
+		pages.roomListPage_Initialize();
+		pages.roomListPage.selectFirstRoom();
+		pages.resDetailPage_Initialize();
+		pages.resDetailPage.clearAndFillForm(voClient);
+		//pages.resDetailPage.clickOnContinue();
+		//pages.payMethodPage_Initialize();
+		//pages.payMethodPage.fillCreditForm(voCreditCard);
+		//pages.payMethodPage.clickOnCompleteReservation();
+		//pages.thankYouPage_Initialize();
+		//pages.thankYouPage.verifyCheckOutCompleted();
+		logger.info("Ending HPHotelDefault");
+		Reporter.log("Ending HPHotelDefault");
+	}
+	
 	//PDV
 	public static void HPPDVHotel(WebDriver driver){
 		logger.info("Starting HPPDVHotel");

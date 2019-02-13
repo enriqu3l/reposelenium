@@ -38,8 +38,8 @@ public class HotelListPage {
 	public HotelListPage(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
-		this.wait = new WebDriverWait(_driver,40);
-		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 20),this);
+		this.wait = new WebDriverWait(_driver,FrameworkConfig.WAIT_INTERJET);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FrameworkConfig.WAITPF_INTERJET),this);
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("/hoteles"));

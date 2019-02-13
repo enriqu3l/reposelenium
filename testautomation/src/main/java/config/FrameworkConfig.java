@@ -5,6 +5,15 @@ public class FrameworkConfig {
 	//About Hotel List
 	public static final int TOTALRECORDSPERPAGES = 20;
 	
+	//Waits for each Framework
+	public static final int WAIT_PT = 40;
+	public static final int WAIT_INTERJET = 40;
+	public static final int WAIT_PT_MOBILE = 40;
+	//Waits for AjaxElementLocatorFactory (PageFactory)
+	public static final int WAITPF_PT = 30;
+	public static final int WAITPF_INTERJET = 30;
+	public static final int WAITPF_PT_MOBILE = 30;
+	
 	//Default Reservation Data
 	public static final String R_ID = "HR001";
 	public static final String R_ORIGIN = "Ciudad de México (y alrededores), Distrito Federal, México";

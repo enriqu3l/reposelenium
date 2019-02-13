@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import config.FrameworkConfig;
 import valueobjects.VOCreditCard;
 
 public class PayMethodPageF {
@@ -24,8 +25,8 @@ public class PayMethodPageF {
 	PayMethodPageF(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
-		this.wait = new WebDriverWait(_driver,30);
-		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
+		this.wait = new WebDriverWait(_driver,FrameworkConfig.WAIT_PT);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FrameworkConfig.WAITPF_PT),this);
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("/reservar/forma-pago"));

@@ -25,8 +25,8 @@ public class ThankYouPageF {
 	public ThankYouPageF(WebDriver _driver) {
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
-		this.wait = new WebDriverWait(_driver,30);
-		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, 30),this);
+		this.wait = new WebDriverWait(_driver,FrameworkConfig.WAIT_PT);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FrameworkConfig.WAITPF_PT),this);
 		wait.until(ExpectedConditions.urlContains("completar-reservacion"));
 	}
 	
