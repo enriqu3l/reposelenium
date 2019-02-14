@@ -43,6 +43,7 @@ public class FrameworkConfig {
 	public static final String FILE_REGRESSIONHOTELRESDATA = "RegressionHotelResData.xlsx";
 	public static final String FILE_HOTELLANDINGPAGEDATA = "HotelLandingPageData.xlsx";
 	public static final String FILE_INTERJETHOTELRESDATA = "InterjetHotelResData.xlsx";
+	public static final String FILE_HPPACKAGERESDATA = "HPPackageResData.xlsx";
 	
 	//BrowserConfig
 	public static final String BROWSER_CHROME = "chrome";

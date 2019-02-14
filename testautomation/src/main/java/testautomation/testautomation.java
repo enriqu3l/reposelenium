@@ -11,7 +11,7 @@ import helpers.BrowserFactory;
 import helpers.DDManager;
 import utility.BasicUtils;
 import utility.ExcelUtils;
-import valueobjects.VOHotelRes;
+import valueobjects.VOResData;
 
 public class testautomation {
 

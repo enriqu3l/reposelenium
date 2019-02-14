@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import config.FrameworkConfig;
-import valueobjects.VOHotelRes;
+import valueobjects.VOResData;
 
 public class HomeHoteles {
 	private WebDriverWait wait;
@@ -97,7 +97,7 @@ public class HomeHoteles {
 		logger.trace("End Date: "+endDate);
 	}
 	
-	public void widgetSelectHotelOccupants(VOHotelRes voHotelRes) {
+	public void widgetSelectHotelOccupants(VOResData voHotelRes) {
 		//Image_destEndHotelTrigger.click();  esconde el calendario
 		Select rooms = new Select(widgetSelectBookerHotelRooms);
 		rooms.selectByVisibleText(Integer.toString(voHotelRes.getRoomCount()));
@@ -115,7 +115,7 @@ public class HomeHoteles {
 		widgetButtonSearchHoteles.click();
 	}
 	
-	public void widgetSearchHotel(VOHotelRes voHotelRes){
+	public void widgetSearchHotel(VOResData voHotelRes){
 		logger.info("Starting SearchHotel()");
 		widgetSelectHotelDestin(voHotelRes.getDestination());
 		widgetSelectHotelStartDate(voHotelRes.getStartDate());

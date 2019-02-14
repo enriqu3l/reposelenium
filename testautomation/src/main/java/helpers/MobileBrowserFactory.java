@@ -34,6 +34,8 @@ public class MobileBrowserFactory {
 			capabilities.setCapability(MobileCapabilityType.BROWSER_NAME,BrowserType.CHROME);
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--disable-notifications");
+			options.addArguments("--disable-translate");
+			options.addArguments("--disable-popup-blocking");
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 			
 			URL url = null;

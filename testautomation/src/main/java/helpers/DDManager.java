@@ -13,7 +13,7 @@ import utility.BasicUtils;
 import utility.ExcelUtils;
 import valueobjects.VOClient;
 import valueobjects.VOCreditCard;
-import valueobjects.VOHotelRes;
+import valueobjects.VOResData;
 
 public class DDManager {
 	/*Ya no usare resources internos, ahora los archivos estaran fuera del proyecto
@@ -33,26 +33,26 @@ public class DDManager {
 	}
 	
 	//------------------------- HOTEL RES ------------------------------
-	public static VOHotelRes getHotelResDefault(String file) {
+	public static VOResData getResDataDefault(String file) {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
 		int defaultRow = 1; //Para leer el primer registro del archivo
-		VOHotelRes voHotelRes = new VOHotelRes();
+		VOResData voHotelRes = new VOResData();
 		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
 		return voHotelRes;
 	}//EndFunction
 	
-	public  static VOHotelRes getHotelRes(String file,int row) {
+	public  static VOResData getResData(String file,int row) {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
 		//Candado que limita los valores que puede tener la variable row
 		int max = ExcelUtils.getRowCount(filePath)-1;
 		if(row<=0){row=1;}
 		if(row>max){row=max;}
-		VOHotelRes voHotelRes = new VOHotelRes();
+		VOResData voHotelRes = new VOResData();
 		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, row));
 		return voHotelRes;
 	}//EndFunction
 	
-	public static VOHotelRes getRandomHotelRes(String file) {
+	public static VOResData getResDataRandom(String file) {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
 		int min = 1;  //Comienza en 1 porque la fila de cabecera es la 0
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
@@ -60,7 +60,7 @@ public class DDManager {
 		Random rand = new Random();
 		int randomNum = rand.nextInt((max - min) + 1) + min;
 		System.out.println("Info - DDManager - getRandomHotelRes randomNum: "+randomNum);
-		VOHotelRes voHotelRes = new VOHotelRes();
+		VOResData voHotelRes = new VOResData();
 		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
 		return voHotelRes;
 	}//EndFunction
@@ -86,7 +86,7 @@ public class DDManager {
 		return voClient;
 	}
 	
-	public static VOClient getRandomClient(String file) {
+	public static VOClient getClientRandom(String file) {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
 		int min = 1;
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
@@ -122,7 +122,7 @@ public class DDManager {
 		return voCreditCard;
 	}
 	
-	public static VOCreditCard getRandomCreditCard() {
+	public static VOCreditCard getCreditCardRandom() {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_CREDITCARDSDATA;
 		int min = 1;
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
@@ -155,7 +155,7 @@ public class DDManager {
 	}
 	
 	//-------------------------- Landing Pages ----------------------------------
-	public static String getHotelListLPDefault(String file) {
+	public static String getLandingPageHLDefault(String file) {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
 		int defaultRow = 1; //Para leer el primer registro del archivo
 		List<String> data = ExcelUtils.getRow(filePath, defaultRow);
@@ -163,7 +163,7 @@ public class DDManager {
 	}
 
 	//En construccion, Aun no esta lista!
-	public static String getRoomListLPDefault(String file) {
+	public static String getLandingPageRLDefault(String file) {
 		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
 		int defaultRow = 3; //Para leer el tercer registro del archivo
 		List<String> data = ExcelUtils.getRow(filePath, defaultRow);

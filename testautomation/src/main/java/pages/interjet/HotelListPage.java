@@ -24,7 +24,7 @@ import config.CoreConfig;
 import config.FrameworkConfig;
 import helpers.WaitFor;
 import utility.BasicUtils;
-import valueobjects.VOHotelRes;
+import valueobjects.VOResData;
 
 /**
  * Esta clase contiene todos los elementos, acciones y verificaciones necesarios para la pagina SPA Hotel List

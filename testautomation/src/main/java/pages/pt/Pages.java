@@ -13,6 +13,7 @@ public class Pages {
 	public PayMethodPageF payMethodPage;
 	public ThankYouPageF thankYouPage;
 	public StageHotelListPageF stageHotelListPage;
+	public PackageListPageF packageListPage;
 	
 	public Pages(WebDriver _driver) {
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
@@ -44,5 +45,9 @@ public class Pages {
 	
 	public void stageHotelListPage_Initialize() {
 		stageHotelListPage = new StageHotelListPageF(driver);
+	}
+	
+	public void packageListPage_Initialize() {
+		packageListPage = new PackageListPageF(driver);
 	}
 }

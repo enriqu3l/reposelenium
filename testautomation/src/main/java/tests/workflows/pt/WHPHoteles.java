@@ -10,7 +10,7 @@ import helpers.DDManager;
 import pages.pt.Pages;
 import valueobjects.VOClient;
 import valueobjects.VOCreditCard;
-import valueobjects.VOHotelRes;
+import valueobjects.VOResData;
 
 public class WHPHoteles {
 	private static Logger logger = LogManager.getLogger(WHPHoteles.class);
@@ -18,13 +18,13 @@ public class WHPHoteles {
 	public static void HPHotelDefault(WebDriver driver){
 		logger.info("Starting HPHotelDefault");
 		Reporter.log("Staring HPHotelDefault");
-		VOHotelRes voHotelResNew = DDManager.getHotelResDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
+		VOResData voHotelResNew = DDManager.getResDataDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
-		pages.homePage.widgetClickSearchButton();
+		pages.homePage.widgetClickSearchHotelButton();
 		pages.hotelListPage_Initialize();
 		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
@@ -44,13 +44,13 @@ public class WHPHoteles {
 	public static void HPHotelRandom(WebDriver driver){
 		logger.info("Starting HPHotelRandom");
 		Reporter.log("Staring HPHotelRandom");
-		VOHotelRes voHotelResNew = DDManager.getRandomHotelRes(FrameworkConfig.FILE_HPHOTELRESDATA);
+		VOResData voHotelResNew = DDManager.getResDataRandom(FrameworkConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
-		pages.homePage.widgetClickSearchButton();
+		pages.homePage.widgetClickSearchHotelButton();
 		pages.hotelListPage_Initialize();
 		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
@@ -70,13 +70,13 @@ public class WHPHoteles {
 	public static void HPHotelUsingDataRow(WebDriver driver, int dataRow){
 		logger.info("Starting HPHotelDefault");
 		Reporter.log("Staring HPHotelDefault");
-		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_HPHOTELRESDATA, dataRow);
+		VOResData voHotelResNew = DDManager.getResData(FrameworkConfig.FILE_HPHOTELRESDATA, dataRow);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
-		pages.homePage.widgetClickSearchButton();
+		pages.homePage.widgetClickSearchHotelButton();
 		pages.hotelListPage_Initialize();
 		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();
@@ -97,13 +97,13 @@ public class WHPHoteles {
 	public static void HPPDVHotel(WebDriver driver){
 		logger.info("Starting HPPDVHotel");
 		Reporter.log("Staring HPPDVHotel");
-		VOHotelRes voHotelResNew = DDManager.getHotelResDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
+		VOResData voHotelResNew = DDManager.getResDataDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
-		pages.homePage.widgetClickSearchButton();
+		pages.homePage.widgetClickSearchHotelButton();
 		pages.hotelListPage_Initialize();
 		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.roomListPage_Initialize();

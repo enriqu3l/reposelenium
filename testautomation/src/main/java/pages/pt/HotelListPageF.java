@@ -26,7 +26,7 @@ import config.CoreConfig;
 import config.FrameworkConfig;
 import helpers.WaitFor;
 import utility.BasicUtils;
-import valueobjects.VOHotelRes;
+import valueobjects.VOResData;
 
 /**
  * Esta clase contiene todos los elementos, acciones y verificaciones necesarios para la pagina SPA Hotel List
@@ -216,7 +216,7 @@ public class HotelListPageF {
 		adults.selectByVisibleText(Integer.toString(adultsNumber));
 	}
 	
-	public void widgetSetOccupants(VOHotelRes voHotelRes) {
+	public void widgetSetOccupants(VOResData voHotelRes) {
 		//Aqui el codigo para realizar la seleccion de rooms, adults, kids y agekids
 		Select rooms = new Select(widgetSelectHotelRooms);
 		rooms.selectByVisibleText(Integer.toString(voHotelRes.getRoomCount()));
@@ -309,7 +309,7 @@ public class HotelListPageF {
 		logger.trace("Valor de widgetInputEndDate: " + widgetInputEndDate.getAttribute("value"));
 	}
 	
-	public void widgetSetReservation(VOHotelRes voHotelRes){
+	public void widgetSetReservation(VOResData voHotelRes){
 		logger.info("Starting widgetChangeSearch()");
 		waitForContentToBeReady();
 		widgetSetDestin(voHotelRes.getDestination());
@@ -411,7 +411,7 @@ public class HotelListPageF {
 		}
 	}
 	
-	public void widgetVerifyOccupantsToBe(VOHotelRes voHotelRes) {
+	public void widgetVerifyOccupantsToBe(VOResData voHotelRes) {
 		logger.info("Starting widgetVerifyOccupantsToBe()");
 		waitForContentToBeReady();
 		
@@ -457,7 +457,7 @@ public class HotelListPageF {
 		}
 	}
 
-	public void widgetVerifyReservationToBe(VOHotelRes voHotelRes) {
+	public void widgetVerifyReservationToBe(VOResData voHotelRes) {
 		logger.info("Starting widgetVerifyReservationInfoToBe()");
 		waitForContentToBeReady();
 		

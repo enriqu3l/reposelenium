@@ -10,7 +10,7 @@ import helpers.DDManager;
 import pages.interjet.Pages;
 import valueobjects.VOClient;
 import valueobjects.VOCreditCard;
-import valueobjects.VOHotelRes;
+import valueobjects.VOResData;
 
 public class WHPHoteles {
 	private static Logger logger = LogManager.getLogger(WHPHoteles.class);
@@ -18,7 +18,7 @@ public class WHPHoteles {
 	public static void HPHotelDefault(WebDriver driver){
 		logger.info("Starting HPHotelDefault");
 		Reporter.log("Staring HPHotelDefault");
-		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_INTERJETHOTELRESDATA, 1);
+		VOResData voHotelResNew = DDManager.getResData(FrameworkConfig.FILE_INTERJETHOTELRESDATA, 1);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
@@ -45,7 +45,7 @@ public class WHPHoteles {
 	public static void HPHotelRandom(WebDriver driver){
 		logger.info("Starting HPHotelRandom");
 		Reporter.log("Staring HPHotelRandom");
-		VOHotelRes voHotelResNew = DDManager.getRandomHotelRes(FrameworkConfig.FILE_INTERJETHOTELRESDATA);
+		VOResData voHotelResNew = DDManager.getResDataRandom(FrameworkConfig.FILE_INTERJETHOTELRESDATA);
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);

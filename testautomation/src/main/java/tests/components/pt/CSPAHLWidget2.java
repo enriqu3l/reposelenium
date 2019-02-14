@@ -11,7 +11,7 @@ import org.testng.Reporter;
 import config.FrameworkConfig;
 import helpers.DDManager;
 import pages.pt.Pages;
-import valueobjects.VOHotelRes;
+import valueobjects.VOResData;
 
 public class CSPAHLWidget2 {
 	private static Logger logger = LogManager.getLogger(CSPAHLWidget2.class);
@@ -99,7 +99,7 @@ public class CSPAHLWidget2 {
 		// <Setup>
 		logger.info("Starting searchDifferentDestinTest");
 		Reporter.log("Starting searchDifferentDestinTest");
-		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA, 2);
+		VOResData voHotelResNew = DDManager.getResData(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA, 2);
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.stageHotelListPage_Initialize();
@@ -126,7 +126,7 @@ public class CSPAHLWidget2 {
 		// <Setup>
 		logger.info("Starting searchDifferentDatesTest");
 		Reporter.log("Starting searchDifferentDatesTest");
-		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,2);
+		VOResData voHotelResNew = DDManager.getResData(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,2);
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.stageHotelListPage_Initialize();
@@ -156,7 +156,7 @@ public class CSPAHLWidget2 {
 		// <Setup>
 		logger.info("Starting searchDifferentOccupantsTest");
 		Reporter.log("Starting searchDifferentOccupantsTest");
-		VOHotelRes voHotelRes = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,11);// Aqui leo el row 11 donde tengo varios rooms
+		VOResData voHotelRes = DDManager.getResData(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,11);// Aqui leo el row 11 donde tengo varios rooms
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.stageHotelListPage_Initialize();
@@ -181,7 +181,7 @@ public class CSPAHLWidget2 {
 		logger.info("Starting searchDifferentReservationTest");
 		Reporter.log("Starting searchDifferentReservationTest");
 		// Obtengo el row 12 del archivo
-		VOHotelRes voHotelRes = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,12);
+		VOResData voHotelRes = DDManager.getResData(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA,12);
 		Pages pages = new Pages(driver);
 		// <When>
 		pages.stageHotelListPage_Initialize();
@@ -203,7 +203,7 @@ public class CSPAHLWidget2 {
 		logger.info("Starting prueba");
 		Reporter.log("Starting prueba");
 		//Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
-		VOHotelRes voHotelResNew = DDManager.getHotelRes(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA, 1);
+		VOResData voHotelResNew = DDManager.getResData(FrameworkConfig.FILE_REGRESSIONHOTELRESDATA, 1);
 		Pages pages = new Pages(driver);
 		//<When>
 		pages.stageHotelListPage_Initialize();

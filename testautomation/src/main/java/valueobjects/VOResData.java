@@ -12,20 +12,22 @@ import org.testng.Assert;
 
 import config.CoreConfig;
 
-public class VOHotelRes {
+public class VOResData {
 	public static final String ADULTS = "adults";
 	public static final String KIDS = "kids";
 	public static final String AGEKIDS = "agekids";
 	
-	private String idHotelRes;
+	private String idRes;
+	private String origin;
 	private String destination;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	private List<Map<String, String>> rooms;
 	
-	public VOHotelRes() {
+	public VOResData() {
 		super();
-		this.idHotelRes = "";
+		this.idRes = "";
+		this.origin = "";
 		this.destination = "";
 		this.startDate = LocalDate.parse("2000-01-01");
 		this.endDate = LocalDate.parse("2000-01-01");
@@ -34,15 +36,17 @@ public class VOHotelRes {
 	
 	/**
 	 * @param idHotelRes - String. Identificador de la reservacion
-	 * @param destination - String. destino
-	 * @param startDate - String. fecha de inicio de la reservacion
-	 * @param endDate - String. fecha final de la reservacion
+	 * @param origin - String. Origen
+	 * @param destination - String. Destino
+	 * @param startDate - String. Fecha de inicio de la reservacion
+	 * @param endDate - String. Fecha final de la reservacion
 	 * @param rooms - List-Map-String,String--. Lista con los datos de cada room
 	 */
-	public VOHotelRes(String idHotelRes, String destination, String startDate, String endDate,
+	public VOResData(String idHotelRes, String origin, String destination, String startDate, String endDate,
 			List<Map<String, String>> rooms) {
 		super();
-		this.idHotelRes = idHotelRes.trim();
+		this.idRes = idHotelRes.trim();
+		this.origin = origin.trim();
 		this.destination = destination.trim();
 		this.startDate = LocalDate.parse(startDate.trim(),DateTimeFormat.forPattern("dd/MM/yyyy"));
 		this.endDate = LocalDate.parse(endDate.trim(),DateTimeFormat.forPattern("dd/MM/yyyy"));
@@ -50,10 +54,11 @@ public class VOHotelRes {
 	}
 	
 	
-	public VOHotelRes(String idHotelRes, String destination, LocalDate startDate, LocalDate endDate,
+	public VOResData(String idHotelRes, String origin, String destination, LocalDate startDate, LocalDate endDate,
 			List<Map<String, String>> rooms) {
 		super();
-		this.idHotelRes = idHotelRes.trim();
+		this.idRes = idHotelRes.trim();
+		this.origin = origin.trim();
 		this.destination = destination.trim();
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -61,11 +66,19 @@ public class VOHotelRes {
 	}
 
 	public String getIdHotelRes() {
-		return idHotelRes;
+		return idRes;
 	}
 
 	public void setIdHotelRes(String idHotelRes) {
-		this.idHotelRes = idHotelRes;
+		this.idRes = idHotelRes;
+	}
+	
+	public String getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(String origin) {
+		this.origin = origin;
 	}
 
 	public String getDestination() {
@@ -253,31 +266,33 @@ public class VOHotelRes {
 	public void setDataUsingList(List<String> data) {
 		/*According Excel file, this is how data is structured:
 		 * 0 - IdHotelRes
-		 * 1 - Destination
-		 * 2 - PlusDays
-		 * 3 - ResDays
-		 * 4 - Room1Adults
-		 * 5 - Room1Kids
-		 * 6 - Room1AgeKids
-		 * 7 - Room2Adults
-		 * 8 - Room2Kids
-		 * 9 - Room2AgeKids
-		 * 10 - Room3Adults
-		 * 11 - Room3Kids
-		 * 12 - Room3AgeKids
+		 * 1 - origin
+		 * 2 - Destination
+		 * 3 - PlusDays
+		 * 4 - ResDays
+		 * 5 - Room1Adults
+		 * 6 - Room1Kids
+		 * 7 - Room1AgeKids
+		 * 8 - Room2Adults
+		 * 9 - Room2Kids
+		 * 10 - Room2AgeKids
+		 * 11 - Room3Adults
+		 * 12 - Room3Kids
+		 * 13 - Room3AgeKids
 		 * ...
 		 */
 		
 		if(data==null || data.isEmpty()){System.out.println("La lista esta vacia");Assert.assertFalse(data.isEmpty(),"data is empty");}
-		this.idHotelRes = data.get(0).trim();
-		this.destination = data.get(1).trim();
-		int startDay = Integer.parseInt(data.get(2).trim());
+		this.idRes = data.get(0).trim();
+		this.origin = data.get(1).trim();
+		this.destination = data.get(2).trim();
+		int startDay = Integer.parseInt(data.get(3).trim());
 		this.startDate = LocalDate.now().plusDays(startDay);
-		int endDay = Integer.parseInt(data.get(2).trim()) + Integer.parseInt(data.get(3).trim());
+		int endDay = Integer.parseInt(data.get(3).trim()) + Integer.parseInt(data.get(4).trim());
 		this.endDate = LocalDate.now().plusDays(endDay);
-		
-		if(this.rooms==null){this.rooms = new ArrayList<Map<String, String>>();}
-		for(int i=4;i<33;i+=3) {
+		this.rooms = null;
+		this.rooms = new ArrayList<Map<String, String>>();
+		for(int i=5;i<34;i+=3) {
 			//Validamos que la columna de Adultos NO este vacia o No tenga valor "0", dado que un cuarto no puede tener 0 adultos
 			if(!(data.get(i).isEmpty() || data.get(i).trim().equals("0"))) {
 				Map<String, String> map = new HashMap<String, String>();
@@ -285,6 +300,7 @@ public class VOHotelRes {
 				map.put(KIDS, data.get(i+1).trim());
 				map.put(AGEKIDS, data.get(i+2).trim());
 				this.rooms.add(map);
+				map = null;
 			}
 		}
 	}

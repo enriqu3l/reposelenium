@@ -10,7 +10,7 @@ import helpers.DDManager;
 import pages.pt.Pages;
 import valueobjects.VOClient;
 import valueobjects.VOCreditCard;
-import valueobjects.VOHotelRes;
+import valueobjects.VOResData;
 
 public class WHPHotelConPaginado {
 	private static Logger logger = LogManager.getLogger(WHPHotelConPaginado.class);
@@ -18,13 +18,13 @@ public class WHPHotelConPaginado {
 	public static void HPHotelConCambioDePagina(WebDriver driver) throws InterruptedException{
 		logger.info("Starting workflow HPHotelConCambioDeDestino");
 		Reporter.log("Starting workflow HPHotelConCambioDeDestino");
-		VOHotelRes voHotelResNew = DDManager.getHotelResDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
+		VOResData voHotelResNew = DDManager.getResDataDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
-		pages.homePage.widgetClickSearchButton();
+		pages.homePage.widgetClickSearchHotelButton();
 		pages.hotelListPage_Initialize();
 		pages.hotelListPage.pagingClickOnNextPage();
 		pages.hotelListPage.listSelectFirstHotelAvailable();
