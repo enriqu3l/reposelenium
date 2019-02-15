@@ -10,7 +10,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.BrowserFactory;
 import tests.workflows.pt.WHPHotelConPaginado;
 
@@ -22,7 +22,7 @@ public class TCHP_HotelConPaginado {
 	public void beforeMethod(ITestContext itc) {
 		Reporter.log("Starting Browser");
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, FrameworkConfig.URL_PTCOMMX_PROD);
+		driver = BrowserFactory.StartBrowser(FWConfig.BROWSER_DEFAULT, FWConfig.URL_PTCOMMX_PROD);
 		itc.setAttribute("WebDriver", driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");

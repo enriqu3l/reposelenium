@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.BrowserFactory;
 import tests.workflows.pt.WHPHoteles;
 

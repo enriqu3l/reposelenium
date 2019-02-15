@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -25,7 +25,7 @@ public class MobileBrowserFactory {
 		Assert.assertFalse((_browserName.equals("") || _browserName.equals(null)),"El parametro _browserName es nullo o no contiene informacion");
 		Assert.assertFalse((_url.equals("") || _url.equals(null)),"El parametro _url es nullo o no contiene informacion");
 		
-		if(_browserName.equalsIgnoreCase(FrameworkConfig.BROWSER_CHROME)) {
+		if(_browserName.equalsIgnoreCase(FWConfig.BROWSER_CHROME)) {
 			DesiredCapabilities capabilities = DesiredCapabilities.android();
 			capabilities.setCapability("autoDismissAlerts", true);
 			capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,_device);

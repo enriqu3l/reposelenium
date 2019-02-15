@@ -7,7 +7,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.BrowserFactory;
 import utility.BasicUtils;
 
@@ -37,7 +37,7 @@ public class ListenerHealthCheck implements ITestListener{
 	    driver = (WebDriver) context.getAttribute("WebDriver");
 	    
 		//Imprimir pantalla de la falla!
-		BasicUtils.ScreenShot(driver, "FAILURE-"+result.getName(), FrameworkConfig.PATH_SCREENSHOOT_FAILURES);
+		BasicUtils.ScreenShot(driver, "FAILURE-"+result.getName(), FWConfig.PATH_SCREENSHOOT_FAILURES);
 	}
 
 	@Override

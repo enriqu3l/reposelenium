@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import utility.BasicUtils;
 import valueobjects.VOClient;
 
@@ -26,8 +26,8 @@ public class ResDetailPageF {
 	public ResDetailPageF(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
-		this.wait = new WebDriverWait(_driver,FrameworkConfig.WAIT_PT);
-		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FrameworkConfig.WAITPF_PT),this);
+		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_PT);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FWConfig.WAITPF_PT),this);
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("/reservar/detalles-reservacion"));

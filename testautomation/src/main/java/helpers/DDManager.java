@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import utility.BasicUtils;
 import utility.ExcelUtils;
 import valueobjects.VOClient;
@@ -34,7 +34,7 @@ public class DDManager {
 	
 	//------------------------- HOTEL RES ------------------------------
 	public static VOResData getResDataDefault(String file) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		String filePath = FWConfig.PATH_DATASOURCE+file;
 		int defaultRow = 1; //Para leer el primer registro del archivo
 		VOResData voHotelRes = new VOResData();
 		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
@@ -42,7 +42,7 @@ public class DDManager {
 	}//EndFunction
 	
 	public  static VOResData getResData(String file,int row) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		String filePath = FWConfig.PATH_DATASOURCE+file;
 		//Candado que limita los valores que puede tener la variable row
 		int max = ExcelUtils.getRowCount(filePath)-1;
 		if(row<=0){row=1;}
@@ -53,7 +53,7 @@ public class DDManager {
 	}//EndFunction
 	
 	public static VOResData getResDataRandom(String file) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		String filePath = FWConfig.PATH_DATASOURCE+file;
 		int min = 1;  //Comienza en 1 porque la fila de cabecera es la 0
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
 		//Asi se obtiene un numero random entre valor min y max:
@@ -69,14 +69,14 @@ public class DDManager {
 	
 	//------------------------- CLIENT DATA ------------------------------
 	public static VOClient getClientDataDefault(String file) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		String filePath = FWConfig.PATH_DATASOURCE+file;
 		int defaultRow = 1; //Para leer el primer registro del archivo
 		VOClient voClient = new VOClient();
 		voClient.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
 		return voClient;
 	}
 	public static VOClient getClientData(String file, int row) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		String filePath = FWConfig.PATH_DATASOURCE+file;
 		//Candado que limita los valores que puede tener la variable row
 		int max = ExcelUtils.getRowCount(filePath)-1;
 		if(row<=0){row=1;}
@@ -87,7 +87,7 @@ public class DDManager {
 	}
 	
 	public static VOClient getClientRandom(String file) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		String filePath = FWConfig.PATH_DATASOURCE+file;
 		int min = 1;
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
 		//Asi se obtiene un numero random entre valor min y max.
@@ -102,7 +102,7 @@ public class DDManager {
 	
 	//-------------------------CREDIT CARD------------------------------
 	public static VOCreditCard getCreditCardDefault() {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_CREDITCARDSDATA;
+		String filePath = FWConfig.PATH_DATASOURCE+FWConfig.FILE_CREDITCARDSDATA;
 		int row = 1; //Hardcodeada para que lea el primer registro del archivo excel
 		
 		VOCreditCard voCreditCard = new VOCreditCard();
@@ -111,7 +111,7 @@ public class DDManager {
 	}//EndFunction
 	
 	public static VOCreditCard getCreditCard(int row) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_CREDITCARDSDATA;
+		String filePath = FWConfig.PATH_DATASOURCE+FWConfig.FILE_CREDITCARDSDATA;
 		//Candado que limita los valores que puede tener la variable row
 		int max = ExcelUtils.getRowCount(filePath)-1;
 		if(row<=0){row=1;}
@@ -123,7 +123,7 @@ public class DDManager {
 	}
 	
 	public static VOCreditCard getCreditCardRandom() {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_CREDITCARDSDATA;
+		String filePath = FWConfig.PATH_DATASOURCE+FWConfig.FILE_CREDITCARDSDATA;
 		int min = 1;
 		int max = ExcelUtils.getRowCount(filePath)-1; //Le resto 1 porque la primer fila es la 0
 		//Asi se obtiene un numero random entre valor min y max.
@@ -140,7 +140,7 @@ public class DDManager {
 	
 	//Necesito verificar si funciona correctamente 
 	public static boolean saveLocator(String locator) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_LOCATORSGENERATED;
+		String filePath = FWConfig.PATH_DATASOURCE+FWConfig.FILE_LOCATORSGENERATED;
 		List<String> data = new ArrayList<String>();
 		data.add(locator);
 		data.add(LocalDateTime.now().toString("dd/MM/yyyy_HH:mm:ss"));
@@ -156,7 +156,7 @@ public class DDManager {
 	
 	//-------------------------- Landing Pages ----------------------------------
 	public static String getLandingPageHLDefault(String file) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		String filePath = FWConfig.PATH_DATASOURCE+file;
 		int defaultRow = 1; //Para leer el primer registro del archivo
 		List<String> data = ExcelUtils.getRow(filePath, defaultRow);
 		return BasicUtils.createUrlHotelLPFromList(data);
@@ -164,7 +164,7 @@ public class DDManager {
 
 	//En construccion, Aun no esta lista!
 	public static String getLandingPageRLDefault(String file) {
-		String filePath = FrameworkConfig.PATH_DATASOURCE+file;
+		String filePath = FWConfig.PATH_DATASOURCE+file;
 		int defaultRow = 3; //Para leer el tercer registro del archivo
 		List<String> data = ExcelUtils.getRow(filePath, defaultRow);
 		return BasicUtils.createUrlHotelLPFromList(data);

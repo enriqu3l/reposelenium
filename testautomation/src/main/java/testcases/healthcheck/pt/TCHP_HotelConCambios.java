@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.BrowserFactory;
 import tests.workflows.pt.WHPHotelConCambios;
 
@@ -33,9 +33,9 @@ public class TCHP_HotelConCambios {
 		
 		//Metodo 1 - Leyendo el nombre del test
 		gtestName = itc.getName();
-		if(gtestName.equals("HPPTCOMMX")) {gURL = FrameworkConfig.URL_PTCOMMX_PROD;}
-		else if(gtestName.equals("HPPTCOM")) {gURL = FrameworkConfig.URL_PTCOM_PROD;}
-		else if(gtestName.equals("HPPTCO")) {gURL = FrameworkConfig.URL_PTCO_PROD;}
+		if(gtestName.equals("HPPTCOMMX")) {gURL = FWConfig.URL_PTCOMMX_PROD;}
+		else if(gtestName.equals("HPPTCOM")) {gURL = FWConfig.URL_PTCOM_PROD;}
+		else if(gtestName.equals("HPPTCO")) {gURL = FWConfig.URL_PTCO_PROD;}
 		
 		//Metodo 2 - Obteniendo un parametro
 		//URL = url;

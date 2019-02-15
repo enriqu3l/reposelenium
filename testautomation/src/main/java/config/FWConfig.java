@@ -1,6 +1,6 @@
 package config;
 
-public class FrameworkConfig {
+public class FWConfig {
 	
 	//About Hotel List
 	public static final int TOTALRECORDSPERPAGES = 20;

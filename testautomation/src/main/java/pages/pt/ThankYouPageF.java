@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.DDManager;
 import utility.BasicUtils;
 
@@ -25,8 +25,8 @@ public class ThankYouPageF {
 	public ThankYouPageF(WebDriver _driver) {
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
-		this.wait = new WebDriverWait(_driver,FrameworkConfig.WAIT_PT);
-		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FrameworkConfig.WAITPF_PT),this);
+		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_PT);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FWConfig.WAITPF_PT),this);
 		wait.until(ExpectedConditions.urlContains("completar-reservacion"));
 	}
 	
@@ -70,7 +70,7 @@ public class ThankYouPageF {
 	}
 	
 	public void saveScreenShot() {
-		BasicUtils.ScreenShot(driver, locator.getText(), FrameworkConfig.PATH_SCREENSHOOT_LOCATORS);
+		BasicUtils.ScreenShot(driver, locator.getText(), FWConfig.PATH_SCREENSHOOT_LOCATORS);
 	}
 	
 	public void saveLocator() {

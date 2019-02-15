@@ -1,7 +1,7 @@
 package valueobjects;
 import java.util.List;
 
-import config.FrameworkConfig.CardTypes;
+import config.FWConfig.CardTypes;
 
 public class VOCreditCard {
 	private String idCreditCard;

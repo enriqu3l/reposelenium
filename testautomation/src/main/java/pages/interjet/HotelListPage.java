@@ -21,7 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import config.CoreConfig;
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.WaitFor;
 import utility.BasicUtils;
 import valueobjects.VOResData;
@@ -38,8 +38,8 @@ public class HotelListPage {
 	public HotelListPage(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
-		this.wait = new WebDriverWait(_driver,FrameworkConfig.WAIT_INTERJET);
-		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FrameworkConfig.WAITPF_INTERJET),this);
+		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_INTERJET);
+		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FWConfig.WAITPF_INTERJET),this);
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("/hoteles"));
@@ -75,7 +75,7 @@ public class HotelListPage {
 	}
 	
 	public void listClickButtonSeeOffer(int btnIndex){
-		Assert.assertTrue((btnIndex>=0 && btnIndex<FrameworkConfig.TOTALRECORDSPERPAGES),"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
+		Assert.assertTrue((btnIndex>=0 && btnIndex<FWConfig.TOTALRECORDSPERPAGES),"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
 		waitForContentToBeReady();
 		listVerifyResultListHasElements();
 		WebElement buttonSeeOffer = listAllBlocksResults.get(btnIndex).findElement(byListReserveButton);

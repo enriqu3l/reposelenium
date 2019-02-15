@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.DDManager;
 import pages.pt.Pages;
 import valueobjects.VOClient;
@@ -18,9 +18,9 @@ public class WHPHotelConPaginado {
 	public static void HPHotelConCambioDePagina(WebDriver driver) throws InterruptedException{
 		logger.info("Starting workflow HPHotelConCambioDeDestino");
 		Reporter.log("Starting workflow HPHotelConCambioDeDestino");
-		VOResData voHotelResNew = DDManager.getResDataDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
+		VOResData voHotelResNew = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
-		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);

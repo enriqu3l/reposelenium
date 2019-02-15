@@ -10,7 +10,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.BrowserFactory;
 import helpers.DDManager;
 import tests.components.pt.CSPAHLWidget;
@@ -23,8 +23,8 @@ public class TCSPAHLPaging {
 	public void prerequisites(ITestContext itc) {
 		Reporter.log("Starting Browser");
 		//String url = "https://www.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F01&checkout=2019%2F02%2F03&rooms=1&adults=2&kids=0&agekids=&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1";
-		String url = DDManager.getLandingPageHLDefault(FrameworkConfig.FILE_HOTELLANDINGPAGEDATA);
-		driver = BrowserFactory.StartBrowser(FrameworkConfig.BROWSER_DEFAULT, url);
+		String url = DDManager.getLandingPageHLDefault(FWConfig.FILE_HOTELLANDINGPAGEDATA);
+		driver = BrowserFactory.StartBrowser(FWConfig.BROWSER_DEFAULT, url);
 		itc.setAttribute("WebDriver", driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.BrowserFactory;
 import helpers.DDManager;
 import utility.BasicUtils;
@@ -23,7 +23,6 @@ public class testautomation {
 		 * mvn test -PHappypath --Para ejecutar con un perfil deseado
 		 */
 		
-		
 		/*String data[][];
 		data = ExcelUtils.getDataTableFormat("ProductHotelData.xlsx","C:\\Automation\\",1,1,4,5);
 		data = ExcelUtils.getDataTableFormatR("SourceDataFiles/HotelResData.xlsx", 1, 1, 1, 12);
@@ -35,7 +34,6 @@ public class testautomation {
 		//System.out.println("Numero de Rows: " + row);
 		//System.out.println("Numero de Columns: " + column);
 		
-		
 		/*
 		List<String> row = ExcelUtils.getRowR("SourceDataFiles/HotelResData.xlsx",4);
 		int i=0;
@@ -45,7 +43,6 @@ public class testautomation {
 		    System.out.println("item["+i+"]: "+iterator.next());
 		}
 		*/
-		
 		
 		/*Aun no soluciono el error de editar y guardar el recurso excel
 		 * Se esta guardando el archivo de target pero no el de src
@@ -172,10 +169,29 @@ public class testautomation {
 		//String url = BasicUtils.createUrlHotelLP("www.pricetravel.com", "hotel/grand-oasis-cancun", "2019-02-20", "2019-02-23", "3", "69364", "SPA-Hotel-List", "1", "1", "2");
 		//System.out.println("URL: "+url);
 		
-		int i=01;
-		int j=10;
-		System.out.println("Valor de i:"+Integer.toString(i)+"<-");
-		System.out.println("Valor de j:"+Integer.toString(j)+"<-");
+		/*
+		 * HackerRank - Counting Valley - Solution
+		String s = "DDUUUUUDDDDDDUUUUUUUUDDD";
+		int valley = 0;
+		int level = 0;
+		for(int i=0;i<s.length();i++){
+			if(s.charAt(i)=='D') {
+				level--;
+			}else if(s.charAt(i)=='U') {
+				level++;
+				if(level==0) {
+					valley++;
+				}
+			}else {
+				System.out.println("Error. Opcion no valida");
+			}
+		}
+		System.out.println("Valleys: "+valley);
+		*/
+		
+		
+		
+		
 	}
 }
 
@@ -184,13 +200,6 @@ public class testautomation {
 1.- Cuando se abre una nueva tab, asegurarse de seleccionarla
 porque el driver no switchea por si solo a la nueva tab!!
 
-2.- Si primero se inicializa un webElement (con pageFactory o usando findElement())
-y despues se usa un wait para esperar a que carge un contenido, no se podra encontrar ni usar!!
-Te esperara un sin fin de errores!!!
-Lo correcto es poner un wait hasta que el elemento este cargado en la pagina y despues
-inicializarlo con PageFactory o con findElement().
-Por todo lo anterior se recomienda esperar con un wait ExpectedCondition a que
-el contenido esta propiamente cargado para despues ya inicializar webElements
 */
 
 /*Mover el mouse al "Input Destino" para que no afecte la seleccion de los elementos

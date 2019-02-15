@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.DDManager;
 import pages.pt.Pages;
 import valueobjects.VOClient;
@@ -18,9 +18,9 @@ public class WHPPaquetes {
 	public static void hpPackageDefault(WebDriver driver){
 		logger.info("Starting HPHotelDefault");
 		Reporter.log("Staring HPHotelDefault");
-		VOResData voResData = DDManager.getResDataDefault(FrameworkConfig.FILE_HPPACKAGERESDATA);
+		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPPACKAGERESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
-		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchPackage(voResData);
@@ -44,9 +44,9 @@ public class WHPPaquetes {
 	public static void hpPackageRandom(WebDriver driver){
 		logger.info("Starting HPHotelRandom");
 		Reporter.log("Staring HPHotelRandom");
-		VOResData voResData = DDManager.getResDataRandom(FrameworkConfig.FILE_HPPACKAGERESDATA);
+		VOResData voResData = DDManager.getResDataRandom(FWConfig.FILE_HPPACKAGERESDATA);
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
-		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchPackage(voResData);
@@ -70,9 +70,9 @@ public class WHPPaquetes {
 	public static void hpPackageUsingDataRow(WebDriver driver, int dataRow){
 		logger.info("Starting HPHotelDefault");
 		Reporter.log("Staring HPHotelDefault");
-		VOResData voResData = DDManager.getResData(FrameworkConfig.FILE_HPPACKAGERESDATA, dataRow);
+		VOResData voResData = DDManager.getResData(FWConfig.FILE_HPPACKAGERESDATA, dataRow);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
-		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchPackage(voResData);

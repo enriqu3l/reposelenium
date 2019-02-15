@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
-import config.FrameworkConfig;
+import config.FWConfig;
 import helpers.DDManager;
 import pages.pt.Pages;
 import valueobjects.VOClient;
@@ -18,9 +18,9 @@ public class WHPHotelConCambios {
 	public static void HPHotelConCambioDeDestino(WebDriver driver){
 		logger.info("Starting workflow HPHotelConCambioDeDestino");
 		Reporter.log("Starting workflow HPHotelConCambioDeDestino");
-		VOResData voHotelResNew = DDManager.getResDataDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
+		VOResData voHotelResNew = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
-		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
@@ -44,9 +44,9 @@ public class WHPHotelConCambios {
 	public static void HPHotelConCambioDeFecha(WebDriver driver){
 		logger.info("Starting workflow HPHotelConCambioDeFecha");
 		Reporter.log("Staring workflow HPHotelConCambioDeFecha");
-		VOResData voHotelResNew = DDManager.getResDataDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
+		VOResData voHotelResNew = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
-		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);
@@ -70,9 +70,9 @@ public class WHPHotelConCambios {
 	public static void HPHotelConCambioDeOcupantes(WebDriver driver){
 		logger.info("Starting workflow HPHotelConCambioDeOcupantes");
 		Reporter.log("Staring workflow HPHotelConCambioDeOcupantes");
-		VOResData voHotelResNew = DDManager.getResDataDefault(FrameworkConfig.FILE_HPHOTELRESDATA);
+		VOResData voHotelResNew = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
-		VOClient voClient = DDManager.getClientDataDefault(FrameworkConfig.FILE_CLIENTDATA);
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
 		pages.homePage_Initialize();
 		pages.homePage.widgetSearchHotel(voHotelResNew);

@@ -8,4 +8,6 @@ public class CoreConfig {
 	
 	//Split character
 	public static final String SPLIT = ",";
+	
+	
 }
