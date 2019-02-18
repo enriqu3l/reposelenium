@@ -15,7 +15,11 @@ import org.testng.annotations.Test;
 
 import config.FWConfig;
 import helpers.BrowserFactory;
-import tests.workflows.pt.WHPHotelConCambios;
+import helpers.DDManager;
+import pages.pt.Pages;
+import valueobjects.VOClient;
+import valueobjects.VOCreditCard;
+import valueobjects.VOResData;
 
 public class TCHP_HotelConCambios {
 	WebDriver driver;
@@ -52,7 +56,7 @@ public class TCHP_HotelConCambios {
 	public void beforeMethod(ITestContext itc) {
 		logger.info("***************************** Starting @BeforeMethod **********************************");
 		Reporter.log("Starting Browser");
-		driver = BrowserFactory.StartBrowser(gbrowser, gURL);
+		driver = BrowserFactory.startBrowser(gbrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
@@ -62,21 +66,74 @@ public class TCHP_HotelConCambios {
 	public void HPHotelConCambioDeDestino() throws InterruptedException{
 		Reporter.log("Starting @HPHotelConCambioDeDestino");
 		logger.info("Starting @HPHotelConCambioDeDestino");
-		WHPHotelConCambios.HPHotelConCambioDeDestino(driver);
+		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
+		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
+		Pages pages = new Pages(driver);
+		pages.homeWidget_Initialize();
+		pages.homeWidget.searchHotel(voResData);
+		pages.homeWidget.clickSearchHotelButton();
+		pages.hotelListPage_Initialize();
+		//Lo tengo hardcodeado a Las vegas, necesito hacerlo dinamico con un archivo o una funcion
+		pages.hotelListPage.widgetSetDestin("Las Vegas (y alrededores), Nevada, Estados Unidos de América");
+		pages.hotelListPage.widgetClickSubmit();
+		pages.hotelListPage.listSelectFirstHotelAvailable();
+		pages.roomListPage_Initialize();
+		pages.roomListPage.selectFirstRoom();
+		pages.resDetailPage_Initialize();
+		pages.resDetailPage.clearAndFillForm(voClient);
+		pages.resDetailPage.clickOnContinue();
+		pages.payMethodPage_Initialize();
+		pages.payMethodPage.fillCreditForm(voCreditCard);
 	}
 	
 	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
 	public void HPHotelConCambioDeFecha() throws InterruptedException{		
 		Reporter.log("Starting @HPHotelConCambioDeFecha");
 		logger.info("Starting @HPHotelConCambioDeFecha");
-		WHPHotelConCambios.HPHotelConCambioDeFecha(driver);
+		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
+		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
+		Pages pages = new Pages(driver);
+		pages.homeWidget_Initialize();
+		pages.homeWidget.searchHotel(voResData);
+		pages.homeWidget.clickSearchHotelButton();
+		pages.hotelListPage_Initialize();
+		pages.hotelListPage.widgetSetStartDate("10/03/2019");
+		pages.hotelListPage.widgetSetEndDate("14/03/2019");
+		pages.hotelListPage.widgetClickSubmit();
+		pages.hotelListPage.listSelectFirstHotelAvailable();
+		pages.roomListPage_Initialize();
+		pages.roomListPage.selectFirstRoom();
+		pages.resDetailPage_Initialize();
+		pages.resDetailPage.clearAndFillForm(voClient);
+		pages.resDetailPage.clickOnContinue();
+		pages.payMethodPage_Initialize();
+		pages.payMethodPage.fillCreditForm(DO_CreditCard);
 	}
 	
 	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
 	public void HPHotelConCambioDeOcupantes() throws InterruptedException{		
 		Reporter.log("Starting @HPHotelConCambioDeOcupantes");
 		logger.info("Starting @HPHotelConCambioDeOcupantes");
-		WHPHotelConCambios.HPHotelConCambioDeOcupantes(driver);
+		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
+		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
+		Pages pages = new Pages(driver);
+		pages.homeWidget_Initialize();
+		pages.homeWidget.searchHotel(voResData);
+		pages.homeWidget.clickSearchHotelButton();
+		pages.hotelListPage_Initialize();
+		pages.hotelListPage.widgetSetAdults(4);
+		pages.hotelListPage.widgetClickSubmit();
+		pages.hotelListPage.listSelectFirstHotelAvailable();
+		pages.roomListPage_Initialize();
+		pages.roomListPage.selectFirstRoom();
+		pages.resDetailPage_Initialize();
+		pages.resDetailPage.clearAndFillForm(voClient);
+		pages.resDetailPage.clickOnContinue();
+		pages.payMethodPage_Initialize();
+		pages.payMethodPage.fillCreditForm(DO_CreditCard);
 	}
 
 	@AfterMethod
@@ -84,7 +141,7 @@ public class TCHP_HotelConCambios {
 	{
 		Reporter.log("Closing Browser...");
 		logger.info("Closing Browser...");
-		driver.close();
+		driver.quit();
 	}
 	
 	@AfterTest

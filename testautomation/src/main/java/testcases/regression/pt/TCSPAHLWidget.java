@@ -1,106 +1,188 @@
 package testcases.regression.pt;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.testng.Reporter;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import config.FWConfig;
-import helpers.BrowserFactory;
 import helpers.DDManager;
-import tests.components.pt.CSPAHLWidget;
+import pages.pt.Pages;
+import testbases.TBRegressionSPAHL;
+import valueobjects.VOResData;
 
-public class TCSPAHLWidget {
-	WebDriver driver;
-	Logger logger = LogManager.getLogger(TCSPAHLWidget.class);
-	
-	@BeforeMethod
-	public void prerequisites(ITestContext itc) {
-		Reporter.log("Starting Browser");
-		//String url = "https://www.pricetravel.com/hoteles/cancun-area?checkin=2019-02-01&checkout=2019-02-03&placetype=3&placeid=69364&source=SPA-Hotel-List&rooms=1&room1.adults=2&agekids=";
-		//String url = "https://www.pricetravel.com/hoteles/las-vegas-y-alrededores-nevada-us?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F01&checkout=2019%2F02%2F03&rooms=1&adults=2&kids=0&agekids=&pdisplay=Las%20Vegas%20(y%20alrededores),%20Nevada,%20Estados%20Unidos%20de%20Am%C3%A9rica&placeid=67907&placetype=3&puri=las-vegas-y-alrededores-nevada-us&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1";
-		//String url = "https://stage-spa.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F02&checkout=2019%2F02%2F04&rooms=1&adults=2&kids=0&agekids=&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1";
-		String url = DDManager.getLandingPageHLDefault(FWConfig.FILE_HOTELLANDINGPAGEDATA);
-		driver = BrowserFactory.StartBrowser(FWConfig.BROWSER_DEFAULT, url);
-		itc.setAttribute("WebDriver", driver);
-		Reporter.log("Browser Started");
-		logger.info("Browser Started");
-	}
-	
-	@Test (enabled=true)
-	public void test1(){
+public class TCSPAHLWidget extends TBRegressionSPAHL{
+
+	@Test(enabled = true)
+	public void autocompleteDestinationTest() {
 		Reporter.log("Starting test1");
 		logger.info("Starting test1");
-		CSPAHLWidget.autocompleteDestinationTest(driver);
+		// <Setup>
+		logger.info("Starting autocompleteDestinationTest");
+		Reporter.log("Starting autocompleteDestinationTest");
+		// Por lo pronto esta harcodeado a las siguientes palabras de busqueda
+		List<String> data = new ArrayList<String>();
+		data.add("canc");
+		data.add("nueva");
+		data.add("vegas");
+		data.add("vallarta");
+		data.add("bogot");
+		Pages pages = new Pages(driver);
+		// <When>
+		pages.hotelListPage_Initialize();
+		// <Then>
+		// Verificar que el autocompletado del campo destino funcione correctamente
+		pages.hotelListPage.widgetVerifyAutocompleteDestination(data);
 	}
-	
-	@Test (enabled=false)
-	public void test2() {
+
+	@Test(enabled = true)
+	public void datePickersFunctionalityTest() {
 		Reporter.log("Starting test2");
 		logger.info("Starting test2");
-		CSPAHLWidget.datePickersFunctionalityTest(driver);
+		// <Setup>
+		logger.info("Starting datePickersFunctionalityTest");
+		Reporter.log("Starting datePickersFunctionalityTest");
+		Pages pages = new Pages(driver);
+		// <When>
+		pages.hotelListPage_Initialize();
+		// <Then>
+		// Verificar que las fechas iniciales sean las que tenga la URL
+		pages.hotelListPage.widgetVerifyCurrentUrlDateOnDatePickers();
+		// Verificar que que el datepicker se abra y se cierre en 10 iteraciones
+		pages.hotelListPage.widgetVerifyOpenAndCloseDatePickers();
 	}
-	
-	@Test (enabled=false)
-	public void test3(){
+
+	@Test(enabled = true)
+	public void searchWithEmptyFieldsTest() {
 		Reporter.log("Starting test3");
 		logger.info("Starting test3");
-		CSPAHLWidget.searchWithEmptyFieldsTest(driver);
+		// <Setup>
+		logger.info("Starting searchWithEmptyFieldsTest");
+		Reporter.log("Starting searchWithEmptyFieldsTest");
+		Pages pages = new Pages(driver);
+		// <When>
+		pages.hotelListPage_Initialize();
+		pages.hotelListPage.widgetClearDestination();
+		pages.hotelListPage.widgetClickSubmit();
+		// <Then>
+		// Verificar que se muestre el mensaje de error si no se ingresa un destino
+		pages.hotelListPage.widgetVerifyErrorPlace();
 	}
-	
-	@Test (enabled=false)
-	public void test4(){
+
+	@Test(enabled = true)
+	public void searchDifferentDestinTest() {
 		Reporter.log("Starting test4");
 		logger.info("Starting test4");
-		CSPAHLWidget.searchDifferentDestinTest(driver);
+		// <Setup>
+		logger.info("Starting searchDifferentDestinTest");
+		Reporter.log("Starting searchDifferentDestinTest");
+		VOResData voHotelResNew = DDManager.getResData(FWConfig.FILE_REGRESSIONHOTELRESDATA, 2);
+		Pages pages = new Pages(driver);
+		// <When>
+		pages.hotelListPage_Initialize();
+		pages.hotelListPage.widgetSetDestin(voHotelResNew.getDestination());
+		pages.hotelListPage.widgetClickSubmit();
+		// <Then>
+		// Verificar que el widget tiene el nuevo destino
+		pages.hotelListPage.widgetVerifyDestinationToBe(voHotelResNew.getDestination());
+		// Verificar que el Page Header Title tiene el nuevo destino
+		pages.hotelListPage.verifyHeaderTitleToBe(voHotelResNew.getDestination());
+		// Verificar que tenemos resultados
+		pages.hotelListPage.listVerifyResultListHasElements();
 	}
-	
-	@Test (enabled=false)
-	public void test5(){
+
+	@Test(enabled = true)
+	public void searchDifferentDatesTest() {
 		Reporter.log("Starting test5");
 		logger.info("Starting test5");
-		CSPAHLWidget.searchDifferentDatesTest(driver);
+		// <Setup>
+		logger.info("Starting searchDifferentDatesTest");
+		Reporter.log("Starting searchDifferentDatesTest");
+		VOResData voHotelResNew = DDManager.getResData(FWConfig.FILE_REGRESSIONHOTELRESDATA, 2);
+		Pages pages = new Pages(driver);
+		// <When>
+		pages.hotelListPage_Initialize();
+		pages.hotelListPage.widgetSetStartDate(voHotelResNew.getStartDate());
+		pages.hotelListPage.widgetSetEndDate(voHotelResNew.getEndDate());
+		pages.hotelListPage.widgetClickSubmit();
+		// <Then>
+		// Verificar que el widget tiene la nueva fecha
+		pages.hotelListPage.widgetVerifyStartDateToBe(voHotelResNew.getStartDate());
+		pages.hotelListPage.widgetVerifyEndDateToBe(voHotelResNew.getEndDate());
+		// Verificar que la url tiene la nueva fecha
+		pages.hotelListPage.verifyUrlStartDateToBe(voHotelResNew.getStartDate("yyyy-MM-dd"));
+		pages.hotelListPage.verifyUrlEndDateToBe(voHotelResNew.getEndDate("yyyy-MM-dd"));
+		// Verificar que la lista de resultados tenga elementos
+		pages.hotelListPage.listVerifyResultListHasElements();
 	}
-	
-	@Test (enabled=false)
-	public void test6(){
+
+	@Test(enabled = true)
+	public void searchDifferentOccupantsTest() {
 		Reporter.log("Starting test6");
 		logger.info("Starting test6");
-		CSPAHLWidget.searchDifferentOccupantsTest(driver);
+		// <Setup>
+		logger.info("Starting searchDifferentOccupantsTest");
+		Reporter.log("Starting searchDifferentOccupantsTest");
+		// Aqui leo el row 11 donde tengo varios rooms
+		VOResData voHotelRes = DDManager.getResData(FWConfig.FILE_REGRESSIONHOTELRESDATA, 11);
+		Pages pages = new Pages(driver);
+		// <When>
+		pages.hotelListPage_Initialize();
+		pages.hotelListPage.widgetSetOccupants(voHotelRes);
+		pages.hotelListPage.widgetClickSubmit();
+		// <Then>
+		// Verificar que los ocupantes sean los que se seleccionaron
+		pages.hotelListPage.widgetVerifyOccupantsToBe(voHotelRes);
+		// Verificar que la lista de resultados tenga elementos
+		pages.hotelListPage.listVerifyResultListHasElements();
 	}
-	
-	@Test (enabled=false)
-	public void test7(){
+
+	@Test(enabled = true)
+	public void searchDifferentReservationTest() {
 		Reporter.log("Starting test7");
 		logger.info("Starting test7");
-		CSPAHLWidget.searchDifferentReservationTest(driver);
+		// <Setup>
+		logger.info("Starting searchDifferentReservationTest");
+		Reporter.log("Starting searchDifferentReservationTest");
+		// Obtengo el row 12 del archivo
+		VOResData voHotelRes = DDManager.getResData(FWConfig.FILE_REGRESSIONHOTELRESDATA, 12);
+		Pages pages = new Pages(driver);
+		// <When>
+		pages.hotelListPage_Initialize();
+		pages.hotelListPage.widgetSetReservation(voHotelRes);
+		pages.hotelListPage.widgetClickSubmit();
+		// <Then>
+		// Verificar que la info de la reservacion sea la que se selecciono
+		pages.hotelListPage.widgetVerifyReservationToBe(voHotelRes);
+		// Verificar que la lista de resultados tenga elementos
+		pages.hotelListPage.listVerifyResultListHasElements();
 	}
-	
-	@Test (enabled=false)
-	public void prueba(){
+
+	@Test(enabled = true)
+	public void prueba() {
 		Reporter.log("Starting prueba");
 		logger.info("Starting prueba");
-		CSPAHLWidget.prueba(driver);
-	}
-	
-	@AfterMethod
-	public void Close()
-	{
-		Reporter.log("Closing Browser...");
-		logger.info("Closing Browser...");
-		driver.close();
-	}
-	
-	@AfterTest
-	public void End()
-	{
-		Reporter.log("Test Finished");
-		logger.info("Test Finished");
-		System.out.println("Test Finished");
+		// Esta funcion la uso para pruebas durante el desarrollo
+		// Estoy revisando el comportamiento cuando realizo una busqueda pero sin
+		// realizar cambios...
+
+		// <Setup>
+		logger.info("Starting prueba");
+		Reporter.log("Starting prueba");
+		// Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
+		VOResData voHotelResNew = DDManager.getResData(FWConfig.FILE_REGRESSIONHOTELRESDATA, 1);
+		Pages pages = new Pages(driver);
+		// <When>
+		pages.hotelListPage_Initialize();
+		pages.hotelListPage.widgetSetDestin(voHotelResNew.getDestination());
+		pages.hotelListPage.widgetClickSubmit();
+		// <Then>
+		// Verificar que el widget tiene el nuevo destino
+		pages.hotelListPage.widgetVerifyDestinationToBe(voHotelResNew.getDestination());
+		// Verificar que el Page Header Title tiene el nuevo destino
+		pages.hotelListPage.verifyHeaderTitleToBe(voHotelResNew.getDestination());
+		// Verificar que tenemos resultados
+		pages.hotelListPage.listVerifyResultListHasElements();
 	}
 }

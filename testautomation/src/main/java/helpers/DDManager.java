@@ -155,6 +155,12 @@ public class DDManager {
 	}
 	
 	//-------------------------- Landing Pages ----------------------------------
+	/**
+	 * Regresa un String con la URL de una Landing Page de SPA Hotel List
+	 * Esta funcion lee el registro 1 del archivo Excel que recibe como parametro
+	 * @param file String con el nombre del archivo de Excel
+	 * @return String con una URL de la LP
+	 */
 	public static String getLandingPageHLDefault(String file) {
 		String filePath = FWConfig.PATH_DATASOURCE+file;
 		int defaultRow = 1; //Para leer el primer registro del archivo

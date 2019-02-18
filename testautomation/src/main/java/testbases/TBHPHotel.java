@@ -1,4 +1,4 @@
-package testcases.healthcheck.interjet;
+package testbases;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,14 +11,12 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
 
 import helpers.BrowserFactory;
-import tests.workflows.interjet.WHPHoteles;
 
-public class TCHP_Hoteles {
+public class TBHPHotel {
 	WebDriver driver;
-	Logger logger = LogManager.getLogger(TCHP_Hoteles.class);
+	Logger logger = LogManager.getLogger(TBHPHotel.class);
 	String gtestName = "";
 	String gURL = "";
 	String gbrowser = "";
@@ -43,25 +41,16 @@ public class TCHP_Hoteles {
 		Reporter.log("Starting Browser");
 		//Set Browser
 		driver = BrowserFactory.startBrowser(gbrowser, gURL);
-		WHPHoteles.setDriver(driver);
 		itc.setAttribute("WebDriver", driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}
 	
-	@Test (enabled=true, priority = 1)
-	public void HPHotelDefault() throws InterruptedException{
-		Reporter.log("Starting test HPHotelDefault");
-		logger.info("Starting test HPHotelDefault");
-		WHPHoteles.HPHotelDefault();
-	}
-	
-	@Test (enabled=false, priority = 2)
-	public void HPHotelRandom() throws InterruptedException{
-		Reporter.log("Starting test HPHotelRandom");
-		logger.info("Starting test HPHotelRandom");
-		WHPHoteles.HPHotelRandom();
-	}
+	/*
+	@DataProvider(name = "Authentication")
+	public static Object[][] credentials() {
+		return new Object[][] { { "testuser_1", "Test@123" }, { "testuser_1", "Test@123" }};
+	}*/
 
 	@AfterMethod
 	public void Close()

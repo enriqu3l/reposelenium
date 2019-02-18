@@ -13,8 +13,14 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import config.FWConfig;
+import helpers.DDManager;
 import helpers.MobileBrowserFactory;
-import tests.workflows.pt.WHPHoteles;
+import pages.pt.PagesNew;
+import tests.workflows.interjet.WHPHoteles;
+import valueobjects.VOClient;
+import valueobjects.VOCreditCard;
+import valueobjects.VOResData;
 
 public class TCMOBILE_HP_Hotel {
 	WebDriver driver;
@@ -45,6 +51,7 @@ public class TCMOBILE_HP_Hotel {
 		//driver = MobileBrowserFactory.StartBrowser("NEXUS_5X_API_24","7.0",gbrowser, gURL);
 		driver = MobileBrowserFactory.StartBrowser("Samsung Galaxy S6","5.1",gbrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
+		WHPHoteles.setDriver(driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}
@@ -53,21 +60,54 @@ public class TCMOBILE_HP_Hotel {
 	public void HPHotelDefault(){
 		Reporter.log("Starting test HPHotelDefault");
 		logger.info("Starting test HPHotelDefault");
-		WHPHoteles.HPHotelDefault(driver);
+		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
+		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
+		PagesNew.homeWidget().searchHotel(voResData);
+		PagesNew.homeWidget().clickSearchHotelButton();
+		PagesNew.hotelListPage().listSelectFirstHotelAvailable();
+		PagesNew.roomListPage().selectFirstRoom();
+		PagesNew.resDetailPage().clearAndFillForm(voClient);
+		//PagesNew.resDetailPage().clickOnContinue();
+		//PagesNew.payMethodPage().fillCreditForm(voCreditCard);
+		//PagesNew.payMethodPage().clickOnCompleteReservation();
+		//PagesNew.thankYouPage().verifyCheckOutCompleted();
 	}
 	
 	@Test (enabled=false, priority = 2)
 	public void HPHotelRandom() throws InterruptedException{
 		Reporter.log("Starting test HPHotelRandom");
 		logger.info("Starting test HPHotelRandom");
-		WHPHoteles.HPHotelRandom(driver);
+		VOResData voResData = DDManager.getResDataRandom(FWConfig.FILE_HPHOTELRESDATA);
+		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
+		PagesNew.homeWidget().searchHotel(voResData);
+		PagesNew.homeWidget().clickSearchHotelButton();
+		PagesNew.hotelListPage().listSelectFirstHotelAvailable();
+		PagesNew.roomListPage().selectFirstRoom();
+		PagesNew.resDetailPage().clearAndFillForm(voClient);
+		//PagesNew.resDetailPage().clickOnContinue();
+		//PagesNew.payMethodPage().fillCreditForm(voCreditCard);
+		//PagesNew.payMethodPage().clickOnCompleteReservation();
+		//PagesNew.thankYouPage().verifyCheckOutCompleted();
 	}
 	
 	@Test (enabled=true, priority = 3)
 	public void HPHotelHPHotelUsingDataRow() throws InterruptedException{
 		Reporter.log("Starting test HPHotelHPHotelUsingDataRow");
 		logger.info("Starting test HPHotelHPHotelUsingDataRow");
-		WHPHoteles.HPHotelUsingDataRow(driver, 11);
+		VOResData voResData = DDManager.getResData(FWConfig.FILE_HPHOTELRESDATA, 11);
+		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
+		PagesNew.homeWidget().searchHotel(voResData);
+		PagesNew.homeWidget().clickSearchHotelButton();
+		PagesNew.hotelListPage().listSelectFirstHotelAvailable();
+		PagesNew.roomListPage().selectFirstRoom();
+		PagesNew.resDetailPage().clearAndFillForm(voClient);
+		//PagesNew.resDetailPage().clickOnContinue();
+		//PagesNew.payMethodPage().fillCreditForm(voCreditCard);
+		//PagesNew.payMethodPage().clickOnCompleteReservation();
+		//PagesNew.thankYouPage().verifyCheckOutCompleted();
 	}
 
 	@AfterMethod
@@ -75,7 +115,7 @@ public class TCMOBILE_HP_Hotel {
 	{
 		Reporter.log("Closing Browser...");
 		logger.info("Closing Browser...");
-		//driver.close();
+		driver.quit();
 	}
 	
 	@AfterTest

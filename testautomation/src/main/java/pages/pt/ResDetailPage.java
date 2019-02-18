@@ -17,13 +17,13 @@ import config.FWConfig;
 import utility.BasicUtils;
 import valueobjects.VOClient;
 
-public class ResDetailPageF {
+public class ResDetailPage {
 	private WebDriverWait wait;
 	private WebDriver driver;
-	private static Logger logger = LogManager.getLogger(ResDetailPageF.class);
+	private static Logger logger = LogManager.getLogger(ResDetailPage.class);
 	private String currentURL;
 	
-	public ResDetailPageF(WebDriver _driver){
+	public ResDetailPage(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_PT);
@@ -34,57 +34,57 @@ public class ResDetailPageF {
 	}
 	
 	//--------- Form Reservation Elements ---------
-	@FindBy(how=How.ID, id="firstName")
+	@FindBy(how=How.ID, using="firstName")
 	WebElement frmReserveInputFirsName;
 	
-	@FindBy(how=How.ID, id="lastName")
+	@FindBy(how=How.ID, using="lastName")
 	WebElement frmReserveInputLastName;
 	
-	@FindBy(how=How.ID, id="eMail")
+	@FindBy(how=How.ID, using="eMail")
 	WebElement frmReserveInputEmail;
 	
-	@FindBy(how=How.ID, id="conMail")
+	@FindBy(how=How.ID, using="conMail")
 	@CacheLookup
 	WebElement frmReserveInputConMail;
 	
-	@FindBy(how=How.ID, id="lada")
+	@FindBy(how=How.ID, using="lada")
 	@CacheLookup
 	WebElement frmReserveInputLada;
 	
-	@FindBy(how=How.ID, id="phone")
+	@FindBy(how=How.ID, using="phone")
 	@CacheLookup
 	WebElement frmReserveInputPhone;
 	
-	@FindBy(how=How.ID, id="mobile")
+	@FindBy(how=How.ID, using="mobile")
 	@CacheLookup
 	WebElement frmReserveInputMobile;
 	
-	@FindBy(how=How.ID, id="chkConfirm")
+	@FindBy(how=How.ID, using="chkConfirm")
 	@CacheLookup
 	WebElement frmReserveCheckBoxChkConfirm;
 	
-	@FindBy(how=How.CSS, css="#frmReserve a.btn.btn-success.btn-form")
+	@FindBy(how=How.CSS, using="#frmReserve a.btn.btn-success.btn-form")
 	@CacheLookup
 	WebElement frmReserveButtonContinue;
 	
 	
 	//--------- Resumen de la Reservacion ---------
-	@FindBy(how=How.CSS, css=".aside .card-body .summary-description-name h5")
+	@FindBy(how=How.CSS, using=".aside .card-body .summary-description-name h5")
 	@CacheLookup
 	WebElement summaryHotelName;
 	
-	@FindBy(how=How.CSS, css=".aside .card-body .list-note li:nth-child(1)")
+	@FindBy(how=How.CSS, using=".aside .card-body .list-note li:nth-child(1)")
 	WebElement summaryStartDate;
 	
-	@FindBy(how=How.CSS, css=".aside .card-body .list-note li:nth-child(2)")
+	@FindBy(how=How.CSS, using=".aside .card-body .list-note li:nth-child(2)")
 	WebElement summaryEndDate;
 	
-	@FindBy(how=How.CSS, css=".aside .summary-product-rates .summary-table-rates .ap_summaryTotalAmount")
+	@FindBy(how=How.CSS, using=".aside .summary-product-rates .summary-table-rates .ap_summaryTotalAmount")
 	WebElement summaryTotalAmount;
 	
 	
 	//------------  pt.co Elements --------------
-	@FindBy(how=How.ID, id="NationalIdCard")
+	@FindBy(how=How.ID, using="NationalIdCard")
 	WebElement frmReserveInputNationalIdCard;
 	
 	public void checkCurrentURLPage() {

@@ -16,13 +16,13 @@ import org.testng.Assert;
 import config.FWConfig;
 import valueobjects.VOCreditCard;
 
-public class PayMethodPageF {
+public class PayMethodPage {
 	private WebDriverWait wait;
 	private WebDriver driver;
-	private static Logger logger = LogManager.getLogger(PayMethodPageF.class);
+	private static Logger logger = LogManager.getLogger(PayMethodPage.class);
 	private String currentURL;
 	
-	PayMethodPageF(WebDriver _driver){
+	PayMethodPage(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_PT);
@@ -33,46 +33,46 @@ public class PayMethodPageF {
 	}
 	
 	//-----FormElements-----
-	@FindBy(how=How.ID, id="cardNumber1")
+	@FindBy(how=How.ID, using="cardNumber1")
 	WebElement frmReserveInputCardNumber1;
 	
-	@FindBy(how=How.ID, id="cardMonthExpired1")
+	@FindBy(how=How.ID, using="cardMonthExpired1")
 	WebElement frmReserveSelectCardMonthExpired1;
 	
-	@FindBy(how=How.ID, id="cardYearExpired1")
+	@FindBy(how=How.ID, using="cardYearExpired1")
 	WebElement frmReserveSelectCardYearExpired1;
 	
-	@FindBy(how=How.ID, id="cardHolderName1")
+	@FindBy(how=How.ID, using="cardHolderName1")
 	WebElement frmReserveInputCardHolderName1;
 	
-	@FindBy(how=How.ID, id="cardSecurityCode1")
+	@FindBy(how=How.ID, using="cardSecurityCode1")
 	WebElement frmReserveInputCardSecurityCode1;
 	
-	@FindBy(how=How.ID, id="cCountry1")
+	@FindBy(how=How.ID, using="cCountry1")
 	WebElement frmReserveSelectCardCountry1;
 	
-	@FindBy(how=How.ID, id="cZipCode1")
+	@FindBy(how=How.ID, using="cZipCode1")
 	WebElement frmReserveInputCardZipCode1;
 	
-	@FindBy(how=How.CSS, css=".item-accordion.btn-accordion")
+	@FindBy(how=How.CSS, using=".item-accordion.btn-accordion")
 	WebElement frmReserveAccordionCodePromotions;
 	
-	@FindBy(how=How.ID, id="promocodeInput")
+	@FindBy(how=How.ID, using="promocodeInput")
 	WebElement frmReserveInputPromocode;
 	
-	@FindBy(how=How.ID, id="validatePromocode")
+	@FindBy(how=How.ID, using="validatePromocode")
 	WebElement frmReserveButtonValidatePromocode;
 	
-	@FindBy (how=How.CSS, css="#frmReserve .countdown-message .countdown-subtitle strong")
+	@FindBy (how=How.CSS, using="#frmReserve .countdown-message .countdown-subtitle strong")
 	WebElement frmReserveMessageLocator;
 	
 	//FinalButton
-	@FindBy(how=How.ID, id="validatePayForms")
+	@FindBy(how=How.ID, using="validatePayForms")
 	WebElement frmReserveButtonValidatePayForms;
 	
 	
 	//------------  pt.co Elements--------------
-	@FindBy(how=How.ID, id="NationalIdCard1")
+	@FindBy(how=How.ID, using="NationalIdCard1")
 	WebElement frmReserveInputNationalIdCard1;
 	
 	public void checkCurrentURLPage() {

@@ -1,88 +1,33 @@
 package testcases.regression.pt;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
 import org.testng.Reporter;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import config.FWConfig;
-import helpers.BrowserFactory;
-import helpers.DDManager;
-import tests.components.pt.CSPAHLWidget;
+import testbases.TBRegressionSPAHL;
 
-public class TCSPAHLPaging {
-	WebDriver driver;
-	Logger logger = LogManager.getLogger(TCSPAHLPaging.class);
-	
-	@BeforeMethod
-	public void prerequisites(ITestContext itc) {
-		Reporter.log("Starting Browser");
-		//String url = "https://www.pricetravel.com/hoteles/cancun-area?room1.adults=2&room1.kids=0&room1.agekids=&checkin=2019%2F02%2F01&checkout=2019%2F02%2F03&rooms=1&adults=2&kids=0&agekids=&pdisplay=Canc%C3%BAn%20(y%20alrededores),%20M%C3%A9xico&placeid=69364&placetype=3&puri=cancun-area&quotelist=true&returningfromairport=&startingfromairport=&actiontype=1";
-		String url = DDManager.getLandingPageHLDefault(FWConfig.FILE_HOTELLANDINGPAGEDATA);
-		driver = BrowserFactory.StartBrowser(FWConfig.BROWSER_DEFAULT, url);
-		itc.setAttribute("WebDriver", driver);
-		Reporter.log("Browser Started");
-		logger.info("Browser Started");
-	}
+public class TCSPAHLPaging extends TBRegressionSPAHL{
 	
 	@Test (enabled=true)
-	public void test1() throws InterruptedException{
+	public void test1(){
 		Reporter.log("Starting test1");
 		logger.info("Starting test1");
 	}
 	
-	@Test (enabled=false)
-	public void test2() throws InterruptedException{
+	@Test (enabled=true)
+	public void test2(){
 		Reporter.log("Starting test2");
 		logger.info("Starting test2");
 	}
 	
-	@Test (enabled=false)
-	public void test3() throws InterruptedException{
+	@Test (enabled=true)
+	public void test3(){
 		Reporter.log("Starting test3");
 		logger.info("Starting test3");
 	}
 	
-	@Test (enabled=false)
-	public void test4() throws InterruptedException{
+	@Test (enabled=true)
+	public void test4(){
 		Reporter.log("Starting test4");
 		logger.info("Starting test4");
-		//HLWidget – Cambiar los menores
-	}
-	
-	@Test (enabled=false)
-	public void test5() throws InterruptedException{
-		//HLWidget – Cambiar los adultos
-	}
-	
-	@Test (enabled=false)
-	public void test6() throws InterruptedException{
-		//HLWidget – Cambiar habitaciónes
-	}
-	
-	@Test (enabled=false)
-	public void test7() throws InterruptedException{
-		//HLWidget – Cambiar las edades
-	}
-
-	@AfterMethod
-	public void Close()
-	{
-		Reporter.log("Closing Browser...");
-		logger.info("Closing Browser...");
-		driver.close();	
-	}
-	
-	@AfterTest
-	public void End()
-	{
-		Reporter.log("Test Finished");
-		logger.info("Test Finished");
-		System.out.println("Test Finished");
 	}
 }

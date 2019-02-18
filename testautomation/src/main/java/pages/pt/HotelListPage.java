@@ -1,7 +1,5 @@
 package pages.pt;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,19 +31,22 @@ import valueobjects.VOResData;
  * Esta clase contiene todos los elementos, acciones y verificaciones necesarios para la pagina SPA Hotel List
  *
  */
-public class PackageListPageF {
+public class HotelListPage {
 	private WebDriverWait wait;
 	private WebDriver driver;
-	private static Logger logger = LogManager.getLogger(PackageListPageF.class);
+	private static Logger logger = LogManager.getLogger(HotelListPage.class);
 	
-	public PackageListPageF(WebDriver _driver){
+	//Constructor
+	public HotelListPage(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_PT);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FWConfig.WAITPF_PT),this);
 		
 		//Esperar a que la url sea la correcta
-		wait.until(ExpectedConditions.urlContains("/paquetes/resultados"));
+		wait.until(ExpectedConditions.urlContains("/hoteles"));
+		//Esperar a que el contenido este cargado
+		waitForContentToBeReady();
 	}
 	
 	//Ejemplos de como buscar attributos en xpath y cssSelector
@@ -57,103 +58,106 @@ public class PackageListPageF {
 	//private By byLoaderButton = By.cssSelector(".list-product-rate .loader"); //Ya lo declare en la seccion del listado
 	private By byLoaderOverlayFiltros = By.cssSelector(".card-body .loader-overlay");
 	
-	@FindBy(how=How.CSS, css=".loader__title")
+	@FindBy(how=How.CSS, using=".loader__title")
 	private WebElement loaderTitle;
 	
-	@FindBy(how=How.CSS, css=".spinner")
+	@FindBy(how=How.CSS, using=".spinner")
 	private WebElement spiner;
 	
 	
 	//-------------- Header Section --------------------------------
 	private By byPageHeaderTitle = By.cssSelector(".page-header .page-header-title");
 	
-	@FindBy(how=How.CSS, css=".page-header .page-header-title")
+	@FindBy(how=How.CSS, using=".page-header .page-header-title")
 	private WebElement pageHeaderTitle;
 	
 	
 	//-------------- List Section ----------------------------------	
-	@FindBy(how=How.CSS, css=".list-product .list-product-block")
+	@FindBy(how=How.CSS, using="pth-list .list-product-block")
 	private List<WebElement> listAllBlocksResults;
 	
-	@FindBy(how=How.CSS, css=".list-product-block .list-product-rate .list-product-rate-action a")
+	@FindBy(how=How.CSS, using=".list-product-block .list-product-rate .list-product-rate-action a")
 	private WebElement listButtonFirstItem; //primer boton
 	
-	private By byListListProduct = By.cssSelector(".list-product");
+	private By byListListProduct = By.cssSelector("pth-list");
 	private By byListProductRateFinal = By.cssSelector(".list-product-rate .product-rate-final");
 	private By byListProductHotelName = By.cssSelector(".list-product-item-content .list-product-name");
 	private By byListButtonSeeOffer = By.cssSelector(".list-product-rate .list-product-rate-action .btn");
-	private By byListListProductRateLoaderButton = By.cssSelector(".list-product .list-product-rate .loader");
+	
+	//No se ve en Stage!!!!
+	private By byListListProductRateLoaderButton = By.cssSelector(".list-product-block .list-product-rate .loader"); 
 	
 	
 	//--------------- Widget Elements - Basados en SPA-Hoteles ----------
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel #destination")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel #destination input")
 	private WebElement widgetInputDestination;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel #Err_PlaceName")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel form > div > .ptw-errormsg")
 	private WebElement widgetErrorPlace;
 	
-	@FindBy(how=How.CSS, css="#start-datepicker .ap_dest_calendar")
+	@FindBy(how=How.CSS, using=".ptw-field-date:first-child .ap_dest_calendar")
 	private WebElement widgetInputStartDate;
 	
-	@FindBy(how=How.CSS, css="#end-datepicker .ap_dest_calendar")
+	@FindBy(how=How.CSS, using=".ptw-field-date:last-child .ap_dest_calendar")
 	private WebElement widgetInputEndDate;
 	
-	@FindBy(how=How.CSS, css="#start-datepicker .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, using=".ptw-field-date:first-child .ui-datepicker-trigger")
 	private WebElement widgetStartDatePicker;
 	
-	@FindBy(how=How.CSS, css="#end-datepicker .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, using=".ptw-field-date:last-child .ui-datepicker-trigger")
 	private WebElement widgetEndDatePicker;
 	
-	@FindBy(how=How.CSS, css="#start-datepicker .dropdown-menu .ngb-dp-month-name")
+	@FindBy(how=How.CSS, using=".ptw-field-date:first-child .dropdown-menu .ngb-dp-month-name")
 	private WebElement widgetStartDateTitle;
 	
-	@FindBy(how=How.CSS, css="#end-datepicker .dropdown-menu .ngb-dp-month-name")
+	@FindBy(how=How.CSS, using=".ptw-field-date:last-child .dropdown-menu .ngb-dp-month-name")
 	private WebElement widgetEndDateTitle;
 	
-	@FindBy(how=How.CSS, css="#start-datepicker .ngb-dp-arrow button.btn")
+	@FindBy(how=How.CSS, using=".ptw-field-date:first-child .ngb-dp-arrow button.btn")
 	private WebElement widgetStartDateBeforeMonth;
 	
-	@FindBy(how=How.CSS, css="#start-datepicker .ngb-dp-arrow.right button.btn")
+	@FindBy(how=How.CSS, using=".ptw-field-date:first-child .ngb-dp-arrow.right button.btn")
 	private WebElement widgetStartDateNextMonth;
 	
-	@FindBy(how=How.CSS, css="#end-datepicker .ngb-dp-arrow button.btn")
+	@FindBy(how=How.CSS, using=".ptw-field-date:last-child .ngb-dp-arrow button.btn")
 	private WebElement widgetEndDateBeforeMonth;
 	
-	@FindBy(how=How.CSS, css="#end-datepicker .ngb-dp-arrow.right button.btn")
+	@FindBy(how=How.CSS, using=".ptw-field-date:last-child .ngb-dp-arrow.right button.btn")
 	private WebElement widgetEndDateNextMonth;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel #ap_booker_Hotel_rooms")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel #ap_booker_Hotel_rooms")
 	private WebElement widgetSelectHotelRooms;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotel_adults")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_booker_Hotel_adults")
 	private WebElement widgetSelectHotelAdults;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotel_minors")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_booker_Hotel_minors")
 	private WebElement widgetSelectHotelMinors;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ptw-submit-btn")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ptw-submit-btn")
 	private WebElement widgetButtonSubmit;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotelroom")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_booker_Hotelroom")
 	private  List<WebElement> widgetAllBlockRooms;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_minorsAges_Hotel_container")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_minorsAges_Hotel_container")
 	private  List<WebElement> widgetMinorsAgesHotelContainer;
 	
-	private By byWidgetStartDateDropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
-	private By byWidgetEndDateDropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
+	private By byWidgetStartDateDropdownMenu = By.cssSelector(".ptw-field-date:first-child .dropdown-menu");
+	private By byWidgetEndDateDropdownMenu = By.cssSelector(".ptw-field-date:last-child .dropdown-menu");
 	private By byWidgetDestinationDropdownMenu = By.cssSelector("#ap_booker_Hotel .dropdown-menu");
 	private By byWidgetHotelAdults = By.cssSelector(".ap_booker_Hotel_adults");
 	private By byWidgetHotelMinors = By.cssSelector(".ap_booker_Hotel_minors");
 	private By byWidgetAllKidsPerRoom = By.cssSelector(".ap_age.ap_Hotel_year");
+	private String dayStart = "//*[@id='datepicker-parent']/div/child::div[1]//div[text()='";
+	private String dayEnd = "//*[@id='datepicker-parent']/div/child::div[2]//div[text()='";
 	
 	//--------------- Paging Elements - Basados en SPA-Hoteles ----------
-	@FindBy(how=How.CSS, css=".pagination > *:last-child a")
+	@FindBy(how=How.CSS, using=".pagination > *:last-child a")
 	private  WebElement pagingNextPage;
 	private By byPagingNextPage = By.cssSelector(".pagination > *:last-child a");
 	
 	public void listSelectFirstHotelAvailable() {
-		waitForContentToBeReady();
 		int index = listGetIndexOfFirstHotelAvailable();
 		Assert.assertFalse(CoreConfig.FAULTVALUE==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
 		listClickButtonSeeOffer(index);
@@ -161,10 +165,8 @@ public class PackageListPageF {
 	
 	public void listClickButtonSeeOffer(int btnIndex){
 		Assert.assertTrue((btnIndex>=0 && btnIndex<FWConfig.TOTALRECORDSPERPAGES),"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
-		waitForContentToBeReady();
 		listVerifyResultListHasElements();
 		WebElement buttonSeeOffer = listAllBlocksResults.get(btnIndex).findElement(byListButtonSeeOffer);
-		logger.info("Clicking button...");
 		buttonSeeOffer.click();
 		verifyIfANewTabOpened();  //En caso de encontrar una nueva tab, switchear a ella.
 	}
@@ -188,32 +190,25 @@ public class PackageListPageF {
 	}
 	
 	public void widgetClearDestination() {
-		waitForContentToBeReady();
 		widgetInputDestination.clear(); //Este metodo no lanza evento de tecla
 		widgetInputDestination.sendKeys(" "+Keys.BACK_SPACE); //Enviar " " para que lance un evento de tecla
 	}
 	
 	public void widgetSetDestin(String destin) {
-		waitForContentToBeReady();
-		
 		widgetInputDestination.clear();
 		widgetInputDestination.sendKeys(destin);
 		//Wait until dropdown menu appears
 		wait.until(ExpectedConditions.presenceOfElementLocated(byWidgetDestinationDropdownMenu));
-		
 		widgetInputDestination.sendKeys(Keys.ENTER);
 	}
 	
 	public void widgetSetRooms(String roomsNumber) {
-		waitForContentToBeReady();
 		Select rooms = new Select(widgetSelectHotelRooms);
 		rooms.selectByVisibleText(roomsNumber);
 	}
 	
 	public void widgetSetAdults(int adultsNumber) {
-		Assert.assertTrue(adultsNumber>0 && adultsNumber<9,"LAF>>>el parametro adultsNumber esta fuera de rango");
-		waitForContentToBeReady();
-		
+		Assert.assertTrue(adultsNumber>0 && adultsNumber<9,"LAF>>>el parametro adultsNumber esta fuera de rango");		
 		Select adults = new Select(widgetSelectHotelAdults);
 		adults.selectByVisibleText(Integer.toString(adultsNumber));
 	}
@@ -239,8 +234,9 @@ public class PackageListPageF {
 		}
 		//Validar que se crearon campos de rooms para los agekids
 		if(widgetMinorsAgesHotelContainer.size() != voHotelRes.getRoomCount()) {
-			 logger.error("La cantidad de rooms no coincide con la cantidad de agecontainers, widgetMinorsAgesHotelContainer:"+widgetMinorsAgesHotelContainer.size());
-			 Assert.fail("LAF>>>La cantidad de rooms no coincide con la cantidad de agecontainers, widgetMinorsAgesHotelContainer:"+widgetMinorsAgesHotelContainer.size());
+			logger.info("voHotelRes.getRoomCount():"+voHotelRes.getRoomCount());
+			logger.error("La cantidad de rooms no coincide con la cantidad de agecontainers, widgetMinorsAgesHotelContainer:"+widgetMinorsAgesHotelContainer.size());
+			Assert.fail("LAF>>>La cantidad de rooms no coincide con la cantidad de agecontainers, widgetMinorsAgesHotelContainer:"+widgetMinorsAgesHotelContainer.size());
 		}
 		//Ahora hay que llenar las edades de los niños en cada cuarto
 		for(int i=0; i<widgetMinorsAgesHotelContainer.size();i++) {
@@ -259,10 +255,8 @@ public class PackageListPageF {
 	
 	public void widgetSetStartDate(String date) {
 		if(date.isEmpty()) {Assert.fail("LAF>>>El parametro date esta vacio");}
-		
 		logger.info("Starting widgetSetStartDate()");
 		logger.info("widgetSetStartDate() parametro recibido:"+date);
-		waitForContentToBeReady(); //Esperar a que se quite el overlay
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,byWidgetStartDateDropdownMenu)){widgetStartDatePicker.click();}
 		LocalDate localDate = LocalDate.parse(date,DateTimeFormat.forPattern("dd/MM/yyyy"));
@@ -279,17 +273,16 @@ public class PackageListPageF {
 				widgetStartDateBeforeMonth.click(); //click hacia atras
 			}
 		}
-		String xpath = "//*[@id='start-datepicker']//div[text()='"+day+"']";
+		
+		String xpath = dayStart+day+"']";
 		driver.findElement(By.xpath(xpath)).click();
 		logger.trace("Valor de widgetInputStartDate: " + widgetInputStartDate.getAttribute("value"));
 	}
 	
 	public void widgetSetEndDate(String date) {
 		if(date.isEmpty()) {Assert.fail("LAF>>>El parametro date esta vacio");}
-		
 		logger.info("Starting widgetSetEndDate()");
 		logger.info("widgetSetEndDate() parametro recibido:"+date);
-		waitForContentToBeReady(); //Esperar a que se quite el overlay
 		//Abrir el calendario si no esta abierto
 		if(BasicUtils.noExistsElement(driver,byWidgetEndDateDropdownMenu)){widgetEndDatePicker.click();}
 		LocalDate localDate = LocalDate.parse(date,DateTimeFormat.forPattern("dd/MM/yyyy"));
@@ -306,14 +299,13 @@ public class PackageListPageF {
 				widgetEndDateBeforeMonth.click(); //click hacia atras
 			}
 		}
-		String xpath = "//*[@id='end-datepicker']//div[text()='"+day+"']";
+		String xpath = dayEnd+day+"']";
 		driver.findElement(By.xpath(xpath)).click();
 		logger.trace("Valor de widgetInputEndDate: " + widgetInputEndDate.getAttribute("value"));
 	}
 	
 	public void widgetSetReservation(VOResData voHotelRes){
 		logger.info("Starting widgetChangeSearch()");
-		waitForContentToBeReady();
 		widgetSetDestin(voHotelRes.getDestination());
 		widgetSetStartDate(voHotelRes.getStartDate());
 		widgetSetEndDate(voHotelRes.getEndDate());
@@ -322,30 +314,19 @@ public class PackageListPageF {
 	
 	public void widgetClickSubmit() {
 		logger.info("Starting widgetClickSubmit()");
-		
-		waitForContentToBeReady();
-		String url = driver.getCurrentUrl();
 		widgetButtonSubmit.click();
 		
 		//A continuacion pongo un wait para esperar a que el boton lanze la accion
-		
-		//Esperar a que la url cambie, No lo estoy usando porque falla cuando no hay cambios en la url
-		//wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
-		
-		//Agrego este Delay dado que tengo problemas cuando no cambia la url
 		WaitFor.attributeChanged(byLoaderOverlayPage, "style", "display: none; opacity: 0;");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		JSWaiter.setDriver(driver);
+		JSWaiter.sleep(3000);
+		waitForContentToBeReady();
 	}
 	//++++++++++++++++++++++++++ END WIDGET FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++
 	
 	
 	//++++++++++++++++++++++++++ PAGING FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++++
 	public void pagingClickOnNextPage() {
-		waitForContentToBeReady();
 		logger.info("Starting pagingClickOnNextPage!");
 		
 		/*List<WebElement> elements= driver.findElements(byPagingNextPage);
@@ -357,13 +338,15 @@ public class PackageListPageF {
 		//Espero a que el boton lanze una nueva url
 		//(tiempo que tarda el boton en lanzar la accion)
 		wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
+		JSWaiter.setDriver(driver);
+		JSWaiter.sleep(3000);
+		waitForContentToBeReady();
 	}
 	//++++++++++++++++++++++++++ END PAGING FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++++
 	
 	
 	//+++++++++++++++++++++++++++ VERIFY FUNCTIONS +++++++++++++++++++++++++++++++++++++++++++++
 	public void widgetVerifyDestinationToBe(String expected) {
-		waitForContentToBeReady();
 		String actual = widgetGetDestination();
 		if(!actual.contains(expected)) {
 			logger.error("Actual destin: ("+actual+") is not as expeted: ("+expected+")");
@@ -374,7 +357,6 @@ public class PackageListPageF {
 	}
 	
 	public void widgetVerifyStartDateToBe(String expected) {
-		waitForContentToBeReady();
 		String actual = widgetGetStartDate();
 		logger.trace("Fecha en el input StartDate:"+actual);
 		if(!actual.contains(expected)) {
@@ -386,7 +368,6 @@ public class PackageListPageF {
 	}
 	
 	public void widgetVerifyEndDateToBe(String expected) {
-		waitForContentToBeReady();
 		String actual = widgetGetEndDate();
 		logger.trace("Fecha en el input StartDate:"+actual);
 		if(!actual.contains(expected)) {
@@ -400,8 +381,6 @@ public class PackageListPageF {
 	public void widgetVerifyAutocompleteDestination(List<String> words) {
 		logger.info("Starting widgetVerifyAutocompleteDestination()");
 		if(words.isEmpty()) {Assert.fail("LAF>>>El parametro words esta vacio");}
-		
-		waitForContentToBeReady();
 		for(int i=0; i<words.size();i++) {
 			
 			widgetSetDestin(words.get(i).toLowerCase().trim());
@@ -415,8 +394,6 @@ public class PackageListPageF {
 	
 	public void widgetVerifyOccupantsToBe(VOResData voHotelRes) {
 		logger.info("Starting widgetVerifyOccupantsToBe()");
-		waitForContentToBeReady();
-		
 		//Validar que los rooms sean los mismos
 		String roomsSelected = widgetGetRooms();
 		Assert.assertEquals(Integer.toString(voHotelRes.getRoomCount()), roomsSelected);
@@ -461,8 +438,6 @@ public class PackageListPageF {
 
 	public void widgetVerifyReservationToBe(VOResData voHotelRes) {
 		logger.info("Starting widgetVerifyReservationInfoToBe()");
-		waitForContentToBeReady();
-		
 		widgetVerifyDestinationToBe(voHotelRes.getDestination());
 		widgetVerifyStartDateToBe(voHotelRes.getStartDate());
 		widgetVerifyEndDateToBe(voHotelRes.getEndDate());
@@ -470,7 +445,6 @@ public class PackageListPageF {
 	}
 	
 	public void widgetVerifyErrorPlace() {
-		waitForContentToBeReady();
 		wait.until(ExpectedConditions.visibilityOf(widgetErrorPlace));
 		if(!(widgetErrorPlace.isDisplayed() && widgetErrorPlace.getText().contains("dest"))) {
 			logger.error("No se muestra el mensaje de Error del campo destino");
@@ -478,16 +452,13 @@ public class PackageListPageF {
 		}else {
 			logger.info("widgetVerifyErrorPlace PASS");
 		}
-			
 	}
 	
 	/**
 	 * Esta funcion verifica que se abran y cierren los dropdowns de las fechas en 10 iteraciones
 	 */
 	public void widgetVerifyOpenAndCloseDatePickers() {
-		waitForContentToBeReady();
 		logger.info("Starting widgetVerifyOpenAndCloseDatePickers()");
-		
 		for(int i=0;i<10;i++) {
 			//Validar StartDatePicker
 			if(BasicUtils.existsElement(driver,byWidgetStartDateDropdownMenu)){widgetStartDatePicker.click();}
@@ -509,7 +480,6 @@ public class PackageListPageF {
 	}
 	
 	public void widgetVerifyCurrentUrlDateOnDatePickers() {
-		waitForContentToBeReady();
 		logger.info("Starting widgetVerifyCurrentDateOnDatePickers()");
 		String inputStartDate = widgetGetStartDate();
 		boolean result1 = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkin",inputStartDate);
@@ -533,7 +503,6 @@ public class PackageListPageF {
 	}
 	
 	public void verifyUrlStartDateToBe(String value) {
-		waitForContentToBeReady();
 		boolean result = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkin",value);
 		if(!result) {
 			logger.error("La fecha de StartDate no coincide con la URL");
@@ -544,7 +513,6 @@ public class PackageListPageF {
 	}
 	
 	public void verifyUrlEndDateToBe(String value) {
-		waitForContentToBeReady();
 		boolean result = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkout",value);
 		if(!result) {
 			logger.error("La fecha de EndDate no coincide con la URL");
@@ -555,7 +523,6 @@ public class PackageListPageF {
 	}
 	
 	public void verifyHeaderTitleToBe(String title) {
-		waitForContentToBeReady();
 		String actual = pageHeaderTitle.getText().trim();
 		String expected = title;
 		if(!actual.contains(expected)) {
@@ -565,27 +532,36 @@ public class PackageListPageF {
 	}
 	
 	public void verifyIfANewTabOpened() {
-		logger.trace("Starting verifyIfANewTabOpened()");
 		//Obtener las tabs existentes
 		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
-		logger.trace("Cantidad de tabs: "+browserTabs.size());
 		if(browserTabs.size()>1) {
 			//En caso de haber mas de 1 tab, switchear a esa nueva tab.
-			logger.trace("Switch to new tab");
 			driver.switchTo().window(browserTabs.get(1)); //La primer tab comienza con 0 por eso seleccionamos la 1
 		}
+		logger.trace("Cantidad de tabs: "+browserTabs.size());
+		
 		//switch to new tab
 		//driver.switchTo().window(browserTabs.get(1));
 		//check is it correct page opened or not (e.g. check page's title) then close tab and get back
 		//driver.close();
 		//driver.switchTo().window(browserTabs.get(0));
-		logger.trace("Ending verifyIfANewTabOpened()");
 	}
 	
 	//+++++++++++++++++++++++++++++++++++ WAITS ++++++++++++++++++++++++++++++++++++++++++++++++
+	public void waitForLoaderButtons() {
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(byListListProductRateLoaderButton));
+		//La funcion invisibilityOfElementLocated revisa si isDisplayed y si no existe retorna verdadero
+	}
+	
+	public void waitForOverlay() {
+		//Esperar a que se quite el overlay
+		wait.until(ExpectedConditions.attributeContains(byLoaderOverlayPage, "style", "display: none; opacity: 0;"));
+	}
+	
 	public void waitForContentToBeReady() {
-		JSWaiter.setDriver(driver);
-		JSWaiter.waitUntilJSReady();
+		waitForOverlay();
+		waitForLoaderButtons();
+		logger.info("waitForContentToBeReady -> Content Loaded");
 	}
 	
 	

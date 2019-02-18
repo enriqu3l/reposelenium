@@ -16,13 +16,13 @@ import config.FWConfig;
 import helpers.DDManager;
 import utility.BasicUtils;
 
-public class ThankYouPageF {
+public class ThankYouPage {
 	private WebDriverWait wait;
 	private WebDriver driver;
-	private static Logger logger = LogManager.getLogger(ThankYouPageF.class);
+	private static Logger logger = LogManager.getLogger(ThankYouPage.class);
 	private String currentURL;
 	
-	public ThankYouPageF(WebDriver _driver) {
+	public ThankYouPage(WebDriver _driver) {
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_PT);
@@ -31,25 +31,25 @@ public class ThankYouPageF {
 	}
 	
 	//---------Elements-------
-	@FindBy(how=How.CSS, css="#content h1")
+	@FindBy(how=How.CSS, using="#content h1")
 	WebElement message;
 	
-	@FindBy(how=How.CSS, css="#content .reservation-message .text-brand")
+	@FindBy(how=How.CSS, using="#content .reservation-message .text-brand")
 	WebElement locator;
 	
-	@FindBy(how=How.CSS, css="#content .reservation-message p > strong:nth-child(2)")
+	@FindBy(how=How.CSS, using="#content .reservation-message p > strong:nth-child(2)")
 	WebElement email;
 	
-	@FindBy(how=How.CSS, css="#content .innerModule p a.but")
+	@FindBy(how=How.CSS, using="#content .innerModule p a.but")
 	WebElement buttonSeeReservation;
 	
-	@FindBy(how=How.CSS, css="#createAccount .btn")
+	@FindBy(how=How.CSS, using="#createAccount .btn")
 	WebElement buttonCreateAccount;
 	
-	@FindBy(how=How.CSS, css="#content .lastModule .ap_submit")
+	@FindBy(how=How.CSS, using="#content .lastModule .ap_submit")
 	WebElement linkReserveOtherRoom;
 	
-	@FindBy(how=How.LINK_TEXT, linkText="Regresar a la página principal")
+	@FindBy(how=How.LINK_TEXT, using="Regresar a la página principal")
 	WebElement linkReturnToMainPage;
 	
 	public void verifyCheckOutCompleted(){

@@ -15,7 +15,11 @@ import org.testng.annotations.Test;
 
 import config.FWConfig;
 import helpers.BrowserFactory;
-import tests.workflows.pt.WHPHoteles;
+import helpers.DDManager;
+import pages.pt.PagesNew;
+import valueobjects.VOClient;
+import valueobjects.VOCreditCard;
+import valueobjects.VOResData;
 
 public class TCHP_Hotel {
 	WebDriver driver;
@@ -43,8 +47,9 @@ public class TCHP_Hotel {
 		logger.info("***************************** Starting BeforeMethod **********************************");
 		Reporter.log("Starting Browser");
 		//Set Browser
-		driver = BrowserFactory.StartBrowser(gbrowser, gURL);
+		driver = BrowserFactory.startBrowser(gbrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
+		PagesNew.setDriver(driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}
@@ -55,25 +60,58 @@ public class TCHP_Hotel {
 		return new Object[][] { { "testuser_1", "Test@123" }, { "testuser_1", "Test@123" }};
 	}*/
 	
-	@Test (enabled=false, priority = 1)
-	public void HPHotelDefault() throws InterruptedException{
+	@Test (enabled=true, priority = 1)
+	public void HPHotelDefault(){
 		Reporter.log("Starting test HPHotelDefault");
 		logger.info("Starting test HPHotelDefault");
-		WHPHoteles.HPHotelDefault(driver);
+		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
+		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
+		PagesNew.homeWidget().searchHotel(voResData);
+		PagesNew.homeWidget().clickSearchHotelButton();
+		PagesNew.hotelListPage().listSelectFirstHotelAvailable();
+		PagesNew.roomListPage().selectFirstRoom();
+		PagesNew.resDetailPage().clearAndFillForm(voClient);
+		//PagesNew.resDetailPage().clickOnContinue();
+		//PagesNew.payMethodPage().fillCreditForm(voCreditCard);
+		//PagesNew.payMethodPage().clickOnCompleteReservation();
+		//PagesNew.thankYouPage().verifyCheckOutCompleted();
 	}
 	
 	@Test (enabled=false, priority = 2)
-	public void HPHotelRandom() throws InterruptedException{
+	public void HPHotelRandom(){
 		Reporter.log("Starting test HPHotelRandom");
 		logger.info("Starting test HPHotelRandom");
-		WHPHoteles.HPHotelRandom(driver);
+		VOResData voResData = DDManager.getResDataRandom(FWConfig.FILE_HPHOTELRESDATA);
+		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
+		PagesNew.homeWidget().searchHotel(voResData);
+		PagesNew.homeWidget().clickSearchHotelButton();
+		PagesNew.hotelListPage().listSelectFirstHotelAvailable();
+		PagesNew.roomListPage().selectFirstRoom();
+		PagesNew.resDetailPage().clearAndFillForm(voClient);
+		//PagesNew.resDetailPage().clickOnContinue();
+		//PagesNew.payMethodPage().fillCreditForm(voCreditCard);
+		//PagesNew.payMethodPage().clickOnCompleteReservation();
+		//PagesNew.thankYouPage().verifyCheckOutCompleted();
 	}
 	
-	@Test (enabled=true, priority = 3)
-	public void HPHotelHPHotelUsingDataRow() throws InterruptedException{
+	@Test (enabled=false, priority = 3)
+	public void HPHotelHPHotelUsingDataRow(){
 		Reporter.log("Starting test HPHotelHPHotelUsingDataRow");
 		logger.info("Starting test HPHotelHPHotelUsingDataRow");
-		WHPHoteles.HPHotelUsingDataRow(driver, 11);
+		VOResData voResData = DDManager.getResData(FWConfig.FILE_HPHOTELRESDATA, 11);
+		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
+		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
+		PagesNew.homeWidget().searchHotel(voResData);
+		PagesNew.homeWidget().clickSearchHotelButton();
+		PagesNew.hotelListPage().listSelectFirstHotelAvailable();
+		PagesNew.roomListPage().selectFirstRoom();
+		PagesNew.resDetailPage().clearAndFillForm(voClient);
+		//PagesNew.resDetailPage().clickOnContinue();
+		//PagesNew.payMethodPage().fillCreditForm(voCreditCard);
+		//PagesNew.payMethodPage().clickOnCompleteReservation();
+		//PagesNew.thankYouPage().verifyCheckOutCompleted();
 	}
 
 	@AfterMethod
@@ -81,7 +119,7 @@ public class TCHP_Hotel {
 	{
 		Reporter.log("Closing Browser...");
 		logger.info("Closing Browser...");
-		driver.close();
+		driver.quit();
 	}
 	
 	@AfterTest

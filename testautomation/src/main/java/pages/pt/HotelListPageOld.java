@@ -32,12 +32,12 @@ import valueobjects.VOResData;
  * Esta clase contiene todos los elementos, acciones y verificaciones necesarios para la pagina SPA Hotel List
  *
  */
-public class HotelListPageF {
+public class HotelListPageOld {
 	private WebDriverWait wait;
 	private WebDriver driver;
-	private static Logger logger = LogManager.getLogger(HotelListPageF.class);
+	private static Logger logger = LogManager.getLogger(HotelListPage.class);
 	
-	public HotelListPageF(WebDriver _driver){
+	public HotelListPageOld(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_PT);
@@ -56,25 +56,25 @@ public class HotelListPageF {
 	//private By byLoaderButton = By.cssSelector(".list-product-rate .loader"); //Ya lo declare en la seccion del listado
 	private By byLoaderOverlayFiltros = By.cssSelector(".card-body .loader-overlay");
 	
-	@FindBy(how=How.CSS, css=".loader__title")
+	@FindBy(how=How.CSS, using=".loader__title")
 	private WebElement loaderTitle;
 	
-	@FindBy(how=How.CSS, css=".spinner")
+	@FindBy(how=How.CSS, using=".spinner")
 	private WebElement spiner;
 	
 	
 	//-------------- Header Section --------------------------------
 	private By byPageHeaderTitle = By.cssSelector(".page-header .page-header-title");
 	
-	@FindBy(how=How.CSS, css=".page-header .page-header-title")
+	@FindBy(how=How.CSS, using=".page-header .page-header-title")
 	private WebElement pageHeaderTitle;
 	
 	
 	//-------------- List Section ----------------------------------	
-	@FindBy(how=How.CSS, css=".list-product .list-product-block")
+	@FindBy(how=How.CSS, using=".list-product .list-product-block")
 	private List<WebElement> listAllBlocksResults;
 	
-	@FindBy(how=How.CSS, css=".list-product-block .list-product-rate .list-product-rate-action a")
+	@FindBy(how=How.CSS, using=".list-product-block .list-product-rate .list-product-rate-action a")
 	private WebElement listButtonFirstItem; //primer boton
 	
 	private By byListListProduct = By.cssSelector(".list-product");
@@ -85,58 +85,58 @@ public class HotelListPageF {
 	
 	
 	//--------------- Widget Elements - Basados en SPA-Hoteles ----------
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel #destination")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel #destination")
 	private WebElement widgetInputDestination;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel #Err_PlaceName")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel #Err_PlaceName")
 	private WebElement widgetErrorPlace;
 	
-	@FindBy(how=How.CSS, css="#start-datepicker .ap_dest_calendar")
+	@FindBy(how=How.CSS, using="#start-datepicker .ap_dest_calendar")
 	private WebElement widgetInputStartDate;
 	
-	@FindBy(how=How.CSS, css="#end-datepicker .ap_dest_calendar")
+	@FindBy(how=How.CSS, using="#end-datepicker .ap_dest_calendar")
 	private WebElement widgetInputEndDate;
 	
-	@FindBy(how=How.CSS, css="#start-datepicker .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, using="#start-datepicker .ui-datepicker-trigger")
 	private WebElement widgetStartDatePicker;
 	
-	@FindBy(how=How.CSS, css="#end-datepicker .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, using="#end-datepicker .ui-datepicker-trigger")
 	private WebElement widgetEndDatePicker;
 	
-	@FindBy(how=How.CSS, css="#start-datepicker .dropdown-menu .ngb-dp-month-name")
+	@FindBy(how=How.CSS, using="#start-datepicker .dropdown-menu .ngb-dp-month-name")
 	private WebElement widgetStartDateTitle;
 	
-	@FindBy(how=How.CSS, css="#end-datepicker .dropdown-menu .ngb-dp-month-name")
+	@FindBy(how=How.CSS, using="#end-datepicker .dropdown-menu .ngb-dp-month-name")
 	private WebElement widgetEndDateTitle;
 	
-	@FindBy(how=How.CSS, css="#start-datepicker .ngb-dp-arrow button.btn")
+	@FindBy(how=How.CSS, using="#start-datepicker .ngb-dp-arrow button.btn")
 	private WebElement widgetStartDateBeforeMonth;
 	
-	@FindBy(how=How.CSS, css="#start-datepicker .ngb-dp-arrow.right button.btn")
+	@FindBy(how=How.CSS, using="#start-datepicker .ngb-dp-arrow.right button.btn")
 	private WebElement widgetStartDateNextMonth;
 	
-	@FindBy(how=How.CSS, css="#end-datepicker .ngb-dp-arrow button.btn")
+	@FindBy(how=How.CSS, using="#end-datepicker .ngb-dp-arrow button.btn")
 	private WebElement widgetEndDateBeforeMonth;
 	
-	@FindBy(how=How.CSS, css="#end-datepicker .ngb-dp-arrow.right button.btn")
+	@FindBy(how=How.CSS, using="#end-datepicker .ngb-dp-arrow.right button.btn")
 	private WebElement widgetEndDateNextMonth;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel #ap_booker_Hotel_rooms")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel #ap_booker_Hotel_rooms")
 	private WebElement widgetSelectHotelRooms;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotel_adults")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_booker_Hotel_adults")
 	private WebElement widgetSelectHotelAdults;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotel_minors")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_booker_Hotel_minors")
 	private WebElement widgetSelectHotelMinors;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ptw-submit-btn")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ptw-submit-btn")
 	private WebElement widgetButtonSubmit;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotelroom")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_booker_Hotelroom")
 	private  List<WebElement> widgetAllBlockRooms;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_minorsAges_Hotel_container")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_minorsAges_Hotel_container")
 	private  List<WebElement> widgetMinorsAgesHotelContainer;
 	
 	private By byWidgetStartDateDropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
@@ -147,7 +147,7 @@ public class HotelListPageF {
 	private By byWidgetAllKidsPerRoom = By.cssSelector(".ap_age.ap_Hotel_year");
 	
 	//--------------- Paging Elements - Basados en SPA-Hoteles ----------
-	@FindBy(how=How.CSS, css=".pagination > *:last-child a")
+	@FindBy(how=How.CSS, using=".pagination > *:last-child a")
 	private  WebElement pagingNextPage;
 	private By byPagingNextPage = By.cssSelector(".pagination > *:last-child a");
 	
@@ -581,7 +581,7 @@ public class HotelListPageF {
 	//+++++++++++++++++++++++++++++++++++ WAITS ++++++++++++++++++++++++++++++++++++++++++++++++
 	public void waitForLoaderButtons() {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(byListListProductRateLoaderButton));
-		//La funcion invisibilityOfAllElements revisa si isDisplayed y si no existe retorna verdadero
+		//La funcion invisibilityOfElementLocated revisa si isDisplayed y si no existe retorna verdadero
 	}
 	
 	public void waitForOverlay() {

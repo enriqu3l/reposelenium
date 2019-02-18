@@ -18,9 +18,9 @@ import io.appium.java_client.remote.MobileCapabilityType;
 //en las variables del sistema
 
 public class MobileBrowserFactory {
-	public static WebDriver driver;
 	
 	public static WebDriver StartBrowser(String _device, String _version, String _browserName, String _url) {
+		WebDriver driver;
 		Assert.assertFalse((_device.equals("") || _url.equals(null)),"El parametro _device es nullo o no contiene informacion");
 		Assert.assertFalse((_browserName.equals("") || _browserName.equals(null)),"El parametro _browserName es nullo o no contiene informacion");
 		Assert.assertFalse((_url.equals("") || _url.equals(null)),"El parametro _url es nullo o no contiene informacion");

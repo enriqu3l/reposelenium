@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regression_Suite">
+<suite name="Regression_Suite" thread-count="3" parallel="tests">
   <listeners>
     <listener class-name="testlisteners.ListenerRegression"></listener>
   </listeners>
-  <test thread-count="3" name="Test">
+  <test name="SPAWidget" >
     <classes>
       <class name="testcases.regression.pt.TCSPAHLWidget"/>
+    </classes>
+  </test> <!-- Test -->
+  <test name="SPAPaging">
+    <classes>
       <class name="testcases.regression.pt.TCSPAHLPaging"/>
     </classes>
   </test> <!-- Test -->

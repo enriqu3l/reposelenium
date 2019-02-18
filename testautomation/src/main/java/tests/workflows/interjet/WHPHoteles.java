@@ -14,8 +14,13 @@ import valueobjects.VOResData;
 
 public class WHPHoteles {
 	private static Logger logger = LogManager.getLogger(WHPHoteles.class);
+	private static WebDriver driver;
 	
-	public static void HPHotelDefault(WebDriver driver){
+	public static void setDriver(WebDriver _driver) {
+		driver = _driver;
+	}
+	
+	public static void HPHotelDefault(){
 		logger.info("Starting HPHotelDefault");
 		Reporter.log("Staring HPHotelDefault");
 		VOResData voHotelResNew = DDManager.getResData(FWConfig.FILE_INTERJETHOTELRESDATA, 1);
@@ -42,7 +47,7 @@ public class WHPHoteles {
 		Reporter.log("Ending HPHotelDefault");
 	}
 	
-	public static void HPHotelRandom(WebDriver driver){
+	public static void HPHotelRandom(){
 		logger.info("Starting HPHotelRandom");
 		Reporter.log("Staring HPHotelRandom");
 		VOResData voHotelResNew = DDManager.getResDataRandom(FWConfig.FILE_INTERJETHOTELRESDATA);

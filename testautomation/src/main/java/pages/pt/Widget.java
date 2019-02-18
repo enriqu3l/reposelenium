@@ -2,8 +2,6 @@ package pages.pt;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -11,36 +9,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import config.FWConfig;
-import helpers.JSWaiter;
 import valueobjects.VOResData;
 
-public class HomePageF {
-	private WebDriverWait wait;
-	private WebDriver driver;
-	private static Logger logger = LogManager.getLogger(HomePageF.class);
-	
-	//Constructor
-	public HomePageF(WebDriver _driver){
-		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
-		this.driver = _driver;
-		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_PT);
-		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FWConfig.WAITPF_PT),this);
-		
-		//Esperar a que la url sea la correcta
-		wait.until(ExpectedConditions.urlContains("pricetravel."));
+public class Widget extends HomePage{
+
+	public Widget(WebDriver _driver) {
+		super(_driver);
 	}
-	
+
 	//--------------- Widget------------------------
 	//@FindBy(how=How.CSS, using="#ptw-menu > ul")
-	@FindBy(how=How.CSS, css="#ptw-menu > ul")
+	@FindBy(how=How.CSS, using="#ptw-menu > ul")
 	@CacheLookup
 	private WebElement widgetMenu;
 	
@@ -52,122 +35,122 @@ public class HomePageF {
 	
 	
 	//--------------- Widget Hoteles ---------------
-	@FindBy(how=How.ID, id="var1_1")
+	@FindBy(how=How.ID, using="var1_1")
 	@CacheLookup
 	private WebElement widgetRadioButtonHotel;
 	
-	@FindBy(how=How.ID, id="var1_3")
+	@FindBy(how=How.ID, using="var1_3")
 	@CacheLookup
 	private WebElement widgetRadioButtonHotelFlight;
 	
-	@FindBy(how=How.ID, id="ap_dest_hotel")
+	@FindBy(how=How.ID, using="ap_dest_hotel")
 	@CacheLookup
 	private WebElement widgetInputDestHotel;
 	
-	@FindBy(how=How.ID, id="ap_dest_start")
+	@FindBy(how=How.ID, using="ap_dest_start")
 	@CacheLookup
 	private WebElement widgetInputDestStartHotel;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form .ptw-field-date:nth-child(1) .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel_form .ptw-field-date:nth-child(1) .ui-datepicker-trigger")
 	@CacheLookup
 	private WebElement widgetImageDateStartHotelTrigger;
 	
-	@FindBy(how=How.ID, id="ap_dest_end")
+	@FindBy(how=How.ID, using="ap_dest_end")
 	@CacheLookup
 	private WebElement widgetInputDestEndHotel;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form .ptw-field-date:nth-child(2) .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel_form .ptw-field-date:nth-child(2) .ui-datepicker-trigger")
 	@CacheLookup
 	private WebElement widgetImageDateEndHotelTrigger;
 	
-	@FindBy(how=How.ID, id="ap_booker_Hotel_rooms")
+	@FindBy(how=How.ID, using="ap_booker_Hotel_rooms")
 	@CacheLookup
 	private WebElement widgetSelectBookerHotelRooms;
 	
-	@FindBy(how=How.ID, id="ap_booker_Hotel_adults0")
+	@FindBy(how=How.ID, using="ap_booker_Hotel_adults0")
 	@CacheLookup
 	private WebElement widgetSelectBookerHotelAdults0;
 	
-	@FindBy(how=How.ID, id="ap_booker_Hotel_minors0")
+	@FindBy(how=How.ID, using="ap_booker_Hotel_minors0")
 	@CacheLookup
 	private WebElement widgetSelectBookerHotelMinors0;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form .ptw-submit-btn")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel_form .ptw-submit-btn")
 	@CacheLookup
 	private WebElement widgetButtonSearchHoteles;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form .ap_booker_Hotelroom")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel_form .ap_booker_Hotelroom")
 	private  List<WebElement> widgetAllBlockRooms;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel_form .ap_minorsAges_Hotel_container")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel_form .ap_minorsAges_Hotel_container")
 	private  List<WebElement> widgetMinorsAgesHotelContainer;
 	
 	private By byWidgetHotelAdults = By.cssSelector(".ap_booker_Hotel_adults");
 	private By byWidgetHotelMinors = By.cssSelector(".ap_booker_Hotel_minors");
 	
 	//--------------- Widget Paquetes ---------------
-	@FindBy(how=How.ID, id="var3_3")
+	@FindBy(how=How.ID, using="var3_3")
 	@CacheLookup
 	private WebElement widgetRadioButtonHotelFlightPackage;
 	
-	@FindBy(how=How.ID, id="ap_origin_flightPackage")
+	@FindBy(how=How.ID, using="ap_origin_flightPackage")
 	@CacheLookup
 	private WebElement widgetInputOriginFlightPackage;
 	
-	@FindBy(how=How.ID, id="ap_dest_flightPackage")
+	@FindBy(how=How.ID, using="ap_dest_flightPackage")
 	@CacheLookup
 	private WebElement widgetInputDestFlightPackage;
 	
-	@FindBy(how=How.ID, id="ap_flightPackage_start")
+	@FindBy(how=How.ID, using="ap_flightPackage_start")
 	@CacheLookup
 	private WebElement widgetInputFlightPackageStart;
 	
-	@FindBy(how=How.ID, id="ap_flightPackage_end")
+	@FindBy(how=How.ID, using="ap_flightPackage_end")
 	@CacheLookup
 	private WebElement widgetInputFlightPackageEnd;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_FlightPackage_form .ptw-field-date:nth-child(1) .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, using="#ap_booker_FlightPackage_form .ptw-field-date:nth-child(1) .ui-datepicker-trigger")
 	@CacheLookup
 	private WebElement widgetImageDateStartPackageTrigger;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_FlightPackage_form .ptw-field-date:nth-child(2) .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, using="#ap_booker_FlightPackage_form .ptw-field-date:nth-child(2) .ui-datepicker-trigger")
 	@CacheLookup
 	private WebElement widgetImageDateEndPackageTrigger;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_FlightPackage_form .ptw-submit-btn")
+	@FindBy(how=How.CSS, using="#ap_booker_FlightPackage_form .ptw-submit-btn")
 	@CacheLookup
 	private WebElement widgetButtonSearchPackage;
 	
-	@FindBy(how=How.ID, id="ap_booker_FlightPackage_rooms")
+	@FindBy(how=How.ID, using="ap_booker_FlightPackage_rooms")
 	@CacheLookup
 	private WebElement widgetSelectBookerPackageRooms;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_FlightPackage_form .ap_booker_FlightPackageroom")
+	@FindBy(how=How.CSS, using="#ap_booker_FlightPackage_form .ap_booker_FlightPackageroom")
 	private  List<WebElement> widgetAllBlockPackageRooms;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_FlightPackage_form .ap_minorsAges_FlightPackage_container")
+	@FindBy(how=How.CSS, using="#ap_booker_FlightPackage_form .ap_minorsAges_FlightPackage_container")
 	private  List<WebElement> widgetMinorsAgesPackageContainer;
 	
 	private By byWidgetPackageAdults = By.cssSelector(".ap_booker_FlightPackage_adults");
 	private By byWidgetPackageMinors = By.cssSelector(".ap_booker_FlightPackage_minors");
 	
 	//--------------- Widget Vuelos ---------------
-	@FindBy(how=How.ID, id="var2_2")
+	@FindBy(how=How.ID, using="var2_2")
 	@CacheLookup
 	private WebElement widgetRadioButtonFlight;
 	
-	@FindBy(how=How.ID, id="var2_3")
+	@FindBy(how=How.ID, using="var2_3")
 	@CacheLookup
 	private WebElement widgetRadioButtonFlightPackage;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Flight_form .ptw-submit-btn")
+	@FindBy(how=How.CSS, using="#ap_booker_Flight_form .ptw-submit-btn")
 	@CacheLookup
 	private WebElement widgetButtonSearchFlight;
 	
 	//Falta de agregar elementos de los otros productos....
 
 	//+++++++++++++++++ Hotels  Methods ++++++++++++++++++++++++++++++
-	public void widgetSetHotelDestin(String destin) {
+	public void setHotelDestin(String destin) {
 		logger.info("Starting widgetSelectHotelDestin()");
 		widgetInputDestHotel.clear();
 		widgetInputDestHotel.sendKeys(destin);
@@ -176,13 +159,13 @@ public class HomePageF {
 		widgetInputDestHotel.sendKeys(Keys.ENTER);
 	}
 	
-	public void widgetSetHotelStartDate(String startDate) {
+	public void setHotelStartDate(String startDate) {
 		widgetInputDestStartHotel.clear();
 		widgetInputDestStartHotel.sendKeys(startDate);
 		logger.trace("Start Date: "+startDate);
 	}
 	
-	public void widgetSetHotelEndDate(String endDate) {
+	public void setHotelEndDate(String endDate) {
 		widgetInputDestEndHotel.clear();
 		widgetInputDestEndHotel.sendKeys(endDate);
 		//Aqui voy a cerrar el datepicker dropdown haciendo click en el icono
@@ -190,7 +173,7 @@ public class HomePageF {
 		logger.trace("End Date: "+endDate);
 	}
 	
-	public void widgetSetOccupants(String product,VOResData voHotelRes) {
+	public void setOccupants(String product,VOResData voHotelRes) {
 		List<WebElement> lweBlockRooms = null;
 		List<WebElement> lweMinorsAgeContainer = null;
 		WebElement weRooms = null;
@@ -258,23 +241,23 @@ public class HomePageF {
 		}
 	}
 	
-	public void widgetClickSearchHotelButton() {
+	public void clickSearchHotelButton() {
 		widgetButtonSearchHoteles.click();
 	}
 	
-	public void widgetSearchHotel(VOResData voResData){
+	public void searchHotel(VOResData voResData){
 		logger.info("Starting SearchHotel()");
-		widgetSetProduct("Hoteles");
-		widgetSetHotelDestin(voResData.getDestination());
-		widgetSetHotelStartDate(voResData.getStartDate());
-		widgetSetHotelEndDate(voResData.getEndDate());
+		setProduct("Hoteles");
+		setHotelDestin(voResData.getDestination());
+		setHotelStartDate(voResData.getStartDate());
+		setHotelEndDate(voResData.getEndDate());
 		//widgetSetHotelOccupantsOld(voHotelRes);  //Version anterior que NO sirve para seleccionar niños
-		widgetSetOccupants("hoteles",voResData);
+		setOccupants("hoteles",voResData);
 	}
 	
 	
 	//++++++++++++++++++ Package Methods ++++++++++++++++++++++++
-	public void widgetSetPackageOrigin(String origin) {
+	public void setPackageOrigin(String origin) {
 		logger.info("Starting widgetSetPackageOrigin()");
 		widgetInputOriginFlightPackage.clear();
 		widgetInputOriginFlightPackage.sendKeys(origin);
@@ -283,7 +266,7 @@ public class HomePageF {
 		widgetInputOriginFlightPackage.sendKeys(Keys.ENTER);
 	}
 	
-	public void widgetSetPackageDestin(String destin) {
+	public void setPackageDestin(String destin) {
 		logger.info("Starting widgetSetPackageDestin()");
 		widgetInputDestFlightPackage.clear();
 		widgetInputDestFlightPackage.sendKeys(destin);
@@ -292,13 +275,13 @@ public class HomePageF {
 		widgetInputDestFlightPackage.sendKeys(Keys.ENTER);
 	}
 	
-	public void widgetSetPackageStartDate(String startDate) {
+	public void setPackageStartDate(String startDate) {
 		widgetInputFlightPackageStart.clear();
 		widgetInputFlightPackageStart.sendKeys(startDate);
 		logger.trace("Start Date: "+startDate);
 	}
 	
-	public void widgetSetPackageEndDate(String endDate) {
+	public void setPackageEndDate(String endDate) {
 		widgetInputFlightPackageEnd.clear();
 		widgetInputFlightPackageEnd.sendKeys(endDate);
 		//Aqui voy a cerrar el datepicker dropdown haciendo click en el icono
@@ -306,33 +289,27 @@ public class HomePageF {
 		logger.trace("End Date: "+endDate);
 	}
 	
-	public void widgetClickSearchPackageButton() {
+	public void clickSearchPackageButton() {
 		//JSWaiter.setDriver(driver);
 		//JSWaiter.waitUntilJSReady();
 		widgetButtonSearchPackage.click();
 	}
 	
-	public void widgetSearchPackage(VOResData voResData){
+	public void searchPackage(VOResData voResData){
 		logger.info("Starting widgetSearchPackage()");
-		widgetSetProduct("Paquetes");
-		widgetSetPackageOrigin(voResData.getOrigin());
-		widgetSetPackageDestin(voResData.getDestination());
-		widgetSetPackageStartDate(voResData.getStartDate());
-		widgetSetPackageEndDate(voResData.getEndDate());
-		widgetSetOccupants("paquetes",voResData);
+		setProduct("Paquetes");
+		setPackageOrigin(voResData.getOrigin());
+		setPackageDestin(voResData.getDestination());
+		setPackageStartDate(voResData.getStartDate());
+		setPackageEndDate(voResData.getEndDate());
+		setOccupants("paquetes",voResData);
 	}
 	
-	public void widgetSetProduct(String product) {
+	public void setProduct(String product) {
 		logger.info("Starting widgetSetProduct()");
 		if(!widgetMenu.findElement(byWidgetProductActive).getText().equals(product)) {
 			widgetMenu.findElement(By.linkText(product) ).click();
 		}
 		logger.info("Ending widgetSetProduct()");
-	}
-	
-	//PENDIENTE POR CONSTRUIR
-	//Funcion para revisar cada link, cada item dentro del home page!!!
-	public void VerifyAllHomeItems() {
-		
 	}
 }

@@ -24,6 +24,7 @@ import org.testng.Assert;
 
 import config.CoreConfig;
 import config.FWConfig;
+import helpers.JSWaiter;
 import helpers.WaitFor;
 import utility.BasicUtils;
 import valueobjects.VOResData;
@@ -32,19 +33,19 @@ import valueobjects.VOResData;
  * Esta clase contiene todos los elementos, acciones y verificaciones necesarios para la pagina SPA Hotel List
  *
  */
-public class StageHotelListPageF {
+public class PackageListPage {
 	private WebDriverWait wait;
 	private WebDriver driver;
-	private static Logger logger = LogManager.getLogger(StageHotelListPageF.class);
+	private static Logger logger = LogManager.getLogger(PackageListPage.class);
 	
-	public StageHotelListPageF(WebDriver _driver){
+	public PackageListPage(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_PT);
 		PageFactory.initElements(new AjaxElementLocatorFactory(_driver, FWConfig.WAITPF_PT),this);
 		
 		//Esperar a que la url sea la correcta
-		wait.until(ExpectedConditions.urlContains("/hoteles"));
+		wait.until(ExpectedConditions.urlContains("/paquetes/resultados"));
 	}
 	
 	//Ejemplos de como buscar attributos en xpath y cssSelector
@@ -56,102 +57,98 @@ public class StageHotelListPageF {
 	//private By byLoaderButton = By.cssSelector(".list-product-rate .loader"); //Ya lo declare en la seccion del listado
 	private By byLoaderOverlayFiltros = By.cssSelector(".card-body .loader-overlay");
 	
-	@FindBy(how=How.CSS, css=".loader__title")
+	@FindBy(how=How.CSS, using=".loader__title")
 	private WebElement loaderTitle;
 	
-	@FindBy(how=How.CSS, css=".spinner")
+	@FindBy(how=How.CSS, using=".spinner")
 	private WebElement spiner;
 	
 	
 	//-------------- Header Section --------------------------------
 	private By byPageHeaderTitle = By.cssSelector(".page-header .page-header-title");
 	
-	@FindBy(how=How.CSS, css=".page-header .page-header-title")
+	@FindBy(how=How.CSS, using=".page-header .page-header-title")
 	private WebElement pageHeaderTitle;
 	
 	
 	//-------------- List Section ----------------------------------	
-	@FindBy(how=How.CSS, css="pth-list .list-product-block")
+	@FindBy(how=How.CSS, using=".list-product .list-product-block")
 	private List<WebElement> listAllBlocksResults;
 	
-	@FindBy(how=How.CSS, css=".list-product-block .list-product-rate .list-product-rate-action a")
+	@FindBy(how=How.CSS, using=".list-product-block .list-product-rate .list-product-rate-action a")
 	private WebElement listButtonFirstItem; //primer boton
 	
-	private By byListListProduct = By.cssSelector("pth-list");
+	private By byListListProduct = By.cssSelector(".list-product");
 	private By byListProductRateFinal = By.cssSelector(".list-product-rate .product-rate-final");
 	private By byListProductHotelName = By.cssSelector(".list-product-item-content .list-product-name");
 	private By byListButtonSeeOffer = By.cssSelector(".list-product-rate .list-product-rate-action .btn");
-	
-	//No se ve en Stage!!!!
-	private By byListListProductRateLoaderButton = By.cssSelector(".list-product-block .list-product-rate .loader"); 
+	private By byListListProductRateLoaderButton = By.cssSelector(".list-product .list-product-rate .loader");
 	
 	
 	//--------------- Widget Elements - Basados en SPA-Hoteles ----------
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel #destination input")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel #destination")
 	private WebElement widgetInputDestination;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel form > div > .ptw-errormsg")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel #Err_PlaceName")
 	private WebElement widgetErrorPlace;
 	
-	@FindBy(how=How.CSS, css=".ptw-field-date:first-child .ap_dest_calendar")
+	@FindBy(how=How.CSS, using="#start-datepicker .ap_dest_calendar")
 	private WebElement widgetInputStartDate;
 	
-	@FindBy(how=How.CSS, css=".ptw-field-date:last-child .ap_dest_calendar")
+	@FindBy(how=How.CSS, using="#end-datepicker .ap_dest_calendar")
 	private WebElement widgetInputEndDate;
 	
-	@FindBy(how=How.CSS, css=".ptw-field-date:first-child .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, using="#start-datepicker .ui-datepicker-trigger")
 	private WebElement widgetStartDatePicker;
 	
-	@FindBy(how=How.CSS, css=".ptw-field-date:last-child .ui-datepicker-trigger")
+	@FindBy(how=How.CSS, using="#end-datepicker .ui-datepicker-trigger")
 	private WebElement widgetEndDatePicker;
 	
-	@FindBy(how=How.CSS, css=".ptw-field-date:first-child .dropdown-menu .ngb-dp-month-name")
+	@FindBy(how=How.CSS, using="#start-datepicker .dropdown-menu .ngb-dp-month-name")
 	private WebElement widgetStartDateTitle;
 	
-	@FindBy(how=How.CSS, css=".ptw-field-date:last-child .dropdown-menu .ngb-dp-month-name")
+	@FindBy(how=How.CSS, using="#end-datepicker .dropdown-menu .ngb-dp-month-name")
 	private WebElement widgetEndDateTitle;
 	
-	@FindBy(how=How.CSS, css=".ptw-field-date:first-child .ngb-dp-arrow button.btn")
+	@FindBy(how=How.CSS, using="#start-datepicker .ngb-dp-arrow button.btn")
 	private WebElement widgetStartDateBeforeMonth;
 	
-	@FindBy(how=How.CSS, css=".ptw-field-date:first-child .ngb-dp-arrow.right button.btn")
+	@FindBy(how=How.CSS, using="#start-datepicker .ngb-dp-arrow.right button.btn")
 	private WebElement widgetStartDateNextMonth;
 	
-	@FindBy(how=How.CSS, css=".ptw-field-date:last-child .ngb-dp-arrow button.btn")
+	@FindBy(how=How.CSS, using="#end-datepicker .ngb-dp-arrow button.btn")
 	private WebElement widgetEndDateBeforeMonth;
 	
-	@FindBy(how=How.CSS, css=".ptw-field-date:last-child .ngb-dp-arrow.right button.btn")
+	@FindBy(how=How.CSS, using="#end-datepicker .ngb-dp-arrow.right button.btn")
 	private WebElement widgetEndDateNextMonth;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel #ap_booker_Hotel_rooms")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel #ap_booker_Hotel_rooms")
 	private WebElement widgetSelectHotelRooms;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotel_adults")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_booker_Hotel_adults")
 	private WebElement widgetSelectHotelAdults;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotel_minors")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_booker_Hotel_minors")
 	private WebElement widgetSelectHotelMinors;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ptw-submit-btn")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ptw-submit-btn")
 	private WebElement widgetButtonSubmit;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_booker_Hotelroom")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_booker_Hotelroom")
 	private  List<WebElement> widgetAllBlockRooms;
 	
-	@FindBy(how=How.CSS, css="#ap_booker_Hotel .ap_minorsAges_Hotel_container")
+	@FindBy(how=How.CSS, using="#ap_booker_Hotel .ap_minorsAges_Hotel_container")
 	private  List<WebElement> widgetMinorsAgesHotelContainer;
 	
-	private By byWidgetStartDateDropdownMenu = By.cssSelector(".ptw-field-date:first-child .dropdown-menu");
-	private By byWidgetEndDateDropdownMenu = By.cssSelector(".ptw-field-date:last-child .dropdown-menu");
+	private By byWidgetStartDateDropdownMenu = By.cssSelector("#start-datepicker .dropdown-menu");
+	private By byWidgetEndDateDropdownMenu = By.cssSelector("#end-datepicker .dropdown-menu");
 	private By byWidgetDestinationDropdownMenu = By.cssSelector("#ap_booker_Hotel .dropdown-menu");
 	private By byWidgetHotelAdults = By.cssSelector(".ap_booker_Hotel_adults");
 	private By byWidgetHotelMinors = By.cssSelector(".ap_booker_Hotel_minors");
 	private By byWidgetAllKidsPerRoom = By.cssSelector(".ap_age.ap_Hotel_year");
-	private String dayStart = "//*[@id='datepicker-parent']/div/child::div[1]//div[text()='";
-	private String dayEnd = "//*[@id='datepicker-parent']/div/child::div[2]//div[text()='";
 	
 	//--------------- Paging Elements - Basados en SPA-Hoteles ----------
-	@FindBy(how=How.CSS, css=".pagination > *:last-child a")
+	@FindBy(how=How.CSS, using=".pagination > *:last-child a")
 	private  WebElement pagingNextPage;
 	private By byPagingNextPage = By.cssSelector(".pagination > *:last-child a");
 	
@@ -167,6 +164,7 @@ public class StageHotelListPageF {
 		waitForContentToBeReady();
 		listVerifyResultListHasElements();
 		WebElement buttonSeeOffer = listAllBlocksResults.get(btnIndex).findElement(byListButtonSeeOffer);
+		logger.info("Clicking button...");
 		buttonSeeOffer.click();
 		verifyIfANewTabOpened();  //En caso de encontrar una nueva tab, switchear a ella.
 	}
@@ -261,6 +259,7 @@ public class StageHotelListPageF {
 	
 	public void widgetSetStartDate(String date) {
 		if(date.isEmpty()) {Assert.fail("LAF>>>El parametro date esta vacio");}
+		
 		logger.info("Starting widgetSetStartDate()");
 		logger.info("widgetSetStartDate() parametro recibido:"+date);
 		waitForContentToBeReady(); //Esperar a que se quite el overlay
@@ -280,8 +279,7 @@ public class StageHotelListPageF {
 				widgetStartDateBeforeMonth.click(); //click hacia atras
 			}
 		}
-		
-		String xpath = dayStart+day+"']";
+		String xpath = "//*[@id='start-datepicker']//div[text()='"+day+"']";
 		driver.findElement(By.xpath(xpath)).click();
 		logger.trace("Valor de widgetInputStartDate: " + widgetInputStartDate.getAttribute("value"));
 	}
@@ -308,7 +306,7 @@ public class StageHotelListPageF {
 				widgetEndDateBeforeMonth.click(); //click hacia atras
 			}
 		}
-		String xpath = dayEnd+day+"']";
+		String xpath = "//*[@id='end-datepicker']//div[text()='"+day+"']";
 		driver.findElement(By.xpath(xpath)).click();
 		logger.trace("Valor de widgetInputEndDate: " + widgetInputEndDate.getAttribute("value"));
 	}
@@ -480,6 +478,7 @@ public class StageHotelListPageF {
 		}else {
 			logger.info("widgetVerifyErrorPlace PASS");
 		}
+			
 	}
 	
 	/**
@@ -566,43 +565,27 @@ public class StageHotelListPageF {
 	}
 	
 	public void verifyIfANewTabOpened() {
+		logger.trace("Starting verifyIfANewTabOpened()");
 		//Obtener las tabs existentes
 		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+		logger.trace("Cantidad de tabs: "+browserTabs.size());
 		if(browserTabs.size()>1) {
 			//En caso de haber mas de 1 tab, switchear a esa nueva tab.
+			logger.trace("Switch to new tab");
 			driver.switchTo().window(browserTabs.get(1)); //La primer tab comienza con 0 por eso seleccionamos la 1
 		}
-		logger.trace("Cantidad de tabs: "+browserTabs.size());
-		
 		//switch to new tab
 		//driver.switchTo().window(browserTabs.get(1));
 		//check is it correct page opened or not (e.g. check page's title) then close tab and get back
 		//driver.close();
 		//driver.switchTo().window(browserTabs.get(0));
+		logger.trace("Ending verifyIfANewTabOpened()");
 	}
 	
 	//+++++++++++++++++++++++++++++++++++ WAITS ++++++++++++++++++++++++++++++++++++++++++++++++
-	public void waitForLoaderButtons() {
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(byListListProductRateLoaderButton));
-		//La funcion invisibilityOfAllElements revisa si isDisplayed y si no existe retorna verdadero
-		
-		//Agrego este sleep en lo que agregan el spiner en la parte de la tarifa del hotel
-		//La ejecucion estara muy lenta mientras este este sleep !!
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void waitForOverlay() {
-		//Esperar a que se quite el overlay
-		wait.until(ExpectedConditions.attributeContains(byLoaderOverlayPage, "style", "display: none; opacity: 0;"));
-	}
-	
 	public void waitForContentToBeReady() {
-		waitForOverlay();
-		waitForLoaderButtons();
+		JSWaiter.setDriver(driver);
+		JSWaiter.waitUntilJSReady();
 	}
 	
 	

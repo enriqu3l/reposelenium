@@ -19,12 +19,12 @@ import org.testng.Assert;
 
 import config.FWConfig;
 
-public class RoomListPageF {
+public class RoomListPage {
 	private WebDriverWait wait;
 	private WebDriver driver;
-	private static Logger logger = LogManager.getLogger(RoomListPageF.class);
+	private static Logger logger = LogManager.getLogger(RoomListPage.class);
 	
-	public RoomListPageF(WebDriver _driver){
+	public RoomListPage(WebDriver _driver){
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
 		this.wait = new WebDriverWait(_driver,FWConfig.WAIT_PT);
@@ -35,10 +35,10 @@ public class RoomListPageF {
 	}
 	
 	//+++++++++PageFactory Elements+++++++++++++++++
-	@FindBy(how=How.CSS, css=".hotel-rooms-table .room-table[style='display: block;']")
+	@FindBy(how=How.CSS, using=".hotel-rooms-table .room-table[style='display: block;']")
 	private List<WebElement> allSearchResults;
 	
-	@FindBy(how=How.CSS, css=".hotel-rooms-table .room-table .room-table-actions .btn.btn-primary")
+	@FindBy(how=How.CSS, using=".hotel-rooms-table .room-table .room-table-actions .btn.btn-primary")
 	private WebElement roomButton;
 	
 	By byLoaderOverlayPage = By.cssSelector(".loader-overlay.ng-trigger");
