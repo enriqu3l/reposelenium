@@ -30,7 +30,7 @@ public class TCHP_Paquete {
 	
 	@BeforeTest
 	@Parameters({"url","browser"})
-	public void setConfigVariables(String url, String browser, ITestContext itc) {
+	public void setup(String url, String browser, ITestContext itc) {
 		logger.info("***************************** Starting BeforeTest **********************************");
 		Reporter.log("Starting BeforeTest");
 		logger.info("Starting BeforeTest");
@@ -60,78 +60,81 @@ public class TCHP_Paquete {
 	}*/
 	
 	@Test (enabled=false, priority = 1)
-	public void HPHotelDefault() throws InterruptedException{
+	public void HPHotelDefault(){
 		Reporter.log("Starting test HPHotelDefault");
 		logger.info("Starting test HPHotelDefault");
 		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPPACKAGERESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
-		pages.homeWidget_Initialize();
-		pages.homeWidget.searchHotel(voResData);
-		pages.homeWidget.clickSearchHotelButton();
-		pages.packageListPage_Initialize();
-		pages.packageListPage.listSelectFirstHotelAvailable();
-		//pages.roomListPage_Initialize();
-		//pages.roomListPage.selectFirstRoom();
-		//pages.resDetailPage_Initialize();
-		//pages.resDetailPage.clearAndFillForm(voClient);
-		//pages.resDetailPage.clickOnContinue();
-		//pages.payMethodPage_Initialize();
-		//pages.payMethodPage.fillCreditForm(voCreditCard);
-		//pages.payMethodPage.clickOnCompleteReservation();
-		//pages.thankYouPage_Initialize();
-		//pages.thankYouPage.verifyCheckOutCompleted();
+		pages.home_Initialize();
+		pages.home.widget.searchPackage(voResData);
+		pages.home.widget.clickSearchPackageButton();
+		pages.packageList_Initialize();
+		pages.packageList.listSelectFirstHotelAvailable();
+		pages.browser.switchToNewTabIfOpened();
+		pages.packageRoomList_Initialize();
+		pages.packageRoomList.selectFirstRoom();
+		pages.packageResDetail_Initialize();
+		pages.packageResDetail.clearAndFillForm(voClient);
+		pages.packageResDetail.clickContinue();
+		pages.payMethod_Initialize();
+		pages.payMethod.fillCreditForm(voCreditCard);
+		//pages.payMethod.clickOnCompleteReservation();
+		//pages.thankYou_Initialize();
+		//pages.thankYou.verifyCheckOutCompleted();
 	}
 	
 	@Test (enabled=false, priority = 2)
-	public void HPHotelRandom() throws InterruptedException{
+	public void HPHotelRandom(){
 		Reporter.log("Starting test HPHotelRandom");
 		logger.info("Starting test HPHotelRandom");
 		VOResData voResData = DDManager.getResDataRandom(FWConfig.FILE_HPPACKAGERESDATA);
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
-		pages.homeWidget_Initialize();
-		pages.homeWidget.searchHotel(voResData);
-		pages.homeWidget.clickSearchHotelButton();
-		pages.packageListPage_Initialize();
-		pages.packageListPage.listSelectFirstHotelAvailable();
-		//pages.roomListPage_Initialize();
-		//pages.roomListPage.selectFirstRoom();
-		//pages.resDetailPage_Initialize();
-		//pages.resDetailPage.clearAndFillForm(voClient);
-		//pages.resDetailPage.clickOnContinue();
-		//pages.payMethodPage_Initialize();
-		//pages.payMethodPage.fillCreditForm(DO_CreditCard);
-		//pages.payMethodPage.clickOnCompleteReservation();
-		//pages.thankYouPage_Initialize();
-		//pages.thankYouPage.verifyCheckOutCompleted();
+		pages.home_Initialize();
+		pages.home.widget.searchPackage(voResData);
+		pages.home.widget.clickSearchPackageButton();
+		pages.packageList_Initialize();
+		pages.packageList.listSelectFirstHotelAvailable();
+		pages.browser.switchToNewTabIfOpened();
+		pages.packageRoomList_Initialize();
+		pages.packageRoomList.selectFirstRoom();
+		pages.packageResDetail_Initialize();
+		pages.packageResDetail.clearAndFillForm(voClient);
+		pages.packageResDetail.clickContinue();
+		pages.payMethod_Initialize();
+		pages.payMethod.fillCreditForm(DO_CreditCard);
+		//pages.payMethod.clickOnCompleteReservation();
+		//pages.thankYou_Initialize();
+		//pages.thankYou.verifyCheckOutCompleted();
 	}
 	
 	@Test (enabled=true, priority = 3)
-	public void HPHotelHPHotelUsingDataRow() throws InterruptedException{
+	public void HPHotelHPHotelUsingDataRow(){
 		Reporter.log("Starting test HPHotelHPHotelUsingDataRow");
 		logger.info("Starting test HPHotelHPHotelUsingDataRow");
-		VOResData voResData = DDManager.getResData(FWConfig.FILE_HPPACKAGERESDATA, 11);
+		VOResData voResData = DDManager.getResData(FWConfig.FILE_HPPACKAGERESDATA, 1);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
-		pages.homeWidget_Initialize();
-		pages.homeWidget.searchHotel(voResData);
-		pages.homeWidget.clickSearchHotelButton();
-		pages.packageListPage_Initialize();
-		pages.packageListPage.listSelectFirstHotelAvailable();
-		//pages.roomListPage_Initialize();
-		//pages.roomListPage.selectFirstRoom();
-		//pages.resDetailPage_Initialize();
-		//pages.resDetailPage.clearAndFillForm(voClient);
-		//pages.resDetailPage.clickOnContinue();
-		//pages.payMethodPage_Initialize();
-		//pages.payMethodPage.fillCreditForm(voCreditCard);
-		//pages.payMethodPage.clickOnCompleteReservation();
-		//pages.thankYouPage_Initialize();
-		//pages.thankYouPage.verifyCheckOutCompleted();
+		pages.home_Initialize();
+		pages.home.widget.searchPackage(voResData);
+		pages.home.widget.clickSearchPackageButton();
+		pages.packageList_Initialize();
+		pages.packageList.listSelectFirstHotelAvailable();
+		pages.browser.switchToNewTabIfOpened();
+		pages.packageRoomList_Initialize();
+		pages.packageRoomList.selectFirstRoom();
+		pages.packageResDetail_Initialize();
+		pages.packageResDetail.clearAndFillForm(voClient);
+		//pages.packageResDetail.clickContinue();
+		//pages.payMethod_Initialize();
+		//pages.payMethod.fillCreditForm(voCreditCard);
+		//pages.payMethod.clickOnCompleteReservation();
+		//pages.thankYou_Initialize();
+		//pages.thankYou.verifyCheckOutCompleted();
 	}
 
 	@AfterMethod
@@ -139,7 +142,7 @@ public class TCHP_Paquete {
 	{
 		Reporter.log("Closing Browser...");
 		logger.info("Closing Browser...");
-		driver.quit(); //Close all browser windows
+		//driver.quit(); //Close all browser windows
 	}
 	
 	@AfterTest

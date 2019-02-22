@@ -14,7 +14,7 @@ import org.testng.Assert;
 
 import config.FWConfig;
 import helpers.DDManager;
-import utility.BasicUtils;
+import utility.FWUtils;
 
 public class ThankYouPage {
 	private WebDriverWait wait;
@@ -70,7 +70,7 @@ public class ThankYouPage {
 	}
 	
 	public void saveScreenShot() {
-		BasicUtils.ScreenShot(driver, locator.getText(), FWConfig.PATH_SCREENSHOOT_LOCATORS);
+		FWUtils.ScreenShot(driver, locator.getText(), FWConfig.PATH_SCREENSHOOT_LOCATORS);
 	}
 	
 	public void saveLocator() {

@@ -9,7 +9,7 @@
   	<parameter name="url" value="https://www.pricetravel.com.mx"/>
   	<parameter name="browser" value="firefox"/>
   	<classes>
-  		<class name="testcases.healthcheck.pt.TCHP_HotelNew">
+  		<class name="testcases.healthcheck.pt.TCHP_Hotel">
   		</class>
   	</classes>
   </test>

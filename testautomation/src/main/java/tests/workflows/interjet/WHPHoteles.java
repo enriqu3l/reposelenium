@@ -34,7 +34,7 @@ public class WHPHoteles {
 		pages.hotelListPage.listSelectFirstHotelAvailable();
 		pages.resDetailPage_Initialize();
 		pages.resDetailPage.removeAddOns();
-		pages.resDetailPage.clickOnContinue();
+		pages.resDetailPage.clickContinue();
 		pages.infoViajeroPage_Initialize();
 		pages.infoViajeroPage.clearAndFillForm(voClient);
 		pages.infoViajeroPage.clickOnContinue();

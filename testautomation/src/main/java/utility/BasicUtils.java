@@ -23,7 +23,6 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -179,16 +178,6 @@ public class BasicUtils {
 		return url;
 	}
 	
-	//Check if a element is present
-	public static boolean existsElement(WebDriver driver, By by) {
-		return !driver.findElements(by).isEmpty();
-	}
-	
-	//Check if a element is NOT present
-	public static boolean noExistsElement(WebDriver driver, By by) {
-		return driver.findElements(by).isEmpty();
-	}
-	
 	//Funciona a partir de Java version 8
 	public static String getCurrentDatePlusMonth(int plusMonth) {
 		if(plusMonth>12) {plusMonth=12;} //Aqui lo limito a máximo un año de avance
@@ -210,90 +199,11 @@ public class BasicUtils {
 		}
 		return dateFormat.format(current);
 	}
-	   
-	//Como obtener elementos de una tag ul
-	/*WebElement countryUL= driver.findElement(By.xpath("//[@id='country_id']/ul"));
-	List<WebElement> countriesList=countryUL.findElements(By.tagName("li"));
-	for (WebElement li : countriesList) {
-	if (li.getText().equals("India (+91")) {
-	     li.click();
-	   }
-	}*/
 	
 	//Makes a simple scrooll in order to see the buttons, is not relevant!!!
 	//JavascriptExecutor jse = (JavascriptExecutor)driver;
 	//jse.executeScript("window.scrollBy(0,700)");
 	//-----------------------------------------------------
-	
-	
-	public static By toByVal(WebElement we) {
-	    // By format = "[foundFrom] -> locator: term"
-	    // see RemoteWebElement toString() implementation
-	    String[] data = we.toString().split(" -> ")[1].replace("]", "").split(": ");
-	    String locator = data[0];
-	    String term = data[1];
-
-	    switch (locator) {
-	    case "xpath":
-	        return By.xpath(term);
-	    case "css selector":
-	        return By.cssSelector(term);
-	    case "id":
-	        return By.id(term);
-	    case "tag name":
-	        return By.tagName(term);
-	    case "name":
-	        return By.name(term);
-	    case "link text":
-	        return By.linkText(term);
-	    case "class name":
-	        return By.className(term);
-	    }
-	    return (By) we;
-	}
-	
-	//Guardar un ScreenShot
-	public static void ScreenShot(WebDriver d) {
-		File src=((TakesScreenshot)d).getScreenshotAs(OutputType.FILE);
-		try
-		{
-			FileUtils.copyFile(src, new File("C:/Selenium/Test/Screen"+System.currentTimeMillis()+".png"));
-		}
-		catch (IOException e)
-		{
-			System.out.println(e.getMessage());
-		}
-	}//End of function
-	
-	//Guardar un ScreenShot y permite ponerle un nombre a la captura
-	public static void ScreenShot(WebDriver d, String _name) {
-		File src=((TakesScreenshot)d).getScreenshotAs(OutputType.FILE);
-		try
-		{
-			FileUtils.copyFile(src, new File("C:/PTFrameworkData/Screen_"+_name+System.currentTimeMillis()+".png"));
-		}
-		catch (IOException e)
-		{
-			System.out.println(e.getMessage());
-		}
-	}//End of function
-	
-	/**
-	 * Guardar un ScreenShot y permite ponerle un nombre a la captura y decidir donde guardar la captura.
-	 * La imagen se guarda en formato png
-	 * @param webDriver
-	 * @param name
-	 * @param path
-	 */
-	public static void ScreenShot(WebDriver d, String _name, String _path) {
-		File src=((TakesScreenshot)d).getScreenshotAs(OutputType.FILE);
-		try{
-			FileUtils.copyFile(src, new File(_path+"Screen_"+_name+"_"+System.currentTimeMillis()+".png"));
-		}
-		catch (IOException e){
-			System.out.println(e.getMessage());
-		}
-	}//End of function
 
 	//Funcion para pedir credenciales
 	public static String[] requestCredentials() {

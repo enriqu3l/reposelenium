@@ -103,7 +103,7 @@ public class PayMethodPage {
 		frmReserveInputCardZipCode.clear();
 	}
 	
-	public void clickOnCompleteReservation() {
+	public void clickCompleteReservation() {
 		buttonCompleteReservation.click();
 	}
 }

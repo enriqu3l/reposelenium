@@ -18,6 +18,7 @@ import config.FWConfig;
 //en las variables del sistema
 
 public class BrowserFactory {
+	public static String BASEURL;
 	
 	public static WebDriver startBrowser(String _browserName) {
 		Assert.assertFalse((_browserName.equals("") || _browserName.equals(null)),"El parametro _browserName es nullo o no contiene informacion");

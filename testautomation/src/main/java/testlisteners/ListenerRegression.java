@@ -8,8 +8,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import config.FWConfig;
-import helpers.BrowserFactory;
-import utility.BasicUtils;
+import utility.FWUtils;
 
 public class ListenerRegression implements ITestListener{
 	private WebDriver driver = null;
@@ -37,7 +36,7 @@ public class ListenerRegression implements ITestListener{
 	    driver = (WebDriver) context.getAttribute("WebDriver");
 		
 		//Imprimir pantalla de la falla!
-		BasicUtils.ScreenShot(driver, "FAILURE-"+result.getName(), FWConfig.PATH_SCREENSHOOT_FAILURES);
+		FWUtils.ScreenShot(driver, "FAILURE-"+result.getName(), FWConfig.PATH_SCREENSHOOT_FAILURES);
 	}
 
 	@Override

@@ -3,11 +3,14 @@ package testcases.healthcheck.pt;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import config.FWConfig;
@@ -21,12 +24,30 @@ import valueobjects.VOResData;
 public class TCHP_HotelConPaginado {
 	WebDriver driver;
 	Logger logger = LogManager.getLogger(TCHP_HotelConPaginado.class);
+	String gTestName = "";
+	String gURL = "";
+	String gBrowser = "";
+	
+	@BeforeTest
+	@Parameters({"url","browser"})
+	public void prerequisitos(String url, String browser, ITestContext itc) {
+		logger.info("***************************** Starting @BeforeTest **********************************");
+		Reporter.log("Starting BeforeTest");
+		gTestName = itc.getName();
+		logger.trace("Launching "+gTestName);
+		gURL = url;
+		gBrowser = browser;
+		Assert.assertFalse(gURL.equals(""),"No se ha seteado una URL valida!");
+		Assert.assertFalse(gBrowser.equals(""),"No se ha seteado un browser valido!");
+		logger.trace("URL Seteada:"+gURL);
+		logger.trace("Browser Seteado:"+gBrowser);
+	}
 	
 	@BeforeMethod
 	public void beforeMethod(ITestContext itc) {
 		Reporter.log("Starting Browser");
 		//Set Browser
-		driver = BrowserFactory.startBrowser(FWConfig.BROWSER_DEFAULT, FWConfig.URL_PTCOMMX_PROD);
+		driver = BrowserFactory.startBrowser(gBrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
@@ -40,19 +61,19 @@ public class TCHP_HotelConPaginado {
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
-		pages.homeWidget_Initialize();
-		pages.homeWidget.searchHotel(voResData);
-		pages.homeWidget.clickSearchHotelButton();
-		pages.hotelListPage_Initialize();
-		pages.hotelListPage.pagingClickOnNextPage();
-		pages.hotelListPage.listSelectFirstHotelAvailable();
-		pages.roomListPage_Initialize();
-		pages.roomListPage.selectFirstRoom();
-		pages.resDetailPage_Initialize();
-		pages.resDetailPage.clearAndFillForm(voClient);
-		pages.resDetailPage.clickOnContinue();
-		pages.payMethodPage_Initialize();
-		pages.payMethodPage.fillCreditForm(voCreditCard);
+		pages.home_Initialize();
+		pages.home.widget.searchHotel(voResData);
+		pages.home.widget.clickSearchHotelButton();
+		pages.hotelList_Initialize();
+		pages.hotelList.paging.pagingClickOnNextPage();
+		pages.hotelList.list.listSelectFirstHotelAvailable();
+		pages.roomList_Initialize();
+		pages.roomList.selectFirstRoom();
+		pages.resDetail_Initialize();
+		pages.resDetail.clearAndFillForm(voClient);
+		pages.resDetail.clickOnContinue();
+		pages.payMethod_Initialize();
+		pages.payMethod.fillCreditForm(voCreditCard);
 	}
 
 	@AfterMethod

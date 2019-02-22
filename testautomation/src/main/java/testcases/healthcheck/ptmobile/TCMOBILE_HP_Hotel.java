@@ -63,15 +63,15 @@ public class TCMOBILE_HP_Hotel {
 		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
-		PagesNew.homeWidget().searchHotel(voResData);
-		PagesNew.homeWidget().clickSearchHotelButton();
-		PagesNew.hotelListPage().listSelectFirstHotelAvailable();
-		PagesNew.roomListPage().selectFirstRoom();
-		PagesNew.resDetailPage().clearAndFillForm(voClient);
-		//PagesNew.resDetailPage().clickOnContinue();
-		//PagesNew.payMethodPage().fillCreditForm(voCreditCard);
-		//PagesNew.payMethodPage().clickOnCompleteReservation();
-		//PagesNew.thankYouPage().verifyCheckOutCompleted();
+		PagesNew.home().widget.searchHotel(voResData);
+		PagesNew.home().widget.clickSearchHotelButton();
+		PagesNew.hotelList().list.listSelectFirstHotelAvailable();
+		PagesNew.roomList().selectFirstRoom();
+		PagesNew.resDetail().clearAndFillForm(voClient);
+		//PagesNew.resDetail().clickOnContinue();
+		//PagesNew.payMethod().fillCreditForm(voCreditCard);
+		//PagesNew.payMethod().clickOnCompleteReservation();
+		//PagesNew.thankYou().verifyCheckOutCompleted();
 	}
 	
 	@Test (enabled=false, priority = 2)
@@ -81,15 +81,15 @@ public class TCMOBILE_HP_Hotel {
 		VOResData voResData = DDManager.getResDataRandom(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
-		PagesNew.homeWidget().searchHotel(voResData);
-		PagesNew.homeWidget().clickSearchHotelButton();
-		PagesNew.hotelListPage().listSelectFirstHotelAvailable();
-		PagesNew.roomListPage().selectFirstRoom();
-		PagesNew.resDetailPage().clearAndFillForm(voClient);
-		//PagesNew.resDetailPage().clickOnContinue();
-		//PagesNew.payMethodPage().fillCreditForm(voCreditCard);
-		//PagesNew.payMethodPage().clickOnCompleteReservation();
-		//PagesNew.thankYouPage().verifyCheckOutCompleted();
+		PagesNew.home().widget.searchHotel(voResData);
+		PagesNew.home().widget.clickSearchHotelButton();
+		PagesNew.hotelList().list.listSelectFirstHotelAvailable();
+		PagesNew.roomList().selectFirstRoom();
+		PagesNew.resDetail().clearAndFillForm(voClient);
+		//PagesNew.resDetail().clickOnContinue();
+		//PagesNew.payMethod().fillCreditForm(voCreditCard);
+		//PagesNew.payMethod().clickOnCompleteReservation();
+		//PagesNew.thankYou().verifyCheckOutCompleted();
 	}
 	
 	@Test (enabled=true, priority = 3)
@@ -99,15 +99,15 @@ public class TCMOBILE_HP_Hotel {
 		VOResData voResData = DDManager.getResData(FWConfig.FILE_HPHOTELRESDATA, 11);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
-		PagesNew.homeWidget().searchHotel(voResData);
-		PagesNew.homeWidget().clickSearchHotelButton();
-		PagesNew.hotelListPage().listSelectFirstHotelAvailable();
-		PagesNew.roomListPage().selectFirstRoom();
-		PagesNew.resDetailPage().clearAndFillForm(voClient);
-		//PagesNew.resDetailPage().clickOnContinue();
-		//PagesNew.payMethodPage().fillCreditForm(voCreditCard);
-		//PagesNew.payMethodPage().clickOnCompleteReservation();
-		//PagesNew.thankYouPage().verifyCheckOutCompleted();
+		PagesNew.home().widget.searchHotel(voResData);
+		PagesNew.home().widget.clickSearchHotelButton();
+		PagesNew.hotelList().list.listSelectFirstHotelAvailable();
+		PagesNew.roomList().selectFirstRoom();
+		PagesNew.resDetail().clearAndFillForm(voClient);
+		//PagesNew.resDetail().clickOnContinue();
+		//PagesNew.payMethod().fillCreditForm(voCreditCard);
+		//PagesNew.payMethod().clickOnCompleteReservation();
+		//PagesNew.thankYou().verifyCheckOutCompleted();
 	}
 
 	@AfterMethod

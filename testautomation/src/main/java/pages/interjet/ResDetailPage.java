@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -16,8 +15,7 @@ import org.testng.Assert;
 
 import config.FWConfig;
 import helpers.WaitFor;
-import utility.BasicUtils;
-import valueobjects.VOClient;
+import utility.FWUtils;
 
 public class ResDetailPage {
 	private WebDriverWait wait;
@@ -50,22 +48,22 @@ public class ResDetailPage {
 	By byRemoveTransferAddOnButton = By.cssSelector("#right #summary #transferAddOnDiv .lnkDel");
 	By byRemoveCarAddOnButton = By.cssSelector("#right #summary #carAddOnDiv .lnkDel");
 	
-	public void clickOnContinue() {
+	public void clickContinue() {
 		waitForContentToBeReady();
 		buttonContinue.click();
 	}
 	
 	public void removeAddOns() {
 		waitForContentToBeReady();
-		if(BasicUtils.existsElement(driver, byRemoveInsuranceAddOnButton)) {
+		if(FWUtils.existsElement(driver, byRemoveInsuranceAddOnButton)) {
 			driver.findElement(byRemoveInsuranceAddOnButton).click();
 			logger.info("Removing Insurance AddOn");
 		}
-		if(BasicUtils.existsElement(driver, byRemoveTransferAddOnButton)) {
+		if(FWUtils.existsElement(driver, byRemoveTransferAddOnButton)) {
 			driver.findElement(byRemoveTransferAddOnButton).click();
 			logger.info("Removing Transfer AddOn");
 		}
-		if(BasicUtils.existsElement(driver, byRemoveCarAddOnButton)) {
+		if(FWUtils.existsElement(driver, byRemoveCarAddOnButton)) {
 			driver.findElement(byRemoveCarAddOnButton).click();
 			logger.info("Removing Car AddOn");
 		}

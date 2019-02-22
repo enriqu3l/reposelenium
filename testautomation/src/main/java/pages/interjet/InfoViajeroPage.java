@@ -81,13 +81,13 @@ public class InfoViajeroPage {
 	WebElement frmReserveInputLastName;
 	
 	@FindBy(how=How.ID, id="birthDateDayTitular")
-	WebElement frmReserveSelectDirthdateDay;
+	WebElement frmReserveSelectBirthDay;
 	
 	@FindBy(how=How.ID, id="birthDateMonthTitular")
-	WebElement frmReserveSelectDirthdateMonth;
+	WebElement frmReserveSelectBirthMonth;
 	
 	@FindBy(how=How.ID, id="birthDateYearTitular")
-	WebElement frmReserveSelectDirthdateYear;
+	WebElement frmReserveSelectBirthYear;
 	
 	@FindBy(how=How.ID, id="Adultoemail")
 	WebElement frmReserveInputEmail;
@@ -146,15 +146,15 @@ public class InfoViajeroPage {
 		adultTitle.selectByValue(at);
 		frmReserveInputAdultoName.sendKeys(voClient.getName());
 		frmReserveInputLastName.sendKeys(voClient.getLastName());
-		Select birthdayDay = new Select(frmReserveSelectDirthdateDay);
+		Select birthdayDay = new Select(frmReserveSelectBirthDay);
 		int day = voClient.getBornDateLocalDateFormat().getDayOfMonth();
 		birthdayDay.selectByVisibleText(Integer.toString(day));
-		Select birthdayMonth = new Select(frmReserveSelectDirthdateMonth);
+		Select birthdayMonth = new Select(frmReserveSelectBirthMonth);
 		int month = voClient.getBornDateLocalDateFormat().getMonthOfYear();
 		birthdayMonth.selectByVisibleText(Integer.toString(month));
-		Select birthdayYear = new Select(frmReserveSelectDirthdateYear);
+		Select birthdayYear = new Select(frmReserveSelectBirthYear);
 		int year = voClient.getBornDateLocalDateFormat().getYear();
-		birthdayMonth.selectByVisibleText(Integer.toString(year));
+		birthdayYear.selectByVisibleText(Integer.toString(year));
 		//Me falta agregar la fecha de nacimiento
 		frmReserveInputEmail.sendKeys(voClient.getEmail());
 		frmReserveInputConMail.sendKeys(voClient.getEmail());
@@ -187,11 +187,11 @@ public class InfoViajeroPage {
 		adultTitle.deselectAll();
 		frmReserveInputAdultoName.clear();
 		frmReserveInputLastName.clear();
-		Select birthdayDay = new Select(frmReserveSelectDirthdateDay);
+		Select birthdayDay = new Select(frmReserveSelectBirthDay);
 		birthdayDay.deselectAll();
-		Select birthdayMonth = new Select(frmReserveSelectDirthdateMonth);
+		Select birthdayMonth = new Select(frmReserveSelectBirthMonth);
 		birthdayMonth.deselectAll();
-		Select birthdayYear = new Select(frmReserveSelectDirthdateYear);
+		Select birthdayYear = new Select(frmReserveSelectBirthYear);
 		birthdayYear.deselectAll();
 		frmReserveInputEmail.clear();
 		frmReserveInputConMail.clear();

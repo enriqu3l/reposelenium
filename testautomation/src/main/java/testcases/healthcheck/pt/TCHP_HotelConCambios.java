@@ -24,39 +24,30 @@ import valueobjects.VOResData;
 public class TCHP_HotelConCambios {
 	WebDriver driver;
 	Logger logger = LogManager.getLogger(TCHP_HotelConCambios.class);
-	String gtestName = "";
+	String gTestName = "";
 	String gURL = "";
-	String gbrowser = "";
+	String gBrowser = "";
 	
 	@BeforeTest
 	@Parameters({"url","browser"})
 	public void prerequisitos(String url, String browser, ITestContext itc) {
 		logger.info("***************************** Starting @BeforeTest **********************************");
 		Reporter.log("Starting BeforeTest");
-		logger.info("Starting BeforeTest");
-		
-		//Metodo 1 - Leyendo el nombre del test
-		gtestName = itc.getName();
-		if(gtestName.equals("HPPTCOMMX")) {gURL = FWConfig.URL_PTCOMMX_PROD;}
-		else if(gtestName.equals("HPPTCOM")) {gURL = FWConfig.URL_PTCOM_PROD;}
-		else if(gtestName.equals("HPPTCO")) {gURL = FWConfig.URL_PTCO_PROD;}
-		
-		//Metodo 2 - Obteniendo un parametro
-		//URL = url;
-		logger.trace("URL Seteada URL: "+gURL);
+		gTestName = itc.getName();
+		logger.trace("Launching "+gTestName);
+		gURL = url;
+		gBrowser = browser;
 		Assert.assertFalse(gURL.equals(""),"No se ha seteado una URL valida!");
-		
-		//Seleccionando el browser que se usara para las pruebas
-		gbrowser = browser;
-		logger.trace("Browser Seteado: "+gbrowser);
-		Assert.assertFalse(gbrowser.equals(""),"No se ha seteado un browser valido!");
+		Assert.assertFalse(gBrowser.equals(""),"No se ha seteado un browser valido!");
+		logger.trace("URL Seteada:"+gURL);
+		logger.trace("Browser Seteado:"+gBrowser);
 	}
 	
 	@BeforeMethod
 	public void beforeMethod(ITestContext itc) {
 		logger.info("***************************** Starting @BeforeMethod **********************************");
 		Reporter.log("Starting Browser");
-		driver = BrowserFactory.startBrowser(gbrowser, gURL);
+		driver = BrowserFactory.startBrowser(gBrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
@@ -70,21 +61,21 @@ public class TCHP_HotelConCambios {
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
-		pages.homeWidget_Initialize();
-		pages.homeWidget.searchHotel(voResData);
-		pages.homeWidget.clickSearchHotelButton();
-		pages.hotelListPage_Initialize();
+		pages.home_Initialize();
+		pages.home.widget.searchHotel(voResData);
+		pages.home.widget.clickSearchHotelButton();
+		pages.hotelList_Initialize();
 		//Lo tengo hardcodeado a Las vegas, necesito hacerlo dinamico con un archivo o una funcion
-		pages.hotelListPage.widgetSetDestin("Las Vegas (y alrededores), Nevada, Estados Unidos de América");
-		pages.hotelListPage.widgetClickSubmit();
-		pages.hotelListPage.listSelectFirstHotelAvailable();
-		pages.roomListPage_Initialize();
-		pages.roomListPage.selectFirstRoom();
-		pages.resDetailPage_Initialize();
-		pages.resDetailPage.clearAndFillForm(voClient);
-		pages.resDetailPage.clickOnContinue();
-		pages.payMethodPage_Initialize();
-		pages.payMethodPage.fillCreditForm(voCreditCard);
+		pages.hotelList.widget.setDestin("Las Vegas (y alrededores), Nevada, Estados Unidos de América");
+		pages.hotelList.widget.clickSubmit();
+		pages.hotelList.list.listSelectFirstHotelAvailable();
+		pages.roomList_Initialize();
+		pages.roomList.selectFirstRoom();
+		pages.resDetail_Initialize();
+		pages.resDetail.clearAndFillForm(voClient);
+		pages.resDetail.clickOnContinue();
+		pages.payMethod_Initialize();
+		pages.payMethod.fillCreditForm(voCreditCard);
 	}
 	
 	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
@@ -95,21 +86,21 @@ public class TCHP_HotelConCambios {
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
-		pages.homeWidget_Initialize();
-		pages.homeWidget.searchHotel(voResData);
-		pages.homeWidget.clickSearchHotelButton();
-		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSetStartDate("10/03/2019");
-		pages.hotelListPage.widgetSetEndDate("14/03/2019");
-		pages.hotelListPage.widgetClickSubmit();
-		pages.hotelListPage.listSelectFirstHotelAvailable();
-		pages.roomListPage_Initialize();
-		pages.roomListPage.selectFirstRoom();
-		pages.resDetailPage_Initialize();
-		pages.resDetailPage.clearAndFillForm(voClient);
-		pages.resDetailPage.clickOnContinue();
-		pages.payMethodPage_Initialize();
-		pages.payMethodPage.fillCreditForm(DO_CreditCard);
+		pages.home_Initialize();
+		pages.home.widget.searchHotel(voResData);
+		pages.home.widget.clickSearchHotelButton();
+		pages.hotelList_Initialize();
+		pages.hotelList.widget.setStartDate("10/03/2019");
+		pages.hotelList.widget.setEndDate("14/03/2019");
+		pages.hotelList.widget.clickSubmit();
+		pages.hotelList.list.listSelectFirstHotelAvailable();
+		pages.roomList_Initialize();
+		pages.roomList.selectFirstRoom();
+		pages.resDetail_Initialize();
+		pages.resDetail.clearAndFillForm(voClient);
+		pages.resDetail.clickOnContinue();
+		pages.payMethod_Initialize();
+		pages.payMethod.fillCreditForm(DO_CreditCard);
 	}
 	
 	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
@@ -120,20 +111,20 @@ public class TCHP_HotelConCambios {
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
 		Pages pages = new Pages(driver);
-		pages.homeWidget_Initialize();
-		pages.homeWidget.searchHotel(voResData);
-		pages.homeWidget.clickSearchHotelButton();
-		pages.hotelListPage_Initialize();
-		pages.hotelListPage.widgetSetAdults(4);
-		pages.hotelListPage.widgetClickSubmit();
-		pages.hotelListPage.listSelectFirstHotelAvailable();
-		pages.roomListPage_Initialize();
-		pages.roomListPage.selectFirstRoom();
-		pages.resDetailPage_Initialize();
-		pages.resDetailPage.clearAndFillForm(voClient);
-		pages.resDetailPage.clickOnContinue();
-		pages.payMethodPage_Initialize();
-		pages.payMethodPage.fillCreditForm(DO_CreditCard);
+		pages.home_Initialize();
+		pages.home.widget.searchHotel(voResData);
+		pages.home.widget.clickSearchHotelButton();
+		pages.hotelList_Initialize();
+		pages.hotelList.widget.setAdults(4);
+		pages.hotelList.widget.clickSubmit();
+		pages.hotelList.list.listSelectFirstHotelAvailable();
+		pages.roomList_Initialize();
+		pages.roomList.selectFirstRoom();
+		pages.resDetail_Initialize();
+		pages.resDetail.clearAndFillForm(voClient);
+		pages.resDetail.clickOnContinue();
+		pages.payMethod_Initialize();
+		pages.payMethod.fillCreditForm(DO_CreditCard);
 	}
 
 	@AfterMethod

@@ -14,20 +14,14 @@ public class FWConfig {
 	public static final int WAITPF_INTERJET = 30;
 	public static final int WAITPF_PT_MOBILE = 30;
 	
-	//Default Reservation Data
-	public static final String R_ID = "HR001";
-	public static final String R_ORIGIN = "Ciudad de México (y alrededores), Distrito Federal, México";
-	public static final String R_DESTIN = "Cancún (y alrededores), México";
-	public static final int R_ADULTS = 2;
-	public static final int R_KIDS = 0;
-	public static final int R_STARTDATE_PLUSMONTH = 1;
-	public static final int R_ENDDATE_RESDAYS = 2;
-	
 	//URL - Environments 
-	public static final String URL_PTCOMMX_TEST = "http://test.pricetravel.com.mx";
-	public static final String URL_PTCOMMX_PROD = "https://www.pricetravel.com.mx";
-	public static final String URL_PTCOM_PROD = "https://www.pricetravel.com";
-	public static final String URL_PTCO_PROD = "https://www.pricetravel.co";
+	public static final String BASEURL_PTCOMMX_TEST = "http://test.pricetravel.com.mx";
+	public static final String BASEURL_PTCOMMX_STAGE = "https://stage.pricetravel.com.mx";
+	public static final String BASEURL_PTCOMMX_PROD = "https://www.pricetravel.com.mx";
+	public static final String BASEURL_PTCOM_STAGE = "https://stage.pricetravel.com";
+	public static final String BASEURL_PTCOMSPA_STAGE = "https://stage-spa.pricetravel.com";
+	public static final String BASEURL_PTCOM_PROD = "https://www.pricetravel.com";
+	public static final String BASEURL_PTCO_PROD = "https://www.pricetravel.co";
 	
 	//Resources Paths
 	public static final String PATH_DATASOURCE = "C:\\PTFrameworkData\\SourceDataFiles\\";

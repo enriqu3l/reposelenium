@@ -245,6 +245,18 @@ public class VOResData {
 	}
 	
 	/**
+	 * Esta funcion devuelve la cantidad total de niños en todos los cuartos
+	 * @return Int
+	 */
+	public int getKidsCount() {
+		int result=0;
+		for(int i=0;i<rooms.size();i++) {
+			 result = result + getKidsFromRoom(i);
+		}
+		return result;
+	}
+	
+	/**
 	 * Esta funcion devuelve un valor de tipo int
 	 * @param roomIndex int. indice del room. Base 0
 	 * @param kidIndex int. indice del kid. Base 0

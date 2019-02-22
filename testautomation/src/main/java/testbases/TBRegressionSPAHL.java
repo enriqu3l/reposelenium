@@ -16,7 +16,7 @@ import testcases.regression.pt.TCSPAHLWidget;
 
 public class TBRegressionSPAHL {
 	protected WebDriver driver;
-	protected Logger logger = LogManager.getLogger(TCSPAHLWidget.class);
+	protected Logger logger = LogManager.getLogger(TBRegressionSPAHL.class);
 
 	@BeforeMethod
 	public void prerequisites(ITestContext itc) {

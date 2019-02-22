@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import helpers.BrowserFactory;
+import pages.pt.PagesNew;
 
 public class TBHPHotel {
 	WebDriver driver;
@@ -23,7 +24,7 @@ public class TBHPHotel {
 	
 	@BeforeTest
 	@Parameters({"url","browser"})
-	public void setConfigVariables(String url, String browser, ITestContext itc) {
+	public void setup(String url, String browser, ITestContext itc) {
 		logger.info("***************************** Starting BeforeTest **********************************");
 		Reporter.log("Starting BeforeTest");
 		logger.info("Starting BeforeTest");
@@ -42,6 +43,7 @@ public class TBHPHotel {
 		//Set Browser
 		driver = BrowserFactory.startBrowser(gbrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
+		PagesNew.setDriver(driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}

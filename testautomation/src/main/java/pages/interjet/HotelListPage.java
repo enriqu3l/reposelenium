@@ -5,10 +5,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,15 +13,13 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import config.CoreConfig;
 import config.FWConfig;
-import helpers.WaitFor;
 import utility.BasicUtils;
-import valueobjects.VOResData;
+import utility.FWUtils;
 
 /**
  * Esta clase contiene todos los elementos, acciones y verificaciones necesarios para la pagina SPA Hotel List
@@ -43,6 +38,7 @@ public class HotelListPage {
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("/hoteles"));
+		waitForContentToBeReady();
 	}
 	
 	
@@ -68,7 +64,6 @@ public class HotelListPage {
 	
 	
 	public void listSelectFirstHotelAvailable() {
-		waitForContentToBeReady();
 		int index = listGetIndexOfFirstHotelAvailable();
 		Assert.assertFalse(CoreConfig.FAULTVALUE==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
 		listClickButtonSeeOffer(index);
@@ -76,7 +71,6 @@ public class HotelListPage {
 	
 	public void listClickButtonSeeOffer(int btnIndex){
 		Assert.assertTrue((btnIndex>=0 && btnIndex<FWConfig.TOTALRECORDSPERPAGES),"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
-		waitForContentToBeReady();
 		listVerifyResultListHasElements();
 		WebElement buttonSeeOffer = listAllBlocksResults.get(btnIndex).findElement(byListReserveButton);
 		buttonSeeOffer.click();
@@ -84,13 +78,12 @@ public class HotelListPage {
 	}
 	
 	public void listVerifyResultListHasElements() {
-		Assert.assertTrue(BasicUtils.existsElement(driver,byListListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
+		Assert.assertTrue(FWUtils.existsElement(driver,byListListProduct),"ENF>>>No se encontro ninguna lista de resultados!.");
 		Assert.assertFalse(listAllBlocksResults.isEmpty(),"ENF>>>La lista de resultados esta vacia!.");
 		logger.trace("Cantidad de bloques (hoteles) en la lista de resultados: "+listAllBlocksResults.size());
 	}
 	
 	public void verifyUrlStartDateToBe(String value) {
-		waitForContentToBeReady();
 		boolean result = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkin",value);
 		if(!result) {
 			logger.error("La fecha de StartDate no coincide con la URL");
@@ -101,7 +94,6 @@ public class HotelListPage {
 	}
 	
 	public void verifyUrlEndDateToBe(String value) {
-		waitForContentToBeReady();
 		boolean result = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkout",value);
 		if(!result) {
 			logger.error("La fecha de EndDate no coincide con la URL");
@@ -112,7 +104,6 @@ public class HotelListPage {
 	}
 	
 	public void verifyHeaderTitleToBe(String title) {
-		waitForContentToBeReady();
 		String actual = pageHeaderTitle.getText().trim();
 		String expected = title;
 		if(!actual.contains(expected)) {
@@ -138,18 +129,6 @@ public class HotelListPage {
 	}
 	
 	//+++++++++++++++++++++++++++++++++++ WAITS ++++++++++++++++++++++++++++++++++++++++++++++++
-	public void waitForLoaderButtons() {
-		//Aun no se como o a que esperar en las paginas de interjet
-		//wait.until(ExpectedConditions.invisibilityOfElementLocated(byListListProductRateLoaderButton));
-		//La funcion invisibilityOfAllElements revisa si isDisplayed y si no existe retorna verdadero
-	}
-	
-	public void waitForOverlay() {
-		//Aun no se como o a que esperar en las paginas de interjet
-		//Esperar a que se quite el overlay
-		//wait.until(ExpectedConditions.attributeContains(byLoaderOverlayPage, "style", "display: none; opacity: 0;"));
-	}
-	
 	public void waitForContentToBeReady() {
 		//waitForOverlay();
 		//waitForLoaderButtons();

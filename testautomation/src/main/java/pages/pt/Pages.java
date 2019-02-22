@@ -3,61 +3,76 @@ package pages.pt;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import pages.pt.checkout.PayMethodPage;
+import pages.pt.checkout.ThankYouPage;
+import pages.pt.general.Browser;
+import pages.pt.general.TopNavigation;
+import pages.pt.hoteles.HotelListPage;
+import pages.pt.hoteles.HotelListPageOld;
+import pages.pt.hoteles.ResDetailPage;
+import pages.pt.hoteles.RoomListPage;
+import pages.pt.paquetes.PackageListPage;
+import pages.pt.paquetes.PackageResDetailPage;
+import pages.pt.paquetes.PackageRoomListPage;
+
 public class Pages {
 	public WebDriver driver;
-	
-	public HomePage homePage;
-	public Widget homeWidget;
-	public TopNavigation topNavigation;
-	public HotelListPage hotelListPage;
-	public RoomListPage roomListPage;
-	public ResDetailPage resDetailPage;
-	public PayMethodPage payMethodPage;
-	public ThankYouPage thankYouPage;
-	public HotelListPageOld hotelListPageOld;
-	public PackageListPage packageListPage;
+	public TopNavigation topnav;
+	public Browser browser;
+	public HomePage home;
+	public HotelListPage hotelList;
+	public RoomListPage roomList;
+	public ResDetailPage resDetail;
+	public PayMethodPage payMethod;
+	public ThankYouPage thankYou;
+	public HotelListPageOld hotelListOld;
+	public PackageListPage packageList;
+	public PackageRoomListPage packageRoomList;
+	public PackageResDetailPage packageResDetail;
 	
 	public Pages(WebDriver _driver) {
 		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
 		this.driver = _driver;
+		topnav = new TopNavigation(driver);
+		browser = new Browser(driver);
 	}
 	
-	public void homePage_Initialize() {
-		homePage = new HomePage(driver);
-	}
-	
-	public void homeWidget_Initialize() {
-		homeWidget = new Widget(driver);
-	}
-	
-	public void topNavigation_Initialize() {
-		topNavigation = new TopNavigation(driver);
+	public void home_Initialize() {
+		home = new HomePage(driver);
 	}
 
-	public void hotelListPage_Initialize() {
-		hotelListPage = new HotelListPage(driver);
+	public void hotelList_Initialize() {
+		hotelList = new HotelListPage(driver);
 	}
 	
-	public void roomListPage_Initialize() {
-		roomListPage = new RoomListPage(driver);
+	public void roomList_Initialize() {
+		roomList = new RoomListPage(driver);
 	}
 	
-	public void resDetailPage_Initialize() {
-		resDetailPage = new ResDetailPage(driver);
+	public void resDetail_Initialize() {
+		resDetail = new ResDetailPage(driver);
 	}
-	public void payMethodPage_Initialize() {
-		payMethodPage = new PayMethodPage(driver);
+	public void payMethod_Initialize() {
+		payMethod = new PayMethodPage(driver);
 		//payMethod_page = PageFactory.initElements(BrowserFactory.driver, PayMethodPageF.class);
 	}
-	public void thankYouPage_Initialize() {
-		thankYouPage = new ThankYouPage(driver);
+	public void thankYou_Initialize() {
+		thankYou = new ThankYouPage(driver);
 	}
 	
-	public void hotelListPageOld_Initialize() {
-		hotelListPageOld = new HotelListPageOld(driver);
+	public void hotelListOld_Initialize() {
+		hotelListOld = new HotelListPageOld(driver);
 	}
 	
-	public void packageListPage_Initialize() {
-		packageListPage = new PackageListPage(driver);
+	public void packageList_Initialize() {
+		packageList = new PackageListPage(driver);
+	}
+	
+	public void packageRoomList_Initialize() {
+		packageRoomList = new PackageRoomListPage(driver);
+	}
+	
+	public void packageResDetail_Initialize() {
+		packageResDetail = new PackageResDetailPage(driver);
 	}
 }
