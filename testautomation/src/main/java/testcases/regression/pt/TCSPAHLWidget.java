@@ -10,10 +10,10 @@ import org.testng.annotations.Test;
 import config.FWConfig;
 import helpers.DDManager;
 import pages.pt.Pages;
-import testbases.TBRegressionSPAHL;
+import testbases.TBSPAHL;
 import valueobjects.VOResData;
 
-public class TCSPAHLWidget extends TBRegressionSPAHL{
+public class TCSPAHLWidget extends TBSPAHL{
 
 	@Test(enabled = true)
 	public void autocompleteDestinationTest() {
@@ -29,12 +29,11 @@ public class TCSPAHLWidget extends TBRegressionSPAHL{
 		data.add("vegas");
 		data.add("vallarta");
 		data.add("bogot");
-		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelList_Initialize();
+		Assert.assertTrue(Pages.hotelList().isAt());
 		// <Then>
 		// Verificar que el autocompletado del campo destino funcione correctamente
-		Assert.assertTrue(pages.hotelList.widget.verifyAutocompleteDestination(data));
+		Assert.assertTrue(Pages.hotelList().widget.verifyAutocompleteDestination(data));
 	}
 
 	@Test(enabled = true)
@@ -44,14 +43,13 @@ public class TCSPAHLWidget extends TBRegressionSPAHL{
 		// <Setup>
 		logger.info("Starting datePickersFunctionalityTest");
 		Reporter.log("Starting datePickersFunctionalityTest");
-		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelList_Initialize();
+		Assert.assertTrue(Pages.hotelList().isAt());
 		// <Then>
 		// Verificar que las fechas iniciales sean las que tenga la URL
-		Assert.assertTrue(pages.hotelList.widget.verifyCurrentUrlDateOnDatePickers());
+		Assert.assertTrue(Pages.hotelList().widget.verifyCurrentUrlDateOnDatePickers());
 		// Verificar que que el datepicker se abra y se cierre en 10 iteraciones
-		Assert.assertTrue(pages.hotelList.widget.verifyOpenAndCloseDatePickers());
+		Assert.assertTrue(Pages.hotelList().widget.verifyOpenAndCloseDatePickers());
 	}
 
 	@Test(enabled = true)
@@ -61,14 +59,13 @@ public class TCSPAHLWidget extends TBRegressionSPAHL{
 		// <Setup>
 		logger.info("Starting searchWithEmptyFieldsTest");
 		Reporter.log("Starting searchWithEmptyFieldsTest");
-		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelList_Initialize();
-		pages.hotelList.widget.clearDestination();
-		pages.hotelList.widget.clickSubmit();
+		Assert.assertTrue(Pages.hotelList().isAt());
+		Pages.hotelList().widget.clearDestination();
+		Pages.hotelList().widget.clickSubmit();
 		// <Then>
 		// Verificar que se muestre el mensaje de error si no se ingresa un destino
-		Assert.assertTrue(pages.hotelList.widget.verifyErrorPlace());
+		Assert.assertTrue(Pages.hotelList().widget.verifyErrorPlace());
 	}
 
 	@Test(enabled = true)
@@ -79,18 +76,17 @@ public class TCSPAHLWidget extends TBRegressionSPAHL{
 		logger.info("Starting searchDifferentDestinTest");
 		Reporter.log("Starting searchDifferentDestinTest");
 		VOResData voHotelRes = DDManager.getResData(FWConfig.FILE_REGRESSIONHOTELRESDATA, 2);
-		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelList_Initialize();
-		pages.hotelList.widget.setDestin(voHotelRes.getDestination());
-		pages.hotelList.widget.clickSubmit();
+		Assert.assertTrue(Pages.hotelList().isAt());
+		Pages.hotelList().widget.setDestin(voHotelRes.getDestination());
+		Pages.hotelList().widget.clickSubmit();
 		// <Then>
 		// Verificar que el widget tiene el nuevo destino
-		Assert.assertEquals(pages.hotelList.widget.getDestination(), voHotelRes.getDestination(),"Error, el destino es el esperado: "+voHotelRes.getDestination());
+		Assert.assertEquals(Pages.hotelList().widget.getDestination(), voHotelRes.getDestination(),"Error, el destino es el esperado: "+voHotelRes.getDestination());
 		// Verificar que el Page Header Title tiene el nuevo destino
-		Assert.assertTrue(pages.hotelList.getHeaderTitle().contains(voHotelRes.getDestination()),"Error, el titulo no es el esperado:"+voHotelRes.getDestination());
+		Assert.assertTrue(Pages.hotelList().getHeaderTitle().contains(voHotelRes.getDestination()),"Error, el titulo no es el esperado:"+voHotelRes.getDestination());
 		// Verificar que tenemos resultados
-		pages.hotelList.list.verifyResultListHasElements();
+		Pages.hotelList().list.verifyResultListHasElements();
 	}
 
 	@Test(enabled = true)
@@ -101,22 +97,21 @@ public class TCSPAHLWidget extends TBRegressionSPAHL{
 		logger.info("Starting searchDifferentDatesTest");
 		Reporter.log("Starting searchDifferentDatesTest");
 		VOResData voHotelRes = DDManager.getResData(FWConfig.FILE_REGRESSIONHOTELRESDATA, 2);
-		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelList_Initialize();
-		pages.hotelList.widget.setStartDate(voHotelRes.getStartDate());
-		pages.hotelList.widget.setEndDate(voHotelRes.getEndDate());
-		pages.hotelList.widget.clickSubmit();
+		Assert.assertTrue(Pages.hotelList().isAt());
+		Pages.hotelList().widget.setStartDate(voHotelRes.getStartDate());
+		Pages.hotelList().widget.setEndDate(voHotelRes.getEndDate());
+		Pages.hotelList().widget.clickSubmit();
 		// <Then>
 		// Verificar que el widget tiene la nueva fecha
-		Assert.assertEquals(pages.hotelList.widget.getStartDate(), voHotelRes.getStartDate(),"Error, la fecha de inicio no es la esperado:"+voHotelRes.getStartDate());
-		Assert.assertEquals(pages.hotelList.widget.getEndDate(), voHotelRes.getEndDate(),"Error, la fecha de fin no es la esperado:"+voHotelRes.getEndDate());
+		Assert.assertEquals(Pages.hotelList().widget.getStartDate(), voHotelRes.getStartDate(),"Error, la fecha de inicio no es la esperado:"+voHotelRes.getStartDate());
+		Assert.assertEquals(Pages.hotelList().widget.getEndDate(), voHotelRes.getEndDate(),"Error, la fecha de fin no es la esperado:"+voHotelRes.getEndDate());
 		// Verificar que la url tiene la nueva fecha
 		
-		pages.hotelList.verifyUrlStartDateToBe(voHotelRes.getStartDate("yyyy-MM-dd"));
-		pages.hotelList.verifyUrlEndDateToBe(voHotelRes.getEndDate("yyyy-MM-dd"));
+		Pages.hotelList().verifyUrlStartDateToBe(voHotelRes.getStartDate("yyyy-MM-dd"));
+		Pages.hotelList().verifyUrlEndDateToBe(voHotelRes.getEndDate("yyyy-MM-dd"));
 		// Verificar que la lista de resultados tenga elementos
-		pages.hotelList.list.verifyResultListHasElements();
+		Pages.hotelList().list.verifyResultListHasElements();
 	}
 
 	@Test(enabled = true)
@@ -128,16 +123,15 @@ public class TCSPAHLWidget extends TBRegressionSPAHL{
 		Reporter.log("Starting searchDifferentOccupantsTest");
 		// Aqui leo el row 11 donde tengo varios rooms
 		VOResData voHotelRes = DDManager.getResData(FWConfig.FILE_REGRESSIONHOTELRESDATA, 11);
-		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelList_Initialize();
-		pages.hotelList.widget.setOccupants(voHotelRes);
-		pages.hotelList.widget.clickSubmit();
+		Assert.assertTrue(Pages.hotelList().isAt());
+		Pages.hotelList().widget.setOccupants(voHotelRes);
+		Pages.hotelList().widget.clickSubmit();
 		// <Then>
 		// Verificar que los ocupantes sean los que se seleccionaron
-		pages.hotelList.widget.verifyOccupantsToBe(voHotelRes);
+		Pages.hotelList().widget.verifyOccupantsToBe(voHotelRes);
 		// Verificar que la lista de resultados tenga elementos
-		pages.hotelList.list.verifyResultListHasElements();
+		Pages.hotelList().list.verifyResultListHasElements();
 	}
 
 	@Test(enabled = true)
@@ -149,16 +143,15 @@ public class TCSPAHLWidget extends TBRegressionSPAHL{
 		Reporter.log("Starting searchDifferentReservationTest");
 		// Obtengo el row 12 del archivo
 		VOResData voHotelRes = DDManager.getResData(FWConfig.FILE_REGRESSIONHOTELRESDATA, 12);
-		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelList_Initialize();
-		pages.hotelList.widget.setReservation(voHotelRes);
-		pages.hotelList.widget.clickSubmit();
+		Assert.assertTrue(Pages.hotelList().isAt());
+		Pages.hotelList().widget.setReservation(voHotelRes);
+		Pages.hotelList().widget.clickSubmit();
 		// <Then>
 		// Verificar que la info de la reservacion sea la que se selecciono
-		Assert.assertTrue(pages.hotelList.widget.verifyReservationToBe(voHotelRes));
+		Assert.assertTrue(Pages.hotelList().widget.verifyReservationToBe(voHotelRes));
 		// Verificar que la lista de resultados tenga elementos
-		pages.hotelList.list.verifyResultListHasElements();
+		Pages.hotelList().list.verifyResultListHasElements();
 	}
 
 	@Test(enabled = false)
@@ -174,17 +167,16 @@ public class TCSPAHLWidget extends TBRegressionSPAHL{
 		Reporter.log("Starting prueba");
 		// Aqui estoy utilizando una funcion del DDManager para generar el DefaultData
 		VOResData voHotelRes = DDManager.getResData(FWConfig.FILE_REGRESSIONHOTELRESDATA, 1);
-		Pages pages = new Pages(driver);
 		// <When>
-		pages.hotelList_Initialize();
-		pages.hotelList.widget.setDestin(voHotelRes.getDestination());
-		pages.hotelList.widget.clickSubmit();
+		Assert.assertTrue(Pages.hotelList().isAt());
+		Pages.hotelList().widget.setDestin(voHotelRes.getDestination());
+		Pages.hotelList().widget.clickSubmit();
 		// <Then>
 		// Verificar que el widget tiene el nuevo destino
-		Assert.assertEquals(pages.hotelList.widget.getDestination(), voHotelRes.getDestination(),"Error, el destino es el esperado: "+voHotelRes.getDestination());
+		Assert.assertEquals(Pages.hotelList().widget.getDestination(), voHotelRes.getDestination(),"Error, el destino es el esperado: "+voHotelRes.getDestination());
 		// Verificar que el Page Header Title tiene el nuevo destino
-		Assert.assertTrue(pages.hotelList.getHeaderTitle().contains(voHotelRes.getDestination()),"Error, el titulo no es el esperado:"+voHotelRes.getDestination());
+		Assert.assertTrue(Pages.hotelList().getHeaderTitle().contains(voHotelRes.getDestination()),"Error, el titulo no es el esperado:"+voHotelRes.getDestination());
 		// Verificar que tenemos resultados
-		pages.hotelList.list.verifyResultListHasElements();
+		Pages.hotelList().list.verifyResultListHasElements();
 	}
 }

@@ -1,15 +1,6 @@
 package testautomation;
 
-import org.joda.time.LocalDate;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import config.FWConfig;
-import helpers.BrowserFactory;
-import helpers.DDManager;
-import utility.BasicUtils;
 import utility.ExcelUtils;
 import valueobjects.VOResData;
 
@@ -22,17 +13,6 @@ public class testautomation {
 		 * mvn test ------Ejecutas todos los test que se encuentren en la carpeta src/test/java
 		 * mvn test -PHappypath --Para ejecutar con un perfil deseado
 		 */
-		
-		/*String data[][];
-		data = ExcelUtils.getDataTableFormat("ProductHotelData.xlsx","C:\\Automation\\",1,1,4,5);
-		data = ExcelUtils.getDataTableFormatR("SourceDataFiles/HotelResData.xlsx", 1, 1, 1, 12);
-		System.out.println("Data [0][0]: " + data[0][0]);
-		*/
-		
-		//int row = ExcelUtils.getRowCountR("SourceDataFiles/HotelResData.xlsx");
-		//int column = ExcelUtils.getColumnCountR("SourceDataFiles/HotelResData.xlsx");
-		//System.out.println("Numero de Rows: " + row);
-		//System.out.println("Numero de Columns: " + column);
 		
 		/*
 		List<String> row = ExcelUtils.getRowR("SourceDataFiles/HotelResData.xlsx",4);
@@ -48,6 +28,9 @@ public class testautomation {
 		 * Se esta guardando el archivo de target pero no el de src
 		 * Estare guardando capturas de pantalla en lo que veo que hacer
 		 * con este asunto.
+		 */
+		
+		/*
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
 		Date date = new Date();
 		String currentDate= dateFormat.format(date);
@@ -59,15 +42,9 @@ public class testautomation {
 		ExcelUtils.saveNewRowInExistingFile("SourceDataFiles/LocatorsGenerated.xlsx", data);
 		*/
 		
-		/*String date = BasicUtils.getCurrentDatePlusMonth(1);
-		String date2 = BasicUtils.getCurrentDatePlusMonth2(1);
-		System.out.println("Fecha1 mas 1 mes: "+date);
-		System.out.println("Fecha2 mas 1 mes: "+date2);
-		*/
-		
 		/*
 		ClassLoader classLoader = ExcelUtils.class.getClassLoader();
-		String file = classLoader.getResource("SourceDataFiles/HotelResData.xlsx").getFile();
+		String file = classLoader.getResource("SourceDataFiles/HPHotelResData.xlsx").getFile();
 		System.out.println("File path: "+file);
 		*/
 		
@@ -144,11 +121,12 @@ public class testautomation {
 		
 		/*
 		//Validando el funcionamiento del nuevo archivo de Excel
-		String filePath = FrameworkConfig.PATH_DATASOURCE+FrameworkConfig.FILE_HOTELLISTWIDGETDATA;
+		String filePath = FWConfig.PATH_DATASOURCE+FWConfig.FILE_HPHOTELRESDATA;
 		int defaultRow = 1; //Para leer el primer registro del archivo
 		
-		VOHotelResNew voHotelResNew = new VOHotelResNew();
-		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
+		VOResData voHotelResNew = new VOResData();
+		//voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, defaultRow));
+		voHotelResNew.setDataUsingList(ExcelUtils.getRow(filePath, "ssssss"));
 		
 		System.out.println("idHotelRes: "+voHotelResNew.getIdHotelRes());
 		System.out.println("destination: "+voHotelResNew.getDestination());

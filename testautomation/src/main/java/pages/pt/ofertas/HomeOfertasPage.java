@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import config.FWConfig;
-import pages.pt.PagesNew;
+import pages.pt.Pages;
 import pages.pt.general.TopNavigation;
 
 public class HomeOfertasPage {
@@ -30,7 +30,7 @@ public class HomeOfertasPage {
 	}
 	
 	public void goTo() {
-		PagesNew.topnav(driver).clickOfertas();
+		Pages.topnav(driver).clickOfertas();
 	}
 	
 	public boolean isAt() {

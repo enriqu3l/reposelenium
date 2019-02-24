@@ -3,9 +3,9 @@ package testcases.regression.pt;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
-import testbases.TBRegressionSPAHL;
+import testbases.TBSPAHL;
 
-public class TCSPAHLPaging extends TBRegressionSPAHL{
+public class TCSPAHLPaging extends TBSPAHL{
 	
 	@Test (enabled=true)
 	public void test1(){

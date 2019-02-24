@@ -356,7 +356,7 @@ public class HLWidget extends HLGlobal{
 				logger.error("No se muestra el mensaje de Error del campo destino");
 				return false;
 			}else {
-				logger.info("verifyErrorPlace PASS");
+				logger.info("Si se muestra el mensaje de Error del campo destino");
 				return true;
 			}
 		}

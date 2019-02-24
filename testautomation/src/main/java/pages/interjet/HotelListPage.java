@@ -1,6 +1,5 @@
 package pages.interjet;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -21,10 +20,6 @@ import config.FWConfig;
 import utility.BasicUtils;
 import utility.FWUtils;
 
-/**
- * Esta clase contiene todos los elementos, acciones y verificaciones necesarios para la pagina SPA Hotel List
- *
- */
 public class HotelListPage {
 	private WebDriverWait wait;
 	private WebDriver driver;
@@ -72,9 +67,10 @@ public class HotelListPage {
 	public void listClickButtonSeeOffer(int btnIndex){
 		Assert.assertTrue((btnIndex>=0 && btnIndex<FWConfig.TOTALRECORDSPERPAGES),"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
 		listVerifyResultListHasElements();
+		int tabs = driver.getWindowHandles().size();
 		WebElement buttonSeeOffer = listAllBlocksResults.get(btnIndex).findElement(byListReserveButton);
 		buttonSeeOffer.click();
-		verifyIfANewTabOpened();  //En caso de encontrar una nueva tab, switchear a ella.
+		FWUtils.switchToNewTabIfOpened(driver, tabs);
 	}
 	
 	public void listVerifyResultListHasElements() {
@@ -112,27 +108,8 @@ public class HotelListPage {
 		}
 	}
 	
-	public void verifyIfANewTabOpened() {
-		//Obtener las tabs existentes
-		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
-		if(browserTabs.size()>1) {
-			//En caso de haber mas de 1 tab, switchear a esa nueva tab.
-			driver.switchTo().window(browserTabs.get(1)); //La primer tab comienza con 0 por eso seleccionamos la 1
-		}
-		logger.trace("Cantidad de tabs: "+browserTabs.size());
-		
-		//switch to new tab
-		//driver.switchTo().window(browserTabs.get(1));
-		//check is it correct page opened or not (e.g. check page's title) then close tab and get back
-		//driver.close();
-		//driver.switchTo().window(browserTabs.get(0));
-	}
-	
 	//+++++++++++++++++++++++++++++++++++ WAITS ++++++++++++++++++++++++++++++++++++++++++++++++
 	public void waitForContentToBeReady() {
-		//waitForOverlay();
-		//waitForLoaderButtons();
-		
 		//En lo que veo como crear un wait adecuado, solo espero a que este el listado
 		wait.until(ExpectedConditions.presenceOfElementLocated(byListListProduct));
 	}

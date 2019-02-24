@@ -31,9 +31,11 @@ public class ExcelUtils {
 	//Funcion que devuleve una fila, el parametro row=4 devuelve la fila 5
 	/**
 	 * Esta funcion lee un archivo de excel y regresa la fila indicada. Base 0
-	 * @param _filePath
-	 * @param _rowNumber
-	 * @return Lista-String-
+	 * Esta funcion ya tiene la capacidad de leer archivos externos y recursos internos
+	 * Si el path contiene C: lo considera como archivo externo
+	 * @param _filePath Path del archivo
+	 * @param _rowNumber Numero de fila
+	 * @return Lista-String- Regresa un listado con los datos de la fila
 	 */
 	public static List<String> getRow(String _filePath, int _rowNumber){
 		int rowNumber = _rowNumber;
@@ -65,7 +67,60 @@ public class ExcelUtils {
 			inputStream.close();
 		} catch (Exception e) {
 			e.getMessage();
-			System.out.println("ExcelUtils.getRowByNumberR() "+e.toString());
+			System.out.println("ExcelUtils.getRow() "+e.toString());
+		}
+		return data;
+	}
+	
+	/**
+	 * Esta funcion lee un archivo de excel y regresa la fila que contenga el valor pasado en el segundo parametro
+	 * Esta funcion ya tiene la capacidad de leer archivos externos y recursos internos
+	 * Si el path contiene C: lo considera como archivo externo
+	 * @param _filePath Path del archivo
+	 * @param _cellValue Valor a buscar en la primer celda de la fila
+	 * @return Lista-String- Regresa un listado con los datos de la fila
+	 */
+	public static List<String> getRow(String _filePath, String _cellValue){
+		List<String> data = new ArrayList<String>();
+		FileInputStream inputStream;
+		try{
+			if(_filePath.contains("C:")){
+				//Para el caso que sea un archivo externo al proyecto
+				//Aqui le pasamos como parametro un file
+				inputStream = new FileInputStream(new File(_filePath));
+			}
+			else {
+				//Para el caso que sea un recurso dentro del proyecto
+				//Aquile pasamos como parametro un String
+				ClassLoader classLoader = ExcelUtils.class.getClassLoader();
+				inputStream = new FileInputStream(classLoader.getResource(_filePath).getFile());
+			}
+			XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+			XSSFSheet sheet = workbook.getSheetAt(0);
+			String val;
+			DataFormatter formatter = new DataFormatter();
+			Iterator<Row> rowIterator = sheet.iterator();
+			Row row;
+			boolean finded = false;
+			while(rowIterator.hasNext()) {
+				row = rowIterator.next();
+				val = formatter.formatCellValue(row.getCell(0)).trim();
+				if(val.equalsIgnoreCase(_cellValue.trim())) {
+					finded=true;
+					int i=0;
+					while(null!=row.getCell(i)) {
+						data.add(formatter.formatCellValue(row.getCell(i)).trim());
+						i++;
+					}
+					break;
+				}
+			}
+			if(!finded) {System.out.println("No se encontro el valor deseado en ninguna fila");}
+			workbook.close();
+			inputStream.close();
+		} catch (Exception e) {
+			e.getMessage();
+			System.out.println("ExcelUtils.getRow() "+e.toString());
 		}
 		return data;
 	}

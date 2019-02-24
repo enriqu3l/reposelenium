@@ -1,78 +1,204 @@
 package pages.pt;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
+import pages.pt.autobuses.HomeAutobusesPage;
+import pages.pt.autos.HomeAutosPage;
 import pages.pt.checkout.PayMethodPage;
 import pages.pt.checkout.ThankYouPage;
-import pages.pt.general.Browser;
+import pages.pt.cruceros.HomeCrucerosPage;
 import pages.pt.general.TopNavigation;
+import pages.pt.grupos.HomeGruposPage;
+import pages.pt.home.HomePage;
+import pages.pt.hoteles.HomeHotelesPage;
 import pages.pt.hoteles.HotelListPage;
-import pages.pt.hoteles.HotelListPageOld;
 import pages.pt.hoteles.ResDetailPage;
 import pages.pt.hoteles.RoomListPage;
+import pages.pt.ofertas.HomeOfertasPage;
+import pages.pt.paquetes.HomePaquetesPage;
 import pages.pt.paquetes.PackageListPage;
 import pages.pt.paquetes.PackageResDetailPage;
 import pages.pt.paquetes.PackageRoomListPage;
+import pages.pt.tours.HomeToursPage;
+import pages.pt.traslados.HomeTrasladosPage;
+import pages.pt.vuelos.HomeVuelosPage;
 
 public class Pages {
-	public WebDriver driver;
-	public TopNavigation topnav;
-	public Browser browser;
-	public HomePage home;
-	public HotelListPage hotelList;
-	public RoomListPage roomList;
-	public ResDetailPage resDetail;
-	public PayMethodPage payMethod;
-	public ThankYouPage thankYou;
-	public HotelListPageOld hotelListOld;
-	public PackageListPage packageList;
-	public PackageRoomListPage packageRoomList;
-	public PackageResDetailPage packageResDetail;
+	private static WebDriver driver;
 	
-	public Pages(WebDriver _driver) {
-		Assert.assertFalse(null==_driver,"La variable 'driver' es null");
-		this.driver = _driver;
-		topnav = new TopNavigation(driver);
-		browser = new Browser(driver);
+	public static void setDriver(WebDriver _driver) {
+		driver = _driver;
 	}
 	
-	public void home_Initialize() {
-		home = new HomePage(driver);
-	}
-
-	public void hotelList_Initialize() {
-		hotelList = new HotelListPage(driver);
+	public static Browser browser() {
+		return new Browser(driver);
 	}
 	
-	public void roomList_Initialize() {
-		roomList = new RoomListPage(driver);
+	public static TopNavigation topnav() {
+		return new TopNavigation(driver);
 	}
 	
-	public void resDetail_Initialize() {
-		resDetail = new ResDetailPage(driver);
-	}
-	public void payMethod_Initialize() {
-		payMethod = new PayMethodPage(driver);
-		//payMethod_page = PageFactory.initElements(BrowserFactory.driver, PayMethodPageF.class);
-	}
-	public void thankYou_Initialize() {
-		thankYou = new ThankYouPage(driver);
+	public static HomePage home(){
+		return new HomePage(driver);
 	}
 	
-	public void hotelListOld_Initialize() {
-		hotelListOld = new HotelListPageOld(driver);
+	public static HomeHotelesPage hoteles() {
+		return new HomeHotelesPage(driver);
 	}
 	
-	public void packageList_Initialize() {
-		packageList = new PackageListPage(driver);
+	public static HomePaquetesPage paquetes() {
+		return new HomePaquetesPage(driver);
 	}
 	
-	public void packageRoomList_Initialize() {
-		packageRoomList = new PackageRoomListPage(driver);
+	public static HomeVuelosPage vuelos() {
+		return new HomeVuelosPage(driver);
 	}
 	
-	public void packageResDetail_Initialize() {
-		packageResDetail = new PackageResDetailPage(driver);
+	public static HomeTrasladosPage traslados() {
+		return new HomeTrasladosPage(driver);
+	}
+	
+	public static HomeToursPage tours() {
+		return new HomeToursPage(driver);
+	}
+	
+	public static HomeAutosPage autos() {
+		return new HomeAutosPage(driver);
+	}
+	
+	public static HomeAutobusesPage autobuses() {
+		return new HomeAutobusesPage(driver);
+	}
+	
+	public static HomeCrucerosPage cruceros() {
+		return new HomeCrucerosPage(driver);
+	}
+	
+	public static HomeOfertasPage ofertas() {
+		return new HomeOfertasPage(driver);
+	}
+	
+	public static HomeGruposPage grupos() {
+		return new HomeGruposPage(driver);
+	}
+	
+	
+	//++++++++++ Hoteles +++++++++++++
+	public static HotelListPage hotelList(){
+		return new HotelListPage(driver);
+	}
+	
+	public static RoomListPage roomList(){
+		return new RoomListPage(driver);
+	}
+	
+	public static ResDetailPage resDetail(){
+		return new ResDetailPage(driver);
+	}
+	
+	public static PayMethodPage payMethod(){
+		return new PayMethodPage(driver);
+	}
+	
+	public static ThankYouPage thankYou(){
+		return new ThankYouPage(driver);
+	}
+	
+	
+	//++++++++++ Paquetes +++++++++++++
+	public static PackageListPage packageList(){
+		return new PackageListPage(driver);
+	}
+	
+	public static PackageRoomListPage packageRoomList(){
+		return new PackageRoomListPage(driver);
+	}
+	
+	public static PackageResDetailPage packageResDetail() {
+		return new PackageResDetailPage(driver);
+	}
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//++++++++ En caso de que no se quiera usar la funcion setDriver ++++++++++
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public static TopNavigation topnav(WebDriver driver) {
+		return new TopNavigation(driver);
+	}
+	
+	public static HomePage home(WebDriver driver){
+		return new HomePage(driver);
+	}
+	
+	public static HomeHotelesPage hoteles(WebDriver driver) {
+		return new HomeHotelesPage(driver);
+	}
+	
+	public static HomePaquetesPage paquetes(WebDriver driver) {
+		return new HomePaquetesPage(driver);
+	}
+	
+	public static HomeVuelosPage vuelos(WebDriver driver) {
+		return new HomeVuelosPage(driver);
+	}
+	
+	public static HomeTrasladosPage traslados(WebDriver driver) {
+		return new HomeTrasladosPage(driver);
+	}
+	
+	public static HomeToursPage tours(WebDriver driver) {
+		return new HomeToursPage(driver);
+	}
+	
+	public static HomeAutosPage autos(WebDriver driver) {
+		return new HomeAutosPage(driver);
+	}
+	
+	public static HomeAutobusesPage autobuses(WebDriver driver) {
+		return new HomeAutobusesPage(driver);
+	}
+	
+	public static HomeCrucerosPage cruceros(WebDriver driver) {
+		return new HomeCrucerosPage(driver);
+	}
+	
+	public static HomeOfertasPage ofertas(WebDriver driver) {
+		return new HomeOfertasPage(driver);
+	}
+	
+	public static HomeGruposPage grupos(WebDriver driver) {
+		return new HomeGruposPage(driver);
+	}
+	
+	public static HotelListPage hotelList(WebDriver driver){
+		return new HotelListPage(driver);
+	}
+	
+	public static RoomListPage roomList(WebDriver driver){
+		return new RoomListPage(driver);
+	}
+	
+	public static ResDetailPage resDetail(WebDriver driver){
+		return new ResDetailPage(driver);
+	}
+	
+	public static PayMethodPage payMethod(WebDriver driver){
+		return new PayMethodPage(driver);
+	}
+	
+	public static ThankYouPage thankYou(WebDriver driver){
+		return new ThankYouPage(driver);
+	}
+	
+	//++++++++++ Paquetes +++++++++++++
+	public static PackageListPage packageList(WebDriver driver){
+		return new PackageListPage(driver);
+	}
+	
+	public static PackageRoomListPage packageRoomList(WebDriver driver){
+		return new PackageRoomListPage(driver);
+	}
+	
+	public static PackageResDetailPage packageResDetail(WebDriver driver) {
+		return new PackageResDetailPage(driver);
 	}
 }

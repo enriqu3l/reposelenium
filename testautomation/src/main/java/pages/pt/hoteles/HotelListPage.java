@@ -46,4 +46,9 @@ public class HotelListPage extends HLGlobal{
 		//Esperar a que el contenido este cargado
 		waitForContentToBeReady();
 	}
+
+	public boolean isAt() {
+		//Verificar que estoy en esta pagina
+		return driver.getTitle().contains("Hoteles en");
+	}
 }

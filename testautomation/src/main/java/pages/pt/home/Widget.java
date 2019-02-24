@@ -1,4 +1,4 @@
-package pages.pt.general;
+package pages.pt.home;
 
 import java.util.List;
 

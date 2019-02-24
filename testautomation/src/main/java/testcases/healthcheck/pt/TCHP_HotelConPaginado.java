@@ -49,6 +49,7 @@ public class TCHP_HotelConPaginado {
 		//Set Browser
 		driver = BrowserFactory.startBrowser(gBrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
+		Pages.setDriver(driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}
@@ -60,20 +61,14 @@ public class TCHP_HotelConPaginado {
 		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
-		Pages pages = new Pages(driver);
-		pages.home_Initialize();
-		pages.home.widget.searchHotel(voResData);
-		pages.home.widget.clickSearchHotelButton();
-		pages.hotelList_Initialize();
-		pages.hotelList.paging.pagingClickOnNextPage();
-		pages.hotelList.list.listSelectFirstHotelAvailable();
-		pages.roomList_Initialize();
-		pages.roomList.selectFirstRoom();
-		pages.resDetail_Initialize();
-		pages.resDetail.clearAndFillForm(voClient);
-		pages.resDetail.clickOnContinue();
-		pages.payMethod_Initialize();
-		pages.payMethod.fillCreditForm(voCreditCard);
+		Pages.home().widget.searchHotel(voResData);
+		Pages.home().widget.clickSearchHotelButton();
+		Pages.hotelList().paging.clickOnNextPage();
+		Pages.hotelList().list.selectFirstHotelAvailable();
+		Pages.roomList().selectFirstRoom();
+		Pages.resDetail().clearAndFillForm(voClient);
+		Pages.resDetail().clickOnContinue();
+		Pages.payMethod().fillCreditForm(voCreditCard);
 	}
 
 	@AfterMethod

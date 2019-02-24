@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import config.FWConfig;
-import pages.pt.PagesNew;
+import pages.pt.Pages;
 
 public class AttentionPoints {
 	private WebDriverWait wait;
@@ -29,7 +29,7 @@ public class AttentionPoints {
 	}
 	
 	public void goTo() {
-		PagesNew.topnav(driver).clickPuntosDeAtencion();
+		Pages.topnav(driver).clickPuntosDeAtencion();
 	}
 	
 	public boolean isAt() {

@@ -18,7 +18,7 @@ import org.testng.Assert;
 import config.CoreConfig;
 import config.FWConfig;
 import pages.pt.hoteles.HLGlobal;
-import utility.BasicUtils;
+import utility.FWUtils;
 
 public class HLList extends HLGlobal {
 	private WebDriver driver;
@@ -46,20 +46,21 @@ public class HLList extends HLGlobal {
 	private By byListListProductRateLoaderButton = By.cssSelector(".list-product-block .list-product-rate .loader");
 
 	// ++++++++++++++++++++++++++ LIST FUNCTIONS ++++++++++++++++++++++++++
-	public void listSelectFirstHotelAvailable() {
-		int index = listGetIndexOfFirstHotelAvailable();
+	public void selectFirstHotelAvailable() {
+		int index = getIndexOfFirstHotelAvailable();
 		Assert.assertFalse(CoreConfig.FAULTVALUE == index,
 				"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
-		listClickButtonSeeOffer(index);
+		clickButtonSeeOffer(index);
 	}
 
-	public void listClickButtonSeeOffer(int btnIndex) {
+	public void clickButtonSeeOffer(int btnIndex) {
 		Assert.assertTrue((btnIndex >= 0 && btnIndex < FWConfig.TOTALRECORDSPERPAGES),
 				"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
 		verifyResultListHasElements();
+		int tabs = driver.getWindowHandles().size();
 		WebElement buttonSeeOffer = listAllBlocksResults.get(btnIndex).findElement(byListButtonSeeOffer);
 		buttonSeeOffer.click();
-		verifyIfANewTabOpened(); // En caso de encontrar una nueva tab, switchear a ella.
+		FWUtils.switchToNewTabIfOpened(driver, tabs);
 	}
 
 	public void verifyResultListHasElements() {
@@ -68,7 +69,7 @@ public class HLList extends HLGlobal {
 	}
 
 	// --------------------------- FUNCIONES PRIVADAS ---------------------------
-	private int listGetIndexOfFirstHotelAvailable() {
+	private int getIndexOfFirstHotelAvailable() {
 		logger.trace("Starting listGetIndexOfFirstHotelAvailable()");
 		verifyResultListHasElements();
 		int index = CoreConfig.FAULTVALUE;
@@ -97,12 +98,12 @@ public class HLList extends HLGlobal {
 		return index;
 	}
 
-	private int listGetIndexOfHotelByName(String hotel) {
+	private int getIndexOfHotelByName(String hotel) {
 		// Aqui el codigo para buscar el itemNumber por el nombre del hotel
 		return 0;
 	}
 
-	private int listGetIndexOfHotelByHotelId(int hotelId) {
+	private int getIndexOfHotelByHotelId(int hotelId) {
 		// Aqui el codigo para buscar el itemNumber por Id del Hotel
 		return 0;
 	}

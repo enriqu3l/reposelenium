@@ -49,6 +49,7 @@ public class TCHP_HotelConCambios {
 		Reporter.log("Starting Browser");
 		driver = BrowserFactory.startBrowser(gBrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
+		Pages.setDriver(driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}
@@ -60,22 +61,16 @@ public class TCHP_HotelConCambios {
 		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
-		Pages pages = new Pages(driver);
-		pages.home_Initialize();
-		pages.home.widget.searchHotel(voResData);
-		pages.home.widget.clickSearchHotelButton();
-		pages.hotelList_Initialize();
+		Pages.home().widget.searchHotel(voResData);
+		Pages.home().widget.clickSearchHotelButton();
 		//Lo tengo hardcodeado a Las vegas, necesito hacerlo dinamico con un archivo o una funcion
-		pages.hotelList.widget.setDestin("Las Vegas (y alrededores), Nevada, Estados Unidos de América");
-		pages.hotelList.widget.clickSubmit();
-		pages.hotelList.list.listSelectFirstHotelAvailable();
-		pages.roomList_Initialize();
-		pages.roomList.selectFirstRoom();
-		pages.resDetail_Initialize();
-		pages.resDetail.clearAndFillForm(voClient);
-		pages.resDetail.clickOnContinue();
-		pages.payMethod_Initialize();
-		pages.payMethod.fillCreditForm(voCreditCard);
+		Pages.hotelList().widget.setDestin("Las Vegas (y alrededores)");
+		Pages.hotelList().widget.clickSubmit();
+		Pages.hotelList().list.selectFirstHotelAvailable();
+		Pages.roomList().selectFirstRoom();
+		Pages.resDetail().clearAndFillForm(voClient);
+		Pages.resDetail().clickOnContinue();
+		Pages.payMethod().fillCreditForm(voCreditCard);
 	}
 	
 	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
@@ -85,22 +80,16 @@ public class TCHP_HotelConCambios {
 		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
-		Pages pages = new Pages(driver);
-		pages.home_Initialize();
-		pages.home.widget.searchHotel(voResData);
-		pages.home.widget.clickSearchHotelButton();
-		pages.hotelList_Initialize();
-		pages.hotelList.widget.setStartDate("10/03/2019");
-		pages.hotelList.widget.setEndDate("14/03/2019");
-		pages.hotelList.widget.clickSubmit();
-		pages.hotelList.list.listSelectFirstHotelAvailable();
-		pages.roomList_Initialize();
-		pages.roomList.selectFirstRoom();
-		pages.resDetail_Initialize();
-		pages.resDetail.clearAndFillForm(voClient);
-		pages.resDetail.clickOnContinue();
-		pages.payMethod_Initialize();
-		pages.payMethod.fillCreditForm(DO_CreditCard);
+		Pages.home().widget.searchHotel(voResData);
+		Pages.home().widget.clickSearchHotelButton();
+		Pages.hotelList().widget.setStartDate("10/03/2019");
+		Pages.hotelList().widget.setEndDate("14/03/2019");
+		Pages.hotelList().widget.clickSubmit();
+		Pages.hotelList().list.selectFirstHotelAvailable();
+		Pages.roomList().selectFirstRoom();
+		Pages.resDetail().clearAndFillForm(voClient);
+		Pages.resDetail().clickOnContinue();
+		Pages.payMethod().fillCreditForm(DO_CreditCard);
 	}
 	
 	@Test (enabled=true, priority = 1, groups = { "HPHotelConCambios" })
@@ -110,21 +99,15 @@ public class TCHP_HotelConCambios {
 		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard DO_CreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
-		Pages pages = new Pages(driver);
-		pages.home_Initialize();
-		pages.home.widget.searchHotel(voResData);
-		pages.home.widget.clickSearchHotelButton();
-		pages.hotelList_Initialize();
-		pages.hotelList.widget.setAdults(4);
-		pages.hotelList.widget.clickSubmit();
-		pages.hotelList.list.listSelectFirstHotelAvailable();
-		pages.roomList_Initialize();
-		pages.roomList.selectFirstRoom();
-		pages.resDetail_Initialize();
-		pages.resDetail.clearAndFillForm(voClient);
-		pages.resDetail.clickOnContinue();
-		pages.payMethod_Initialize();
-		pages.payMethod.fillCreditForm(DO_CreditCard);
+		Pages.home().widget.searchHotel(voResData);
+		Pages.home().widget.clickSearchHotelButton();
+		Pages.hotelList().widget.setAdults(4);
+		Pages.hotelList().widget.clickSubmit();
+		Pages.hotelList().list.selectFirstHotelAvailable();
+		Pages.roomList().selectFirstRoom();
+		Pages.resDetail().clearAndFillForm(voClient);
+		Pages.resDetail().clickOnContinue();
+		Pages.payMethod().fillCreditForm(DO_CreditCard);
 	}
 
 	@AfterMethod

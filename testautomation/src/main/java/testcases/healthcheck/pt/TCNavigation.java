@@ -13,14 +13,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import config.FWConfig;
 import helpers.BrowserFactory;
-import helpers.DDManager;
 import pages.pt.Pages;
-import pages.pt.PagesNew;
-import valueobjects.VOClient;
-import valueobjects.VOCreditCard;
-import valueobjects.VOResData;
 
 public class TCNavigation {
 	WebDriver driver;
@@ -46,7 +40,7 @@ public class TCNavigation {
 		
 		driver = BrowserFactory.startBrowser(gbrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
-		PagesNew.setDriver(driver);
+		Pages.setDriver(driver);
 	}
 	
 	@BeforeMethod
@@ -64,17 +58,17 @@ public class TCNavigation {
 	public void GoToHomePageTest(){
 		Reporter.log("Starting GoToHomePageTest");
 		logger.info("Starting GoToHomePageTest");
-		PagesNew.home().isAt();
-		Assert.assertTrue(PagesNew.home().isAt());
+		Pages.home().isAt();
+		Assert.assertTrue(Pages.home().isAt());
 	}
 	
 	@Test (enabled=true, priority = 2)
 	public void GoToHotelesTest(){
 		Reporter.log("Starting GoToHotelesTest");
 		logger.info("Starting GoToHotelesTest");
-		PagesNew.home().goTo();
-		PagesNew.topnav().clickHoteles();
-		Assert.assertTrue(PagesNew.hoteles().isAt());
+		Pages.home().goTo();
+		Pages.topnav().clickHoteles();
+		Assert.assertTrue(Pages.hoteles().isAt());
 		logger.info("Ending GoToHotelesTest");
 	}
 	
@@ -82,9 +76,9 @@ public class TCNavigation {
 	public void GoToPaquetesTest(){
 		Reporter.log("Starting GoToPaquetesTest");
 		logger.info("Starting GoToPaquetesTest");
-		PagesNew.home().goTo();
-		PagesNew.topnav().clickPaquetes();
-		Assert.assertTrue(PagesNew.paquetes().isAt());
+		Pages.home().goTo();
+		Pages.topnav().clickPaquetes();
+		Assert.assertTrue(Pages.paquetes().isAt());
 		logger.info("Ending GoToPaquetesTest");
 	}
 	
@@ -92,9 +86,9 @@ public class TCNavigation {
 	public void GoToVuelosTest(){
 		Reporter.log("Starting GoToVuelosTest");
 		logger.info("Starting GoToVuelosTest");
-		PagesNew.home().goTo();
-		PagesNew.topnav().clickVuelos();
-		Assert.assertTrue(PagesNew.vuelos().isAt());
+		Pages.home().goTo();
+		Pages.topnav().clickVuelos();
+		Assert.assertTrue(Pages.vuelos().isAt());
 		logger.info("Ending GoToVuelosTest");
 	}
 	
@@ -102,9 +96,9 @@ public class TCNavigation {
 	public void GoToTrasladosTest(){
 		Reporter.log("Starting GoToTrasladosTest");
 		logger.info("Starting GoToTrasladosTest");
-		PagesNew.home().goTo();
-		PagesNew.topnav().clickTraslados();
-		Assert.assertTrue(PagesNew.traslados().isAt());
+		Pages.home().goTo();
+		Pages.topnav().clickTraslados();
+		Assert.assertTrue(Pages.traslados().isAt());
 		logger.info("Ending GoToPaquetesTest");
 	}
 	
@@ -112,9 +106,9 @@ public class TCNavigation {
 	public void GoToToursTest(){
 		Reporter.log("Starting GoToToursTest");
 		logger.info("Starting GoToToursTest");
-		PagesNew.home().goTo();
-		PagesNew.topnav().clickTours();
-		Assert.assertTrue(PagesNew.tours().isAt());
+		Pages.home().goTo();
+		Pages.topnav().clickTours();
+		Assert.assertTrue(Pages.tours().isAt());
 		logger.info("Ending GoToToursTest");
 	}
 	
@@ -122,9 +116,9 @@ public class TCNavigation {
 	public void GoToAutosTest(){
 		Reporter.log("Starting GoToAutosTest");
 		logger.info("Starting GoToAutosTest");
-		PagesNew.home().goTo();
-		PagesNew.topnav().clickAutos();
-		Assert.assertTrue(PagesNew.autos().isAt());
+		Pages.home().goTo();
+		Pages.topnav().clickAutos();
+		Assert.assertTrue(Pages.autos().isAt());
 		logger.info("Ending GoToAutosTest");
 	}
 	
@@ -132,9 +126,9 @@ public class TCNavigation {
 	public void GoToAutobusesTest(){
 		Reporter.log("Starting GoToAutobusesTest");
 		logger.info("Starting GoToAutobusesTest");
-		PagesNew.home().goTo();
-		PagesNew.topnav().clickAutobuses();
-		Assert.assertTrue(PagesNew.autobuses().isAt());
+		Pages.home().goTo();
+		Pages.topnav().clickAutobuses();
+		Assert.assertTrue(Pages.autobuses().isAt());
 		logger.info("Ending GoToAutobusesTest");
 	}
 	
@@ -142,9 +136,9 @@ public class TCNavigation {
 	public void GoToCrucerosTest(){
 		Reporter.log("Starting GoToCrucerosTest");
 		logger.info("Starting GoToCrucerosTest");
-		PagesNew.home().goTo();
-		PagesNew.topnav().clickCruceros();
-		Assert.assertTrue(PagesNew.cruceros().isAt());
+		Pages.home().goTo();
+		Pages.topnav().clickCruceros();
+		Assert.assertTrue(Pages.cruceros().isAt());
 		logger.info("Ending GoToCrucerosTest");
 	}
 	
@@ -152,9 +146,9 @@ public class TCNavigation {
 	public void GoToOfertasTest(){
 		Reporter.log("Starting GoToOfertasTest");
 		logger.info("Starting GoToOfertasTest");
-		PagesNew.home().goTo();
-		PagesNew.topnav().clickOfertas();
-		Assert.assertTrue(PagesNew.ofertas().isAt());
+		Pages.home().goTo();
+		Pages.topnav().clickOfertas();
+		Assert.assertTrue(Pages.ofertas().isAt());
 		logger.info("Ending GoToOfertasTest");
 	}
 	
@@ -162,9 +156,9 @@ public class TCNavigation {
 	public void GoToGruposTest(){
 		Reporter.log("Starting GoToGruposTest");
 		logger.info("Starting GoToGruposTest");
-		PagesNew.home().goTo();
-		PagesNew.topnav().clickGrupos();
-		Assert.assertTrue(PagesNew.grupos().isAt());
+		Pages.home().goTo();
+		Pages.topnav().clickGrupos();
+		Assert.assertTrue(Pages.grupos().isAt());
 		logger.info("Ending GoToGruposTest");
 	}
 

@@ -1,4 +1,4 @@
-package pages.pt;
+package pages.pt.home;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,8 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import config.FWConfig;
-import pages.pt.general.TopNavigation;
-import pages.pt.general.Widget;
+import pages.pt.Pages;
 
 public class HomePage {
 	private WebDriverWait wait;
@@ -33,7 +32,7 @@ public class HomePage {
 	}
 	
 	public void goTo() {
-		PagesNew.topnav(driver).clickLogo();
+		Pages.topnav(driver).clickLogo();
 	}
 
 	public boolean isAt() {

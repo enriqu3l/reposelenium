@@ -1,8 +1,5 @@
 package pages.pt.hoteles;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -38,9 +35,8 @@ public class HLGlobal {
 	protected WebElement pageHeaderTitle;
 
 	protected By byLoaderOverlayPage = By.xpath("//*[@class='loader__title']/parent::*/parent::*");
-	// private By byLoaderOverlayPage2 =
-	// By.cssSelector(".loader-overlay.ng-trigger"); // se usaba antes en
-	// HotelListPageOld
+	// se usaba antes en HotelListPageOld
+	// private By byLoaderOverlayPage2 = By.cssSelector(".loader-overlay.ng-trigger");
 	protected By byLoaderOverlayFiltros = By.cssSelector(".card-body .loader-overlay");
 	protected By byListProductRateLoaderButton = By.cssSelector(".list-product-block .list-product-rate .loader");
 
@@ -99,22 +95,5 @@ public class HLGlobal {
 		} else {
 			logger.info("La fecha de EndDate coincide con la URL");
 		}
-	}
-
-	public void verifyIfANewTabOpened() {
-		// Obtener las tabs existentes
-		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
-		if (browserTabs.size() > 1) {
-			// En caso de haber mas de 1 tab, switchear a esa nueva tab.
-			driver.switchTo().window(browserTabs.get(1)); // La primer tab comienza con 0 por eso seleccionamos la 1
-		}
-		logger.trace("Cantidad de tabs: " + browserTabs.size());
-
-		// switch to new tab
-		// driver.switchTo().window(browserTabs.get(1));
-		// check is it correct page opened or not (e.g. check page's title) then close
-		// tab and get back
-		// driver.close();
-		// driver.switchTo().window(browserTabs.get(0));
 	}
 }

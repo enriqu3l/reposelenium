@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.logging.log4j.Logger;
-import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
 import config.FWConfig;
@@ -28,10 +26,6 @@ public class DDManager {
 	//cada que se edite el archivo, esto porque si las funciones detectan que hay algo como: "" dentro
 	//de una celda la consideran como que si tiene contenido, esto se fixeara mas adelante.
 	
-	//Constructor
-	public DDManager() {
-	}
-	
 	//------------------------- HOTEL RES ------------------------------
 	public static VOResData getResDataDefault(String file) {
 		String filePath = FWConfig.PATH_DATASOURCE+file;
@@ -47,9 +41,20 @@ public class DDManager {
 		int max = ExcelUtils.getRowCount(filePath)-1;
 		if(row<=0){row=1;}
 		if(row>max){row=max;}
-		VOResData voHotelRes = new VOResData();
-		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, row));
-		return voHotelRes;
+		VOResData voResData = new VOResData();
+		voResData.setDataUsingList(ExcelUtils.getRow(filePath, row));
+		return voResData;
+	}//EndFunction
+	
+	public  static VOResData getResData(String file,String cellValue) {
+		String filePath = FWConfig.PATH_DATASOURCE+file;
+		if(cellValue.isEmpty()){
+			System.out.println("Error. No se puede buscar un valor vacio!");
+			return null;
+		}
+		VOResData voResData = new VOResData();
+		voResData.setDataUsingList(ExcelUtils.getRow(filePath, cellValue));
+		return voResData;
 	}//EndFunction
 	
 	public static VOResData getResDataRandom(String file) {
@@ -60,9 +65,9 @@ public class DDManager {
 		Random rand = new Random();
 		int randomNum = rand.nextInt((max - min) + 1) + min;
 		System.out.println("Info - DDManager - getRandomHotelRes randomNum: "+randomNum);
-		VOResData voHotelRes = new VOResData();
-		voHotelRes.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
-		return voHotelRes;
+		VOResData voResData = new VOResData();
+		voResData.setDataUsingList(ExcelUtils.getRow(filePath, randomNum));
+		return voResData;
 	}//EndFunction
 	
 	
@@ -101,10 +106,17 @@ public class DDManager {
 	
 	
 	//-------------------------CREDIT CARD------------------------------
+	public static VOCreditCard getCreditCardDefault(String file) {
+		String filePath = FWConfig.PATH_DATASOURCE+file;
+		int row = 1; //Hardcodeada para que lea el primer registro del archivo excel
+		VOCreditCard voCreditCard = new VOCreditCard();
+		voCreditCard.setDataUsingList(ExcelUtils.getRow(filePath, row));
+		return voCreditCard;
+	}
+	
 	public static VOCreditCard getCreditCardDefault() {
 		String filePath = FWConfig.PATH_DATASOURCE+FWConfig.FILE_CREDITCARDSDATA;
 		int row = 1; //Hardcodeada para que lea el primer registro del archivo excel
-		
 		VOCreditCard voCreditCard = new VOCreditCard();
 		voCreditCard.setDataUsingList(ExcelUtils.getRow(filePath, row));
 		return voCreditCard;
@@ -170,9 +182,7 @@ public class DDManager {
 
 	//En construccion, Aun no esta lista!
 	public static String getLandingPageRLDefault(String file) {
-		String filePath = FWConfig.PATH_DATASOURCE+file;
-		int defaultRow = 3; //Para leer el tercer registro del archivo
-		List<String> data = ExcelUtils.getRow(filePath, defaultRow);
-		return BasicUtils.createUrlHotelLPFromList(data);
+		//Aun no esta construida
+		return "";
 	}
 }

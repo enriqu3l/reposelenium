@@ -34,7 +34,7 @@ public class HLPaging extends HLGlobal {
 	private By byPagingNextPage = By.cssSelector(".pagination > *:last-child a");
 
 	// ++++++++++++++++++++++++++ PAGING FUNCTIONS ++++++++++++++++++++++++++
-	public void pagingClickOnNextPage() {
+	public void clickOnNextPage() {
 		logger.info("Starting pagingClickOnNextPage!");
 
 		/*

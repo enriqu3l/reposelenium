@@ -294,7 +294,7 @@ public class VOResData {
 		 * ...
 		 */
 		
-		if(data==null || data.isEmpty()){System.out.println("La lista esta vacia");Assert.assertFalse(data.isEmpty(),"data is empty");}
+		if(data==null || data.isEmpty()){System.out.println("VOResData.setDataUsingList() La lista recibida esta vacia");Assert.assertFalse(data.isEmpty(),"data is empty");}
 		this.idRes = data.get(0).trim();
 		this.origin = data.get(1).trim();
 		this.destination = data.get(2).trim();

@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import helpers.BrowserFactory;
-import pages.pt.PagesNew;
+import pages.pt.Pages;
 
 public class TBHPHotel {
 	WebDriver driver;
@@ -43,7 +43,7 @@ public class TBHPHotel {
 		//Set Browser
 		driver = BrowserFactory.startBrowser(gbrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
-		PagesNew.setDriver(driver);
+		Pages.setDriver(driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}

@@ -1,6 +1,5 @@
 package pages.pt.paquetes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -45,6 +44,7 @@ public class PackageListPage {
 		
 		//Esperar a que la url sea la correcta
 		wait.until(ExpectedConditions.urlContains("/paquetes/resultados"));
+		waitForContentToBeReady();
 	}
 	
 	//Ejemplos de como buscar attributos en xpath y cssSelector
@@ -154,7 +154,6 @@ public class PackageListPage {
 	//++++++++++++++++++++++++++ LIST FUNCTIONS ++++++++++++++++++++++++++++++
 	
 	public void listSelectFirstHotelAvailable() {
-		waitForContentToBeReady();
 		int index = listGetIndexOfFirstHotelAvailable();
 		Assert.assertFalse(CoreConfig.FAULTVALUE==index,"LAF>>>No se encontro ningun hotel con disponibilidad en la primer pagina!.");
 		listClickButtonSeeOffer(index);
@@ -162,12 +161,12 @@ public class PackageListPage {
 	
 	public void listClickButtonSeeOffer(int btnIndex){
 		Assert.assertTrue((btnIndex>=0 && btnIndex<FWConfig.TOTALRECORDSPERPAGES),"LAF>>>Parametro invalido, index tiene que ser menor a 20!.");
-		waitForContentToBeReady();
 		listVerifyResultListHasElements();
+		int tabs = driver.getWindowHandles().size();
 		WebElement buttonSeeOffer = listAllBlocksResults.get(btnIndex).findElement(byListButtonSeeOffer);
 		logger.info("Clicking button...");
 		buttonSeeOffer.click();
-		verifyIfANewTabOpened();  //En caso de encontrar una nueva tab, switchear a ella.
+		FWUtils.switchToNewTabIfOpened(driver, tabs);
 	}
 	
 	//++++++++++++++++++++++++++ WIDGET FUNCTIONS ++++++++++++++++++++++++++++
@@ -189,32 +188,25 @@ public class PackageListPage {
 	}
 	
 	public void widgetClearDestination() {
-		waitForContentToBeReady();
 		widgetInputDestination.clear(); //Este metodo no lanza evento de tecla
 		widgetInputDestination.sendKeys(" "+Keys.BACK_SPACE); //Enviar " " para que lance un evento de tecla
 	}
 	
 	public void widgetSetDestin(String destin) {
-		waitForContentToBeReady();
-		
 		widgetInputDestination.clear();
 		widgetInputDestination.sendKeys(destin);
 		//Wait until dropdown menu appears
 		wait.until(ExpectedConditions.presenceOfElementLocated(byWidgetDestinationDropdownMenu));
-		
 		widgetInputDestination.sendKeys(Keys.ENTER);
 	}
 	
 	public void widgetSetRooms(String roomsNumber) {
-		waitForContentToBeReady();
 		Select rooms = new Select(widgetSelectHotelRooms);
 		rooms.selectByVisibleText(roomsNumber);
 	}
 	
 	public void widgetSetAdults(int adultsNumber) {
 		Assert.assertTrue(adultsNumber>0 && adultsNumber<9,"LAF>>>el parametro adultsNumber esta fuera de rango");
-		waitForContentToBeReady();
-		
 		Select adults = new Select(widgetSelectHotelAdults);
 		adults.selectByVisibleText(Integer.toString(adultsNumber));
 	}
@@ -263,7 +255,6 @@ public class PackageListPage {
 		
 		logger.info("Starting widgetSetStartDate()");
 		logger.info("widgetSetStartDate() parametro recibido:"+date);
-		waitForContentToBeReady(); //Esperar a que se quite el overlay
 		//Abrir el calendario si no esta abierto
 		if(FWUtils.noExistsElement(driver,byWidgetStartDateDropdownMenu)){widgetStartDatePicker.click();}
 		LocalDate localDate = LocalDate.parse(date,DateTimeFormat.forPattern("dd/MM/yyyy"));
@@ -314,7 +305,6 @@ public class PackageListPage {
 	
 	public void widgetSetReservation(VOResData voHotelRes){
 		logger.info("Starting widgetChangeSearch()");
-		waitForContentToBeReady();
 		widgetSetDestin(voHotelRes.getDestination());
 		widgetSetStartDate(voHotelRes.getStartDate());
 		widgetSetEndDate(voHotelRes.getEndDate());
@@ -323,8 +313,6 @@ public class PackageListPage {
 	
 	public void widgetClickSubmit() {
 		logger.info("Starting widgetClickSubmit()");
-		
-		waitForContentToBeReady();
 		String url = driver.getCurrentUrl();
 		widgetButtonSubmit.click();
 		
@@ -346,9 +334,7 @@ public class PackageListPage {
 	
 	//++++++++++++++++++++++++++ PAGING FUNCTIONS ++++++++++++++++++++++++++++++++++++++++++++
 	public void pagingClickOnNextPage() {
-		waitForContentToBeReady();
 		logger.info("Starting pagingClickOnNextPage!");
-		
 		/*List<WebElement> elements= driver.findElements(byPagingNextPage);
 		WebElement we = elements.get(elements.size() - 1);
 		we.click();*/
@@ -364,7 +350,6 @@ public class PackageListPage {
 	
 	//+++++++++++++++++++++++++++ VERIFY FUNCTIONS +++++++++++++++++++++++++++++++++++++++++++++
 	public void widgetVerifyDestinationToBe(String expected) {
-		waitForContentToBeReady();
 		String actual = widgetGetDestination();
 		if(!actual.contains(expected)) {
 			logger.error("Actual destin: ("+actual+") is not as expeted: ("+expected+")");
@@ -375,7 +360,6 @@ public class PackageListPage {
 	}
 	
 	public void widgetVerifyStartDateToBe(String expected) {
-		waitForContentToBeReady();
 		String actual = widgetGetStartDate();
 		logger.trace("Fecha en el input StartDate:"+actual);
 		if(!actual.contains(expected)) {
@@ -387,7 +371,6 @@ public class PackageListPage {
 	}
 	
 	public void widgetVerifyEndDateToBe(String expected) {
-		waitForContentToBeReady();
 		String actual = widgetGetEndDate();
 		logger.trace("Fecha en el input StartDate:"+actual);
 		if(!actual.contains(expected)) {
@@ -401,8 +384,6 @@ public class PackageListPage {
 	public void widgetVerifyAutocompleteDestination(List<String> words) {
 		logger.info("Starting widgetVerifyAutocompleteDestination()");
 		if(words.isEmpty()) {Assert.fail("LAF>>>El parametro words esta vacio");}
-		
-		waitForContentToBeReady();
 		for(int i=0; i<words.size();i++) {
 			
 			widgetSetDestin(words.get(i).toLowerCase().trim());
@@ -416,8 +397,6 @@ public class PackageListPage {
 	
 	public void widgetVerifyOccupantsToBe(VOResData voHotelRes) {
 		logger.info("Starting widgetVerifyOccupantsToBe()");
-		waitForContentToBeReady();
-		
 		//Validar que los rooms sean los mismos
 		String roomsSelected = widgetGetRooms();
 		Assert.assertEquals(Integer.toString(voHotelRes.getRoomCount()), roomsSelected);
@@ -462,8 +441,6 @@ public class PackageListPage {
 
 	public void widgetVerifyReservationToBe(VOResData voHotelRes) {
 		logger.info("Starting widgetVerifyReservationInfoToBe()");
-		waitForContentToBeReady();
-		
 		widgetVerifyDestinationToBe(voHotelRes.getDestination());
 		widgetVerifyStartDateToBe(voHotelRes.getStartDate());
 		widgetVerifyEndDateToBe(voHotelRes.getEndDate());
@@ -471,7 +448,6 @@ public class PackageListPage {
 	}
 	
 	public void widgetVerifyErrorPlace() {
-		waitForContentToBeReady();
 		wait.until(ExpectedConditions.visibilityOf(widgetErrorPlace));
 		if(!(widgetErrorPlace.isDisplayed() && widgetErrorPlace.getText().contains("dest"))) {
 			logger.error("No se muestra el mensaje de Error del campo destino");
@@ -486,7 +462,6 @@ public class PackageListPage {
 	 * Esta funcion verifica que se abran y cierren los dropdowns de las fechas en 10 iteraciones
 	 */
 	public void widgetVerifyOpenAndCloseDatePickers() {
-		waitForContentToBeReady();
 		logger.info("Starting widgetVerifyOpenAndCloseDatePickers()");
 		
 		for(int i=0;i<10;i++) {
@@ -510,7 +485,6 @@ public class PackageListPage {
 	}
 	
 	public void widgetVerifyCurrentUrlDateOnDatePickers() {
-		waitForContentToBeReady();
 		logger.info("Starting widgetVerifyCurrentDateOnDatePickers()");
 		String inputStartDate = widgetGetStartDate();
 		boolean result1 = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkin",inputStartDate);
@@ -534,7 +508,6 @@ public class PackageListPage {
 	}
 	
 	public void verifyUrlStartDateToBe(String value) {
-		waitForContentToBeReady();
 		boolean result = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkin",value);
 		if(!result) {
 			logger.error("La fecha de StartDate no coincide con la URL");
@@ -545,7 +518,6 @@ public class PackageListPage {
 	}
 	
 	public void verifyUrlEndDateToBe(String value) {
-		waitForContentToBeReady();
 		boolean result = BasicUtils.checkValueOnUrlParam(driver.getCurrentUrl(),"checkout",value);
 		if(!result) {
 			logger.error("La fecha de EndDate no coincide con la URL");
@@ -556,31 +528,12 @@ public class PackageListPage {
 	}
 	
 	public void verifyHeaderTitleToBe(String title) {
-		waitForContentToBeReady();
 		String actual = pageHeaderTitle.getText().trim();
 		String expected = title;
 		if(!actual.contains(expected)) {
 			logger.error("Text: ("+actual+") in pageHeaderTitle does not contain the expected: ("+expected+")");
 			Assert.fail("LAF>>>Text: ("+actual+") in pageHeaderTitle does not contain the expected: ("+expected+")");
 		}
-	}
-	
-	public void verifyIfANewTabOpened() {
-		logger.trace("Starting verifyIfANewTabOpened()");
-		//Obtener las tabs existentes
-		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
-		logger.trace("Cantidad de tabs: "+browserTabs.size());
-		if(browserTabs.size()>1) {
-			//En caso de haber mas de 1 tab, switchear a esa nueva tab.
-			logger.trace("Switch to new tab");
-			driver.switchTo().window(browserTabs.get(1)); //La primer tab comienza con 0 por eso seleccionamos la 1
-		}
-		//switch to new tab
-		//driver.switchTo().window(browserTabs.get(1));
-		//check is it correct page opened or not (e.g. check page's title) then close tab and get back
-		//driver.close();
-		//driver.switchTo().window(browserTabs.get(0));
-		logger.trace("Ending verifyIfANewTabOpened()");
 	}
 	
 	//+++++++++++++++++++++++++++++++++++ WAITS ++++++++++++++++++++++++++++++++++++++++++++++++

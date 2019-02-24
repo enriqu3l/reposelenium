@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import config.FWConfig;
 import helpers.BrowserFactory;
 import helpers.DDManager;
-import pages.pt.PagesNew;
+import pages.pt.Pages;
 import valueobjects.VOClient;
 import valueobjects.VOCreditCard;
 import valueobjects.VOResData;
@@ -49,7 +49,7 @@ public class TCHP_Hotel {
 		//Set Browser
 		driver = BrowserFactory.startBrowser(gbrowser, gURL);
 		itc.setAttribute("WebDriver", driver);
-		PagesNew.setDriver(driver);
+		Pages.setDriver(driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}
@@ -67,15 +67,15 @@ public class TCHP_Hotel {
 		VOResData voResData = DDManager.getResDataDefault(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
-		PagesNew.home().widget.searchHotel(voResData);
-		PagesNew.home().widget.clickSearchHotelButton();
-		PagesNew.hotelList().list.listSelectFirstHotelAvailable();
-		PagesNew.roomList().selectFirstRoom();
-		PagesNew.resDetail().clearAndFillForm(voClient);
-		PagesNew.resDetail().clickOnContinue();
-		PagesNew.payMethod().fillCreditForm(voCreditCard);
-		PagesNew.payMethod().clickOnCompleteReservation();
-		PagesNew.thankYou().verifyCheckOutCompleted();
+		Pages.home().widget.searchHotel(voResData);
+		Pages.home().widget.clickSearchHotelButton();
+		Pages.hotelList().list.selectFirstHotelAvailable();
+		Pages.roomList().selectFirstRoom();
+		Pages.resDetail().clearAndFillForm(voClient);
+		Pages.resDetail().clickOnContinue();
+		Pages.payMethod().fillCreditForm(voCreditCard);
+		Pages.payMethod().clickOnCompleteReservation();
+		Pages.thankYou().verifyCheckOutCompleted();
 	}
 	
 	@Test (enabled=false, priority = 2)
@@ -85,15 +85,15 @@ public class TCHP_Hotel {
 		VOResData voResData = DDManager.getResDataRandom(FWConfig.FILE_HPHOTELRESDATA);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
-		PagesNew.home().widget.searchHotel(voResData);
-		PagesNew.home().widget.clickSearchHotelButton();
-		PagesNew.hotelList().list.listSelectFirstHotelAvailable();
-		PagesNew.roomList().selectFirstRoom();
-		PagesNew.resDetail().clearAndFillForm(voClient);
-		PagesNew.resDetail().clickOnContinue();
-		PagesNew.payMethod().fillCreditForm(voCreditCard);
-		PagesNew.payMethod().clickOnCompleteReservation();
-		PagesNew.thankYou().verifyCheckOutCompleted();
+		Pages.home().widget.searchHotel(voResData);
+		Pages.home().widget.clickSearchHotelButton();
+		Pages.hotelList().list.selectFirstHotelAvailable();
+		Pages.roomList().selectFirstRoom();
+		Pages.resDetail().clearAndFillForm(voClient);
+		Pages.resDetail().clickOnContinue();
+		Pages.payMethod().fillCreditForm(voCreditCard);
+		Pages.payMethod().clickOnCompleteReservation();
+		Pages.thankYou().verifyCheckOutCompleted();
 	}
 	
 	@Test (enabled=false, priority = 3)
@@ -103,15 +103,15 @@ public class TCHP_Hotel {
 		VOResData voResData = DDManager.getResData(FWConfig.FILE_HPHOTELRESDATA, 11);
 		VOCreditCard voCreditCard = DDManager.getCreditCardDefault();
 		VOClient voClient = DDManager.getClientDataDefault(FWConfig.FILE_CLIENTDATA);
-		PagesNew.home().widget.searchHotel(voResData);
-		PagesNew.home().widget.clickSearchHotelButton();
-		PagesNew.hotelList().list.listSelectFirstHotelAvailable();
-		PagesNew.roomList().selectFirstRoom();
-		PagesNew.resDetail().clearAndFillForm(voClient);
-		PagesNew.resDetail().clickOnContinue();
-		PagesNew.payMethod().fillCreditForm(voCreditCard);
-		PagesNew.payMethod().clickOnCompleteReservation();
-		PagesNew.thankYou().verifyCheckOutCompleted();
+		Pages.home().widget.searchHotel(voResData);
+		Pages.home().widget.clickSearchHotelButton();
+		Pages.hotelList().list.selectFirstHotelAvailable();
+		Pages.roomList().selectFirstRoom();
+		Pages.resDetail().clearAndFillForm(voClient);
+		Pages.resDetail().clickOnContinue();
+		Pages.payMethod().fillCreditForm(voCreditCard);
+		Pages.payMethod().clickOnCompleteReservation();
+		Pages.thankYou().verifyCheckOutCompleted();
 	}
 
 	@AfterMethod

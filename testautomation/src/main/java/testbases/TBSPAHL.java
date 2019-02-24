@@ -12,11 +12,11 @@ import org.testng.annotations.BeforeMethod;
 import config.FWConfig;
 import helpers.BrowserFactory;
 import helpers.DDManager;
-import testcases.regression.pt.TCSPAHLWidget;
+import pages.pt.Pages;
 
-public class TBRegressionSPAHL {
+public class TBSPAHL {
 	protected WebDriver driver;
-	protected Logger logger = LogManager.getLogger(TBRegressionSPAHL.class);
+	protected Logger logger = LogManager.getLogger(TBSPAHL.class);
 
 	@BeforeMethod
 	public void prerequisites(ITestContext itc) {
@@ -27,6 +27,7 @@ public class TBRegressionSPAHL {
 		String url = DDManager.getLandingPageHLDefault(FWConfig.FILE_HOTELLANDINGPAGEDATA);
 		driver = BrowserFactory.startBrowser(FWConfig.BROWSER_DEFAULT, url);
 		itc.setAttribute("WebDriver", driver);
+		Pages.setDriver(driver);
 		Reporter.log("Browser Started");
 		logger.info("Browser Started");
 	}
