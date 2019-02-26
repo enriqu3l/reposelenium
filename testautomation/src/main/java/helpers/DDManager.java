@@ -177,12 +177,18 @@ public class DDManager {
 		String filePath = FWConfig.PATH_DATASOURCE+file;
 		int defaultRow = 1; //Para leer el primer registro del archivo
 		List<String> data = ExcelUtils.getRow(filePath, defaultRow);
-		return BasicUtils.createUrlHotelLPFromList(data);
+		return BasicUtils.createUrlLandingPageHL(data);
 	}
-
-	//En construccion, Aun no esta lista!
-	public static String getLandingPageRLDefault(String file) {
-		//Aun no esta construida
-		return "";
+	
+	public static String getLandingPageHL(String file, int row) {
+		String filePath = FWConfig.PATH_DATASOURCE+file;
+		List<String> data = ExcelUtils.getRow(filePath, row);
+		return BasicUtils.createUrlLandingPageHL(data);
+	}
+	
+	public static String getLandingPageHL(String file, String cellValue) {
+		String filePath = FWConfig.PATH_DATASOURCE+file;
+		List<String> data = ExcelUtils.getRow(filePath, cellValue);
+		return BasicUtils.createUrlLandingPageHL(data);
 	}
 }

@@ -3,40 +3,32 @@ package pages.tb;
 import org.openqa.selenium.WebDriver;
 
 public class Pages {
-	public WebDriver driver;
+	public static WebDriver driver;
 	
-	public HomePageF home_page;
-	public HotelListPageF hotelList_page;
-	public RoomListPageF roomList_page;
-	public ResDetailPageF resDetail_page;
-	public PayMethodPageF payMethod_page;
-	public ThankYouPageF thankYou_page;
-	
-	public Pages(WebDriver driver) {
-		this.driver = driver;
+	public static void setDriver(WebDriver _driver) {
+		driver = _driver;
 	}
 	
-	public void homePage_Initialize() {
-		home_page = new HomePageF(driver);
+	public static HomePage home() {
+		return new HomePage(driver);
 	}
 
-	public void hotelListPage_Initialize() {
-		hotelList_page = new HotelListPageF(driver);
+	public static HotelListPage hotelList() {
+		return new HotelListPage(driver);
 	}
 	
-	public void roomListPage_Initialize() {
-		roomList_page = new RoomListPageF(driver);
+	public static RoomListPage roomList() {
+		return new RoomListPage(driver);
 	}
 	
-	public void resDetailPage_Initialize() {
-		resDetail_page = new ResDetailPageF(driver);
+	public static ResDetailPage resDetail() {
+		return new ResDetailPage(driver);
 	}
-	public void payMethodPage_Initialize() {
-		payMethod_page = new PayMethodPageF(driver);
-		//payMethod_page = PageFactory.initElements(BrowserFactory.driver, PayMethodPageF.class);
+	public static PayMethodPage payMethod() {
+		return new PayMethodPage(driver);
 	}
 	
-	public void thankYouPage_Initialize() {
-		thankYou_page = new ThankYouPageF(driver);
+	public static ThankYouPage thankYou() {
+		return new ThankYouPage(driver);
 	}
 }

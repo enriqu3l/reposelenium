@@ -7,10 +7,12 @@ public class FWConfig {
 	
 	//Waits for each Framework
 	public static final int WAIT_PT = 40;
+	public static final int WAIT_TB = 40;
 	public static final int WAIT_INTERJET = 40;
 	public static final int WAIT_PT_MOBILE = 40;
 	//Waits for AjaxElementLocatorFactory (PageFactory)
 	public static final int WAITPF_PT = 30;
+	public static final int WAITPF_TB = 30;
 	public static final int WAITPF_INTERJET = 30;
 	public static final int WAITPF_PT_MOBILE = 30;
 	
@@ -35,7 +37,8 @@ public class FWConfig {
 	public static final String FILE_LOCATORSGENERATED = "LocatorsGenerated.xlsx";
 	public static final String FILE_HPHOTELRESDATA = "HPHotelResData.xlsx";
 	public static final String FILE_REGRESSIONHOTELRESDATA = "RegressionHotelResData.xlsx";
-	public static final String FILE_HOTELLANDINGPAGEDATA = "HotelLandingPageData.xlsx";
+	public static final String FILE_HLLANDINGPAGEDATA = "HLLandingPageData.xlsx";
+	public static final String FILE_RLLANDINGPAGEDATA = "HRLandingPageData.xlsx";
 	public static final String FILE_INTERJETHOTELRESDATA = "InterjetHotelResData.xlsx";
 	public static final String FILE_HPPACKAGERESDATA = "HPPackageResData.xlsx";
 	

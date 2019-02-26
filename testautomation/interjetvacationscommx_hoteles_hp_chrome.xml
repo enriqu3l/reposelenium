@@ -9,7 +9,7 @@
   	<parameter name="url" value="https://www.interjetvacations.com.mx/hoteles"/>
   	<parameter name="browser" value="chrome"/>
   	<classes>
-  		<class name="testcases.healthcheck.interjet.TCHP_Hoteles">
+  		<class name="testcases.interjet.smook.TC_HPHotel">
   		</class>
   	</classes>
   </test>

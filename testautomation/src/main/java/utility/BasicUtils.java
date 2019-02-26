@@ -116,7 +116,7 @@ public class BasicUtils {
 	 * @param adults    - example: 2
 	 * @return
 	 */
-	public static String createUrlHotelLP(String host, String path, String startDate, String endDate, String placetype,
+	public static String createUrlLandingPageHL(String host, String path, String startDate, String endDate, String placetype,
 			String placeid, String source, String page, String rooms, String adults) {
 		String checkin = startDate;
 		String checkout = endDate;
@@ -153,7 +153,7 @@ public class BasicUtils {
 		return url;
 	}
 
-	public static String createUrlHotelLPFromList(List<String> data) {
+	public static String createUrlLandingPageHL(List<String> data) {
 		String host = data.get(1);
 		String path = data.get(2) + "/" + data.get(3);
 		int startDay = Integer.parseInt(data.get(4).trim());
@@ -167,7 +167,7 @@ public class BasicUtils {
 		String rooms = data.get(10);
 		String adults = data.get(11);
 
-		String url = createUrlHotelLP(host, path, startDate, endDate, placetype, placeid, source, page, rooms, adults);
+		String url = createUrlLandingPageHL(host, path, startDate, endDate, placetype, placeid, source, page, rooms, adults);
 		return url;
 	}
 

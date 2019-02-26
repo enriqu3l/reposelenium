@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="HP_Suite">
+<suite name="SmookTest">
   <listeners>
     <listener class-name="testlisteners.ListenerHealthCheck"></listener>
   </listeners>
   
-  <test name="HPPTCOMMX">
+  <test name="Navigation">
   	<parameter name="url" value="https://www.pricetravel.com.mx"/>
   	<parameter name="browser" value="chrome"/>
   	<classes>
-  		<class name="testcases.healthcheck.pt.TCNavigation">
-  		</class>
+  		<class name="testcases.pt.smook.TC_Navigation"/>
+  	</classes>
+  </test>
+  
+  <test name="HPHotel">
+  	<parameter name="url" value="https://www.pricetravel.com.mx"/>
+  	<parameter name="browser" value="chrome"/>
+  	<classes>
+  		<class name="testcases.pt.smook.TC_HPHotel"/>
+  	</classes>
+  </test>
+  
+  <test name="HPPaquete">
+  	<parameter name="url" value="https://www.pricetravel.com.mx"/>
+  	<parameter name="browser" value="chrome"/>
+  	<classes>
+  		<class name="testcases.pt.smook.TC_HPPaquete"/>
   	</classes>
   </test>
 </suite> <!-- Suite -->

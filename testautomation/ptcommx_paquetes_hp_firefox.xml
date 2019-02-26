@@ -4,12 +4,11 @@
   <listeners>
     <listener class-name="testlisteners.ListenerHealthCheck"></listener>
   </listeners>
-  
   <test name="HPPTCOMMX">
   	<parameter name="url" value="https://www.pricetravel.com.mx"/>
   	<parameter name="browser" value="firefox"/>
   	<classes>
-  		<class name="testcases.healthcheck.pt.TCHP_Paquete">
+  		<class name="testcases.pt.smook.TC_HPPaquete">
   		</class>
   	</classes>
   </test>

@@ -82,7 +82,6 @@ public class Pages {
 		return new HomeGruposPage(driver);
 	}
 	
-	
 	//++++++++++ Hoteles +++++++++++++
 	public static HotelListPage hotelList(){
 		return new HotelListPage(driver);
@@ -103,7 +102,6 @@ public class Pages {
 	public static ThankYouPage thankYou(){
 		return new ThankYouPage(driver);
 	}
-	
 	
 	//++++++++++ Paquetes +++++++++++++
 	public static PackageListPage packageList(){
@@ -169,6 +167,7 @@ public class Pages {
 		return new HomeGruposPage(driver);
 	}
 	
+	//++++++++++ Hoteles +++++++++++++
 	public static HotelListPage hotelList(WebDriver driver){
 		return new HotelListPage(driver);
 	}

@@ -8,7 +8,7 @@
 		<parameter name="url" value="https://www.pricetravel.com.mx" />
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="testcases.healthcheck.ptmobile.TCMOBILE_HP_Hotel">
+			<class name="testcases.ptmobile.smook.TC_MOBILE_HPHotel">
 			</class>
 		</classes>
 	</test>

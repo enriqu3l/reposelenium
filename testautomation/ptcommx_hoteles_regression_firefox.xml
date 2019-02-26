@@ -6,8 +6,8 @@
   </listeners>
   <test name="Test" thread-count="3" parallel="methods">
     <classes>
-      <class name="testcases.regression.pt.TCSPAHLWidget"/>
-      <class name="testcases.regression.pt.TCSPAHLPaging"/>
+      <class name="testcases.pt.smook.TC_SPAHLWidget"/>
+      <class name="testcases.pt.smook.TC_SPAHLPaging"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

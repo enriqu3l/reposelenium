@@ -6,12 +6,12 @@
   </listeners>
   <test name="SPAWidget" >
     <classes>
-      <class name="testcases.regression.pt.TCSPAHLWidget"/>
+      <class name="testcases.pt.smook.TC_SPAHLWidget"/>
     </classes>
   </test> <!-- Test -->
   <test name="SPAPaging">
     <classes>
-      <class name="testcases.regression.pt.TCSPAHLPaging"/>
+      <class name="testcases.pt.smook.TC_SPAHLPaging"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -18,30 +18,37 @@ public class Browser {
 	}
 
 	public void navigateTo(String url) {
+		logger.info("Navigate to:"+url);
 		driver.navigate().to(url);
 	}
 
-	public void navigateForward(String url) {
+	public void navigateForward() {
+		logger.info("Navigate Forward to:");
 		driver.navigate().forward();
 	}
 
 	public void navigateBack() {
+		logger.info("Navigate Back");
 		driver.navigate().back();
 	}
 
 	public void refresh() {
+		logger.info("Refresh:");
 		driver.navigate().refresh();
 	}
 
 	public String getCurrentURL() {
+		logger.info("get Current Url:");
 		return driver.getCurrentUrl();
 	}
 
 	public String getTitle() {
+		logger.info("get Title:");
 		return driver.getTitle();
 	}
 
 	public int getTabsCount() {
+		logger.info("get Tabs Count:");
 		return driver.getWindowHandles().size();
 	}
 }

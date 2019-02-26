@@ -89,7 +89,11 @@ public class VOResData {
 		this.destination = destination;
 	}
 
-	public LocalDate getStartDateLocalDateFormat() {
+	/**
+	 * Regresa la fecha en formato LocalDate
+	 * @return LocalDate
+	 */
+	public LocalDate getStartDateAsLocalDate() {
 		return startDate;
 	}
 	
@@ -128,7 +132,11 @@ public class VOResData {
 		this.startDate = LocalDate.parse(startDate.trim(),DateTimeFormat.forPattern("dd/MM/yyyy"));
 	}
 
-	public LocalDate getEndDateLocalDateFormat() {
+	/**
+	 * Regresa la fecha en formato LocalDate
+	 * @return LocalDate
+	 */
+	public LocalDate getEndDateAsLocalDate() {
 		return endDate;
 	}
 	
